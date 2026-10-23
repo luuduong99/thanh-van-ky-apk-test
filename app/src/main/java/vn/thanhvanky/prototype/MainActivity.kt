@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import kotlin.math.min
+import kotlin.math.sin
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,11 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private var message = "Chạm vào địa điểm để di chuyển"
     private var affection = 0
     private var outfit = 0
+    private var demoSpeed = 1
+    private var demoStrength = 1
+    private var demoPlaying = true
+    private var demoFrame = 0f
+    private var demoVeil = false
     private var interaction = "Chạm vào tóc, mặt, tay hoặc chọn hành động."
     private val cream = Color.rgb(246, 230, 188)
     private val ink = Color.rgb(48, 54, 48)
@@ -37,8 +43,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         canvas.save()
         canvas.scale(s, s)
-        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else drawLocation(canvas)
+        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else drawLocation(canvas)
         canvas.restore()
+        if (place == "animation_demo" && demoPlaying) postInvalidateDelayed(33L)
     }
 
     private fun paint(color: Int, style: Paint.Style = Paint.Style.FILL, size: Float = 2f) {
@@ -180,6 +187,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "Tóc", 195f, 151f, 13f, ink)
         text(c, "Khuôn mặt", 195f, 227f, 12f, ink)
         text(c, "Trang phục", 195f, 399f, 13f, ink)
+        rounded(c, 76f, 463f, 314f, 510f, Color.rgb(88, 73, 116), 10f)
+        text(c, "THỬ HOẠT ẢNH", 195f, 491f, 13f, cream, true)
         rounded(c, 15f, 525f, 375f, 585f, Color.rgb(29, 48, 56), 10f)
         text(c, interaction, 195f, 558f, 12f)
         rounded(c, 18f, 600f, 187f, 646f, gold, 10f)
@@ -192,6 +201,61 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "TẶNG HOA", 287f, 687f, 13f, ink, true)
         rounded(c, 25f, 719f, 365f, 765f, Color.rgb(87, 116, 112), 10f)
         text(c, "← TRỞ VỀ THANH VÂN TÔNG", 195f, 748f, 13f)
+    }
+
+
+    // Reusable, content-neutral animation controller prototype.
+    // The placeholder below can later be replaced with properly licensed 2D sprite frames.
+    private fun drawAnimationDemo(c: Canvas) {
+        if (demoPlaying) demoFrame += 0.065f * (demoSpeed + 1)
+        val wave = sin(demoFrame.toDouble()).toFloat() * (demoStrength + 1) * 3f
+        text(c, "TÔ NGUYỆT LY • HOẠT ẢNH", 195f, 42f, 21f, gold, true)
+        text(c, "Bản thử điều khiển chuyển động 2D", 195f, 69f, 12f)
+        rounded(c, 12f, 88f, 378f, 490f, Color.rgb(47, 70, 93), 18f)
+        paint(Color.rgb(95, 133, 152))
+        c.drawCircle(195f, 250f, 118f, p)
+        paint(Color.rgb(218, 225, 238))
+        c.drawOval(RectF(128f + wave, 115f, 262f + wave, 395f), p)
+        paint(Color.rgb(246, 213, 196))
+        c.drawOval(RectF(150f + wave, 163f, 240f + wave, 272f), p)
+        paint(if (outfit == 0) Color.rgb(145, 189, 214) else Color.rgb(192, 155, 204))
+        c.drawOval(RectF(108f - wave, 290f, 282f + wave, 467f), p)
+        text(c, "Sprite minh họa (chưa tích hợp ảnh gốc)", 195f, 482f, 10f)
+        if (demoVeil) {
+            rounded(c, 22f, 97f, 368f, 467f, Color.argb(185, 34, 41, 64), 16f)
+            text(c, "Hiệu ứng màn mờ", 195f, 286f, 17f)
+        }
+        text(c, "TỐC ĐỘ", 195f, 514f, 13f, gold, true)
+        val speedNames = arrayOf("CHẬM", "VỪA", "NHANH")
+        for (i in 0..2) {
+            val left = 18f + i * 122f
+            rounded(c, left, 525f, left + 110f, 565f, if (i == demoSpeed) gold else green, 8f)
+            text(c, speedNames[i], left + 55f, 551f, 12f, if (i == demoSpeed) ink else cream, true)
+        }
+        text(c, "BIÊN ĐỘ CHUYỂN ĐỘNG", 195f, 590f, 13f, gold, true)
+        val strengths = arrayOf("NHẸ", "VỪA", "MẠNH")
+        for (i in 0..2) {
+            val left = 18f + i * 122f
+            rounded(c, left, 601f, left + 110f, 641f, if (i == demoStrength) gold else green, 8f)
+            text(c, strengths[i], left + 55f, 627f, 12f, if (i == demoStrength) ink else cream, true)
+        }
+        rounded(c, 18f, 655f, 187f, 696f, gold, 8f)
+        rounded(c, 203f, 655f, 372f, 696f, green, 8f)
+        text(c, if (demoPlaying) "TẠM DỪNG" else "TIẾP TỤC", 102f, 682f, 13f, ink, true)
+        text(c, if (demoVeil) "TẮT MÀN MỜ" else "BẬT MÀN MỜ", 287f, 682f, 12f, cream, true)
+        rounded(c, 25f, 715f, 365f, 763f, Color.rgb(87, 116, 112), 10f)
+        text(c, "← TRỞ VỀ TÔ NGUYỆT LY", 195f, 745f, 13f)
+    }
+
+    private fun interactAnimationDemo(x: Float, y: Float) {
+        when {
+            y in 715f..780f -> place = "nguyetly"
+            y in 525f..565f -> demoSpeed = ((x - 18f) / 122f).toInt().coerceIn(0, 2)
+            y in 601f..641f -> demoStrength = ((x - 18f) / 122f).toInt().coerceIn(0, 2)
+            y in 655f..696f && x < 195f -> demoPlaying = !demoPlaying
+            y in 655f..696f -> demoVeil = !demoVeil
+        }
+        invalidate()
     }
 
     private fun interactNguyetLy(x: Float, y: Float) {
@@ -216,7 +280,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         } else if (x in 145f..245f && y in 180f..290f) {
             affection += 1
             interaction = "Nguyệt Ly đỏ mặt: Huynh đang nhìn gì vậy?"
-        } else if (x in 90f..300f && y in 295f..510f) {
+        } else if (x in 76f..314f && y in 463f..510f) {
+            place = "animation_demo"
+        } else if (x in 90f..300f && y in 295f..462f) {
             interaction = "Trang phục tiên hiệp mềm mại, điểm viền vàng."
         } else {
             interaction = "Hãy chạm vào nhân vật hoặc chọn hành động."
@@ -236,7 +302,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         val x = event.x / s
         val y = event.y / s
-        if (place == "nguyetly") {
+        if (place == "animation_demo") {
+            interactAnimationDemo(x, y)
+        } else if (place == "nguyetly") {
             interactNguyetLy(x, y)
         } else if (place == "map") {
             if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
