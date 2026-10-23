@@ -1,6 +1,10 @@
 package vn.thanhvanky.prototype
 
 import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.BitmapRegionDecoder
+import android.graphics.Rect
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -21,11 +25,35 @@ class MainActivity : Activity() {
 }
 
 private class MapPrototypeView(activity: Activity) : View(activity) {
-    private val p = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val p = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+    // Decode once. Read only the left panel of the supplied triptych, without changing its file.
+    private val nguyetLyPortrait: Bitmap = context.assets.open("characters/heroines_reference.png").use { stream ->
+        val decoder = requireNotNull(BitmapRegionDecoder.newInstance(stream, false))
+        try {
+            requireNotNull(decoder.decodeRegion(Rect(0, 0, decoder.width / 3, decoder.height), BitmapFactory.Options()))
+        } finally { decoder.recycle() }
+    }
+    private val mainPortrait: Bitmap = context.assets.open("characters/main_portrait.png").use {
+        requireNotNull(BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = 2 }))
+    }
+
+    private fun portrait(c: Canvas, bitmap: Bitmap, bounds: RectF, shift: Float = 0f) {
+        val scale = kotlin.math.max(bounds.width() / bitmap.width, (bounds.height() + 10f) / bitmap.height)
+        val w = bitmap.width * scale
+        val h = bitmap.height * scale
+        val left = bounds.centerX() - w / 2f
+        val top = bounds.centerY() - h / 2f
+        c.save()
+        c.clipRect(bounds)
+        c.translate(0f, shift)
+        p.alpha = 255
+        p.style = Paint.Style.FILL
+        c.drawBitmap(bitmap, null, RectF(left, top, left + w, top + h), p)
+        c.restore()
+    }
     private var place = "map"
     private var message = "Chạm vào địa điểm để di chuyển"
     private var affection = 0
-    private var outfit = 0
     private var demoSpeed = 1
     private var demoStrength = 1
     private var demoPlaying = true
@@ -168,27 +196,12 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     }
 
 
-    // Prototype interaction screen: original Canvas placeholder, no external art asset.
+    // Portrait supplied and approved by the user; reactions currently use dialogue.
     private fun drawNguyetLy(c: Canvas) {
         text(c, "TÔ NGUYỆT LY", 195f, 43f, 25f, gold, true)
         text(c, "Độ thân thiết: $affection", 195f, 70f, 14f)
         rounded(c, 12f, 90f, 378f, 522f, Color.rgb(53, 78, 94), 20f)
-        paint(Color.rgb(109, 151, 162))
-        c.drawCircle(195f, 265f, 125f, p)
-        // Hair silhouette, head, shoulders and robe are simple touch targets.
-        paint(Color.rgb(216, 220, 234))
-        c.drawOval(RectF(127f, 120f, 263f, 415f), p)
-        paint(Color.rgb(245, 211, 195))
-        c.drawOval(RectF(151f, 170f, 239f, 279f), p)
-        paint(Color.rgb(234, 238, 249))
-        c.drawOval(RectF(102f, 298f, 288f, 495f), p)
-        paint(if (outfit == 0) Color.rgb(126, 184, 207) else Color.rgb(183, 145, 200))
-        c.drawOval(RectF(135f, 315f, 255f, 490f), p)
-        paint(gold, Paint.Style.STROKE, 3f)
-        c.drawOval(RectF(135f, 315f, 255f, 490f), p)
-        text(c, "Tóc", 195f, 151f, 13f, ink)
-        text(c, "Khuôn mặt", 195f, 227f, 12f, ink)
-        text(c, "Trang phục", 195f, 399f, 13f, ink)
+        portrait(c, nguyetLyPortrait, RectF(80f, 122f, 310f, 461f))
         rounded(c, 76f, 90f, 314f, 120f, Color.rgb(100, 70, 110), 8f)
         text(c, "HẸN HÒ DƯỚI TRĂNG", 195f, 111f, 12f)
         rounded(c, 76f, 463f, 314f, 510f, Color.rgb(88, 73, 116), 10f)
@@ -198,7 +211,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         rounded(c, 18f, 600f, 187f, 646f, gold, 10f)
         rounded(c, 203f, 600f, 372f, 646f, gold, 10f)
         text(c, "NẮM TAY", 102f, 629f, 14f, ink, true)
-        text(c, "ĐỔI TRANG PHỤC", 287f, 629f, 12f, ink, true)
+        text(c, "TRANG PHỤC", 287f, 629f, 12f, ink, true)
         rounded(c, 18f, 658f, 187f, 704f, gold, 10f)
         rounded(c, 203f, 658f, 372f, 704f, gold, 10f)
         text(c, "TRÒ CHUYỆN", 102f, 687f, 13f, ink, true)
@@ -209,22 +222,15 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
 
 
     // Reusable, content-neutral animation controller prototype.
-    // The placeholder below can later be replaced with properly licensed 2D sprite frames.
+    // This version moves the approved static portrait; it is not a layered character rig.
     private fun drawAnimationDemo(c: Canvas) {
         if (demoPlaying) demoFrame += 0.065f * (demoSpeed + 1)
         val wave = sin(demoFrame.toDouble()).toFloat() * (demoStrength + 1) * 3f
         text(c, "TÔ NGUYỆT LY • HOẠT ẢNH", 195f, 42f, 21f, gold, true)
         text(c, "Bản thử điều khiển chuyển động 2D", 195f, 69f, 12f)
         rounded(c, 12f, 88f, 378f, 490f, Color.rgb(47, 70, 93), 18f)
-        paint(Color.rgb(95, 133, 152))
-        c.drawCircle(195f, 250f, 118f, p)
-        paint(Color.rgb(218, 225, 238))
-        c.drawOval(RectF(128f + wave, 115f, 262f + wave, 395f), p)
-        paint(Color.rgb(246, 213, 196))
-        c.drawOval(RectF(150f + wave, 163f, 240f + wave, 272f), p)
-        paint(if (outfit == 0) Color.rgb(145, 189, 214) else Color.rgb(192, 155, 204))
-        c.drawOval(RectF(108f - wave, 290f, 282f + wave, 467f), p)
-        text(c, "Sprite minh họa (chưa tích hợp ảnh gốc)", 195f, 482f, 10f)
+        portrait(c, nguyetLyPortrait, RectF(80f, 98f, 310f, 467f), wave * 0.3f)
+        text(c, "Ảnh đã chọn • chuyển động ảnh tĩnh", 195f, 482f, 10f)
         if (demoVeil) {
             rounded(c, 22f, 97f, 368f, 467f, Color.argb(185, 34, 41, 64), 16f)
             text(c, "Hiệu ứng màn mờ", 195f, 286f, 17f)
@@ -257,16 +263,12 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "Độ thân thiết: $affection", 195f, 70f, 14f)
         rounded(c, 12f, 89f, 378f, 495f, Color.rgb(35, 48, 78), 20f)
         paint(Color.rgb(240, 224, 178)); c.drawCircle(306f, 153f, 36f, p)
-        val sway = sin(System.currentTimeMillis() / 700.0).toFloat() * (demoStrength + 1) * 2f
-        paint(Color.rgb(214, 223, 238)); c.drawOval(RectF(125f+sway, 128f, 265f+sway, 397f), p)
-        paint(Color.rgb(246, 213, 196)); c.drawOval(RectF(153f+sway, 173f, 238f+sway, 275f), p)
-        paint(if (outfit == 0) Color.rgb(140, 190, 217) else Color.rgb(190, 151, 204))
-        c.drawOval(RectF(103f+sway, 303f, 289f+sway, 480f), p)
-        if (romanceMode > 0) {
-            paint(Color.rgb(226, 121, 149))
-            c.drawCircle(167f+sway, 243f, 6f, p); c.drawCircle(223f+sway, 243f, 6f, p)
-        }
-        if (romanceMode == 2) text(c, "♥", 275f, 245f, 32f, Color.rgb(245, 155, 169))
+        val sway = sin(System.currentTimeMillis() / (1100.0 - demoSpeed * 250.0)).toFloat() * (demoStrength + 1) * 0.7f
+        portrait(c, mainPortrait, RectF(22f, 105f, 187f, 458f), -sway)
+        portrait(c, nguyetLyPortrait, RectF(203f, 105f, 368f, 458f), sway)
+        text(c, "NAM CHÍNH", 104f, 480f, 12f, cream, true)
+        text(c, "TÔ NGUYỆT LY", 285f, 480f, 12f, cream, true)
+        if (romanceMode > 0) text(c, "♥", 195f, 270f, 24f, Color.rgb(245, 155, 169))
         rounded(c, 15f, 500f, 375f, 539f, Color.rgb(39, 56, 65), 8f)
         text(c, romanceText, 195f, 525f, 11f)
         val names = arrayOf("NẮM TAY", "ÔM", "HÔN NHẸ", "VUỐT TÓC")
@@ -325,8 +327,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             affection += 2
             interaction = "Nguyệt Ly mỉm cười và nắm tay bạn."
         } else if (y in 600f..646f) {
-            outfit = 1 - outfit
-            interaction = "Nguyệt Ly đã đổi sang bộ trang phục khác."
+            interaction = "Chưa có ảnh trang phục khác cho bản thử này."
         } else if (y in 658f..704f && x < 195f) {
             affection += 1
             interaction = "Nguyệt Ly: Hôm nay huynh muốn đi đâu?"
@@ -335,15 +336,18 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             interaction = "Nguyệt Ly vui vẻ nhận bó hoa của bạn."
         } else if (x in 76f..314f && y in 90f..120f) {
             place = "romance"
-        } else if (x in 120f..270f && y in 120f..180f) {
+        } else if (x in 80f..240f && y in 122f..175f) {
             affection += 1
             interaction = "Nguyệt Ly khẽ chỉnh lại mái tóc bạc."
-        } else if (x in 145f..245f && y in 180f..290f) {
+        } else if (x in 140f..245f && y in 175f..230f) {
             affection += 1
             interaction = "Nguyệt Ly đỏ mặt: Huynh đang nhìn gì vậy?"
         } else if (x in 76f..314f && y in 463f..510f) {
             place = "animation_demo"
-        } else if (x in 90f..300f && y in 295f..462f) {
+        } else if (x in 80f..185f && y in 330f..400f) {
+            affection += 2
+            interaction = "Nguyệt Ly mỉm cười và nắm tay bạn."
+        } else if (x in 80f..310f && y in 230f..462f) {
             interaction = "Trang phục tiên hiệp mềm mại, điểm viền vàng."
         } else {
             interaction = "Hãy chạm vào nhân vật hoặc chọn hành động."
