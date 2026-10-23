@@ -229,3 +229,5 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - **ĐỊNH HƯỚNG TRIỂN KHAI:** Có các màn hình riêng Nhân vật, Túi đồ và Đội hình xuất chiến. Trong chiến đấu, các nhân vật đã chọn cùng xuất hiện/tham chiến; mỗi nhân vật có HP/MP và hành động riêng ở mức đơn giản. Không cần làm cây kỹ năng hoặc hệ thống vai trò phức tạp ở giai đoạn đầu.
 - **ĐỊNH HƯỚNG TRIỂN KHAI:** Thay đổi trang phục/trang bị và đội hình trước trận; khóa các thay đổi đó trong trận để luồng chơi rõ ràng.
 
+
+- **Bổ sung xác nhận ngày 2026-10-23:** Người dùng nhấn mạnh không cần phân vai Công/Thủ vì làm gameplay phức tạp; đội hình 4 người là lựa chọn tự do, không có lớp vai trò bắt buộc.
