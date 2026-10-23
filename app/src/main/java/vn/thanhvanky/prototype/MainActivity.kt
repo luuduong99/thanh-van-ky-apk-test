@@ -104,6 +104,11 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private var demoPlaying = true
     private var demoFrame = 0f
     private var demoVeil = false
+    // Loop persists until the player explicitly changes or stops the interaction.
+    // Original approved portraits remain the source assets; this is a timing/state
+    // scaffold, NOT yet a frame-by-frame kissing animation.
+    private var romanceLoop = false
+    private var romanceLoopStart = 0L
     private var romanceMode = 0
     private var romanceText = "Đêm trăng thanh tĩnh."
     private var interaction = "Chạm vào tóc, mặt, tay hoặc chọn hành động."
@@ -393,12 +398,18 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "Độ thân thiết: $affection", 195f, 70f, 14f)
         rounded(c, 12f, 89f, 378f, 495f, Color.rgb(35, 48, 78), 20f)
         paint(Color.rgb(240, 224, 178)); c.drawCircle(306f, 153f, 36f, p)
-        val sway = sin(System.currentTimeMillis() / (1100.0 - demoSpeed * 250.0)).toFloat() * (demoStrength + 1) * 0.7f
+        val now = System.currentTimeMillis()
+        val phase = if (romanceLoop) ((now - romanceLoopStart) % 2400L) / 2400.0 else 0.0
+        val sway = if (romanceLoop) sin(phase * Math.PI * 2).toFloat() * 1.8f
+            else sin(now / (1100.0 - demoSpeed * 250.0)).toFloat() * (demoStrength + 1) * 0.7f
         portrait(c, mainPortrait, RectF(22f, 105f, 187f, 458f), -sway)
         portrait(c, nguyetLyPortrait, RectF(203f, 105f, 368f, 458f), sway)
         text(c, "NAM CHÍNH", 104f, 480f, 12f, cream, true)
         text(c, "TÔ NGUYỆT LY", 285f, 480f, 12f, cream, true)
         if (romanceMode > 0) text(c, "♥", 195f, 270f, 24f, Color.rgb(245, 155, 169))
+        if (romanceLoop) {
+            text(c, "ĐANG LẶP • CHẠM DỪNG HOẶC ĐỔI HÀNH ĐỘNG", 195f, 464f, 10f, gold)
+        }
         rounded(c, 15f, 500f, 375f, 539f, Color.rgb(39, 56, 65), 8f)
         text(c, romanceText, 195f, 525f, 11f)
         val names = arrayOf("NẮM TAY", "ÔM", "HÔN NHẸ", "VUỐT TÓC")
@@ -409,7 +420,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             text(c, names[i], l+84f, t+28f, 13f, ink, true)
         }
         rounded(c, 18f, 660f, 372f, 702f, green, 9f)
-        text(c, "CHUYỂN CẢNH RIÊNG TƯ", 195f, 687f, 13f)
+        text(c, if (romanceLoop) "DỪNG HOẠT ẢNH" else "CHUYỂN CẢNH RIÊNG TƯ", 195f, 687f, 13f)
         rounded(c, 18f, 715f, 372f, 763f, green, 9f)
         text(c, "← TRỞ VỀ TÔ NGUYỆT LY", 195f, 745f, 13f)
         if (demoVeil) {
@@ -423,17 +434,34 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private fun interactRomance(x: Float, y: Float) {
         when {
             demoVeil && y < 495f -> demoVeil = false
-            y in 715f..780f -> { demoVeil = false; place = "nguyetly" }
-            y in 660f..702f -> demoVeil = !demoVeil
+            y in 715f..780f -> { romanceLoop = false; demoVeil = false; place = "nguyetly" }
+            y in 660f..702f -> {
+                if (romanceLoop) { romanceLoop = false; romanceText = "Hai người nhẹ nhàng tách ra." }
+                else demoVeil = !demoVeil
+            }
             y in 551f..594f -> {
+                romanceLoop = false
                 if (x < 195f) { romanceMode = 0; romanceText = "Nàng đan tay vào tay bạn."; affection += 2 }
                 else { romanceMode = 1; romanceText = "Hai người trao nhau cái ôm ấm áp."; affection += 3 }
             }
             y in 606f..649f -> {
-                if (x < 195f) { romanceMode = 2; romanceText = "Nàng đón một nụ hôn dịu dàng."; affection += 4 }
-                else { romanceMode = 3; romanceText = "Nàng khép mắt khi bạn vuốt tóc."; affection += 2 }
+                if (x < 195f) {
+                    romanceMode = 2
+                    romanceLoop = true
+                    romanceLoopStart = System.currentTimeMillis()
+                    romanceText = "Nụ hôn tiếp diễn đến khi bạn chọn dừng."
+                    affection += 4
+                } else {
+                    romanceLoop = false
+                    romanceMode = 3
+                    romanceText = "Nàng khép mắt khi bạn vuốt tóc."
+                    affection += 2
+                }
             }
-            y in 120f..490f -> { romanceMode = 1; romanceText = "Nàng nghiêng đầu, mỉm cười."; affection++ }
+            y in 120f..490f -> {
+                if (romanceLoop) { romanceLoop = false; romanceText = "Hai người nhẹ nhàng tách ra." }
+                else { romanceMode = 1; romanceText = "Nàng nghiêng đầu, mỉm cười."; affection++ }
+            }
         }
         invalidate()
     }
