@@ -15,7 +15,7 @@ class MainActivity : Activity() {
 }
 private class CombatTestView(activity: Activity) : View(activity) {
  private val p=Paint(Paint.ANTI_ALIAS_FLAG); private val cream=Color.rgb(246,230,188); private val gold=Color.rgb(220,177,91); private val ink=Color.rgb(35,43,43); private val green=Color.rgb(77,124,94); private val red=Color.rgb(180,72,66)
- private var screen="map"; private var message="Chạm ĐẤU THỬ để bắt đầu"; private var hp=100; private var mp=50; private var enemyHp=85; private var stones=50; private var pills=2; private var exp=0; private var wins=0; private var auto=false; private var playerTurn=true; private var outfit="Mặc định"; private val owned=mutableSetOf("Mặc định","Bạch Vân"); private var slashUntil=0L; private var battleNo=1
+ private var screen="map"; private var message="Chạm ĐẤU THỬ để bắt đầu"; private var hp=100; private var mp=50; private var enemyHp=85; private var stones=50; private var pills=2; private var exp=0; private var wins=0; private var auto=false; private var playerTurn=true; private var outfit="Mặc định"; private val owned=mutableSetOf("Mặc định"); private var slashUntil=0L; private var battleNo=1
  private val autoAction=object:Runnable { override fun run(){ if(screen!="battle"||!auto)return; doTurn(if(playerTurn)0 else -1); invalidate(); if(screen=="battle"&&auto)postDelayed(this,900) } }
  override fun onDraw(c:Canvas){ super.onDraw(c); c.drawColor(Color.rgb(22,34,43)); val s=min(width/390f,height/780f); c.save(); c.scale(s,s); when(screen){"map"->drawMap(c);"location"->drawLocation(c);"prep"->drawPrep(c);"battle"->drawBattle(c);"result"->drawResult(c)}; c.restore() }
  private fun paint(color:Int,style:Paint.Style=Paint.Style.FILL,size:Float=2f){p.color=color;p.style=style;p.strokeWidth=size}
