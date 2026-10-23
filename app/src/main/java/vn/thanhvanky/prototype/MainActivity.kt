@@ -31,6 +31,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private var demoPlaying = true
     private var demoFrame = 0f
     private var demoVeil = false
+    private var romanceMode = 0
+    private var romanceText = "Đêm trăng thanh tĩnh."
     private var interaction = "Chạm vào tóc, mặt, tay hoặc chọn hành động."
     private val cream = Color.rgb(246, 230, 188)
     private val ink = Color.rgb(48, 54, 48)
@@ -43,7 +45,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         canvas.save()
         canvas.scale(s, s)
-        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else drawLocation(canvas)
+        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else if (place == "romance") drawRomance(canvas) else drawLocation(canvas)
         canvas.restore()
         if (place == "animation_demo" && demoPlaying) postInvalidateDelayed(33L)
     }
@@ -187,6 +189,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "Tóc", 195f, 151f, 13f, ink)
         text(c, "Khuôn mặt", 195f, 227f, 12f, ink)
         text(c, "Trang phục", 195f, 399f, 13f, ink)
+        rounded(c, 76f, 90f, 314f, 120f, Color.rgb(100, 70, 110), 8f)
+        text(c, "HẸN HÒ DƯỚI TRĂNG", 195f, 111f, 12f)
         rounded(c, 76f, 463f, 314f, 510f, Color.rgb(88, 73, 116), 10f)
         text(c, "THỬ HOẠT ẢNH", 195f, 491f, 13f, cream, true)
         rounded(c, 15f, 525f, 375f, 585f, Color.rgb(29, 48, 56), 10f)
@@ -247,6 +251,61 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "← TRỞ VỀ TÔ NGUYỆT LY", 195f, 745f, 13f)
     }
 
+
+    private fun drawRomance(c: Canvas) {
+        text(c, "TÔ NGUYỆT LY • HẸN HÒ", 195f, 43f, 21f, gold, true)
+        text(c, "Độ thân thiết: $affection", 195f, 70f, 14f)
+        rounded(c, 12f, 89f, 378f, 495f, Color.rgb(35, 48, 78), 20f)
+        paint(Color.rgb(240, 224, 178)); c.drawCircle(306f, 153f, 36f, p)
+        val sway = sin(System.currentTimeMillis() / 700.0).toFloat() * (demoStrength + 1) * 2f
+        paint(Color.rgb(214, 223, 238)); c.drawOval(RectF(125f+sway, 128f, 265f+sway, 397f), p)
+        paint(Color.rgb(246, 213, 196)); c.drawOval(RectF(153f+sway, 173f, 238f+sway, 275f), p)
+        paint(if (outfit == 0) Color.rgb(140, 190, 217) else Color.rgb(190, 151, 204))
+        c.drawOval(RectF(103f+sway, 303f, 289f+sway, 480f), p)
+        if (romanceMode > 0) {
+            paint(Color.rgb(226, 121, 149))
+            c.drawCircle(167f+sway, 243f, 6f, p); c.drawCircle(223f+sway, 243f, 6f, p)
+        }
+        if (romanceMode == 2) text(c, "♥", 275f, 245f, 32f, Color.rgb(245, 155, 169))
+        rounded(c, 15f, 500f, 375f, 539f, Color.rgb(39, 56, 65), 8f)
+        text(c, romanceText, 195f, 525f, 11f)
+        val names = arrayOf("NẮM TAY", "ÔM", "HÔN NHẸ", "VUỐT TÓC")
+        for (i in 0..3) {
+            val l = if (i % 2 == 0) 18f else 203f
+            val t = if (i < 2) 551f else 606f
+            rounded(c, l, t, l+169f, t+43f, gold, 8f)
+            text(c, names[i], l+84f, t+28f, 13f, ink, true)
+        }
+        rounded(c, 18f, 660f, 372f, 702f, green, 9f)
+        text(c, "CHUYỂN CẢNH RIÊNG TƯ", 195f, 687f, 13f)
+        rounded(c, 18f, 715f, 372f, 763f, green, 9f)
+        text(c, "← TRỞ VỀ TÔ NGUYỆT LY", 195f, 745f, 13f)
+        if (demoVeil) {
+            rounded(c, 30f, 100f, 360f, 484f, Color.argb(232, 29, 32, 52), 18f)
+            text(c, "Ánh nến dần tắt...", 195f, 283f, 18f)
+            text(c, "Chạm cảnh để trở lại", 195f, 309f, 12f)
+        }
+        postInvalidateDelayed(50L)
+    }
+
+    private fun interactRomance(x: Float, y: Float) {
+        when {
+            demoVeil && y < 495f -> demoVeil = false
+            y in 715f..780f -> { demoVeil = false; place = "nguyetly" }
+            y in 660f..702f -> demoVeil = !demoVeil
+            y in 551f..594f -> {
+                if (x < 195f) { romanceMode = 0; romanceText = "Nàng đan tay vào tay bạn."; affection += 2 }
+                else { romanceMode = 1; romanceText = "Hai người trao nhau cái ôm ấm áp."; affection += 3 }
+            }
+            y in 606f..649f -> {
+                if (x < 195f) { romanceMode = 2; romanceText = "Nàng đón một nụ hôn dịu dàng."; affection += 4 }
+                else { romanceMode = 3; romanceText = "Nàng khép mắt khi bạn vuốt tóc."; affection += 2 }
+            }
+            y in 120f..490f -> { romanceMode = 1; romanceText = "Nàng nghiêng đầu, mỉm cười."; affection++ }
+        }
+        invalidate()
+    }
+
     private fun interactAnimationDemo(x: Float, y: Float) {
         when {
             y in 715f..780f -> place = "nguyetly"
@@ -274,6 +333,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         } else if (y in 658f..704f) {
             affection += 3
             interaction = "Nguyệt Ly vui vẻ nhận bó hoa của bạn."
+        } else if (x in 76f..314f && y in 90f..120f) {
+            place = "romance"
         } else if (x in 120f..270f && y in 120f..180f) {
             affection += 1
             interaction = "Nguyệt Ly khẽ chỉnh lại mái tóc bạc."
@@ -302,7 +363,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         val x = event.x / s
         val y = event.y / s
-        if (place == "animation_demo") {
+        if (place == "romance") {
+            interactRomance(x, y)
+        } else if (place == "animation_demo") {
             interactAnimationDemo(x, y)
         } else if (place == "nguyetly") {
             interactNguyetLy(x, y)
