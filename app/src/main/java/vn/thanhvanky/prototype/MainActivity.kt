@@ -23,6 +23,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
     private var place = "map"
     private var message = "Chạm vào địa điểm để di chuyển"
+    private var affection = 0
+    private var outfit = 0
+    private var interaction = "Chạm vào tóc, mặt, tay hoặc chọn hành động."
     private val cream = Color.rgb(246, 230, 188)
     private val ink = Color.rgb(48, 54, 48)
     private val green = Color.rgb(84, 122, 91)
@@ -34,7 +37,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         canvas.save()
         canvas.scale(s, s)
-        if (place == "map") drawMap(canvas) else drawLocation(canvas)
+        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else drawLocation(canvas)
         canvas.restore()
     }
 
@@ -155,6 +158,72 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, label, x, y + 78f, 12f, cream, true)
     }
 
+
+    // Prototype interaction screen: original Canvas placeholder, no external art asset.
+    private fun drawNguyetLy(c: Canvas) {
+        text(c, "TÔ NGUYỆT LY", 195f, 43f, 25f, gold, true)
+        text(c, "Độ thân thiết: $affection", 195f, 70f, 14f)
+        rounded(c, 12f, 90f, 378f, 522f, Color.rgb(53, 78, 94), 20f)
+        paint(Color.rgb(109, 151, 162))
+        c.drawCircle(195f, 265f, 125f, p)
+        // Hair silhouette, head, shoulders and robe are simple touch targets.
+        paint(Color.rgb(216, 220, 234))
+        c.drawOval(RectF(127f, 120f, 263f, 415f), p)
+        paint(Color.rgb(245, 211, 195))
+        c.drawOval(RectF(151f, 170f, 239f, 279f), p)
+        paint(Color.rgb(234, 238, 249))
+        c.drawOval(RectF(102f, 298f, 288f, 495f), p)
+        paint(if (outfit == 0) Color.rgb(126, 184, 207) else Color.rgb(183, 145, 200))
+        c.drawOval(RectF(135f, 315f, 255f, 490f), p)
+        paint(gold, Paint.Style.STROKE, 3f)
+        c.drawOval(RectF(135f, 315f, 255f, 490f), p)
+        text(c, "Tóc", 195f, 151f, 13f, ink)
+        text(c, "Khuôn mặt", 195f, 227f, 12f, ink)
+        text(c, "Trang phục", 195f, 399f, 13f, ink)
+        rounded(c, 15f, 525f, 375f, 585f, Color.rgb(29, 48, 56), 10f)
+        text(c, interaction, 195f, 558f, 12f)
+        rounded(c, 18f, 600f, 187f, 646f, gold, 10f)
+        rounded(c, 203f, 600f, 372f, 646f, gold, 10f)
+        text(c, "NẮM TAY", 102f, 629f, 14f, ink, true)
+        text(c, "ĐỔI TRANG PHỤC", 287f, 629f, 12f, ink, true)
+        rounded(c, 18f, 658f, 187f, 704f, gold, 10f)
+        rounded(c, 203f, 658f, 372f, 704f, gold, 10f)
+        text(c, "TRÒ CHUYỆN", 102f, 687f, 13f, ink, true)
+        text(c, "TẶNG HOA", 287f, 687f, 13f, ink, true)
+        rounded(c, 25f, 719f, 365f, 765f, Color.rgb(87, 116, 112), 10f)
+        text(c, "← TRỞ VỀ THANH VÂN TÔNG", 195f, 748f, 13f)
+    }
+
+    private fun interactNguyetLy(x: Float, y: Float) {
+        if (y in 719f..780f) {
+            place = "sect"
+            message = "Bạn đã trở về Thanh Vân Tông."
+        } else if (y in 600f..646f && x < 195f) {
+            affection += 2
+            interaction = "Nguyệt Ly mỉm cười và nắm tay bạn."
+        } else if (y in 600f..646f) {
+            outfit = 1 - outfit
+            interaction = "Nguyệt Ly đã đổi sang bộ trang phục khác."
+        } else if (y in 658f..704f && x < 195f) {
+            affection += 1
+            interaction = "Nguyệt Ly: Hôm nay huynh muốn đi đâu?"
+        } else if (y in 658f..704f) {
+            affection += 3
+            interaction = "Nguyệt Ly vui vẻ nhận bó hoa của bạn."
+        } else if (x in 120f..270f && y in 120f..180f) {
+            affection += 1
+            interaction = "Nguyệt Ly khẽ chỉnh lại mái tóc bạc."
+        } else if (x in 145f..245f && y in 180f..290f) {
+            affection += 1
+            interaction = "Nguyệt Ly đỏ mặt: Huynh đang nhìn gì vậy?"
+        } else if (x in 90f..300f && y in 295f..510f) {
+            interaction = "Trang phục tiên hiệp mềm mại, điểm viền vàng."
+        } else {
+            interaction = "Hãy chạm vào nhân vật hoặc chọn hành động."
+        }
+        invalidate()
+    }
+
     private fun placeTitle() = when (place) {
         "sect" -> "Thanh Vân Tông"
         "town" -> "Trấn Thanh Hà"
@@ -167,7 +236,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         val x = event.x / s
         val y = event.y / s
-        if (place == "map") {
+        if (place == "nguyetly") {
+            interactNguyetLy(x, y)
+        } else if (place == "map") {
             if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
             else if (y in 420f..510f && x in 40f..145f) enter("town", "Trấn Thanh Hà: có thể tìm thương nhân và tin tức.")
             else if (y in 470f..575f && x in 230f..345f) enter("forest", "Rừng Trúc: nghe thấy tiếng động lạ.")
@@ -182,6 +253,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             if (y in 610f..685f) {
                 place = "map"; message = "Chạm vào địa điểm để di chuyển"; invalidate()
             } else if (y in 390f..535f && x < 145f) {
+                if (place == "sect") { place = "nguyetly"; interaction = "Nguyệt Ly: Huynh đã về rồi!"; invalidate(); return true }
                 message = "Tiểu sư muội: “Sư huynh, huynh vừa trở về sao?”"
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show(); invalidate()
             } else if (y in 390f..535f && x > 245f) {
