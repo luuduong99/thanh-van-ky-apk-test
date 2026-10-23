@@ -215,3 +215,17 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - Prototype kiểm thử đang được phát triển trên nhánh `combat-costume-prototype`, tách khỏi `map-2d-prototype` để không ghi đè công việc bản đồ gốc.
 - Bản thử nghiệm dùng hình vẽ placeholder bằng Kotlin Canvas, chưa phải asset nhân vật chính thức. Có trang phục mặc định, trang phục mua bằng linh thạch và trang phục nhận thưởng thử nghiệm; chiến đấu có HP/MP, ba đòn kiếm dùng chung hiệu ứng, hồi máu, vật phẩm hồi phục, tự động đánh và phần thưởng.
 - Đây mới là trạng thái mã nguồn; chưa xác nhận build APK hoặc kiểm thử trên thiết bị. Cần xác nhận GitHub Actions trước khi cung cấp APK.
+
+
+## 12. Nhân vật, túi đồ, trang bị và đội hình chiến đấu — ĐÃ CHỐT ngày 2026-10-23
+
+- **ĐÃ CHỐT:** Có khu vực **Nhân vật** để xem danh sách nhân vật, xem thông tin và chọn trang phục/trang bị cho từng người.
+- **ĐÃ CHỐT:** Có khu vực **Túi đồ** để xem vật phẩm sở hữu, gồm các nhóm dự kiến như vũ khí, trang bị, đan dược và vật phẩm nhiệm vụ. Triển khai từng bước, không cần làm hệ thống chỉ số quá phức tạp ngay.
+- **ĐÃ CHỐT:** Trang phục gắn với đúng nhân vật; không thể dùng trang phục của nhân vật này cho nhân vật khác. Trang phục được chọn trong khu vực Nhân vật và chỉ đổi trước trận.
+- **ĐÃ CHỐT:** Người chơi có thể chọn nhiều nhân vật cùng tham gia chiến đấu, không giới hạn ở một nhân vật như prototype hiện tại.
+- **ĐÃ CHỐT:** Giai đoạn đầu, đội hình xuất chiến tối đa **4 nhân vật**. Danh sách sở hữu có thể nhiều hơn 4; giới hạn 4 chỉ áp dụng cho một trận.
+- **ĐÃ CHỐT:** Màn hình đội hình phải đánh dấu rõ nhân vật được chọn xuất chiến bằng nhãn như **“ĐANG XUẤT CHIẾN”**, dấu **“!”** hoặc cách tương đương, đồng thời hiển thị số lượng đã chọn, ví dụ **3/4**. Có thể thêm/bỏ nhân vật trước khi vào trận.
+- **ĐÃ CHỐT:** **Không chia lớp/vai trò Công/Thủ** và không bắt buộc cân bằng đội hình. Người chơi tự chọn tối đa 4 nhân vật yêu thích.
+- **ĐỊNH HƯỚNG TRIỂN KHAI:** Có các màn hình riêng Nhân vật, Túi đồ và Đội hình xuất chiến. Trong chiến đấu, các nhân vật đã chọn cùng xuất hiện/tham chiến; mỗi nhân vật có HP/MP và hành động riêng ở mức đơn giản. Không cần làm cây kỹ năng hoặc hệ thống vai trò phức tạp ở giai đoạn đầu.
+- **ĐỊNH HƯỚNG TRIỂN KHAI:** Thay đổi trang phục/trang bị và đội hình trước trận; khóa các thay đổi đó trong trận để luồng chơi rõ ràng.
+
