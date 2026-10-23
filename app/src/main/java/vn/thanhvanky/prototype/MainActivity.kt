@@ -65,6 +65,23 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     )
     // Garment condition is independent from HP. Both outer and inner layers are affected.
     private val garmentSteps = intArrayOf(100, 70, 50, 30)
+    // Catalog identities are independent from condition and survive app restarts.
+    // No premium outfit is treated as purchased until a real inventory/store exists.
+    private val outfitNames = arrayOf("Bạch Nguyệt", "Huyền Hỏa", "Hồ Tiên", "Áo du hành")
+    private var selectedOutfit = storyPrefs.getInt("selected_outfit", 0).coerceIn(0, 3)
+    private val ownedOutfits = booleanArrayOf(true, false, false, true)
+    private fun chooseOutfit(index: Int) {
+        if (index !in outfitNames.indices) return
+        if (!ownedOutfits[index]) {
+            garmentMessage = "Trang phục chưa sở hữu; chưa có cửa hàng."
+            invalidate()
+            return
+        }
+        selectedOutfit = index
+        storyPrefs.edit().putInt("selected_outfit", index).apply()
+        garmentMessage = "Đã chọn " + outfitNames[index] + "."
+        invalidate()
+    }
     private var garmentStep = storyPrefs.getInt("garment_step", 0).coerceIn(0, 3)
     private var garmentMessage = "Trang phục có thể hư hại ở mọi lớp."
     private fun applyGarmentDamage() {
@@ -186,10 +203,19 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "TRANG PHỤC • TÔ NGUYỆT LY", 195f, 48f, 19f, gold, true)
         rounded(c, 22f, 78f, 368f, 495f, Color.rgb(39, 59, 77), 18f)
         portrait(c, nguyetLyPortrait, RectF(70f, 85f, 320f, 480f))
-        text(c, "Độ nguyên vẹn: " + garmentSteps[garmentStep] + "%", 195f, 525f, 17f, cream, true)
-        text(c, "Áo ngoài + áo trong + váy + phụ kiện", 195f, 552f, 12f)
-        text(c, "Mô phỏng chỉ số; ảnh theo cấp chưa tích hợp", 195f, 579f, 11f, Color.LTGRAY)
-        text(c, garmentMessage, 195f, 612f, 12f)
+        text(c, "Đang chọn: " + outfitNames[selectedOutfit], 195f, 510f, 15f, gold, true)
+        text(c, "Độ nguyên vẹn: " + garmentSteps[garmentStep] + "%", 195f, 532f, 15f, cream, true)
+        text(c, "Chọn mẫu: Bạch Nguyệt / Huyền Hỏa / Hồ Tiên / Du hành", 195f, 551f, 10f)
+        for (i in outfitNames.indices) {
+            val left = 16f + i * 93f
+            rounded(c, left, 561f, left + 88f, 600f,
+                if (selectedOutfit == i) gold else Color.rgb(65, 85, 91), 7f)
+            text(c, outfitNames[i], left + 44f, 578f, 10f,
+                if (selectedOutfit == i) ink else cream, selectedOutfit == i)
+            text(c, if (ownedOutfits[i]) "ĐÃ CÓ" else "CHƯA MUA",
+                left + 44f, 592f, 8f, if (selectedOutfit == i) ink else cream)
+        }
+        text(c, "Ảnh đúng mẫu và các mức hư hại: chưa tích hợp", 195f, 619f, 10f, Color.LTGRAY)
         rounded(c, 22f, 638f, 368f, 686f, green)
         text(c, "THỬ MỨC HƯ HẠI TIẾP", 195f, 669f, 14f)
         rounded(c, 22f, 697f, 190f, 753f, gold)
@@ -472,7 +498,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val x = event.x / s
         val y = event.y / s
         if (place == "equipment") {
-            if (y in 638f..686f) applyGarmentDamage()
+            if (y in 561f..600f && x in 16f..388f) {
+                chooseOutfit(((x - 16f) / 93f).toInt())
+            } else if (y in 638f..686f) applyGarmentDamage()
             else if (y in 697f..753f && x < 195f) repairGarment()
             else if (y in 697f..753f) { place = "map"; invalidate() }
         } else if (place == "story") {
