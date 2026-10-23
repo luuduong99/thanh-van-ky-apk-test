@@ -1,5 +1,4 @@
 package vn.thanhvanky.prototype
-
 import android.app.Activity
 import android.graphics.Canvas
 import android.graphics.Color
@@ -9,198 +8,65 @@ import android.graphics.RectF
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import kotlin.math.min
 
 class MainActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(MapPrototypeView(this))
-    }
+ override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState); setContentView(CombatTestView(this)) }
 }
-
-private class MapPrototypeView(activity: Activity) : View(activity) {
-    private val p = Paint(Paint.ANTI_ALIAS_FLAG)
-    private var place = "map"
-    private var message = "Chạm vào địa điểm để di chuyển"
-    private val cream = Color.rgb(246, 230, 188)
-    private val ink = Color.rgb(48, 54, 48)
-    private val green = Color.rgb(84, 122, 91)
-    private val gold = Color.rgb(220, 177, 91)
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        canvas.drawColor(Color.rgb(22, 34, 43))
-        val s = min(width / 390f, height / 780f)
-        canvas.save()
-        canvas.scale(s, s)
-        if (place == "map") drawMap(canvas) else drawLocation(canvas)
-        canvas.restore()
-    }
-
-    private fun paint(color: Int, style: Paint.Style = Paint.Style.FILL, size: Float = 2f) {
-        p.color = color
-        p.style = style
-        p.strokeWidth = size
-    }
-
-    private fun text(c: Canvas, value: String, x: Float, y: Float, size: Float, color: Int = cream, bold: Boolean = false) {
-        paint(color)
-        p.textSize = size
-        p.typeface = if (bold) android.graphics.Typeface.create("serif", android.graphics.Typeface.BOLD)
-                     else android.graphics.Typeface.create("serif", android.graphics.Typeface.NORMAL)
-        p.textAlign = Paint.Align.CENTER
-        c.drawText(value, x, y, p)
-    }
-
-    private fun rounded(c: Canvas, l: Float, t: Float, r: Float, b: Float, color: Int, radius: Float = 14f) {
-        paint(color)
-        c.drawRoundRect(RectF(l, t, r, b), radius, radius, p)
-    }
-
-    private fun drawMap(c: Canvas) {
-        text(c, "THANH VÂN KÝ", 195f, 46f, 25f, gold, true)
-        text(c, "BẢN ĐỒ THANH VÂN SƠN", 195f, 72f, 13f)
-        rounded(c, 14f, 92f, 376f, 700f, Color.rgb(41, 68, 61), 22f)
-        // parchment-like valley
-        paint(Color.rgb(91, 119, 81))
-        c.drawOval(RectF(30f, 150f, 360f, 620f), p)
-        paint(Color.rgb(119, 143, 93))
-        c.drawOval(RectF(65f, 205f, 330f, 575f), p)
-        // mountain silhouettes
-        val peaks = listOf(
-            floatArrayOf(18f, 260f, 90f, 125f, 154f, 265f),
-            floatArrayOf(95f, 250f, 184f, 105f, 264f, 250f),
-            floatArrayOf(210f, 260f, 294f, 135f, 370f, 265f),
-            floatArrayOf(15f, 400f, 80f, 285f, 145f, 400f),
-            floatArrayOf(245f, 420f, 315f, 285f, 380f, 420f)
-        )
-        for (v in peaks) {
-            paint(Color.rgb(61, 88, 78))
-            val path = Path().apply { moveTo(v[0], v[1]); lineTo(v[2], v[3]); lineTo(v[4], v[5]); close() }
-            c.drawPath(path, p)
-            paint(Color.rgb(170, 184, 148))
-            c.drawCircle(v[2], v[3] + 12f, 4f, p)
-        }
-        // winding river/path
-        paint(Color.rgb(110, 177, 190), Paint.Style.STROKE, 8f)
-        val river = Path().apply { moveTo(330f, 180f); cubicTo(240f, 290f, 330f, 370f, 190f, 445f); cubicTo(100f, 500f, 170f, 560f, 55f, 620f) }
-        c.drawPath(river, p)
-        paint(Color.rgb(226, 207, 155), Paint.Style.STROKE, 3f)
-        c.drawPath(river, p)
-        // locations
-        marker(c, 192f, 310f, "Thanh Vân Tông", "🏯")
-        marker(c, 92f, 475f, "Trấn Thanh Hà", "◆")
-        marker(c, 285f, 525f, "Rừng Trúc", "♣")
-        marker(c, 282f, 215f, "Bí cảnh", "✦", true)
-        rounded(c, 28f, 642f, 362f, 687f, Color.rgb(27, 43, 39), 12f)
-        text(c, message, 195f, 670f, 13f, cream)
-        text(c, "Chạm biểu tượng để khám phá • Khu vực khóa sẽ mở theo cốt truyện", 195f, 724f, 10f, Color.LTGRAY)
-    }
-
-    private fun marker(c: Canvas, x: Float, y: Float, label: String, symbol: String, locked: Boolean = false) {
-        paint(if (locked) Color.rgb(90, 91, 91) else gold)
-        c.drawCircle(x, y, 24f, p)
-        paint(if (locked) Color.rgb(58, 65, 66) else Color.rgb(77, 83, 57))
-        c.drawCircle(x, y, 19f, p)
-        text(c, symbol, x, y + 7f, 22f, if (locked) Color.LTGRAY else cream, true)
-        text(c, if (locked) "🔒 $label" else label, x, y + 43f, 12f, cream, true)
-    }
-
-    private fun drawLocation(c: Canvas) {
-        text(c, placeTitle(), 195f, 46f, 24f, gold, true)
-        text(c, "CẢNH 2D • CHẠM ĐỂ TƯƠNG TÁC", 195f, 72f, 12f)
-        rounded(c, 12f, 92f, 378f, 690f, Color.rgb(67, 91, 78), 20f)
-        // sky and distant mountains
-        paint(Color.rgb(160, 183, 166))
-        c.drawRect(20f, 100f, 370f, 320f, p)
-        paint(Color.rgb(94, 125, 105))
-        val m1 = Path().apply { moveTo(20f, 310f); lineTo(95f, 180f); lineTo(170f, 310f); close() }
-        val m2 = Path().apply { moveTo(120f, 310f); lineTo(235f, 155f); lineTo(370f, 310f); close() }
-        c.drawPath(m1, p); c.drawPath(m2, p)
-        // courtyard floor
-        paint(Color.rgb(173, 151, 111))
-        c.drawRect(20f, 310f, 370f, 680f, p)
-        paint(Color.rgb(127, 106, 81))
-        c.drawRect(20f, 470f, 370f, 490f, p)
-        // temple/building
-        paint(Color.rgb(85, 58, 51))
-        c.drawRect(105f, 245f, 285f, 390f, p)
-        paint(Color.rgb(139, 58, 49))
-        val roof = Path().apply { moveTo(75f, 260f); lineTo(195f, 190f); lineTo(315f, 260f); close() }
-        c.drawPath(roof, p)
-        paint(gold, Paint.Style.STROKE, 3f)
-        c.drawLine(75f, 260f, 315f, 260f, p)
-        paint(Color.rgb(207, 174, 117))
-        c.drawRect(170f, 310f, 220f, 390f, p)
-        // NPC touch points
-        drawNpc(c, 85f, 445f, "Tiểu sư muội")
-        drawNpc(c, 300f, 445f, "Chấp sự")
-        rounded(c, 32f, 535f, 358f, 605f, Color.rgb(36, 49, 43), 12f)
-        text(c, message, 195f, 563f, 13f, cream)
-        text(c, "Chạm nhân vật hoặc đại điện để xem tương tác", 195f, 585f, 10f, Color.LTGRAY)
-        rounded(c, 34f, 620f, 356f, 670f, gold, 12f)
-        text(c, "← QUAY LẠI BẢN ĐỒ", 195f, 650f, 15f, ink, true)
-    }
-
-    private fun drawNpc(c: Canvas, x: Float, y: Float, label: String) {
-        paint(Color.rgb(44, 52, 48))
-        c.drawOval(RectF(x - 23f, y - 8f, x + 23f, y + 56f), p)
-        paint(Color.rgb(231, 194, 155))
-        c.drawCircle(x, y - 20f, 18f, p)
-        paint(Color.rgb(54, 42, 43))
-        c.drawCircle(x, y - 25f, 19f, p)
-        paint(Color.rgb(231, 194, 155))
-        c.drawCircle(x, y - 18f, 14f, p)
-        text(c, label, x, y + 78f, 12f, cream, true)
-    }
-
-    private fun placeTitle() = when (place) {
-        "sect" -> "Thanh Vân Tông"
-        "town" -> "Trấn Thanh Hà"
-        "forest" -> "Rừng Trúc"
-        else -> "Bí cảnh"
-    }
-
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.action != MotionEvent.ACTION_UP) return true
-        val s = min(width / 390f, height / 780f)
-        val x = event.x / s
-        val y = event.y / s
-        if (place == "map") {
-            if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
-            else if (y in 420f..510f && x in 40f..145f) enter("town", "Trấn Thanh Hà: có thể tìm thương nhân và tin tức.")
-            else if (y in 470f..575f && x in 230f..345f) enter("forest", "Rừng Trúc: nghe thấy tiếng động lạ.")
-            else if (y in 170f..250f && x in 235f..330f) {
-                message = "Bí cảnh chưa mở. Hãy tiếp tục cốt truyện!"
-                invalidate()
-            } else {
-                message = "Hãy chạm một biểu tượng địa điểm."
-                invalidate()
-            }
-        } else {
-            if (y in 610f..685f) {
-                place = "map"; message = "Chạm vào địa điểm để di chuyển"; invalidate()
-            } else if (y in 390f..535f && x < 145f) {
-                message = "Tiểu sư muội: “Sư huynh, huynh vừa trở về sao?”"
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show(); invalidate()
-            } else if (y in 390f..535f && x > 245f) {
-                message = "Chấp sự: “Có nhiệm vụ mới ở đại điện.”"
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show(); invalidate()
-            } else if (y in 180f..400f && x in 100f..290f) {
-                message = "Đại điện: nơi nhận nhiệm vụ và gặp trưởng lão."
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show(); invalidate()
-            } else {
-                message = "Chạm NPC hoặc công trình để tương tác."
-                invalidate()
-            }
-        }
-        return true
-    }
-
-    private fun enter(id: String, text: String) {
-        place = id
-        message = text
-        invalidate()
-    }
+private class CombatTestView(activity: Activity) : View(activity) {
+ private val p=Paint(Paint.ANTI_ALIAS_FLAG); private val cream=Color.rgb(246,230,188); private val gold=Color.rgb(220,177,91); private val ink=Color.rgb(35,43,43); private val green=Color.rgb(77,124,94); private val red=Color.rgb(180,72,66)
+ private var screen="map"; private var message="Chạm ĐẤU THỬ để bắt đầu"; private var mp=50; private val characterHp=MutableList(6){100}; private var enemyHp=85; private var stones=50; private var pills=2; private var exp=0; private var wins=0; private var auto=false; private var playerTurn=true; private var outfit="Mặc định"; private val owned=mutableSetOf("Mặc định"); private var slashUntil=0L; private var battleNo=1; private var selectedCharacter=0; private val party=mutableSetOf(0,1,2,3); private var activeMember=0
+ private val autoAction=object:Runnable { override fun run(){ if(screen!="battle"||!auto)return; doTurn(if(playerTurn)0 else -1); invalidate(); if(screen=="battle"&&auto)postDelayed(this,900) } }
+ override fun onDraw(c:Canvas){ super.onDraw(c); c.drawColor(Color.rgb(22,34,43)); val s=min(width/390f,height/780f); c.save(); c.scale(s,s); when(screen){"map"->drawMap(c);"location"->drawLocation(c);"prep"->drawPrep(c);"characters"->drawCharacters(c);"inventory"->drawInventory(c);"formation"->drawFormation(c);"battle"->drawBattle(c);"result"->drawResult(c)}; c.restore() }
+ private fun paint(color:Int,style:Paint.Style=Paint.Style.FILL,size:Float=2f){p.color=color;p.style=style;p.strokeWidth=size}
+ private fun text(c:Canvas,v:String,x:Float,y:Float,size:Float=16f,color:Int=cream,bold:Boolean=false){paint(color);p.textSize=size;p.textAlign=Paint.Align.CENTER;p.typeface=if(bold)android.graphics.Typeface.DEFAULT_BOLD else android.graphics.Typeface.DEFAULT;c.drawText(v,x,y,p)}
+ private fun box(c:Canvas,l:Float,t:Float,r:Float,b:Float,color:Int,radius:Float=12f){paint(color);c.drawRoundRect(RectF(l,t,r,b),radius,radius,p)}
+ private fun button(c:Canvas,label:String,l:Float,t:Float,r:Float,b:Float,color:Int=gold){box(c,l,t,r,b,color);text(c,label,(l+r)/2,(t+b)/2+5,14f,ink,true)}
+ private fun drawMap(c:Canvas){text(c,"THANH VÂN KÝ",195f,45f,25f,gold,true);text(c,"BẢN ĐỒ THỬ NGHIỆM",195f,72f,13f);box(c,14f,94f,376f,690f,Color.rgb(41,68,61),22f);paint(Color.rgb(91,119,81));c.drawOval(RectF(30f,140f,360f,620f),p)
+ for(v in listOf(floatArrayOf(18f,260f,90f,125f,154f,265f),floatArrayOf(95f,250f,184f,105f,264f,250f),floatArrayOf(210f,260f,294f,135f,370f,265f))){paint(Color.rgb(61,88,78));c.drawPath(Path().apply{moveTo(v[0],v[1]);lineTo(v[2],v[3]);lineTo(v[4],v[5]);close()},p)}
+ paint(Color.rgb(110,177,190),Paint.Style.STROKE,8f);c.drawPath(Path().apply{moveTo(330f,180f);cubicTo(240f,290f,330f,370f,190f,445f);cubicTo(100f,500f,170f,560f,55f,620f)},p);marker(c,192f,310f,"Thanh Vân Tông");marker(c,92f,475f,"Trấn Thanh Hà");marker(c,285f,525f,"Rừng Trúc");box(c,28f,642f,362f,687f,Color.rgb(27,43,39));text(c,message,195f,670f,12f);button(c,"ĐẤU THỬ",105f,704f,285f,754f)}
+ private fun marker(c:Canvas,x:Float,y:Float,label:String){paint(gold);c.drawCircle(x,y,23f,p);paint(green);c.drawCircle(x,y,18f,p);text(c,"✦",x,y+7,22f);text(c,label,x,y+42,11f,cream,true)}
+ private fun drawLocation(c:Canvas){text(c,"Thanh Vân Tông",195f,46f,24f,gold,true);box(c,12f,92f,378f,690f,Color.rgb(67,91,78),20f);paint(Color.rgb(160,183,166));c.drawRect(20f,100f,370f,320f,p);paint(Color.rgb(94,125,105));c.drawPath(Path().apply{moveTo(20f,310f);lineTo(95f,180f);lineTo(170f,310f);close()},p);paint(Color.rgb(139,58,49));c.drawPath(Path().apply{moveTo(75f,260f);lineTo(195f,190f);lineTo(315f,260f);close()},p);paint(Color.rgb(85,58,51));c.drawRect(105f,245f,285f,390f,p);drawNpc(c,85f,445f,"Tiểu sư muội");drawNpc(c,300f,445f,"Chấp sự");box(c,32f,535f,358f,605f,ink);text(c,message,195f,570f,12f);button(c,"← QUAY LẠI",34f,620f,175f,670f);button(c,"ĐẤU THỬ",210f,620f,356f,670f)}
+ private fun drawNpc(c:Canvas,x:Float,y:Float,label:String){paint(Color.rgb(44,52,48));c.drawOval(RectF(x-23,y-8,x+23,y+56),p);paint(Color.rgb(231,194,155));c.drawCircle(x,y-20,18f,p);paint(Color.rgb(54,42,43));c.drawCircle(x,y-25,19f,p);paint(Color.rgb(231,194,155));c.drawCircle(x,y-18,14f,p);text(c,label,x,y+78,12f,cream,true)}
+ private fun drawPrep(c:Canvas){text(c,"CHUẨN BỊ TRƯỚC KHI ĐẤU",195f,44f,21f,gold,true);text(c,"Ảnh minh họa tạm thời",195f,70f,10f);button(c,"NHÂN VẬT",8f,82f,128f,116f);button(c,"TÚI ĐỒ",138f,82f,252f,116f);button(c,"ĐỘI HÌNH",254f,82f,382f,116f);drawHero(c,195f,210f,outfit,false);box(c,18f,320f,372f,465f,Color.rgb(38,52,53));text(c,"Chọn trang phục",195f,346f,17f,gold,true);text(c,"Đang mặc: $outfit",195f,373f,14f)
+ button(c,if(outfit=="Mặc định")"✓ Mặc định" else "Mặc định",26f,390f,132f,430f,if(outfit=="Mặc định")green else gold);button(c,if(outfit=="Bạch Vân")"✓ Bạch Vân" else "Bạch Vân",140f,390f,250f,430f,if(outfit=="Bạch Vân")green else gold);button(c,if(outfit=="Xích Hà")"✓ Xích Hà" else "Xích Hà",258f,390f,364f,430f,if(outfit=="Xích Hà")green else gold);text(c,"Bạch Vân: sở hữu sẵn • Xích Hà: thưởng test",195f,453f,10f)
+ box(c,18f,485f,372f,575f,Color.rgb(38,52,53));text(c,"Linh thạch: $stones    Đan hồi phục: $pills",195f,511f,13f);button(c,"Mua Bạch Vân (30)",30f,528f,190f,563f);button(c,"Nhận Xích Hà",204f,528f,360f,563f,green);text(c,message,195f,604f,11f);button(c,"VÀO CHIẾN ĐẤU",35f,640f,355f,696f);button(c,"← Về bản đồ",90f,710f,300f,755f)}
+ private fun drawHero(c:Canvas,x:Float,y:Float,costume:String,action:Boolean){paint(Color.rgb(35,30,39));c.drawOval(RectF(x-38,y-72,x+38,y+35),p);paint(Color.rgb(231,194,172));c.drawCircle(x,y-50,25f,p);paint(Color.rgb(220,220,218));c.drawCircle(x,y-60,27f,p);paint(Color.rgb(231,194,172));c.drawCircle(x,y-48,20f,p);val robe=when(costume){"Bạch Vân"->Color.rgb(225,236,235);"Xích Hà"->Color.rgb(155,51,65);else->Color.rgb(67,112,147)};paint(robe);c.drawPath(Path().apply{moveTo(x-18,y-28);lineTo(x+18,y-28);lineTo(x+37,y+35);lineTo(x-38,y+35);close()},p);paint(gold,Paint.Style.STROKE,3f);c.drawLine(x,y-22,x,y+27,p)
+ if(action){paint(Color.rgb(150,220,255),Paint.Style.STROKE,8f);c.drawPath(Path().apply{moveTo(x+24,y-20);cubicTo(x+95,y-60,x+80,y+20,x+37,y+35)},p);paint(Color.WHITE,Paint.Style.STROKE,2f);c.drawLine(x+18,y-18,x+73,y+18,p);text(c,"KIẾM KHÍ!",x+45,y-55,14f,Color.WHITE,true)}}
+ private fun drawCharacters(c:Canvas){
+  text(c,"NHÂN VẬT",195f,42f,24f,gold,true); text(c,"Chọn nhân vật để xem thông tin",195f,68f,12f)
+  val names=listOf("Tô Nguyệt Ly","Lâm Thanh","Mặc Vân","Hạ Linh","Nhân vật mới","Nhân vật mới")
+  for(i in names.indices){ val col=i%2; val row=i/2; val l=18f+col*180f; val t=92f+row*112f; box(c,l,t,l+170f,t+96f,if(i==selectedCharacter)green else Color.rgb(38,52,53)); text(c,names[i],l+85f,t+28f,13f,cream,true); text(c,if(i in party)"! ĐANG XUẤT CHIẾN" else "Có thể chọn",l+85f,t+51f,10f,if(i in party)gold else cream); text(c,if(i==selectedCharacter)"ĐANG XEM" else "Chạm để xem",l+85f,t+75f,10f) }
+  box(c,18f,438f,372f,570f,Color.rgb(38,52,53)); text(c,"Nhân vật: "+names[selectedCharacter],195f,465f,16f,gold,true); text(c,if(selectedCharacter==0)"Trang phục: "+outfit else "Trang phục riêng của nhân vật",195f,492f,12f); button(c,"Mặc định",24f,510f,135f,548f); button(c,"Bạch Vân",145f,510f,255f,548f); button(c,"← Về chuẩn bị",80f,600f,310f,650f)
+ }
+ private fun drawInventory(c:Canvas){
+  text(c,"TÚI ĐỒ",195f,45f,24f,gold,true); text(c,"Vật phẩm đang sở hữu",195f,72f,12f)
+  val items=listOf("Kiếm Thanh Phong  •  Vũ khí","Áo vải tu luyện  •  Trang bị","Đan hồi phục  × "+pills,"Linh thạch  × "+stones,"Mảnh nhiệm vụ  × 1")
+  for(i in items.indices){val y=105f+i*78f;box(c,20f,y,370f,y+60f,Color.rgb(38,52,53));text(c,items[i],195f,y+36f,14f,cream,i==0)}
+  text(c,"Túi đồ prototype: minh họa nhóm vật phẩm cơ bản.",195f,535f,10f);button(c,"← Về chuẩn bị",70f,620f,320f,675f)
+ }
+ private fun drawFormation(c:Canvas){
+  text(c,"ĐỘI HÌNH XUẤT CHIẾN",195f,42f,21f,gold,true);text(c,"Chọn tối đa 4 nhân vật • Không chia Công/Thủ",195f,68f,10f);text(c,"Đang chọn: "+party.size+"/4",195f,91f,15f,cream,true)
+  val names=listOf("Tô Nguyệt Ly","Lâm Thanh","Mặc Vân","Hạ Linh","Nhân vật mới","Nhân vật mới")
+  for(i in names.indices){val col=i%2;val row=i/2;val l=18f+col*180f;val t=112f+row*105f;box(c,l,t,l+170f,t+88f,if(i in party)green else Color.rgb(38,52,53));text(c,names[i],l+85f,t+27f,13f,cream,true);text(c,if(i in party)"! ĐANG XUẤT CHIẾN" else "Chạm để xuất chiến",l+85f,t+54f,10f,if(i in party)gold else cream)}
+  button(c,"XÁC NHẬN ĐỘI HÌNH",35f,470f,355f,520f);button(c,"← Về chuẩn bị",70f,545f,320f,595f)
+ }
+ private fun drawBattle(c:Canvas){text(c,"CHIẾN ĐẤU THỬ • Trận $battleNo",195f,36f,19f,gold,true);text(c,"Theo lượt • hiệu ứng kiếm dùng chung",195f,59f,11f);box(c,12f,78f,378f,390f,Color.rgb(50,74,64),18f);paint(Color.rgb(85,118,86));c.drawRect(20f,270f,370f,380f,p);drawHero(c,70f,235f,outfit,System.currentTimeMillis()<slashUntil);for(i in 0..2){if(i+1<party.size)drawMiniHero(c,145f+i*38f,225f,i+1==activeMember)};drawMonster(c,320f,235f);text(c,"Đội hình ${party.size}/4",195f,305f,12f);text(c,"Yêu thú",320f,305f,12f);val hpLabels=listOf("Nguyệt Ly","Lâm Thanh","Mặc Vân","Hạ Linh","Nhân vật 5","Nhân vật 6");for((slot,id) in party.sorted().withIndex()){bar(c,18f,322f+slot*14f,145f,characterHp[id],100,"${hpLabels[id]}${if(id==activeMember) " *" else ""}",green)};text(c,"MP $mp/50",292f,365f,10f);bar(c,220f,324f,365f,enemyHp,85,"Quái",red);text(c,message,195f,416f,12f);box(c,15f,438f,375f,595f,Color.rgb(38,52,53));text(c,"Kỹ năng",195f,461f,16f,gold,true);button(c,"Kiếm Khí",25f,474f,185f,516f);button(c,"Phi Kiếm (-10 MP)",200f,474f,365f,516f);button(c,"Linh Kiếm Trận (-20 MP)",25f,525f,215f,567f);button(c,"Hồi Nguyên (-15 MP)",225f,525f,365f,567f,green);button(c,"Dùng đan ($pills)",25f,573f,185f,612f,green);button(c,if(auto)"TẮT TỰ ĐỘNG" else "BẬT TỰ ĐỘNG",200f,573f,365f,612f,if(auto)red else gold);button(c,"BỎ TRẬN / VỀ CHUẨN BỊ",35f,635f,355f,681f,Color.rgb(190,156,94));text(c,"Linh thạch: $stones   EXP: $exp",195f,716f,13f);text(c,"Ảnh 2D chỉ hiện khi nữ chính ra chiêu.",195f,744f,11f)}
+ private fun drawMiniHero(c:Canvas,x:Float,y:Float,active:Boolean){paint(if(active)gold else Color.rgb(75,112,143));c.drawOval(RectF(x-12f,y-27f,x+12f,y+20f),p);paint(Color.rgb(231,194,172));c.drawCircle(x,y-30f,9f,p);if(active){paint(Color.WHITE,Paint.Style.STROKE,2f);c.drawCircle(x,y-8f,19f,p)}}
+ private fun drawMonster(c:Canvas,x:Float,y:Float){paint(Color.rgb(75,93,67));c.drawOval(RectF(x-34,y-38,x+34,y+34),p);paint(Color.rgb(175,66,56));c.drawCircle(x-12,y-9,5f,p);c.drawCircle(x+12,y-9,5f,p);paint(Color.rgb(40,48,38));c.drawPath(Path().apply{moveTo(x-17,y+12);lineTo(x,y+22);lineTo(x+17,y+12)},p);paint(Color.rgb(65,76,59));c.drawPath(Path().apply{moveTo(x-25,y-23);lineTo(x-42,y-46);lineTo(x-7,y-31);close()},p);c.drawPath(Path().apply{moveTo(x+25,y-23);lineTo(x+42,y-46);lineTo(x+7,y-31);close()},p)}
+ private fun bar(c:Canvas,l:Float,y:Float,r:Float,value:Int,max:Int,label:String,color:Int){text(c,"$label $value/$max",(l+r)/2,y-4,10f);box(c,l,y,r,y+9,Color.DKGRAY,4f);if(value>0)box(c,l,y,l+(r-l)*value/max,y+9,color,4f)}
+ private fun drawResult(c:Canvas){text(c,"KẾT QUẢ TRẬN ĐẤU",195f,80f,23f,gold,true);drawHero(c,195f,240f,outfit,false);text(c,message,195f,330f,16f);text(c,"EXP: $exp    Linh thạch: $stones",195f,370f,15f);button(c,"ĐÁNH TRẬN TIẾP",35f,430f,355f,485f);button(c,"ĐỔI TRANG PHỤC",35f,505f,355f,560f);button(c,"VỀ BẢN ĐỒ",35f,580f,355f,635f)}
+ private fun startBattle(){if(party.isEmpty()){message="Hãy chọn ít nhất một nhân vật xuất chiến.";screen="formation";return};for(i in characterHp.indices)characterHp[i]=100;mp=50;enemyHp=85;playerTurn=true;activeMember=party.sorted().first();auto=false;screen="battle";message="Mỗi nhân vật có HP riêng. Đến lượt nhân vật ${activeMember+1}."}
+ private fun doTurn(skill:Int=0){if(screen!="battle"||enemyHp<=0||party.none{characterHp[it]>0})return;if(!playerTurn&&skill!=-1){message="Đang đến lượt quái vật.";return}
+ if(playerTurn){when(skill){4->{if(pills<=0){message="Bạn đã hết đan hồi phục.";return};pills--;characterHp[activeMember]=(characterHp[activeMember]+35).coerceAtMost(100);message="Dùng đan, nhân vật ${activeMember+1} hồi 35 HP."};3->{if(mp<15){message="Không đủ MP.";return};mp-=15;characterHp[activeMember]=(characterHp[activeMember]+30).coerceAtMost(100);message="Hồi Nguyên Quyết: nhân vật ${activeMember+1} hồi 30 HP."};else->{val cost=if(skill==1)10 else if(skill==2)20 else 0;if(mp<cost){message="Không đủ MP!";return};mp-=cost;val damage=when(skill){1->38;2->52;else->25};enemyHp=(enemyHp-damage).coerceAtLeast(0);slashUntil=System.currentTimeMillis()+550;message="Nhân vật ${activeMember+1} dùng ${if(skill==0) "Kiếm Khí" else if(skill==1) "Phi Kiếm Quyết" else "Linh Kiếm Trận"}, gây $damage sát thương!";activeMember=party.sorted().firstOrNull{it>activeMember&&characterHp[it]>0}?:party.sorted().firstOrNull{characterHp[it]>0}?:activeMember;postInvalidateDelayed(570)}}
+ if(enemyHp<=0){stones+=15;exp+=20;wins++;message="Chiến thắng! +15 linh thạch, +20 EXP.";auto=false;screen="result";return};playerTurn=false
+ }else{val alive=party.sorted().filter{characterHp[it]>0};if(alive.isEmpty()){auto=false;screen="result";message="Toàn đội đã kiệt sức. Hãy thử lại!";return};if(activeMember !in alive)activeMember=alive.first();val damage=(12-(if(outfit=="Bạch Vân")2 else 0)).coerceAtLeast(5);characterHp[activeMember]=(characterHp[activeMember]-damage).coerceAtLeast(0);message="Yêu thú phản công, nhân vật ${activeMember+1} mất $damage HP.";val nextAlive=party.sorted().filter{characterHp[it]>0};if(nextAlive.isEmpty()){auto=false;screen="result";message="Toàn đội đã bại trận. Hãy thử lại!";return};activeMember=nextAlive.firstOrNull{it>activeMember}?:nextAlive.first();playerTurn=true}}
+ override fun onTouchEvent(e:MotionEvent):Boolean{if(e.action!=MotionEvent.ACTION_UP)return true;val s=min(width/390f,height/780f);val x=e.x/s;val y=e.y/s
+ when(screen){
+ "map"->if(y>695f)screen="prep" else if(y in 250f..370f&&x in 130f..255f){screen="location";message="Bạn đã đến Thanh Vân Tông."}else{message="Chạm ĐẤU THỬ để kiểm tra chiến đấu và trang phục.";invalidate()}
+ "location"->if(y>610f&&x<190f)screen="map" else if(y>610f)screen="prep" else{message="NPC thử nghiệm. Có thể vào ĐẤU THỬ.";invalidate()}
+ "prep"->when{y in 80f..120f->{when{x<136f->screen="characters";x<254f->screen="inventory";else->screen="formation"}};y in 385f..440f->{val choice=when{x<136f->"Mặc định";x<254f->"Bạch Vân";else->"Xích Hà"};if(choice in owned){outfit=choice;message="Đã chọn trang phục $outfit."}else message="Chưa sở hữu. Hãy nhận thưởng thử nghiệm."};y in 525f..568f&&x<195f->if("Bạch Vân" in owned)message="Bạn đã sở hữu Bạch Vân." else if(stones>=30){stones-=30;owned.add("Bạch Vân");outfit="Bạch Vân";message="Đã mua và trang bị Bạch Vân."}else message="Không đủ linh thạch.";y in 525f..568f&&x>=195f->{owned.add("Xích Hà");outfit="Xích Hà";message="Đã nhận Xích Hà từ nhiệm vụ thử nghiệm."};y in 635f..700f->startBattle();y>705f->{screen="map";message="Chạm ĐẤU THỬ để bắt đầu"}}
+ "characters"->{when{y in 90f..420f->{val col=if(x<195f)0 else 1;val row=((y-92f)/112f).toInt().coerceIn(0,2);selectedCharacter=(row*2+col).coerceIn(0,5);message="Đã chọn xem nhân vật."};y in 505f..552f&&selectedCharacter==0->{if(x<140f){outfit="Mặc định";message="Đã chọn Mặc định."}else if("Bạch Vân" in owned){outfit="Bạch Vân";message="Đã chọn Bạch Vân."}else message="Chưa sở hữu Bạch Vân."};y>590f->{screen="prep"}}};"inventory"->{if(y>610f)screen="prep"};"formation"->{when{y in 110f..430f->{val col=if(x<195f)0 else 1;val row=((y-112f)/105f).toInt().coerceIn(0,2);val idx=(row*2+col).coerceIn(0,5);if(idx in party)party.remove(idx)else if(party.size<4)party.add(idx)else message="Đội hình đã đủ 4 nhân vật.";};y in 470f..525f->{message="Đội hình đã lưu: ${party.size}/4."};y>540f->screen="prep"}};"battle"->{if(y in 470f..520f&&playerTurn){if(x<195f)doTurn(0)else doTurn(1)}else if(y in 522f..570f&&playerTurn){if(x<220f)doTurn(2)else doTurn(3)}else if(y in 572f..615f){if(x<195f&&playerTurn)doTurn(4)else if(x>=195f){auto=!auto;if(auto)postDelayed(autoAction,300)}}else if(y in 630f..690f){auto=false;screen="prep";message="Đã rời trận. Đổi trang phục trước trận tiếp theo."};if(screen=="battle"&&!playerTurn&&!auto)postDelayed({if(screen=="battle"&&!playerTurn){doTurn(-1);invalidate()}},450)}
+ "result"->when{y in 425f..490f->{battleNo++;startBattle()};y in 500f..565f->{screen="prep";message="Chọn trang phục trước khi vào trận."};y in 575f..645f->{screen="map";message="Số trận thắng: $wins"}}
+ };invalidate();return true}
 }

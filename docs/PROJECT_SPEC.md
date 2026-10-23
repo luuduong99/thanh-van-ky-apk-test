@@ -204,3 +204,41 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - **2026-10-23:** Người dùng chốt định hướng nhân vật Tô Nguyệt Ly (đồng hành từ đầu, dịu dàng/trung thành; ảnh AI đã tạo là mẫu mỹ thuật ưu tiên) và Lạc Huyền Sương (Ma đạo, chiếm hữu, tóc đen/đen-đỏ, trang phục hở táo bạo; vóc dáng theo mẫu Tô Nguyệt Ly). Ghi nhận thêm ý tưởng nữ hồ ly lấy cảm hứng phong cách fantasy/anime hiện đại như Wuthering Waves nhưng phải có thiết kế nguyên bản. Phân biệt rõ các chi tiết tiểu sử/cảnh giới/tuổi từng do trợ lý đề xuất nhưng chưa được người dùng xác nhận riêng.
 
 - **2026-10-23:** Người dùng xác nhận hai ảnh vừa cung cấp là tham chiếu **về trang phục בלבד**, không thay đổi các hồ sơ nhân vật đã chốt. Chốt ngôn ngữ trang phục tiên hiệp/fantasy anime hiện đại, có thể hở vai/cổ/tà áo và tôn dáng tùy nhân vật; phối màu rõ, phụ kiện vừa đủ và được phép giản lược chi tiết để tăng tính nhất quán khi tạo ảnh. Ảnh AI Tô Nguyệt Ly vẫn là tham chiếu ưu tiên cho tỷ lệ cơ thể/mức độ quyến rũ; không coi ảnh minh họa bổ sung do trợ lý tìm là asset chính thức.
+
+
+## 11. Prototype chiến đấu và trang phục (2026-10-23)
+
+- Định hướng đã chốt: chiến đấu theo lượt, có nút tự động đánh; hiệu ứng tấn công kiếm dùng chung, tránh làm hiệu ứng riêng cho từng chiêu.
+- Chiến trường dùng hình pixel/placeholder đơn giản. Minh họa 2D của nữ chính chỉ xuất hiện khi ra đòn; trang phục chỉ thay đổi trên minh họa 2D, không thay sprite trên chiến trường.
+- ĐÃ CHỐT: trang phục chỉ được đổi trước khi vào trận; khi đã chiến đấu, bộ trang phục được khóa đến hết trận.
+- Trang phục gắn với nhân vật cụ thể; không thể dùng trang phục của nhân vật này cho nhân vật khác.
+- Prototype kiểm thử đang được phát triển trên nhánh `combat-costume-prototype`, tách khỏi `map-2d-prototype` để không ghi đè công việc bản đồ gốc.
+- Bản thử nghiệm dùng hình vẽ placeholder bằng Kotlin Canvas, chưa phải asset nhân vật chính thức. Có trang phục mặc định, trang phục mua bằng linh thạch và trang phục nhận thưởng thử nghiệm; chiến đấu có HP/MP, ba đòn kiếm dùng chung hiệu ứng, hồi máu, vật phẩm hồi phục, tự động đánh và phần thưởng.
+- Đây mới là trạng thái mã nguồn; chưa xác nhận build APK hoặc kiểm thử trên thiết bị. Cần xác nhận GitHub Actions trước khi cung cấp APK.
+
+
+## 12. Nhân vật, túi đồ, trang bị và đội hình chiến đấu — ĐÃ CHỐT ngày 2026-10-23
+
+- **ĐÃ CHỐT:** Có khu vực **Nhân vật** để xem danh sách nhân vật, xem thông tin và chọn trang phục/trang bị cho từng người.
+- **ĐÃ CHỐT:** Có khu vực **Túi đồ** để xem vật phẩm sở hữu, gồm các nhóm dự kiến như vũ khí, trang bị, đan dược và vật phẩm nhiệm vụ. Triển khai từng bước, không cần làm hệ thống chỉ số quá phức tạp ngay.
+- **ĐÃ CHỐT:** Trang phục gắn với đúng nhân vật; không thể dùng trang phục của nhân vật này cho nhân vật khác. Trang phục được chọn trong khu vực Nhân vật và chỉ đổi trước trận.
+- **ĐÃ CHỐT:** Người chơi có thể chọn nhiều nhân vật cùng tham gia chiến đấu, không giới hạn ở một nhân vật như prototype hiện tại.
+- **ĐÃ CHỐT:** Giai đoạn đầu, đội hình xuất chiến tối đa **4 nhân vật**. Danh sách sở hữu có thể nhiều hơn 4; giới hạn 4 chỉ áp dụng cho một trận.
+- **ĐÃ CHỐT:** Màn hình đội hình phải đánh dấu rõ nhân vật được chọn xuất chiến bằng nhãn như **“ĐANG XUẤT CHIẾN”**, dấu **“!”** hoặc cách tương đương, đồng thời hiển thị số lượng đã chọn, ví dụ **3/4**. Có thể thêm/bỏ nhân vật trước khi vào trận.
+- **ĐÃ CHỐT:** **Không chia lớp/vai trò Công/Thủ** và không bắt buộc cân bằng đội hình. Người chơi tự chọn tối đa 4 nhân vật yêu thích.
+- **ĐỊNH HƯỚNG TRIỂN KHAI:** Có các màn hình riêng Nhân vật, Túi đồ và Đội hình xuất chiến. Trong chiến đấu, các nhân vật đã chọn cùng xuất hiện/tham chiến; mỗi nhân vật có HP/MP và hành động riêng ở mức đơn giản. Không cần làm cây kỹ năng hoặc hệ thống vai trò phức tạp ở giai đoạn đầu.
+- **ĐỊNH HƯỚNG TRIỂN KHAI:** Thay đổi trang phục/trang bị và đội hình trước trận; khóa các thay đổi đó trong trận để luồng chơi rõ ràng.
+
+
+- **Bổ sung xác nhận ngày 2026-10-23:** Người dùng nhấn mạnh không cần phân vai Công/Thủ vì làm gameplay phức tạp; đội hình 4 người là lựa chọn tự do, không có lớp vai trò bắt buộc.
+
+
+### Bổ sung xác nhận — HP riêng và trang phục mất dần trong chiến đấu (2026-10-23)
+
+- **ĐÃ CHỐT:** Mỗi nhân vật có thanh HP riêng; sát thương nhận vào chỉ trừ HP của nhân vật bị đánh, không dùng một thanh HP chung cho cả đội. Khi HP của một nhân vật về 0, nhân vật đó bị hạ gục; trận đấu chỉ thất bại khi toàn bộ nhân vật trong đội hình đều bị hạ gục.
+- **ĐÃ CHỐT:** Vật phẩm/kỹ năng hồi phục phải áp dụng vào nhân vật cụ thể đang được chọn/đến lượt, không hồi một thanh HP chung của đội.
+- **ĐÃ CHỐT:** Trong chiến đấu có cơ chế **trang phục mất dần theo mức độ sát thương**. Ngoại hình trang phục của từng nhân vật thay đổi dần theo tình trạng của chính nhân vật đó, không ảnh hưởng đến việc trang phục được gắn với nhân vật nào.
+- **CHƯA CHỐT CHI TIẾT:** Số giai đoạn hình ảnh, ngưỡng HP/sát thương kích hoạt từng giai đoạn và mức độ thay đổi trang phục sẽ được xác định khi làm asset/hoạt ảnh. Trong prototype hiện tại, thay đổi này cần được xem là yêu cầu thiết kế; chưa được coi là đã có hình ảnh trang phục hư hại hoàn chỉnh.
+- **ĐÃ CHỐT:** Không được đổi thủ công trang phục trong lúc chiến đấu. Khi trận kết thúc, hình ảnh trở về bộ trang phục đã trang bị trước trận; cơ chế mất dần là trạng thái hiển thị tạm thời trong trận.
+
+- **Lịch sử cập nhật 2026-10-23:** Người dùng yêu cầu tách HP cho từng nhân vật và nhắc lại cơ chế trang phục mất dần. Cập nhật prototype để lưu/hiển thị HP theo từng nhân vật và áp dụng sát thương/hồi phục vào nhân vật cụ thể; ghi cơ chế trang phục mất dần vào tài liệu để triển khai hình ảnh ở bước tiếp theo.
