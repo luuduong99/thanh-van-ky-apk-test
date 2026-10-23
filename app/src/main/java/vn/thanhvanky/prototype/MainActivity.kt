@@ -63,6 +63,22 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         "Một cơn gió lạnh lướt qua mái hiên, mang theo mùi trúc ẩm.",
         "Tô Nguyệt Ly: Chúng ta nên làm gì trước khi trời tối?"
     )
+    // Garment condition is independent from HP. Both outer and inner layers are affected.
+    private val garmentSteps = intArrayOf(100, 70, 50, 30)
+    private var garmentStep = storyPrefs.getInt("garment_step", 0).coerceIn(0, 3)
+    private var garmentMessage = "Trang phục có thể hư hại ở mọi lớp."
+    private fun applyGarmentDamage() {
+        garmentStep = (garmentStep + 1).coerceAtMost(3)
+        storyPrefs.edit().putInt("garment_step", garmentStep).apply()
+        garmentMessage = if (garmentStep == 3) "Trang phục hư hại tối đa." else "Trang phục bị hư hại thêm."
+        invalidate()
+    }
+    private fun repairGarment() {
+        garmentStep = 0
+        storyPrefs.edit().putInt("garment_step", 0).apply()
+        garmentMessage = "Đã sửa toàn bộ trang phục."
+        invalidate()
+    }
     private var place = "map"
     private var message = "Chạm vào địa điểm để di chuyển"
     private var affection = 0
@@ -85,7 +101,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         canvas.save()
         canvas.scale(s, s)
-        if (place == "story") drawStory(canvas) else if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else if (place == "romance") drawRomance(canvas) else drawLocation(canvas)
+        if (place == "equipment") drawEquipment(canvas) else if (place == "story") drawStory(canvas) else if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else if (place == "romance") drawRomance(canvas) else drawLocation(canvas)
         canvas.restore()
         if (place == "animation_demo" && demoPlaying) postInvalidateDelayed(33L)
     }
@@ -166,6 +182,22 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         invalidate()
     }
 
+    private fun drawEquipment(c: Canvas) {
+        text(c, "TRANG PHỤC • TÔ NGUYỆT LY", 195f, 48f, 19f, gold, true)
+        rounded(c, 22f, 78f, 368f, 495f, Color.rgb(39, 59, 77), 18f)
+        portrait(c, nguyetLyPortrait, RectF(70f, 85f, 320f, 480f))
+        text(c, "Độ nguyên vẹn: " + garmentSteps[garmentStep] + "%", 195f, 525f, 17f, cream, true)
+        text(c, "Áo ngoài + áo trong + váy + phụ kiện", 195f, 552f, 12f)
+        text(c, "Mô phỏng chỉ số; ảnh theo cấp chưa tích hợp", 195f, 579f, 11f, Color.LTGRAY)
+        text(c, garmentMessage, 195f, 612f, 12f)
+        rounded(c, 22f, 638f, 368f, 686f, green)
+        text(c, "THỬ MỨC HƯ HẠI TIẾP", 195f, 669f, 14f)
+        rounded(c, 22f, 697f, 190f, 753f, gold)
+        text(c, "SỬA ÁO", 105f, 730f, 14f, ink, true)
+        rounded(c, 200f, 697f, 368f, 753f, Color.rgb(67, 88, 93))
+        text(c, "BẢN ĐỒ", 284f, 730f, 14f)
+    }
+
     private fun drawMap(c: Canvas) {
         text(c, "THANH VÂN KÝ", 195f, 46f, 25f, gold, true)
         text(c, "BẢN ĐỒ THANH VÂN SƠN", 195f, 72f, 13f)
@@ -204,6 +236,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         rounded(c, 28f, 642f, 362f, 687f, Color.rgb(27, 43, 39), 12f)
         text(c, message, 195f, 670f, 13f, cream)
         text(c, "Chạm biểu tượng để khám phá", 195f, 719f, 11f, Color.LTGRAY)
+        rounded(c, 270f, 16f, 378f, 55f, green, 9f)
+        text(c, "TRANG PHỤC", 324f, 41f, 11f)
         rounded(c, 32f, 730f, 358f, 770f, gold, 9f)
         text(c, if (storyComplete) "XEM LẠI CHƯƠNG I" else "BẮT ĐẦU CHƯƠNG I", 195f, 756f, 13f, ink, true)
     }
@@ -437,7 +471,11 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         val x = event.x / s
         val y = event.y / s
-        if (place == "story") {
+        if (place == "equipment") {
+            if (y in 638f..686f) applyGarmentDamage()
+            else if (y in 697f..753f && x < 195f) repairGarment()
+            else if (y in 697f..753f) { place = "map"; invalidate() }
+        } else if (place == "story") {
             interactStory(y)
         } else if (place == "romance") {
             interactRomance(x, y)
@@ -446,7 +484,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         } else if (place == "nguyetly") {
             interactNguyetLy(x, y)
         } else if (place == "map") {
-            if (y in 730f..780f) {
+            if (y in 16f..65f && x > 265f) { place = "equipment"; invalidate() }
+            else if (y in 730f..780f) {
                 storyIndex = 0; storyVisible = 0; place = "story"; invalidate()
             } else if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
             else if (y in 420f..510f && x in 40f..145f) enter("town", "Trấn Thanh Hà: có thể tìm thương nhân và tin tức.")
