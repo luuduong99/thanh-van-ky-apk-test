@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "map-2d-prototype" ]
   workflow_dispatch:
 
 permissions:
