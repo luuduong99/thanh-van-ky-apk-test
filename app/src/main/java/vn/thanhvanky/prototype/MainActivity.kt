@@ -51,6 +51,18 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         c.drawBitmap(bitmap, null, RectF(left, top, left + w, top + h), p)
         c.restore()
     }
+    private val storyPrefs = context.getSharedPreferences("tvk_chapter_1", 0)
+    private var storyIndex = 0
+    private var storyVisible = 0
+    private var storyComplete = storyPrefs.getBoolean("complete", false)
+    private val storyLines = arrayOf(
+        "Sương sớm phủ trên lối đá. Sau nhiều ngày xa tông môn, bạn trở về.",
+        "Tô Nguyệt Ly: Huynh về rồi! Muội đã đợi từ sáng. Chuyến đi có thuận lợi không?",
+        "Nam chính: Có chút trắc trở, nhưng thấy muội bình an là tốt rồi.",
+        "Tô Nguyệt Ly: Đêm qua linh khí ở Rừng Trúc biến động. Muội lo có chuyện chẳng lành.",
+        "Một cơn gió lạnh lướt qua mái hiên, mang theo mùi trúc ẩm.",
+        "Tô Nguyệt Ly: Chúng ta nên làm gì trước khi trời tối?"
+    )
     private var place = "map"
     private var message = "Chạm vào địa điểm để di chuyển"
     private var affection = 0
@@ -73,7 +85,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         canvas.save()
         canvas.scale(s, s)
-        if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else if (place == "romance") drawRomance(canvas) else drawLocation(canvas)
+        if (place == "story") drawStory(canvas) else if (place == "map") drawMap(canvas) else if (place == "nguyetly") drawNguyetLy(canvas) else if (place == "animation_demo") drawAnimationDemo(canvas) else if (place == "romance") drawRomance(canvas) else drawLocation(canvas)
         canvas.restore()
         if (place == "animation_demo" && demoPlaying) postInvalidateDelayed(33L)
     }
@@ -96,6 +108,62 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private fun rounded(c: Canvas, l: Float, t: Float, r: Float, b: Float, color: Int, radius: Float = 14f) {
         paint(color)
         c.drawRoundRect(RectF(l, t, r, b), radius, radius, p)
+    }
+
+    private fun drawStory(c: Canvas) {
+        text(c, "CHƯƠNG I • SƯƠNG TRÊN NÚI", 195f, 43f, 20f, gold, true)
+        rounded(c, 12f, 75f, 378f, 530f, Color.rgb(39, 59, 77), 18f)
+        portrait(c, nguyetLyPortrait, RectF(65f, 88f, 325f, 510f))
+        rounded(c, 15f, 528f, 375f, 663f, Color.rgb(25, 39, 53), 12f)
+        val line = storyLines[storyIndex]
+        val words = line.take(storyVisible).split(" ")
+        val rows = mutableListOf<String>()
+        var row = ""
+        for (word in words) {
+            if ((row.length + word.length) > 38 && row.isNotEmpty()) {
+                rows.add(row); row = word
+            } else row = if (row.isEmpty()) word else "$"+"row $"+"word"
+        }
+        if (row.isNotEmpty()) rows.add(row)
+        rows.take(4).forEachIndexed { i, v -> text(c, v, 195f, 557f + i * 25f, 12f) }
+        if (storyIndex == storyLines.lastIndex && storyVisible == line.length) {
+            rounded(c, 18f, 665f, 372f, 709f, gold, 10f)
+            text(c, "Cùng Nguyệt Ly đến Rừng Trúc", 195f, 693f, 13f, ink, true)
+            rounded(c, 18f, 715f, 372f, 760f, green, 10f)
+            text(c, "Về đại điện chuẩn bị trước", 195f, 743f, 13f)
+        } else {
+            text(c, "Chạm để hiện hết câu / tiếp tục", 195f, 692f, 12f)
+            rounded(c, 18f, 715f, 372f, 760f, green, 10f)
+            text(c, "← TRỞ VỀ BẢN ĐỒ", 195f, 743f, 13f)
+        }
+        if (storyVisible < line.length) {
+            storyVisible = (storyVisible + 2).coerceAtMost(line.length)
+            postInvalidateDelayed(30L)
+        }
+    }
+
+    private fun interactStory(y: Float) {
+        val line = storyLines[storyIndex]
+        if (storyIndex == storyLines.lastIndex && storyVisible == line.length) {
+            if (y in 665f..760f) {
+                val destination = if (y < 712f) "forest" else "sect"
+                storyPrefs.edit().putBoolean("complete", true)
+                    .putString("choice", destination).apply()
+                storyComplete = true
+                place = destination
+                message = if (destination == "forest")
+                    "Nguyệt Ly cùng bạn tiến vào Rừng Trúc."
+                else "Hai người trở về đại điện chuẩn bị."
+            }
+        } else if (y in 715f..760f) {
+            place = "map"
+        } else if (storyVisible < line.length) {
+            storyVisible = line.length
+        } else if (storyIndex < storyLines.lastIndex) {
+            storyIndex++
+            storyVisible = 0
+        }
+        invalidate()
     }
 
     private fun drawMap(c: Canvas) {
@@ -135,7 +203,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         marker(c, 282f, 215f, "Bí cảnh", "✦", true)
         rounded(c, 28f, 642f, 362f, 687f, Color.rgb(27, 43, 39), 12f)
         text(c, message, 195f, 670f, 13f, cream)
-        text(c, "Chạm biểu tượng để khám phá • Khu vực khóa sẽ mở theo cốt truyện", 195f, 724f, 10f, Color.LTGRAY)
+        text(c, "Chạm biểu tượng để khám phá", 195f, 719f, 11f, Color.LTGRAY)
+        rounded(c, 32f, 730f, 358f, 770f, gold, 9f)
+        text(c, if (storyComplete) "XEM LẠI CHƯƠNG I" else "BẮT ĐẦU CHƯƠNG I", 195f, 756f, 13f, ink, true)
     }
 
     private fun marker(c: Canvas, x: Float, y: Float, label: String, symbol: String, locked: Boolean = false) {
@@ -367,14 +437,18 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         val s = min(width / 390f, height / 780f)
         val x = event.x / s
         val y = event.y / s
-        if (place == "romance") {
+        if (place == "story") {
+            interactStory(y)
+        } else if (place == "romance") {
             interactRomance(x, y)
         } else if (place == "animation_demo") {
             interactAnimationDemo(x, y)
         } else if (place == "nguyetly") {
             interactNguyetLy(x, y)
         } else if (place == "map") {
-            if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
+            if (y in 730f..780f) {
+                storyIndex = 0; storyVisible = 0; place = "story"; invalidate()
+            } else if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
             else if (y in 420f..510f && x in 40f..145f) enter("town", "Trấn Thanh Hà: có thể tìm thương nhân và tin tức.")
             else if (y in 470f..575f && x in 230f..345f) enter("forest", "Rừng Trúc: nghe thấy tiếng động lạ.")
             else if (y in 170f..250f && x in 235f..330f) {
