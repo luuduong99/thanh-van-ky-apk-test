@@ -231,3 +231,14 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 
 
 - **Bổ sung xác nhận ngày 2026-10-23:** Người dùng nhấn mạnh không cần phân vai Công/Thủ vì làm gameplay phức tạp; đội hình 4 người là lựa chọn tự do, không có lớp vai trò bắt buộc.
+
+
+### Bổ sung xác nhận — HP riêng và trang phục mất dần trong chiến đấu (2026-10-23)
+
+- **ĐÃ CHỐT:** Mỗi nhân vật có thanh HP riêng; sát thương nhận vào chỉ trừ HP của nhân vật bị đánh, không dùng một thanh HP chung cho cả đội. Khi HP của một nhân vật về 0, nhân vật đó bị hạ gục; trận đấu chỉ thất bại khi toàn bộ nhân vật trong đội hình đều bị hạ gục.
+- **ĐÃ CHỐT:** Vật phẩm/kỹ năng hồi phục phải áp dụng vào nhân vật cụ thể đang được chọn/đến lượt, không hồi một thanh HP chung của đội.
+- **ĐÃ CHỐT:** Trong chiến đấu có cơ chế **trang phục mất dần theo mức độ sát thương**. Ngoại hình trang phục của từng nhân vật thay đổi dần theo tình trạng của chính nhân vật đó, không ảnh hưởng đến việc trang phục được gắn với nhân vật nào.
+- **CHƯA CHỐT CHI TIẾT:** Số giai đoạn hình ảnh, ngưỡng HP/sát thương kích hoạt từng giai đoạn và mức độ thay đổi trang phục sẽ được xác định khi làm asset/hoạt ảnh. Trong prototype hiện tại, thay đổi này cần được xem là yêu cầu thiết kế; chưa được coi là đã có hình ảnh trang phục hư hại hoàn chỉnh.
+- **ĐÃ CHỐT:** Không được đổi thủ công trang phục trong lúc chiến đấu. Khi trận kết thúc, hình ảnh trở về bộ trang phục đã trang bị trước trận; cơ chế mất dần là trạng thái hiển thị tạm thời trong trận.
+
+- **Lịch sử cập nhật 2026-10-23:** Người dùng yêu cầu tách HP cho từng nhân vật và nhắc lại cơ chế trang phục mất dần. Cập nhật prototype để lưu/hiển thị HP theo từng nhân vật và áp dụng sát thương/hồi phục vào nhân vật cụ thể; ghi cơ chế trang phục mất dần vào tài liệu để triển khai hình ảnh ở bước tiếp theo.
