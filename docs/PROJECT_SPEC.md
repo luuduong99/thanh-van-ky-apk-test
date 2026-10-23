@@ -204,3 +204,14 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - **2026-10-23:** Người dùng chốt định hướng nhân vật Tô Nguyệt Ly (đồng hành từ đầu, dịu dàng/trung thành; ảnh AI đã tạo là mẫu mỹ thuật ưu tiên) và Lạc Huyền Sương (Ma đạo, chiếm hữu, tóc đen/đen-đỏ, trang phục hở táo bạo; vóc dáng theo mẫu Tô Nguyệt Ly). Ghi nhận thêm ý tưởng nữ hồ ly lấy cảm hứng phong cách fantasy/anime hiện đại như Wuthering Waves nhưng phải có thiết kế nguyên bản. Phân biệt rõ các chi tiết tiểu sử/cảnh giới/tuổi từng do trợ lý đề xuất nhưng chưa được người dùng xác nhận riêng.
 
 - **2026-10-23:** Người dùng xác nhận hai ảnh vừa cung cấp là tham chiếu **về trang phục בלבד**, không thay đổi các hồ sơ nhân vật đã chốt. Chốt ngôn ngữ trang phục tiên hiệp/fantasy anime hiện đại, có thể hở vai/cổ/tà áo và tôn dáng tùy nhân vật; phối màu rõ, phụ kiện vừa đủ và được phép giản lược chi tiết để tăng tính nhất quán khi tạo ảnh. Ảnh AI Tô Nguyệt Ly vẫn là tham chiếu ưu tiên cho tỷ lệ cơ thể/mức độ quyến rũ; không coi ảnh minh họa bổ sung do trợ lý tìm là asset chính thức.
+
+
+## 11. Prototype chiến đấu và trang phục (2026-10-23)
+
+- Định hướng đã chốt: chiến đấu theo lượt, có nút tự động đánh; hiệu ứng tấn công kiếm dùng chung, tránh làm hiệu ứng riêng cho từng chiêu.
+- Chiến trường dùng hình pixel/placeholder đơn giản. Minh họa 2D của nữ chính chỉ xuất hiện khi ra đòn; trang phục chỉ thay đổi trên minh họa 2D, không thay sprite trên chiến trường.
+- ĐÃ CHỐT: trang phục chỉ được đổi trước khi vào trận; khi đã chiến đấu, bộ trang phục được khóa đến hết trận.
+- Trang phục gắn với nhân vật cụ thể; không thể dùng trang phục của nhân vật này cho nhân vật khác.
+- Prototype kiểm thử đang được phát triển trên nhánh `combat-costume-prototype`, tách khỏi `map-2d-prototype` để không ghi đè công việc bản đồ gốc.
+- Bản thử nghiệm dùng hình vẽ placeholder bằng Kotlin Canvas, chưa phải asset nhân vật chính thức. Có trang phục mặc định, trang phục mua bằng linh thạch và trang phục nhận thưởng thử nghiệm; chiến đấu có HP/MP, ba đòn kiếm dùng chung hiệu ứng, hồi máu, vật phẩm hồi phục, tự động đánh và phần thưởng.
+- Đây mới là trạng thái mã nguồn; chưa xác nhận build APK hoặc kiểm thử trên thiết bị. Cần xác nhận GitHub Actions trước khi cung cấp APK.
