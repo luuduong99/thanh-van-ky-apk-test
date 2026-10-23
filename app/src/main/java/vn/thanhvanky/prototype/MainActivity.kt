@@ -109,6 +109,29 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     // scaffold, NOT yet a frame-by-frame kissing animation.
     private var romanceLoop = false
     private var romanceLoopStart = 0L
+    // Explicit Start -> Loop -> End controller. Only a real rig or authored frame
+    // sequence can turn this into the final character animation.
+    private var romancePhase = "idle"
+    private var romancePhaseStart = 0L
+    private val romanceIntroMs = 750L
+    private val romanceOutroMs = 650L
+    private fun startKiss() {
+        romanceMode = 2
+        romancePhase = "start"
+        romancePhaseStart = System.currentTimeMillis()
+        romanceLoop = false
+        romanceText = "Hai người tiến lại gần nhau..."
+        invalidate()
+    }
+    private fun stopKiss() {
+        if (romancePhase == "start" || romancePhase == "loop") {
+            romancePhase = "end"
+            romancePhaseStart = System.currentTimeMillis()
+            romanceLoop = false
+            romanceText = "Hai người nhẹ nhàng tách ra."
+            invalidate()
+        }
+    }
     private var romanceMode = 0
     private var romanceText = "Đêm trăng thanh tĩnh."
     private var interaction = "Chạm vào tóc, mặt, tay hoặc chọn hành động."
@@ -399,6 +422,15 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         rounded(c, 12f, 89f, 378f, 495f, Color.rgb(35, 48, 78), 20f)
         paint(Color.rgb(240, 224, 178)); c.drawCircle(306f, 153f, 36f, p)
         val now = System.currentTimeMillis()
+        if (romancePhase == "start" && now - romancePhaseStart >= romanceIntroMs) {
+            romancePhase = "loop"
+            romanceLoop = true
+            romanceLoopStart = now
+            romanceText = "Nụ hôn tiếp diễn đến khi bạn chọn dừng."
+        } else if (romancePhase == "end" && now - romancePhaseStart >= romanceOutroMs) {
+            romancePhase = "idle"
+            romanceMode = 0
+        }
         val phase = if (romanceLoop) ((now - romanceLoopStart) % 2400L) / 2400.0 else 0.0
         val sway = if (romanceLoop) sin(phase * Math.PI * 2).toFloat() * 1.8f
             else sin(now / (1100.0 - demoSpeed * 250.0)).toFloat() * (demoStrength + 1) * 0.7f
@@ -407,8 +439,13 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         text(c, "NAM CHÍNH", 104f, 480f, 12f, cream, true)
         text(c, "TÔ NGUYỆT LY", 285f, 480f, 12f, cream, true)
         if (romanceMode > 0) text(c, "♥", 195f, 270f, 24f, Color.rgb(245, 155, 169))
-        if (romanceLoop) {
-            text(c, "ĐANG LẶP • CHẠM DỪNG HOẶC ĐỔI HÀNH ĐỘNG", 195f, 464f, 10f, gold)
+        if (romancePhase != "idle") {
+            val phaseLabel = when (romancePhase) {
+                "start" -> "BẮT ĐẦU"
+                "loop" -> "ĐANG LẶP • CHỌN DỪNG HOẶC ĐỔI"
+                else -> "KẾT THÚC"
+            }
+            text(c, phaseLabel, 195f, 464f, 10f, gold)
         }
         rounded(c, 15f, 500f, 375f, 539f, Color.rgb(39, 56, 65), 8f)
         text(c, romanceText, 195f, 525f, 11f)
@@ -420,7 +457,7 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             text(c, names[i], l+84f, t+28f, 13f, ink, true)
         }
         rounded(c, 18f, 660f, 372f, 702f, green, 9f)
-        text(c, if (romanceLoop) "DỪNG HOẠT ẢNH" else "CHUYỂN CẢNH RIÊNG TƯ", 195f, 687f, 13f)
+        text(c, if (romancePhase != "idle") "DỪNG HOẠT ẢNH" else "CHUYỂN CẢNH RIÊNG TƯ", 195f, 687f, 13f)
         rounded(c, 18f, 715f, 372f, 763f, green, 9f)
         text(c, "← TRỞ VỀ TÔ NGUYỆT LY", 195f, 745f, 13f)
         if (demoVeil) {
@@ -436,23 +473,24 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             demoVeil && y < 495f -> demoVeil = false
             y in 715f..780f -> { romanceLoop = false; demoVeil = false; place = "nguyetly" }
             y in 660f..702f -> {
-                if (romanceLoop) { romanceLoop = false; romanceText = "Hai người nhẹ nhàng tách ra." }
+                if (romancePhase != "idle") stopKiss()
                 else demoVeil = !demoVeil
             }
             y in 551f..594f -> {
-                romanceLoop = false
+                stopKiss()
+                romancePhase = "idle"
                 if (x < 195f) { romanceMode = 0; romanceText = "Nàng đan tay vào tay bạn."; affection += 2 }
                 else { romanceMode = 1; romanceText = "Hai người trao nhau cái ôm ấm áp."; affection += 3 }
             }
             y in 606f..649f -> {
                 if (x < 195f) {
-                    romanceMode = 2
-                    romanceLoop = true
-                    romanceLoopStart = System.currentTimeMillis()
-                    romanceText = "Nụ hôn tiếp diễn đến khi bạn chọn dừng."
-                    affection += 4
+                    if (romancePhase == "idle") {
+                        startKiss()
+                        affection += 4
+                    }
                 } else {
-                    romanceLoop = false
+                    stopKiss()
+                    romancePhase = "idle"
                     romanceMode = 3
                     romanceText = "Nàng khép mắt khi bạn vuốt tóc."
                     affection += 2
