@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "purpose": "Data-driven per-character pose selection and touch zones; original posed art and rig animations supplied separately; no explicit clips are bundled.",
   "characters": [
     {
@@ -280,6 +280,36 @@
       "poseTouchCalibration": {
         "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
         "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+      },
+      "wardrobeStates": [
+        {
+          "id": "default",
+          "label": "Trang phục mặc định",
+          "status": "ready_when_pose_art_exists",
+          "images": {
+            "front": "characters/heroines_reference.png",
+            "back": "characters/to_nguyet_ly_back.png",
+            "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward.png",
+            "bed_recline": "characters/to_nguyet_ly_bed_recline.png"
+          }
+        },
+        {
+          "id": "outer_removed",
+          "label": "Cởi lớp áo ngoài",
+          "status": "asset_required",
+          "images": {
+            "front": "characters/to_nguyet_ly_front_outer_removed.png",
+            "back": "characters/to_nguyet_ly_back_outer_removed.png",
+            "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed.png",
+            "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed.png"
+          },
+          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter."
+        }
+      ],
+      "motionNotes": {
+        "currentRenderer": "Android bitmap-mesh breath and hair deformation for any available pose portrait",
+        "skeletalRenderer": "Spine/Live2D rig integration pending",
+        "noPretendAnimation": "If pose art or rig is unavailable, UI shows a message rather than swapping to unrelated standing art."
       }
     },
     {
@@ -560,6 +590,36 @@
       "poseTouchCalibration": {
         "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
         "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+      },
+      "wardrobeStates": [
+        {
+          "id": "default",
+          "label": "Trang phục mặc định",
+          "status": "ready_when_pose_art_exists",
+          "images": {
+            "front": "characters/lin_qian.png",
+            "back": "characters/lin_qian_back.png",
+            "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward.png",
+            "bed_recline": "characters/lin_qian_bed_recline.png"
+          }
+        },
+        {
+          "id": "outer_removed",
+          "label": "Cởi lớp áo ngoài",
+          "status": "asset_required",
+          "images": {
+            "front": "characters/lin_qian_front_outer_removed.png",
+            "back": "characters/lin_qian_back_outer_removed.png",
+            "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed.png",
+            "bed_recline": "characters/lin_qian_bed_recline_outer_removed.png"
+          },
+          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter."
+        }
+      ],
+      "motionNotes": {
+        "currentRenderer": "Android bitmap-mesh breath and hair deformation for any available pose portrait",
+        "skeletalRenderer": "Spine/Live2D rig integration pending",
+        "noPretendAnimation": "If pose art or rig is unavailable, UI shows a message rather than swapping to unrelated standing art."
       }
     }
   ]
