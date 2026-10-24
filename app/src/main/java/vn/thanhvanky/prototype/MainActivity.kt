@@ -289,7 +289,8 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         marker(c, 282f, 215f, "Bí cảnh", "✦", true)
         rounded(c, 28f, 642f, 362f, 687f, Color.rgb(27, 43, 39), 12f)
         text(c, message, 195f, 670f, 13f, cream)
-        text(c, "Chạm biểu tượng để khám phá", 195f, 719f, 11f, Color.LTGRAY)
+        rounded(c, 31f, 685f, 359f, 727f, Color.rgb(87, 116, 112), 10f)
+        text(c, "NHÂN VẬT • TƯƠNG TÁC", 195f, 712f, 14f, cream, true)
         rounded(c, 270f, 16f, 378f, 55f, green, 9f)
         text(c, "TRANG PHỤC", 324f, 41f, 11f)
         rounded(c, 32f, 730f, 358f, 770f, gold, 9f)
@@ -579,6 +580,9 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
             interactNguyetLy(x, y)
         } else if (place == "map") {
             if (y in 16f..65f && x > 265f) { place = "equipment"; invalidate() }
+            else if (y in 686f..729f) {
+                context.startActivity(android.content.Intent(context, CharacterInteractionActivity::class.java))
+            }
             else if (y in 730f..780f) {
                 storyIndex = 0; storyVisible = 0; place = "story"; invalidate()
             } else if (y in 260f..370f && x in 135f..250f) enter("sect", "Bạn đã đến Thanh Vân Tông.")
