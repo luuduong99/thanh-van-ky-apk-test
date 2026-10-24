@@ -423,3 +423,40 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - **TRẠNG THÁI KỸ THUẬT:** Đã đăng ký bốn tư thế `front`, `back`, `bed_kneel_forward`, `bed_recline` cho hai nữ chính trong `character_interactions.json` v4; màn Android có bộ chọn tư thế cuộn ngang, lưu tư thế riêng từng nhân vật, sử dụng ảnh đúng theo mỗi tư thế và hiển thị rõ khi thiếu asset. `motionProfile` khai báo yêu cầu animation, **không phải bằng chứng đã có animation hoặc chuyển động vòng một thực sự trong APK**.
 - **ASSET CÒN THIẾU:** Chưa có ảnh gốc đúng các tư thế mới trong repository Android; ảnh đính kèm từ nguồn tham khảo chỉ dùng để mô tả pose, không sao chép làm mỹ thuật nhân vật. Chưa có rig phân lớp, secondary motion thực tế, hoặc vùng chạm hiệu chỉnh cho hai tư thế mới. Mô hình 2D nguyên bản cần được dựng và nhập riêng cho mỗi nhân vật.
 - **LỊCH SỬ CẬP NHẬT 2026-10-24:** Chốt thêm hai kiểu nằm/quỳ trên giường theo ảnh người dùng gửi; ưu tiên nét mặt quay lại và chuyển động tự nhiên, ghi rõ phần mới là cấu trúc dữ liệu và UI chứ chưa có asset hoặc animation.
+
+
+## 16. Kiểm kê nghiệm thu Chương I, tư thế và tương tác — 2026-10-24
+
+> **TRẠNG THÁI HIỆN HÀNH; ưu tiên hơn các ghi chú "thiếu ảnh/chưa build" ở mục 11–15 đã viết trước đó.** Đối chiếu trực tiếp branch `map-2d-prototype` commit `196e77fa3ad77edc3fad54452d0cb373bdf01fa6`, tree GitHub, `MainActivity.kt`, `CharacterInteractionActivity.kt`, `TVKCharacterMotionView.kt` và `character_interactions.json` phiên bản **6**. Workflow [GitHub Actions #40062868665](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40062868665) kết thúc **success**, có artifact `thanh-van-ky-debug-apk`. Thành công biên dịch **không tương đương** kiểm thử trên thiết bị hay xác nhận chất lượng hoạt ảnh.
+
+### 16.1 Đã đưa vào source và build được
+
+| Hạng mục | Trạng thái thực tế |
+|---|---|
+| Bản đồ Thanh Vân Sơn → Chương I → hội thoại sáu đoạn → lựa chọn Rừng Trúc/đại điện, lưu `complete` và `choice` | **ĐÃ CÓ BẢN CHƠI THỬ** trong `MainActivity.kt`; chưa hoàn thiện nhiệm vụ nối tiếp. |
+| Nam chính và Tô Nguyệt Ly trong màn tương tác | **ĐÃ CÓ** ảnh và luồng điều hướng; ảnh nam chính `characters/main_portrait.png`, Tô Nguyệt Ly từ phần bên trái `characters/heroines_reference.png`. |
+| Lâm Thiển và các tư thế mới | **ĐÃ CÓ FILE ẢNH** `characters/lin_qian.png`, `lin_qian_back.png`, `lin_qian_bed_kneel_forward.png`, `lin_qian_bed_recline.png`; Tô Nguyệt Ly có ảnh `to_nguyet_ly_back.png`, `to_nguyet_ly_bed_kneel_forward.png`, `to_nguyet_ly_bed_recline.png`. Không còn ghi "chưa nhập ảnh Lâm Thiển" cho trạng thái hiện tại. |
+| Bộ chọn tư thế theo nhân vật | **ĐÃ CÓ UI + LƯU TRẠNG THÁI**: `front`, `back`, `bed_kneel_forward`, `bed_recline`. Nam chính được trình bày cạnh/inset ảnh nữ chính tùy khung hình. |
+| Chạm trực tiếp lên từng vùng nhân vật | **ĐÃ CÓ BẢN THỬ**: JSON v6 khai báo 7 vùng khi nhìn trước, 1 vùng khi nhìn sau và 7 vùng riêng cho mỗi tư thế giường, **mỗi nhân vật có phản hồi văn bản riêng**. Không phải 7 động tác rig độc lập. |
+| Hiệu ứng chạm và idle | **ĐÃ CÓ RENDERER THỬ** `TVKCharacterMotionView.kt`: biến dạng mesh ảnh phẳng cục bộ theo nhịp thở, tóc và khi chạm. **KHÔNG** phải rig Spine/Live2D thật, animation hành động cặp đôi, hay chuyển động tách riêng các lớp trang phục/cơ thể. |
+| Nút riêng **Lột đồ / Trang phục** và **Cảnh 18+** | **ĐÃ CÓ NÚT, CHƯA CÓ ĐẦY ĐỦ NỘI DUNG**: `wardrobeStates` có `default` và slot `outer_removed`, chỉ đổi khi có ảnh trạng thái thực. `Cảnh 18+` hiện là fade-to-black, **không có video/cảnh tình dục trực diện**. |
+| Ảnh tư thế đã thêm vào APK | **ĐÃ ĐÓNG GÓI CÁC CROP CONCEPT**; ảnh lấy từ bảng tham khảo mới của hai nhân vật, hiện kích thước nhỏ (xấp xỉ 200–430 px chiều ngang), có thể mang chi tiết nền/chữ của concept; **chưa nghiệm thu art sản xuất, độ nhất quán trang phục và vùng chạm chính xác**. |
+
+### 16.2 Các yêu cầu trước đó vẫn CHƯA HOÀN THÀNH
+
+1. **Đúng mẫu art nhân vật ở mọi tư thế:** cần bộ ảnh từng tư thế chất lượng đủ dùng trên điện thoại, cùng gương mặt/trang phục mặc định đã chốt, loại bỏ mọi khung chữ/đường viền còn dính từ ảnh concept. Các ảnh crop hiện tại chỉ đủ để thử luồng.
+2. **Hoạt ảnh thực tế:** cần rig phân lớp/Spine/Live2D hoặc chuỗi frame được vẽ riêng để chớp mắt, xoay đầu nhìn lại, đổi nét mặt (bình thường, ngượng, đỏ mặt), chuyển động thở/tóc/tay áo hợp lý từng tư thế. Chưa có hoạt ảnh quỳ/nằm chuyển động thật; mesh-deform trên PNG chỉ là bản thử. Các tương tác **nắm tay, ôm, hôn nhẹ** với nam chính chưa có frame/rig cặp đôi đúng tư thế hay state Start → Loop → End thực sự.
+3. **Hiệu chỉnh tương tác chạm:** tọa độ vùng trong JSON v6 được khai báo **theo ước lượng**, chưa đo theo bản sprite cuối cùng ở nhiều tỉ lệ màn hình; cần kiểm tra/điều chỉnh hotspot, quy tắc ưu tiên vùng chồng nhau, ngưỡng quan hệ và phản ứng biểu cảm/hoạt ảnh đúng nơi chạm. Vùng nhạy cảm chỉ phản hồi ranh giới, không tự tăng thiện cảm khi chưa có đồng thuận.
+4. **Cởi/thay trang phục nhìn thấy được:** còn thiếu ảnh và lớp thay trang phục hợp lệ cho `outer_removed` ở **từng nhân vật × từng tư thế**; nút hiện có nhưng sẽ giữ nguyên trang phục khi thiếu ảnh. Danh mục trang phục ở `MainActivity.kt` còn là mô phỏng, chưa đồng bộ hoàn toàn với màn nhân vật.
+5. **Tư thế người dùng từng yêu cầu ngoài bốn tư thế đã tích hợp:** tựa/chống tay vào tường, ngồi/ghế hoặc mép giường, nằm sấp/nghiêng và các biến thể góc camera; những tư thế này **chưa có asset, hotspot hay nút chọn**. Không tự đánh dấu đã hoàn thành tất cả tư thế chỉ vì hai ví dụ trên giường đã được tạo.
+6. **Màn nhân vật, túi đồ, trang bị:** chưa có luồng đầy đủ xem nhân vật/chọn vũ khí/túi đồ mà người dùng yêu cầu; màn trang phục hiện còn là trang demo.
+7. **Chiến đấu và hư hại đồ:** chưa có chiến đấu thử với tối đa **4 thành viên**, **HP riêng từng người** trên một màn chung, giao diện theo mẫu và thanh biểu tượng bên phải đã duyệt. Bốn mức trạng thái quần áo đã có biến số/nút mô phỏng trong `MainActivity.kt`, nhưng **chưa nối sát thương thật**, chưa có hình 2D rách đồ tại 3 ngưỡng và cảnh hiển thị ở lượt nhân vật theo yêu cầu.
+8. **Chương I / kịch bản:** màn truyện có sáu dòng và hai lựa chọn, nhưng chưa hoàn thiện chuỗi nhiệm vụ hậu lựa chọn, NPC/địa điểm thật, tài sản nền/map chất lượng sản xuất, biểu cảm nhân vật đổi theo lời thoại, hội thoại nhiều người/cảnh động, và hành vi của NPC sau lần gặp tiếp theo. UI hội thoại/trận chiến chưa được nghiệm thu đúng các ảnh mẫu trước đó.
+9. **Kiểm thử:** dù Actions thành công và có artifact, **chưa có bằng chứng kiểm thử trực tiếp APK trên điện thoại Xiaomi** (cảm ứng hotspot, hiệu suất, bộ nhớ, hiển thị cảnh nằm rộng, cảnh dọc và kiểm tra crash). Không ghi "Chương I hoàn thành" trước khi qua kiểm thử này.
+
+### 16.3 Kết luận trạng thái và phạm vi thực hiện tiếp
+
+- **CHƯA CHỐT HOÀN THÀNH CHƯƠNG I.** Hiện có **bản build APK thành công với luồng truyện cơ bản và thư viện tương tác tư thế dùng được ở mức thử nghiệm**.
+- Các mục **đã chốt thiết kế** (4 nhân vật chiến đấu tối đa, HP riêng, 3 ngưỡng rách đồ, túi đồ/vũ khí, UI chuẩn, bốn tư thế cơ bản, nút trang phục và cảnh riêng, phản ứng chạm) không được suy ra là đã lập trình xong. Các tư thế/cảnh bổ sung chưa có ảnh và động tác được xếp vào danh sách chờ.
+- **Ưu tiên tiếp:** (a) nâng chất lượng sprite/ảnh tư thế và nhận diện nhân vật; (b) kết nối chuyển động rig/khung hình thực cùng hiệu chỉnh hotspot; (c) hoàn thiện trang phục theo tư thế; (d) thêm nhân vật/túi đồ và chiến đấu nhiều nhân vật với HP riêng/hư hại 2D; (e) hoàn thiện nhiệm vụ Chương I và thử APK trên thiết bị thật. Nội dung tương tác lãng mạn/tình cảm bảo đảm nhân vật trưởng thành và có đồng thuận.
+- **LỊCH SỬ CẬP NHẬT 2026-10-24:** Kiểm tra nguồn và kết quả GitHub Actions sau đợt nhập ảnh pose. Cập nhật trạng thái ảnh từ "chưa có" thành "đã có bản crop concept", phân biệt **asset**, **code**, **build**, **runtime trên máy**, **nghiệm thu nghệ thuật** và **tính năng chưa làm**, tránh khẳng định sai rằng đã hoàn thành toàn bộ Chương I.
