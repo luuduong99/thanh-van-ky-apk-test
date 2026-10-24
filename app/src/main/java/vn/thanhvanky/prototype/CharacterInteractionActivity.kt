@@ -177,10 +177,26 @@ class CharacterInteractionActivity : Activity() {
             LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
         val pose = poseDefinition(heroine, currentPose)
             ?: poseDefinition(heroine, "front") ?: return
-        val heroineImage = pose.optString("image")
+        var heroineImage = pose.optString("image")
         val heroineCrop = pose.optString("crop", "full")
+        val outfitId = prefs.getString("outfit_" + selectedId, "default") ?: "default"
+        if (outfitId != "default") {
+            val variants = heroine.optJSONArray("wardrobeStates")
+            if (variants != null) for (index in 0 until variants.length()) {
+                val outfit = variants.getJSONObject(index)
+                if (outfit.optString("id") == outfitId) {
+                    val overridePath = outfit.optJSONObject("images")
+                        ?.optString(currentPose).orEmpty()
+                    if (hasAsset(overridePath)) heroineImage = overridePath
+                    break
+                }
+            }
+        }
+        val motionSettings = pose.optJSONObject("motionProfile")
+        val cycleSeconds = motionSettings?.optDouble("cycleSeconds", 3.6) ?: 3.6
         row.addView(portrait(heroine.optString("name"), heroineImage,
-            heroineCrop, interactive = true), LinearLayout.LayoutParams(0, dp(345), 1f))
+            heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
+            LinearLayout.LayoutParams(0, dp(345), 1f))
         portraits.addView(row)
 
         val poseScroller = android.widget.HorizontalScrollView(this).apply {
@@ -265,15 +281,20 @@ class CharacterInteractionActivity : Activity() {
     }
 
     private fun portrait(name: String, assetPath: String, crop: String,
-                         interactive: Boolean = false): View {
+                         interactive: Boolean = false, motionCycleSeconds: Double = 3.6): View {
         val frame = FrameLayout(this).apply { setBackgroundDrawable(rounded(Color.rgb(56, 80, 93))) }
         val bitmap = bitmap(assetPath, crop)
         if (bitmap != null) {
-            frame.addView(ImageView(this).apply {
-                setImageBitmap(bitmap)
-                scaleType = ImageView.ScaleType.FIT_CENTER
-            }, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT))
+            val pictureView: View =
+                if (interactive) TVKCharacterMotionView(
+                    this, bitmap, motionCycleSeconds,
+                    movement = 1f
+                ) else ImageView(this).apply {
+                    setImageBitmap(bitmap)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                }
+            frame.addView(pictureView, FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         } else {
             frame.addView(txt("Ảnh " + name + "\nchưa có trong APK", 12f, muted).apply {
                 gravity = Gravity.CENTER
@@ -401,7 +422,10 @@ class CharacterInteractionActivity : Activity() {
         val narrative = scene.optString("message", scene.optString("status"))
         val text = scene.optString("title") + ": " + narrative
         messageView?.text = text
-        if (scene.optString("kind") == "wardrobe") return
+        if (scene.optString("kind") == "wardrobe") {
+            openWardrobe(character)
+            return
+        }
 
         if (scene.optString("kind") == "fade") {
             val dialog = Dialog(this)
@@ -422,6 +446,41 @@ class CharacterInteractionActivity : Activity() {
         val file = scene.optString("optionalVideo")
         if (file.isNotEmpty() && !tryVideo(characterId, scene.optString("title"), file))
             messageView?.text = text + "\n(Video chưa có; hiện dùng lời thoại minh họa.)"
+    }
+
+    private fun openWardrobe(character: JSONObject) {
+        val characterId = character.optString("id")
+        val outfits = character.optJSONArray("wardrobeStates")
+        if (outfits == null || outfits.length() == 0) {
+            messageView?.text = "Nhân vật hiện có trang phục mặc định. Chưa có asset cởi lớp áo riêng."
+            return
+        }
+        val options = ArrayList<String>()
+        val available = ArrayList<String>()
+        val pose = currentPose
+        for (i in 0 until outfits.length()) {
+            val state = outfits.getJSONObject(i)
+            val id = state.optString("id")
+            val asset = state.optJSONObject("images")?.optString(pose).orEmpty()
+            val ready = hasAsset(asset)
+            val text = state.optString("label") + if (!ready) " · chưa có ảnh" else ""
+            options.add(text)
+            available.add(if (ready) id else "")
+        }
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Trang phục · " + character.optString("name"))
+            .setItems(options.toTypedArray()) { _, which ->
+                val chosen = available.getOrNull(which).orEmpty()
+                if (chosen.isEmpty()) {
+                    messageView?.text = "Chưa có ảnh trang phục riêng cho tư thế này; giữ nguyên mặc định."
+                    return@setItems
+                }
+                // Save only verified resource-backed states. Avoid inventing missing art.
+                prefs.edit().putString("outfit_" + characterId, chosen).apply()
+                render()
+            }
+            .setNegativeButton("Đóng", null)
+            .show()
     }
 
     private fun tryVideo(characterId: String, title: String, relative: String): Boolean {
