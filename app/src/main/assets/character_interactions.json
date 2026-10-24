@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "purpose": "Touch zones depend on active pose. Front and rear use distinct original artwork; unavailable back artwork remains an honest placeholder. Two independent scene buttons.",
+  "version": 4,
+  "purpose": "Data-driven per-character pose selection and touch zones; original posed art and rig animations supplied separately; no explicit clips are bundled.",
   "characters": [
     {
       "id": "to_nguyet_ly",
@@ -181,7 +181,8 @@
             }
           ],
           "message": "Nguyệt Ly giữ khoảng cách và chờ bạn tôn trọng ý nàng.",
-          "affinityGain": 0
+          "affinityGain": 0,
+          "enabledOnlyWithMatchingArt": true
         }
       ],
       "controls": [
@@ -202,8 +203,84 @@
       "backPortraitCrop": "full",
       "poseOptions": [
         "front",
-        "back"
-      ]
+        "back",
+        "bed_kneel_forward",
+        "bed_recline"
+      ],
+      "poses": [
+        {
+          "id": "front",
+          "label": "ĐỨNG TRƯỚC",
+          "image": "characters/heroines_reference.png",
+          "crop": "leftThird",
+          "description": "Đứng chính diện; dùng ảnh gốc hiện có.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "back",
+          "label": "QUAY LƯNG",
+          "image": "characters/to_nguyet_ly_back.png",
+          "crop": "full",
+          "description": "Tư thế đứng quay lưng; cho phép ánh nhìn ngoái đầu nếu có rig.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "bed_kneel_forward",
+          "label": "QUỲ TRÊN GIƯỜNG",
+          "image": "characters/to_nguyet_ly_bed_kneel_forward.png",
+          "crop": "full",
+          "description": "Nguyệt Ly nhìn lại qua vai, mỉm cười nhẹ, ánh mắt dịu dàng.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.2,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "bed_recline",
+          "label": "NẰM NGỬA",
+          "image": "characters/to_nguyet_ly_bed_recline.png",
+          "crop": "full",
+          "description": "Nguyệt Ly nằm ngửa nghỉ ngơi trên giường, mái tóc xõa tự nhiên.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        }
+      ],
+      "poseTouchCalibration": {
+        "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
+        "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+      }
     },
     {
       "id": "lin_qian",
@@ -384,7 +461,8 @@
             }
           ],
           "message": "Lâm Thiển nghiêm giọng: Đừng vượt quá giới hạn của ta.",
-          "affinityGain": 0
+          "affinityGain": 0,
+          "enabledOnlyWithMatchingArt": true
         }
       ],
       "controls": [
@@ -405,8 +483,84 @@
       "backPortraitCrop": "full",
       "poseOptions": [
         "front",
-        "back"
-      ]
+        "back",
+        "bed_kneel_forward",
+        "bed_recline"
+      ],
+      "poses": [
+        {
+          "id": "front",
+          "label": "ĐỨNG TRƯỚC",
+          "image": "characters/lin_qian.png",
+          "crop": "full",
+          "description": "Đứng chính diện; dùng ảnh gốc hiện có.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "back",
+          "label": "QUAY LƯNG",
+          "image": "characters/lin_qian_back.png",
+          "crop": "full",
+          "description": "Tư thế đứng quay lưng; cho phép ánh nhìn ngoái đầu nếu có rig.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "bed_kneel_forward",
+          "label": "QUỲ TRÊN GIƯỜNG",
+          "image": "characters/lin_qian_bed_kneel_forward.png",
+          "crop": "full",
+          "description": "Lâm Thiển quay nhẹ đầu nhìn lại, ánh mắt ngượng ngùng, má hơi ửng hồng.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.2,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        },
+        {
+          "id": "bed_recline",
+          "label": "NẰM NGỬA",
+          "image": "characters/lin_qian_bed_recline.png",
+          "crop": "full",
+          "description": "Lâm Thiển nằm ngửa trên giường, gương mặt thư giãn và kín đáo.",
+          "motionProfile": {
+            "status": "asset_required",
+            "spineOrLive2DRequired": true,
+            "idleLoop": "breathing",
+            "cycleSeconds": 3.7,
+            "upperTorsoBreathing": "gentle",
+            "chestSecondaryMotion": "subtle_physical_follow_through",
+            "hairSecondaryMotion": "light",
+            "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
+          }
+        }
+      ],
+      "poseTouchCalibration": {
+        "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
+        "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+      }
     }
   ]
 }
