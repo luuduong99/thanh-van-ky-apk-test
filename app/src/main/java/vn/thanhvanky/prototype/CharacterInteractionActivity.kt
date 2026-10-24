@@ -39,6 +39,7 @@ class CharacterInteractionActivity : Activity() {
         }
     }
     private var selectedId = "to_nguyet_ly"
+    private var currentPose = "front"
     private var messageView: TextView? = null
     private var affinityView: TextView? = null
     private var videoDialog: Dialog? = null
@@ -55,11 +56,15 @@ class CharacterInteractionActivity : Activity() {
             ?: prefs.getString("selected_character", "to_nguyet_ly")
             ?: "to_nguyet_ly"
         if (findCharacter(selectedId) == null) selectedId = "to_nguyet_ly"
+        currentPose = savedInstanceState?.getString("selected_pose")
+            ?: prefs.getString("pose_" + selectedId, "front") ?: "front"
+        if (currentPose != "back") currentPose = "front"
         render()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString("selected_character", selectedId)
+        outState.putString("selected_pose", currentPose)
         super.onSaveInstanceState(outState)
     }
 
@@ -128,6 +133,8 @@ class CharacterInteractionActivity : Activity() {
             val id = item.optString("id")
             val choose = btn(item.optString("name")) {
                 selectedId = id
+                currentPose = prefs.getString("pose_" + id, "front") ?: "front"
+                if (currentPose != "back") currentPose = "front"
                 prefs.edit().putString("selected_character", id).apply()
                 render()
             }
@@ -144,9 +151,35 @@ class CharacterInteractionActivity : Activity() {
         val row = LinearLayout(this)
         row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
             LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
-        row.addView(portrait(heroine.optString("name"), heroine.optString("portrait"),
-            heroine.optString("portraitCrop"), interactive = true), LinearLayout.LayoutParams(0, dp(345), 1f))
+        val heroineImage = if (currentPose == "back")
+            heroine.optString("backPortrait") else heroine.optString("portrait")
+        val heroineCrop = if (currentPose == "back")
+            heroine.optString("backPortraitCrop", "full") else heroine.optString("portraitCrop", "full")
+        row.addView(portrait(heroine.optString("name"), heroineImage,
+            heroineCrop, interactive = true), LinearLayout.LayoutParams(0, dp(345), 1f))
         portraits.addView(row)
+        val poseRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        for ((index, option) in listOf("front", "back").withIndex()) {
+            val name = if (option == "front") "MẶT TRƯỚC" else "QUAY RA SAU"
+            val poseButton = btn(name) {
+                currentPose = option
+                prefs.edit().putString("pose_" + selectedId, option).apply()
+                render()
+            }
+            poseButton.setBackgroundDrawable(rounded(if (option == currentPose) gold else bgColor))
+            poseButton.setTextColor(if (option == currentPose) bgColor else cream)
+            poseRow.addView(poseButton, LinearLayout.LayoutParams(0, dp(44), 1f).apply {
+                if (index > 0) leftMargin = dp(8)
+            })
+        }
+        portraits.addView(poseRow)
+        if (currentPose == "back" && bitmap(heroineImage, heroineCrop) == null) {
+            portraits.addView(txt(
+                "Chưa có ảnh mặt sau của " + heroine.optString("name") +
+                    ". Không thể tương tác tại mông khi thiếu ảnh đúng tư thế.",
+                11f, muted
+            ))
+        }
         portraits.addView(txt(heroine.optString("subtitle"), 12f, muted))
         content.addView(portraits, margin(14))
 
@@ -155,7 +188,10 @@ class CharacterInteractionActivity : Activity() {
         content.addView(affinityView!!, margin(16))
         content.addView(txt("CHẠM TRỰC TIẾP VÀO NHÂN VẬT", 16f, gold, true), margin(12))
         content.addView(txt(
-            "Chạm vào đầu, mặt, ngực, bụng, tay, đùi hoặc chân để xem phản ứng riêng. Vùng mông cần ảnh tư thế phía sau.",
+            if (currentPose == "front")
+                "Mặt trước: chạm đầu, mặt, ngực, bụng, tay, đùi hoặc chân. Chọn 'Quay ra sau' để xem mặt sau."
+            else
+                "Mặt sau: vùng mông chỉ nhận chạm khi đã có ảnh đúng tư thế. Không dùng ảnh trước để giả làm ảnh sau.",
             11f, muted
         ), margin(6))
         val controls = heroine.getJSONArray("controls")
@@ -196,7 +232,7 @@ class CharacterInteractionActivity : Activity() {
         if (bitmap != null) {
             frame.addView(ImageView(this).apply {
                 setImageBitmap(bitmap)
-                scaleType = ImageView.ScaleType.CENTER_CROP
+                scaleType = ImageView.ScaleType.FIT_CENTER
             }, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT))
         } else {
@@ -213,6 +249,7 @@ class CharacterInteractionActivity : Activity() {
         if (interactive) {
             frame.contentDescription = "Chạm để tương tác với " + name
             if (bitmap != null) {
+                frame.setOnClickListener { /* Touch listener provides the actual hit test. */ }
                 var downX = 0f
                 var downY = 0f
                 frame.setOnTouchListener { view, event ->
@@ -226,8 +263,10 @@ class CharacterInteractionActivity : Activity() {
                             if (abs(event.x - downX) <= dp(20) &&
                                 abs(event.y - downY) <= dp(20)) {
                                 view.performClick()
-                                touchPortrait(event.x, event.y, view.width.toFloat(),
-                                    view.height.toFloat())
+                                touchPortrait(
+                                    event.x, event.y, view.width.toFloat(), view.height.toFloat(),
+                                    bitmap.width.toFloat(), bitmap.height.toFloat()
+                                )
                             }
                             true
                         }
@@ -236,22 +275,35 @@ class CharacterInteractionActivity : Activity() {
                 }
             } else {
                 frame.setOnClickListener {
-                    messageView?.text = "Chưa có hình Lâm Thiển được nhập vào APK; không thể xác định vị trí chạm."
+                    messageView?.text = "Chưa có ảnh " + name + " ở tư thế này; không thể xác định vùng chạm."
                 }
             }
         }
         return frame
     }
 
-    private fun touchPortrait(x: Float, y: Float, width: Float, height: Float) {
-        if (width <= 0f || height <= dp(34)) return
-        val pictureHeight = height - dp(34)
-        if (y < 0f || y > pictureHeight) return
-        val nx = (x / width).coerceIn(0f, 1f).toDouble()
-        val ny = (y / pictureHeight).coerceIn(0f, 1f).toDouble()
+    private fun touchPortrait(
+        x: Float, y: Float, width: Float, height: Float, imageWidth: Float, imageHeight: Float
+    ) {
+        if (width <= 0f || height <= dp(34) || imageWidth <= 0f || imageHeight <= 0f) return
+        if (y < 0f || y >= height - dp(34)) return
+
+        // The ImageView uses FIT_CENTER; map the touch into actual image pixels,
+        // excluding margins from letterboxing. Avoid matching blank space as body.
+        val scale = kotlin.math.min(width / imageWidth, height / imageHeight)
+        val drawnWidth = imageWidth * scale
+        val drawnHeight = imageHeight * scale
+        val left = (width - drawnWidth) / 2f
+        val top = (height - drawnHeight) / 2f
+        if (x < left || x >= left + drawnWidth || y < top || y >= top + drawnHeight) {
+            messageView?.text = "Bạn chạm ngoài hình nhân vật."
+            return
+        }
+        val nx = ((x - left) / drawnWidth).coerceIn(0f, 1f).toDouble()
+        val ny = ((y - top) / drawnHeight).coerceIn(0f, 1f).toDouble()
         val heroine = findCharacter(selectedId) ?: return
         val zones = heroine.optJSONArray("touchZones") ?: return
-        val pose = heroine.optString("touchPose", "front")
+        val pose = currentPose
         for (index in 0 until zones.length()) {
             val zone = zones.getJSONObject(index)
             if (zone.optString("pose", "front") != pose) continue
