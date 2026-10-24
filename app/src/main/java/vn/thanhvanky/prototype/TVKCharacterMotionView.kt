@@ -31,6 +31,15 @@ class TVKCharacterMotionView(
     private val bounds = RectF()
     private val startMs = SystemClock.uptimeMillis()
     private var animate = true
+    private var reactionRegion = ""
+    private var reactionStartMs = 0L
+
+    /** Brief, local movement on touch; visual only, with no explicit imagery. */
+    fun react(regionId: String) {
+        reactionRegion = regionId
+        reactionStartMs = SystemClock.uptimeMillis()
+        invalidate()
+    }
 
     fun setMotionEnabled(enabled: Boolean) {
         animate = enabled
@@ -54,6 +63,18 @@ class TVKCharacterMotionView(
         val phase = if (animate) elapsed * 2.0 * PI / cycleSeconds.coerceAtLeast(1.8) else 0.0
         val breath = if (animate) sin(phase).toFloat() * movement else 0f
         val hair = if (animate) sin(phase * .63 + .65).toFloat() * movement else 0f
+        val reactionElapsed = SystemClock.uptimeMillis() - reactionStartMs
+        val reactProgress = (reactionElapsed / 600f).coerceIn(0f, 1f)
+        val reactAmplitude = if (reactionRegion.isNotEmpty() && reactProgress < 1f)
+            (sin(reactProgress * PI).toFloat() * (1f - reactProgress)) else 0f
+        val reactCenterY = when (reactionRegion) {
+            "head", "face" -> .17f
+            "hand" -> .42f
+            "chest", "belly" -> .43f
+            "thigh", "buttocks" -> .72f
+            "leg" -> .85f
+            else -> .48f
+        }
 
         for (row in 0..rows) {
             val v = row.toFloat() / rows
@@ -66,8 +87,10 @@ class TVKCharacterMotionView(
                     exp(-((u - .80f) * (u - .80f) / .05f))
                 val dx = (u - .5f) * .012f * breath * torsoY * torsoX +
                     .0022f * hair * headY * looseHair
+                val reactWeight = exp(-((v - reactCenterY) * (v - reactCenterY) / .035f)) * torsoX
                 val dy = -.0052f * breath * torsoY * torsoX +
-                    .0015f * hair * headY * looseHair
+                    .0015f * hair * headY * looseHair +
+                    .004f * reactAmplitude * reactWeight
                 val index = (row * (cols + 1) + col) * 2
                 mesh[index] = (u + dx) * w
                 mesh[index + 1] = (v + dy) * h
@@ -78,6 +101,7 @@ class TVKCharacterMotionView(
         canvas.translate(bounds.left, bounds.top)
         canvas.drawBitmapMesh(sprite, cols, rows, mesh, 0, null, 0, paint)
         canvas.restore()
-        if (animate && isAttachedToWindow) postInvalidateDelayed(40L)
+        if ((animate || reactAmplitude > 0f) && isAttachedToWindow)
+            postInvalidateDelayed(40L)
     }
 }
