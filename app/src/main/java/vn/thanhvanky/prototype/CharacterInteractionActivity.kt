@@ -42,6 +42,7 @@ class CharacterInteractionActivity : Activity() {
     private var currentPose = "front"
     private var messageView: TextView? = null
     private var affinityView: TextView? = null
+    private var touchFeedbackView: TextView? = null
     private var videoDialog: Dialog? = null
     private var animatedPortrait: TVKCharacterMotionView? = null
     private val bgColor = Color.rgb(20, 32, 43)
@@ -139,6 +140,7 @@ class CharacterInteractionActivity : Activity() {
     private fun render() {
         val heroine = findCharacter(selectedId) ?: return
         animatedPortrait = null
+        touchFeedbackView = null
         val screen = column().apply { setBackgroundColor(bgColor) }
         val scroll = ScrollView(this).apply { isFillViewport = true }
         val content = column(16)
@@ -250,12 +252,15 @@ class CharacterInteractionActivity : Activity() {
         }
         if (pose.optJSONObject("motionProfile")?.optBoolean("spineOrLive2DRequired") == true) {
             portraits.addView(txt(
-                "Đã ghi cấu hình chuyển động thở và dao động phụ theo nhịp; " +
-                    "cần model phân lớp để hiển thị chuyển động thật.",
+                "Đã bật chuyển động ảnh tĩnh theo lưới (thở/tóc) và phản ứng chạm. " +
+                    "Chuyển động rig Spine/Live2D phân lớp chưa hoàn thiện.",
                 11f, muted
             ))
         }
         portraits.addView(txt(heroine.optString("subtitle"), 12f, muted))
+        touchFeedbackView = txt("Chạm ảnh nhân vật để xem phản ứng.", 12f, gold)
+            .apply { setPadding(dp(5), dp(5), dp(5), dp(5)) }
+        portraits.addView(touchFeedbackView!!)
         content.addView(portraits, margin(14))
 
         affinityView = txt("Thân thiết (bản thử): " + prefs.getInt("affinity_" + selectedId, 0),
@@ -266,7 +271,7 @@ class CharacterInteractionActivity : Activity() {
             if (currentPose == "front" || currentPose == "back")
                 "Chạm trực tiếp lên ảnh. Mỗi góc nhìn dùng vùng tương tác riêng và chỉ nhận chạm khi có ảnh đúng tư thế."
             else
-                "Tư thế giường đã được đăng ký. Cần ảnh và vùng chạm riêng trước khi tương tác; không áp tọa độ tư thế đứng.",
+                "Tư thế giường dùng ảnh và vùng chạm riêng. Chạm trực tiếp trên ảnh để xem phản ứng.",
             11f, muted
         ), margin(6))
         val controls = heroine.getJSONArray("controls")
@@ -401,13 +406,16 @@ class CharacterInteractionActivity : Activity() {
             }
         }
         messageView?.text = "Bạn chạm vào khoảng trống. Hãy chọn một vùng trên nhân vật."
+        touchFeedbackView?.text = "Vị trí chạm chưa có phản ứng riêng."
     }
 
     private fun respondToTouch(zone: JSONObject) {
         animatedPortrait?.react(zone.optString("id"))
         val sensitive = zone.optBoolean("requiresConsent", false)
         val zoneName = zone.optString("title", "Tương tác")
-        messageView?.text = zoneName + ": " + zone.optString("message")
+        val reactionText = zoneName + ": " + zone.optString("message")
+        messageView?.text = reactionText
+        touchFeedbackView?.text = reactionText
         if (sensitive) return // Respect character boundaries; do not reward uninvited touch.
         val key = "affinity_" + selectedId
         val points = prefs.getInt(key, 0) + zone.optInt("affinityGain", 0)
