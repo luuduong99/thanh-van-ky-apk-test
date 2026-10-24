@@ -174,9 +174,6 @@ class CharacterInteractionActivity : Activity() {
 
         val portraits = column(10).apply { setBackgroundDrawable(rounded(panel)) }
         portraits.addView(txt("NAM CHÍNH  &  " + heroine.optString("name").uppercase(), 15f, gold, true))
-        val row = LinearLayout(this)
-        row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
-            LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
         val pose = poseDefinition(heroine, currentPose)
             ?: poseDefinition(heroine, "front") ?: return
         var heroineImage = pose.optString("image")
@@ -196,10 +193,31 @@ class CharacterInteractionActivity : Activity() {
         }
         val motionSettings = pose.optJSONObject("motionProfile")
         val cycleSeconds = motionSettings?.optDouble("cycleSeconds", 3.6) ?: 3.6
-        row.addView(portrait(heroine.optString("name"), heroineImage,
-            heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
-            LinearLayout.LayoutParams(0, dp(345), 1f))
-        portraits.addView(row)
+        if (currentPose.startsWith("bed_")) {
+            // Landscape bed artwork uses the available width; the protagonist is an inset.
+            // Avoid squeezing wide artwork into a narrow half-width portrait.
+            val bedFrame = FrameLayout(this).apply {
+                setBackgroundDrawable(rounded(Color.rgb(39, 56, 69)))
+            }
+            bedFrame.addView(portrait(heroine.optString("name"), heroineImage,
+                heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
+                FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(310)))
+            bedFrame.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
+                FrameLayout.LayoutParams(dp(92), dp(142),
+                    Gravity.BOTTOM or Gravity.START).apply {
+                    leftMargin = dp(5)
+                    bottomMargin = dp(8)
+                })
+            portraits.addView(bedFrame)
+        } else {
+            val row = LinearLayout(this)
+            row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
+                LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
+            row.addView(portrait(heroine.optString("name"), heroineImage,
+                heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
+                LinearLayout.LayoutParams(0, dp(345), 1f))
+            portraits.addView(row)
+        }
 
         val poseScroller = android.widget.HorizontalScrollView(this).apply {
             isHorizontalScrollBarEnabled = false
