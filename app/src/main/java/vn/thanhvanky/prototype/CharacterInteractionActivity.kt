@@ -10,7 +10,9 @@ import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.Gravity
+import kotlin.math.abs
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -40,7 +42,7 @@ class CharacterInteractionActivity : Activity() {
     private var messageView: TextView? = null
     private var affinityView: TextView? = null
     private var videoDialog: Dialog? = null
-    private val background = Color.rgb(20, 32, 43)
+    private val bgColor = Color.rgb(20, 32, 43)
     private val panel = Color.rgb(38, 57, 70)
     private val gold = Color.rgb(225, 190, 123)
     private val cream = Color.rgb(247, 234, 212)
@@ -88,7 +90,7 @@ class CharacterInteractionActivity : Activity() {
         text = value
         textSize = 13f
         isAllCaps = false
-        setTextColor(background)
+        setTextColor(bgColor)
         setBackgroundDrawable(rounded(gold))
         setOnClickListener { click() }
     }
@@ -106,7 +108,7 @@ class CharacterInteractionActivity : Activity() {
 
     private fun render() {
         val heroine = findCharacter(selectedId) ?: return
-        val screen = column().apply { setBackgroundColor(background) }
+        val screen = column().apply { setBackgroundColor(bgColor) }
         val scroll = ScrollView(this).apply { isFillViewport = true }
         val content = column(16)
         scroll.addView(content)
@@ -130,7 +132,7 @@ class CharacterInteractionActivity : Activity() {
                 render()
             }
             choose.setBackgroundDrawable(rounded(if (id == selectedId) gold else panel))
-            choose.setTextColor(if (id == selectedId) background else cream)
+            choose.setTextColor(if (id == selectedId) bgColor else cream)
             chooser.addView(choose, LinearLayout.LayoutParams(0, dp(48), 1f).apply {
                 rightMargin = dp(8)
             })
@@ -141,9 +143,9 @@ class CharacterInteractionActivity : Activity() {
         portraits.addView(txt("NAM CHÍNH  &  " + heroine.optString("name").uppercase(), 15f, gold, true))
         val row = LinearLayout(this)
         row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
-            LinearLayout.LayoutParams(0, dp(245), 1f).apply { rightMargin = dp(8) })
+            LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
         row.addView(portrait(heroine.optString("name"), heroine.optString("portrait"),
-            heroine.optString("portraitCrop")), LinearLayout.LayoutParams(0, dp(245), 1f))
+            heroine.optString("portraitCrop"), interactive = true), LinearLayout.LayoutParams(0, dp(345), 1f))
         portraits.addView(row)
         portraits.addView(txt(heroine.optString("subtitle"), 12f, muted))
         content.addView(portraits, margin(14))
@@ -151,22 +153,30 @@ class CharacterInteractionActivity : Activity() {
         affinityView = txt("Thân thiết (bản thử): " + prefs.getInt("affinity_" + selectedId, 0),
             14f, gold, true)
         content.addView(affinityView!!, margin(16))
-        content.addView(txt("CHỌN TƯƠNG TÁC", 16f, gold, true), margin(12))
-
-        val scenes = heroine.getJSONArray("scenes")
-        for (index in 0 until scenes.length()) {
-            val scene = scenes.getJSONObject(index)
-            val b = btn(scene.optString("title") + if (scene.has("optionalVideo")) "  ▶" else "") {
-                selectScene(heroine, scene)
-            }
-            content.addView(b, LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(47)
-            ).apply { topMargin = dp(8) })
-            if (scene.optString("id") == "private") {
-                content.addView(txt("Chỉ có chuyển cảnh kín đáo; chưa có video trong APK.", 11f, muted),
-                    margin(4))
-            }
+        content.addView(txt("CHẠM TRỰC TIẾP VÀO NHÂN VẬT", 16f, gold, true), margin(12))
+        content.addView(txt(
+            "Chạm vào đầu, mặt, ngực, bụng, tay, đùi hoặc chân để xem phản ứng riêng. Vùng mông cần ảnh tư thế phía sau.",
+            11f, muted
+        ), margin(6))
+        val controls = heroine.getJSONArray("controls")
+        val controlRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        for (index in 0 until controls.length()) {
+            val control = controls.getJSONObject(index)
+            val action = btn(control.optString("title")) { selectScene(heroine, control) }
+            controlRow.addView(action, LinearLayout.LayoutParams(0, dp(54), 1f).apply {
+                if (index > 0) leftMargin = dp(8)
+            })
         }
+        content.addView(controlRow, margin(14))
+        val dialogues = heroine.getJSONArray("scenes")
+        if (dialogues.length() > 0) {
+            content.addView(btn("TRÒ CHUYỆN") {
+                selectScene(heroine, dialogues.getJSONObject(0))
+            }, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(45)).apply {
+                topMargin = dp(10)
+            })
+        }
+
         messageView = txt("Chọn một tương tác với " + heroine.optString("name") + ".", 13f)
             .apply {
                 setPadding(dp(12), dp(12), dp(12), dp(12))
@@ -179,7 +189,8 @@ class CharacterInteractionActivity : Activity() {
         ), margin(12))
     }
 
-    private fun portrait(name: String, assetPath: String, crop: String): View {
+    private fun portrait(name: String, assetPath: String, crop: String,
+                         interactive: Boolean = false): View {
         val frame = FrameLayout(this).apply { setBackgroundDrawable(rounded(Color.rgb(56, 80, 93))) }
         val bitmap = bitmap(assetPath, crop)
         if (bitmap != null) {
@@ -199,7 +210,73 @@ class CharacterInteractionActivity : Activity() {
             gravity = Gravity.CENTER
             setBackgroundColor(Color.argb(215, 23, 37, 48))
         }, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(34), Gravity.BOTTOM))
+        if (interactive) {
+            frame.contentDescription = "Chạm để tương tác với " + name
+            if (bitmap != null) {
+                var downX = 0f
+                var downY = 0f
+                frame.setOnTouchListener { view, event ->
+                    when (event.actionMasked) {
+                        MotionEvent.ACTION_DOWN -> {
+                            downX = event.x
+                            downY = event.y
+                            true
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            if (abs(event.x - downX) <= dp(20) &&
+                                abs(event.y - downY) <= dp(20)) {
+                                view.performClick()
+                                touchPortrait(event.x, event.y, view.width.toFloat(),
+                                    view.height.toFloat())
+                            }
+                            true
+                        }
+                        else -> true
+                    }
+                }
+            } else {
+                frame.setOnClickListener {
+                    messageView?.text = "Chưa có hình Lâm Thiển được nhập vào APK; không thể xác định vị trí chạm."
+                }
+            }
+        }
         return frame
+    }
+
+    private fun touchPortrait(x: Float, y: Float, width: Float, height: Float) {
+        if (width <= 0f || height <= dp(34)) return
+        val pictureHeight = height - dp(34)
+        if (y < 0f || y > pictureHeight) return
+        val nx = (x / width).coerceIn(0f, 1f).toDouble()
+        val ny = (y / pictureHeight).coerceIn(0f, 1f).toDouble()
+        val heroine = findCharacter(selectedId) ?: return
+        val zones = heroine.optJSONArray("touchZones") ?: return
+        val pose = heroine.optString("touchPose", "front")
+        for (index in 0 until zones.length()) {
+            val zone = zones.getJSONObject(index)
+            if (zone.optString("pose", "front") != pose) continue
+            val regions = zone.optJSONArray("regions") ?: continue
+            for (regionIndex in 0 until regions.length()) {
+                val box = regions.getJSONObject(regionIndex)
+                if (nx >= box.optDouble("x1") && nx <= box.optDouble("x2") &&
+                    ny >= box.optDouble("y1") && ny <= box.optDouble("y2")) {
+                    respondToTouch(zone)
+                    return
+                }
+            }
+        }
+        messageView?.text = "Bạn chạm vào khoảng trống. Hãy chọn một vùng trên nhân vật."
+    }
+
+    private fun respondToTouch(zone: JSONObject) {
+        val sensitive = zone.optBoolean("requiresConsent", false)
+        val zoneName = zone.optString("title", "Tương tác")
+        messageView?.text = zoneName + ": " + zone.optString("message")
+        if (sensitive) return // Respect character boundaries; do not reward uninvited touch.
+        val key = "affinity_" + selectedId
+        val points = prefs.getInt(key, 0) + zone.optInt("affinityGain", 0)
+        prefs.edit().putInt(key, points).apply()
+        affinityView?.text = "Thân thiết (bản thử): " + points
     }
 
     private fun bitmap(assetPath: String, crop: String): Bitmap? {
@@ -230,14 +307,16 @@ class CharacterInteractionActivity : Activity() {
         val points = prefs.getInt("affinity_" + characterId, 0) + scene.optInt("affinityGain", 0)
         prefs.edit().putInt("affinity_" + characterId, points).apply()
         affinityView?.text = "Thân thiết (bản thử): " + points
-        val text = scene.optString("title") + ": " + scene.optString("message")
+        val narrative = scene.optString("message", scene.optString("status"))
+        val text = scene.optString("title") + ": " + narrative
         messageView?.text = text
+        if (scene.optString("kind") == "wardrobe") return
 
         if (scene.optString("kind") == "fade") {
             val dialog = Dialog(this)
             val body = column(25).apply {
                 setBackgroundColor(Color.rgb(14, 20, 32))
-                addView(txt(scene.optString("message"), 17f).apply {
+                addView(txt(narrative, 17f).apply {
                     gravity = Gravity.CENTER
                     minHeight = dp(160)
                 })
@@ -265,7 +344,7 @@ class CharacterInteractionActivity : Activity() {
         }
 
         val dialog = Dialog(this)
-        val layout = column(12).apply { setBackgroundColor(background) }
+        val layout = column(12).apply { setBackgroundColor(bgColor) }
         layout.addView(txt(title, 18f, gold, true))
         val video = VideoView(this)
         layout.addView(video, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(370)))
