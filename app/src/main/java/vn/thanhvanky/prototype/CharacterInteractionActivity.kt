@@ -58,7 +58,7 @@ class CharacterInteractionActivity : Activity() {
         if (findCharacter(selectedId) == null) selectedId = "to_nguyet_ly"
         currentPose = savedInstanceState?.getString("selected_pose")
             ?: prefs.getString("pose_" + selectedId, "front") ?: "front"
-        if (currentPose != "back") currentPose = "front"
+        currentPose = canonicalPose(selectedId, currentPose)
         render()
     }
 
@@ -111,6 +111,30 @@ class CharacterInteractionActivity : Activity() {
         return null
     }
 
+    private fun poseDefinition(character: JSONObject, poseId: String): JSONObject? {
+        val poses = character.optJSONArray("poses") ?: return null
+        for (index in 0 until poses.length()) {
+            val pose = poses.getJSONObject(index)
+            if (pose.optString("id") == poseId) return pose
+        }
+        return null
+    }
+
+    private fun canonicalPose(characterId: String, requested: String?): String {
+        val character = findCharacter(characterId) ?: return "front"
+        return if (poseDefinition(character, requested ?: "") != null) requested!! else "front"
+    }
+
+    private fun hasAsset(path: String): Boolean {
+        if (path.isBlank()) return false
+        return try {
+            assets.open(path).close()
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     private fun render() {
         val heroine = findCharacter(selectedId) ?: return
         val screen = column().apply { setBackgroundColor(bgColor) }
@@ -134,7 +158,7 @@ class CharacterInteractionActivity : Activity() {
             val choose = btn(item.optString("name")) {
                 selectedId = id
                 currentPose = prefs.getString("pose_" + id, "front") ?: "front"
-                if (currentPose != "back") currentPose = "front"
+                currentPose = canonicalPose(id, currentPose)
                 prefs.edit().putString("selected_character", id).apply()
                 render()
             }
@@ -151,32 +175,47 @@ class CharacterInteractionActivity : Activity() {
         val row = LinearLayout(this)
         row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
             LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
-        val heroineImage = if (currentPose == "back")
-            heroine.optString("backPortrait") else heroine.optString("portrait")
-        val heroineCrop = if (currentPose == "back")
-            heroine.optString("backPortraitCrop", "full") else heroine.optString("portraitCrop", "full")
+        val pose = poseDefinition(heroine, currentPose)
+            ?: poseDefinition(heroine, "front") ?: return
+        val heroineImage = pose.optString("image")
+        val heroineCrop = pose.optString("crop", "full")
         row.addView(portrait(heroine.optString("name"), heroineImage,
             heroineCrop, interactive = true), LinearLayout.LayoutParams(0, dp(345), 1f))
         portraits.addView(row)
+
+        val poseScroller = android.widget.HorizontalScrollView(this).apply {
+            isHorizontalScrollBarEnabled = false
+        }
         val poseRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
-        for ((index, option) in listOf("front", "back").withIndex()) {
-            val name = if (option == "front") "MẶT TRƯỚC" else "QUAY RA SAU"
-            val poseButton = btn(name) {
-                currentPose = option
-                prefs.edit().putString("pose_" + selectedId, option).apply()
+        val poses = heroine.optJSONArray("poses")
+        if (poses != null) for (index in 0 until poses.length()) {
+            val option = poses.getJSONObject(index)
+            val poseId = option.optString("id")
+            val poseButton = btn(option.optString("label")) {
+                currentPose = poseId
+                prefs.edit().putString("pose_" + selectedId, poseId).apply()
                 render()
             }
-            poseButton.setBackgroundDrawable(rounded(if (option == currentPose) gold else bgColor))
-            poseButton.setTextColor(if (option == currentPose) bgColor else cream)
-            poseRow.addView(poseButton, LinearLayout.LayoutParams(0, dp(44), 1f).apply {
-                if (index > 0) leftMargin = dp(8)
+            poseButton.setBackgroundDrawable(rounded(if (poseId == currentPose) gold else bgColor))
+            poseButton.setTextColor(if (poseId == currentPose) bgColor else cream)
+            poseRow.addView(poseButton, LinearLayout.LayoutParams(dp(135), dp(44)).apply {
+                rightMargin = dp(8)
             })
         }
-        portraits.addView(poseRow)
-        if (currentPose == "back" && bitmap(heroineImage, heroineCrop) == null) {
+        poseScroller.addView(poseRow)
+        portraits.addView(poseScroller)
+        portraits.addView(txt(pose.optString("description"), 12f, cream))
+        if (!hasAsset(heroineImage)) {
             portraits.addView(txt(
-                "Chưa có ảnh mặt sau của " + heroine.optString("name") +
-                    ". Không thể tương tác tại mông khi thiếu ảnh đúng tư thế.",
+                "Chưa có ảnh riêng cho tư thế này của " + heroine.optString("name") +
+                    ". Các vùng chạm chưa hoạt động ở tư thế này.",
+                11f, muted
+            ))
+        }
+        if (pose.optJSONObject("motionProfile")?.optBoolean("spineOrLive2DRequired") == true) {
+            portraits.addView(txt(
+                "Đã ghi cấu hình chuyển động thở và dao động phụ theo nhịp; " +
+                    "cần model phân lớp để hiển thị chuyển động thật.",
                 11f, muted
             ))
         }
@@ -188,10 +227,10 @@ class CharacterInteractionActivity : Activity() {
         content.addView(affinityView!!, margin(16))
         content.addView(txt("CHẠM TRỰC TIẾP VÀO NHÂN VẬT", 16f, gold, true), margin(12))
         content.addView(txt(
-            if (currentPose == "front")
-                "Mặt trước: chạm đầu, mặt, ngực, bụng, tay, đùi hoặc chân. Chọn 'Quay ra sau' để xem mặt sau."
+            if (currentPose == "front" || currentPose == "back")
+                "Chạm trực tiếp lên ảnh. Mỗi góc nhìn dùng vùng tương tác riêng và chỉ nhận chạm khi có ảnh đúng tư thế."
             else
-                "Mặt sau: vùng mông chỉ nhận chạm khi đã có ảnh đúng tư thế. Không dùng ảnh trước để giả làm ảnh sau.",
+                "Tư thế giường đã được đăng ký. Cần ảnh và vùng chạm riêng trước khi tương tác; không áp tọa độ tư thế đứng.",
             11f, muted
         ), margin(6))
         val controls = heroine.getJSONArray("controls")
