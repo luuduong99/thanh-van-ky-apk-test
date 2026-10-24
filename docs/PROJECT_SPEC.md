@@ -382,3 +382,12 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - Tính cách Lâm Thiên: **ngoài lạnh trong nóng**, ban đầu kiêu kỳ, kín đáo; khi phát triển tình cảm và có sự thân mật đồng thuận giữa người trưởng thành, trở nên dịu dàng, tin tưởng, chiều chuộng nam chính trong quan hệ riêng tư, vẫn giữ cá tính và năng lực chiến đấu.
 - Giữ nguyên nam chính và ba tạo hình nữ đã được chọn trước đó; nhân vật mới về sau ưu tiên **phong cách mỹ thuật Above**, có thể sử dụng tài nguyên gốc chỉ khi có quyền và tương thích kỹ thuật. Không tự ý xóa mục tiêu 10 nữ chính trước đó; cho phép mở rộng thêm.
 - **TRẠNG THÁI KỸ THUẬT:** đây là quyết định thiết kế, chưa phải tính năng APK đã hoàn thiện. Tài nguyên Above hiện ở giai đoạn kiểm kê bundle và trích xuất node thô.
+
+
+### Thư viện cảnh tương tác dùng chung — TRẠNG THÁI KỸ THUẬT (2026-10-24)
+
+- **ĐÃ CHỐT về kiến trúc:** Dùng một hệ thống phát cảnh có thể lựa chọn theo ID nhân vật và ID cảnh, phối hợp chuyển động, biểu cảm, hình ảnh, âm thanh; mỗi nhân vật có model, texture và rig riêng. Không mặc định rằng animation của rig này có thể gán ngay cho rig khác.
+- **TRẠNG THÁI KỸ THUẬT:** Đã thêm `CharacterSceneLibrary.cs`, `CharacterScenePlayer.cs` và cập nhật `InteractionMenuController.cs` trong repo [thanh-van-ky-unity](https://github.com/luuduong99/thanh-van-ky-unity). Module hỗ trợ Unity Timeline/Animator, sprite và audio cho các cảnh không tường minh; có mã kiểm tra dạng Unity Editor test và [tài liệu thiết lập](https://github.com/luuduong99/thanh-van-ky-unity/blob/main/docs/CHARACTER_SCENE_PLAYER.md).
+- **CHƯA HOÀN THÀNH:** Chưa chạy compile/test trên Unity Editor; chưa kết nối prefab và asset Spine Lâm Thiển vào ScenePlayer; chưa triển khai Start → Loop → End hoàn chỉnh theo yêu cầu tương tác trước đó; chưa chuyển tính năng sang APK hiện hành (đang là dự án Kotlin Android); chưa có bản APK tích hợp.
+- **PHẠM VI TÀI NGUYÊN:** ZIP model hội thoại Spine Lâm Thiển có skeleton, texture, atlas và 7 biểu cảm đã được ghi nhận, nhưng không phải toàn bộ cảnh trong Above. Không ghi nhận đã có hoạt ảnh cảnh riêng hoặc tích hợp nội dung tình dục tường minh. Cần quyền phù hợp nếu sử dụng tài nguyên gốc của game khác.
+- **LỊCH SỬ CẬP NHẬT 2026-10-24:** Thêm module Unity dùng chung cho cảnh dựng sẵn, giữ trạng thái là code chưa kiểm thử; không thay đổi kiến trúc Android/Kotlin của APK hiện tại.
