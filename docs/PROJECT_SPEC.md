@@ -402,3 +402,12 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - **TRẠNG THÁI ASSET:** Ảnh nam chính và Tô Nguyệt Ly đã có trong assets APK; ảnh `characters/lin_qian.png` chưa nhập vào repo APK nên không thể chạm xác định vùng trên Lâm Thiển khi chưa có ảnh. Bộ model thoại Spine Lâm Thiển ở thư viện ngoài, **chưa tích hợp** renderer Android. Chưa có các file MP4 riêng cho nhân vật; nút 18+ chỉ cung cấp chuyển cảnh kín đáo, không có hoạt cảnh tình dục trực diện. Nút trang phục chưa thay đổi hình nhân vật.
 - **TRẠNG THÁI BUILD:** Mọi kết luận build/APK phải dựa trên GitHub Actions của commit hiện tại. Không đánh dấu đã phát hành APK hay đã test Xiaomi nếu chưa có kết quả.
 - **LỊCH SỬ CẬP NHẬT 2026-10-24:** Điều chỉnh tương tác theo yêu cầu người dùng: thay nút vùng cơ thể bằng thao tác chạm trực tiếp, tách trang phục và cảnh 18+ thành hai nút riêng; giữ nam chính bên cạnh từng nữ chính.
+
+
+### Đổi tư thế mặt trước / phía sau trong tương tác — ĐÃ CHỐT (2026-10-24)
+
+- **ĐÃ CHỐT:** Màn tương tác của Tô Nguyệt Ly và Lâm Thiển có thêm hai trạng thái **Mặt trước** và **Quay ra sau**, chuyển bằng nút ngay dưới ảnh nhân vật. Chỉ bật vùng chạm đúng với góc nhìn đang hiển thị; **vùng mông thuộc tư thế phía sau**, không nhận chạm trên ảnh chính diện.
+- **ĐÃ TRIỂN KHAI Ở MỨC KHUNG:** `CharacterInteractionActivity.kt` đã có chuyển tư thế theo từng nhân vật, lưu lựa chọn tư thế riêng bằng SharedPreferences; `character_interactions.json` v3 đăng ký slot `backPortrait` độc lập. Khi đổi nhân vật, tư thế của nhân vật đó được phục hồi. Vùng chạm lấy tọa độ dựa trên ảnh FIT_CENTER và loại trừ phần khoảng trống letterbox.
+- **TÀI NGUYÊN CHƯA CÓ:** Hiện repo Android chưa chứa `characters/to_nguyet_ly_back.png` và `characters/lin_qian_back.png`, do đó màn phía sau hiển thị thông báo thiếu ảnh, không giả mạo tư thế bằng cách lật ảnh mặt trước và **không kích hoạt vùng mông** cho đến khi có hình chính xác. Ảnh mặt trước của Lâm Thiển cũng chưa tích hợp vào Android. Các tọa độ vùng chạm hiện vẫn là nguyên mẫu, phải hiệu chỉnh theo hình gốc trước khi kết luận hoàn thành trải nghiệm.
+- Hai nút **Lột đồ / Trang phục** và **Cảnh 18+** vẫn tách riêng hoàn toàn với thao tác chạm trực tiếp. Những cảnh không có asset không được giả là đã có animation.
+- **LỊCH SỬ CẬP NHẬT 2026-10-24:** Thêm lựa chọn tư thế nhằm hỗ trợ tương tác vùng phía sau đúng vị trí. Tiếp tục ưu tiên asset thật, không tự nhận đã hoàn thành artwork hoặc phát hành APK nếu chưa xác minh GitHub Actions.
