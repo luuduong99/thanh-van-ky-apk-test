@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "purpose": "Data-driven per-character pose selection and touch zones; original posed art and rig animations supplied separately; no explicit clips are bundled.",
+  "version": 6,
+  "purpose": "Two original heroine portraits and six new pose crops are now committed in app assets. Pose-aware touch zones are coarse calibrated from concept art; animation remains bitmap mesh, not full rig.",
   "characters": [
     {
       "id": "to_nguyet_ly",
@@ -183,6 +183,244 @@
           "message": "Nguyệt Ly giữ khoảng cách và chờ bạn tôn trọng ý nàng.",
           "affinityGain": 0,
           "enabledOnlyWithMatchingArt": true
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.17,
+              "y1": 0.2,
+              "x2": 0.44,
+              "y2": 0.42
+            }
+          ],
+          "message": "Nguyệt Ly nhìn sang bạn, má ửng hồng và mỉm cười.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "head",
+          "title": "Đầu / tóc",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.13,
+              "y1": 0.04,
+              "x2": 0.56,
+              "y2": 0.2
+            }
+          ],
+          "message": "Nàng hơi nghiêng đầu khi bạn chỉnh chiếc trâm tóc.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "shoulder",
+          "title": "Vai",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.23,
+              "y1": 0.43,
+              "x2": 0.42,
+              "y2": 0.65
+            }
+          ],
+          "message": "Nguyệt Ly thả lỏng vai, khẽ hỏi thăm bạn.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "back",
+          "title": "Lưng",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.44,
+              "y1": 0.4,
+              "x2": 0.68,
+              "y2": 0.58
+            }
+          ],
+          "message": "Nàng ngoảnh lại qua vai, ánh mắt dịu dàng.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.03,
+              "y1": 0.8,
+              "x2": 0.25,
+              "y2": 0.97
+            }
+          ],
+          "message": "Nguyệt Ly đan tay vào tay bạn và mỉm cười.",
+          "affinityGain": 2,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "buttocks",
+          "title": "Mông",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.73,
+              "y1": 0.5,
+              "x2": 0.96,
+              "y2": 0.82
+            }
+          ],
+          "message": "Nàng dịu dàng nhắc bạn rằng sự gần gũi cần cả hai đồng ý.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.54,
+              "y1": 0.78,
+              "x2": 0.85,
+              "y2": 0.96
+            }
+          ],
+          "message": "Nguyệt Ly nhẹ nhàng xin bạn giữ khoảng cách.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.78,
+              "y1": 0.17,
+              "x2": 0.97,
+              "y2": 0.41
+            }
+          ],
+          "message": "Nguyệt Ly nhìn sang bạn, má ửng hồng và mỉm cười.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "head",
+          "title": "Đầu / tóc",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.7,
+              "y1": 0.04,
+              "x2": 0.95,
+              "y2": 0.16
+            }
+          ],
+          "message": "Nàng hơi nghiêng đầu khi bạn chỉnh chiếc trâm tóc.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "shoulder",
+          "title": "Vai",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.75,
+              "y1": 0.4,
+              "x2": 0.96,
+              "y2": 0.56
+            }
+          ],
+          "message": "Nguyệt Ly thả lỏng vai, khẽ hỏi thăm bạn.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "chest",
+          "title": "Ngực",
+          "pose": "bed_recline",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.44,
+              "y1": 0.26,
+              "x2": 0.75,
+              "y2": 0.58
+            }
+          ],
+          "message": "Nguyệt Ly giữ tay bạn lại: Hãy hỏi ý muội trước nhé.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "belly",
+          "title": "Bụng",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.4,
+              "y1": 0.57,
+              "x2": 0.65,
+              "y2": 0.74
+            }
+          ],
+          "message": "Nàng khẽ cười: Huynh làm muội nhột!",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.8,
+              "y1": 0.55,
+              "x2": 0.96,
+              "y2": 0.74
+            }
+          ],
+          "message": "Nguyệt Ly đan tay vào tay bạn và mỉm cười.",
+          "affinityGain": 2,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "bed_recline",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.1,
+              "y1": 0.72,
+              "x2": 0.4,
+              "y2": 0.97
+            }
+          ],
+          "message": "Nguyệt Ly nhẹ nhàng xin bạn giữ khoảng cách.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
         }
       ],
       "controls": [
@@ -215,7 +453,7 @@
           "crop": "leftThird",
           "description": "Đứng chính diện; dùng ảnh gốc hiện có.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -223,7 +461,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "reference_portrait_imported"
         },
         {
           "id": "back",
@@ -232,7 +471,7 @@
           "crop": "full",
           "description": "Tư thế đứng quay lưng; cho phép ánh nhìn ngoái đầu nếu có rig.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -240,7 +479,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         },
         {
           "id": "bed_kneel_forward",
@@ -249,7 +489,7 @@
           "crop": "full",
           "description": "Nguyệt Ly nhìn lại qua vai, mỉm cười nhẹ, ánh mắt dịu dàng.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.2,
@@ -257,7 +497,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         },
         {
           "id": "bed_recline",
@@ -266,7 +507,7 @@
           "crop": "full",
           "description": "Nguyệt Ly nằm ngửa nghỉ ngơi trên giường, mái tóc xõa tự nhiên.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -274,12 +515,15 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         }
       ],
       "poseTouchCalibration": {
-        "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
-        "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+        "front": "PROTOTYPE: standing touch boxes need character-specific final calibration.",
+        "back": "PROTOTYPE: back pose crop boxes need final calibration.",
+        "bed_kneel_forward": "Prototype touch zones visually mapped to newly committed kneeling image crop; no physical-device tap acceptance test yet.",
+        "bed_recline": "Prototype touch zones visually mapped to newly committed reclining image crop; no physical-device tap acceptance test yet."
       },
       "wardrobeStates": [
         {
@@ -493,6 +737,244 @@
           "message": "Lâm Thiển nghiêm giọng: Đừng vượt quá giới hạn của ta.",
           "affinityGain": 0,
           "enabledOnlyWithMatchingArt": true
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.15,
+              "y1": 0.15,
+              "x2": 0.4,
+              "y2": 0.34
+            }
+          ],
+          "message": "Lâm Thiển ngoảnh mặt, đôi má hơi hồng: Huynh đang nhìn gì?",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "head",
+          "title": "Đầu / tóc",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.14,
+              "y1": 0.02,
+              "x2": 0.53,
+              "y2": 0.15
+            }
+          ],
+          "message": "Lâm Thiển sửa lại tóc rồi khẽ nhìn bạn.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "shoulder",
+          "title": "Vai",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.31,
+              "y1": 0.33,
+              "x2": 0.52,
+              "y2": 0.56
+            }
+          ],
+          "message": "Nàng hơi giật mình, sau đó thả lỏng vai.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "back",
+          "title": "Lưng",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.51,
+              "y1": 0.39,
+              "x2": 0.8,
+              "y2": 0.59
+            }
+          ],
+          "message": "Nàng quay đầu nhìn lại qua vai, ánh mắt bớt lạnh lùng.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.04,
+              "y1": 0.68,
+              "x2": 0.3,
+              "y2": 0.88
+            }
+          ],
+          "message": "Lâm Thiển do dự rồi nắm lấy tay bạn.",
+          "affinityGain": 2,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "buttocks",
+          "title": "Mông",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.66,
+              "y1": 0.54,
+              "x2": 0.95,
+              "y2": 0.75
+            }
+          ],
+          "message": "Lâm Thiển giữ khoảng cách và chờ bạn tôn trọng giới hạn của nàng.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "bed_kneel_forward",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.42,
+              "y1": 0.79,
+              "x2": 0.92,
+              "y2": 0.96
+            }
+          ],
+          "message": "Nàng nhẹ nhàng từ chối: Chúng ta nên chậm lại.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.17,
+              "y1": 0.18,
+              "x2": 0.45,
+              "y2": 0.36
+            }
+          ],
+          "message": "Lâm Thiển ngoảnh mặt, đôi má hơi hồng: Huynh đang nhìn gì?",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "head",
+          "title": "Đầu / tóc",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.13,
+              "y1": 0.06,
+              "x2": 0.48,
+              "y2": 0.17
+            }
+          ],
+          "message": "Lâm Thiển sửa lại tóc rồi khẽ nhìn bạn.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "shoulder",
+          "title": "Vai",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.22,
+              "y1": 0.34,
+              "x2": 0.44,
+              "y2": 0.49
+            }
+          ],
+          "message": "Nàng hơi giật mình, sau đó thả lỏng vai.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "chest",
+          "title": "Ngực",
+          "pose": "bed_recline",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.38,
+              "y1": 0.37,
+              "x2": 0.8,
+              "y2": 0.57
+            }
+          ],
+          "message": "Lâm Thiển giữ khoảng cách: Trước tiên hãy hỏi ý ta.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "belly",
+          "title": "Bụng",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.55,
+              "y1": 0.58,
+              "x2": 0.83,
+              "y2": 0.72
+            }
+          ],
+          "message": "Nàng khẽ cười: Huynh làm ta nhột mất rồi.",
+          "affinityGain": 1,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "bed_recline",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.5,
+              "y1": 0.57,
+              "x2": 0.85,
+              "y2": 0.73
+            }
+          ],
+          "message": "Lâm Thiển do dự rồi nắm lấy tay bạn.",
+          "affinityGain": 2,
+          "calibration": "concept_crop_v1_visual_estimate"
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "bed_recline",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.68,
+              "y1": 0.72,
+              "x2": 0.97,
+              "y2": 0.97
+            }
+          ],
+          "message": "Nàng nhẹ nhàng từ chối: Chúng ta nên chậm lại.",
+          "affinityGain": 0,
+          "calibration": "concept_crop_v1_visual_estimate"
         }
       ],
       "controls": [
@@ -525,7 +1007,7 @@
           "crop": "full",
           "description": "Đứng chính diện; dùng ảnh gốc hiện có.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -533,7 +1015,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "reference_portrait_imported"
         },
         {
           "id": "back",
@@ -542,7 +1025,7 @@
           "crop": "full",
           "description": "Tư thế đứng quay lưng; cho phép ánh nhìn ngoái đầu nếu có rig.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -550,7 +1033,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         },
         {
           "id": "bed_kneel_forward",
@@ -559,7 +1043,7 @@
           "crop": "full",
           "description": "Lâm Thiển quay nhẹ đầu nhìn lại, ánh mắt ngượng ngùng, má hơi ửng hồng.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.2,
@@ -567,7 +1051,8 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         },
         {
           "id": "bed_recline",
@@ -576,7 +1061,7 @@
           "crop": "full",
           "description": "Lâm Thiển nằm ngửa trên giường, gương mặt thư giãn và kín đáo.",
           "motionProfile": {
-            "status": "asset_required",
+            "status": "android_bitmap_mesh_prototype_only",
             "spineOrLive2DRequired": true,
             "idleLoop": "breathing",
             "cycleSeconds": 3.7,
@@ -584,12 +1069,15 @@
             "chestSecondaryMotion": "subtle_physical_follow_through",
             "hairSecondaryMotion": "light",
             "note": "Only metadata. Localized secondary motion requires a layered rig and authored animation; no fake breast motion from a flat portrait."
-          }
+          },
+          "artworkStatus": "concept_crop_imported_not_final_animation_ready"
         }
       ],
       "poseTouchCalibration": {
-        "bed_kneel_forward": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles.",
-        "bed_recline": "PENDING: calibrate zones against the original pose art; do not remap front-standing rectangles."
+        "front": "PROTOTYPE: standing touch boxes need character-specific final calibration.",
+        "back": "PROTOTYPE: back pose crop boxes need final calibration.",
+        "bed_kneel_forward": "Prototype touch zones visually mapped to newly committed kneeling image crop; no physical-device tap acceptance test yet.",
+        "bed_recline": "Prototype touch zones visually mapped to newly committed reclining image crop; no physical-device tap acceptance test yet."
       },
       "wardrobeStates": [
         {
