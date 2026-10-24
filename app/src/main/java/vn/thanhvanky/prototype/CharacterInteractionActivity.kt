@@ -43,6 +43,7 @@ class CharacterInteractionActivity : Activity() {
     private var messageView: TextView? = null
     private var affinityView: TextView? = null
     private var videoDialog: Dialog? = null
+    private var animatedPortrait: TVKCharacterMotionView? = null
     private val bgColor = Color.rgb(20, 32, 43)
     private val panel = Color.rgb(38, 57, 70)
     private val gold = Color.rgb(225, 190, 123)
@@ -137,6 +138,7 @@ class CharacterInteractionActivity : Activity() {
 
     private fun render() {
         val heroine = findCharacter(selectedId) ?: return
+        animatedPortrait = null
         val screen = column().apply { setBackgroundColor(bgColor) }
         val scroll = ScrollView(this).apply { isFillViewport = true }
         val content = column(16)
@@ -289,12 +291,14 @@ class CharacterInteractionActivity : Activity() {
                 if (interactive) TVKCharacterMotionView(
                     this, bitmap, motionCycleSeconds,
                     movement = 1f
-                ) else ImageView(this).apply {
+                ).also { animatedPortrait = it } else ImageView(this).apply {
                     setImageBitmap(bitmap)
                     scaleType = ImageView.ScaleType.FIT_CENTER
                 }
             frame.addView(pictureView, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT).apply {
+                    bottomMargin = dp(34)
+                })
         } else {
             frame.addView(txt("Ảnh " + name + "\nchưa có trong APK", 12f, muted).apply {
                 gravity = Gravity.CENTER
@@ -350,11 +354,12 @@ class CharacterInteractionActivity : Activity() {
 
         // The ImageView uses FIT_CENTER; map the touch into actual image pixels,
         // excluding margins from letterboxing. Avoid matching blank space as body.
-        val scale = kotlin.math.min(width / imageWidth, height / imageHeight)
+        val contentHeight = height - dp(34)
+        val scale = kotlin.math.min(width / imageWidth, contentHeight / imageHeight)
         val drawnWidth = imageWidth * scale
         val drawnHeight = imageHeight * scale
         val left = (width - drawnWidth) / 2f
-        val top = (height - drawnHeight) / 2f
+        val top = (contentHeight - drawnHeight) / 2f
         if (x < left || x >= left + drawnWidth || y < top || y >= top + drawnHeight) {
             messageView?.text = "Bạn chạm ngoài hình nhân vật."
             return
@@ -381,6 +386,7 @@ class CharacterInteractionActivity : Activity() {
     }
 
     private fun respondToTouch(zone: JSONObject) {
+        animatedPortrait?.react(zone.optString("id"))
         val sensitive = zone.optBoolean("requiresConsent", false)
         val zoneName = zone.optString("title", "Tương tác")
         messageView?.text = zoneName + ": " + zone.optString("message")
