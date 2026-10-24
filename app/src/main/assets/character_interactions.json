@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "purpose": "Shared non-explicit interaction scene catalog; optional videos are not bundled",
+  "characters": [
+    {
+      "id": "to_nguyet_ly",
+      "name": "Tô Nguyệt Ly",
+      "subtitle": "Ôn nhu • trung thành",
+      "portrait": "characters/heroines_reference.png",
+      "portraitCrop": "leftThird",
+      "scenes": [
+        {
+          "id": "conversation",
+          "title": "Trò chuyện",
+          "kind": "dialogue",
+          "message": "Nguyệt Ly khẽ mỉm cười: Huynh muốn kể cho muội nghe điều gì?",
+          "affinityGain": 1
+        },
+        {
+          "id": "hand_hold",
+          "title": "Nắm tay",
+          "kind": "romance",
+          "message": "Nàng đan tay cùng bạn, ánh mắt trở nên dịu dàng.",
+          "affinityGain": 2
+        },
+        {
+          "id": "embrace",
+          "title": "Ôm",
+          "kind": "romance",
+          "message": "Hai người trao nhau một cái ôm ấm áp.",
+          "affinityGain": 3,
+          "optionalVideo": "scenes/to_nguyet_ly/embrace.mp4"
+        },
+        {
+          "id": "kiss",
+          "title": "Hôn nhẹ",
+          "kind": "romance",
+          "message": "Nguyệt Ly khẽ nhắm mắt, nở nụ cười thẹn thùng.",
+          "affinityGain": 4,
+          "optionalVideo": "scenes/to_nguyet_ly/kiss.mp4"
+        },
+        {
+          "id": "private",
+          "title": "Cảnh riêng tư",
+          "kind": "fade",
+          "message": "Ánh nến dần tắt. Câu chuyện chuyển sang một khoảng lặng riêng của hai người.",
+          "affinityGain": 0
+        }
+      ]
+    },
+    {
+      "id": "lin_qian",
+      "name": "Lâm Thiển",
+      "subtitle": "Ngoài lạnh trong nóng",
+      "portrait": "characters/lin_qian.png",
+      "portraitCrop": "full",
+      "scenes": [
+        {
+          "id": "conversation",
+          "title": "Trò chuyện",
+          "kind": "dialogue",
+          "message": "Lâm Thiển nhìn sang bạn: Có chuyện gì mà huynh tìm ta?",
+          "affinityGain": 1
+        },
+        {
+          "id": "hand_hold",
+          "title": "Nắm tay",
+          "kind": "romance",
+          "message": "Thoáng ngập ngừng, nàng vẫn để bàn tay mình nằm trong tay bạn.",
+          "affinityGain": 2
+        },
+        {
+          "id": "embrace",
+          "title": "Ôm",
+          "kind": "romance",
+          "message": "Sau một thoáng im lặng, Lâm Thiển nhẹ nhàng tựa vào vai bạn.",
+          "affinityGain": 3,
+          "optionalVideo": "scenes/lin_qian/embrace.mp4"
+        },
+        {
+          "id": "kiss",
+          "title": "Hôn nhẹ",
+          "kind": "romance",
+          "message": "Lâm Thiển quay đi che giấu nụ cười ngượng ngùng.",
+          "affinityGain": 4,
+          "optionalVideo": "scenes/lin_qian/kiss.mp4"
+        },
+        {
+          "id": "private",
+          "title": "Cảnh riêng tư",
+          "kind": "fade",
+          "message": "Hai người bước vào gian phòng yên tĩnh. Khung cảnh dần khép lại.",
+          "affinityGain": 0
+        }
+      ]
+    }
+  ]
+}
