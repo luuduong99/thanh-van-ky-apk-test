@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "purpose": "Shared non-explicit interaction scene catalog; optional videos are not bundled",
+  "version": 2,
+  "purpose": "Per-character touch zones over portrait plus two independent scene controls (wardrobe and 18+ fade-to-black); no explicit assets bundled",
   "characters": [
     {
       "id": "to_nguyet_ly",
@@ -45,6 +45,157 @@
           "kind": "fade",
           "message": "Ánh nến dần tắt. Câu chuyện chuyển sang một khoảng lặng riêng của hai người.",
           "affinityGain": 0
+        }
+      ],
+      "touchPose": "front",
+      "touchZones": [
+        {
+          "id": "head",
+          "title": "Đầu",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.3,
+              "y1": 0.02,
+              "x2": 0.73,
+              "y2": 0.16
+            }
+          ],
+          "message": "Nguyệt Ly nghiêng đầu, mỉm cười trước sự quan tâm của bạn.",
+          "affinityGain": 1
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.3,
+              "y1": 0.17,
+              "x2": 0.73,
+              "y2": 0.29
+            }
+          ],
+          "message": "Nàng hơi đỏ mặt: Huynh nhìn gì mà chăm chú vậy?",
+          "affinityGain": 1
+        },
+        {
+          "id": "chest",
+          "title": "Ngực",
+          "pose": "front",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.23,
+              "y1": 0.3,
+              "x2": 0.78,
+              "y2": 0.43
+            }
+          ],
+          "message": "Nguyệt Ly nhẹ nhàng giữ tay bạn lại: Xin hãy hỏi ý muội trước.",
+          "affinityGain": 0
+        },
+        {
+          "id": "belly",
+          "title": "Bụng",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.27,
+              "y1": 0.44,
+              "x2": 0.74,
+              "y2": 0.61
+            }
+          ],
+          "message": "Nàng khẽ cười: Đừng làm muội nhột!",
+          "affinityGain": 1
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.03,
+              "y1": 0.36,
+              "x2": 0.27,
+              "y2": 0.7
+            },
+            {
+              "x1": 0.74,
+              "y1": 0.36,
+              "x2": 0.97,
+              "y2": 0.7
+            }
+          ],
+          "message": "Nguyệt Ly nắm lấy tay bạn: Muội rất vui khi có huynh ở đây.",
+          "affinityGain": 2
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "front",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.26,
+              "y1": 0.64,
+              "x2": 0.77,
+              "y2": 0.79
+            }
+          ],
+          "message": "Nguyệt Ly nhắc bạn giữ khoảng cách cho đến khi cả hai đều thoải mái.",
+          "affinityGain": 0
+        },
+        {
+          "id": "leg",
+          "title": "Chân",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.25,
+              "y1": 0.8,
+              "x2": 0.78,
+              "y2": 0.98
+            }
+          ],
+          "message": "Nàng bước nhẹ một bước: Chúng ta cùng đi dạo nhé?",
+          "affinityGain": 1
+        },
+        {
+          "id": "buttocks",
+          "title": "Mông",
+          "pose": "back",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.28,
+              "y1": 0.57,
+              "x2": 0.75,
+              "y2": 0.78
+            }
+          ],
+          "message": "Nguyệt Ly quay lại, giữ khoảng cách và chờ bạn tôn trọng ý nàng.",
+          "affinityGain": 0
+        }
+      ],
+      "controls": [
+        {
+          "id": "undress",
+          "title": "LỘT ĐỒ / TRANG PHỤC",
+          "kind": "wardrobe",
+          "status": "Chưa có tài nguyên thay trang phục tương ứng; giữ nguyên hình hiện tại."
+        },
+        {
+          "id": "adult",
+          "title": "CẢNH 18+",
+          "kind": "fade",
+          "status": "Chưa có hoạt cảnh trong APK. Chỉ hỗ trợ chuyển cảnh kín đáo."
         }
       ]
     },
@@ -91,6 +242,157 @@
           "kind": "fade",
           "message": "Hai người bước vào gian phòng yên tĩnh. Khung cảnh dần khép lại.",
           "affinityGain": 0
+        }
+      ],
+      "touchPose": "front",
+      "touchZones": [
+        {
+          "id": "head",
+          "title": "Đầu",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.3,
+              "y1": 0.02,
+              "x2": 0.73,
+              "y2": 0.16
+            }
+          ],
+          "message": "Lâm Thiển khẽ nhíu mày rồi dịu giọng: Huynh định làm gì?",
+          "affinityGain": 1
+        },
+        {
+          "id": "face",
+          "title": "Mặt",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.3,
+              "y1": 0.17,
+              "x2": 0.73,
+              "y2": 0.29
+            }
+          ],
+          "message": "Lâm Thiển ngoảnh đi: Nhìn đủ chưa?",
+          "affinityGain": 1
+        },
+        {
+          "id": "chest",
+          "title": "Ngực",
+          "pose": "front",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.23,
+              "y1": 0.3,
+              "x2": 0.78,
+              "y2": 0.43
+            }
+          ],
+          "message": "Nàng đỡ tay bạn lại: Đừng tùy tiện. Hãy tôn trọng ý ta.",
+          "affinityGain": 0
+        },
+        {
+          "id": "belly",
+          "title": "Bụng",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.27,
+              "y1": 0.44,
+              "x2": 0.74,
+              "y2": 0.61
+            }
+          ],
+          "message": "Lâm Thiển lùi nửa bước: Chỗ này dễ nhột, đừng nghịch.",
+          "affinityGain": 1
+        },
+        {
+          "id": "hand",
+          "title": "Tay",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.03,
+              "y1": 0.36,
+              "x2": 0.27,
+              "y2": 0.7
+            },
+            {
+              "x1": 0.74,
+              "y1": 0.36,
+              "x2": 0.97,
+              "y2": 0.7
+            }
+          ],
+          "message": "Thoáng do dự, Lâm Thiển vẫn để bạn nắm tay.",
+          "affinityGain": 2
+        },
+        {
+          "id": "thigh",
+          "title": "Đùi",
+          "pose": "front",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.26,
+              "y1": 0.64,
+              "x2": 0.77,
+              "y2": 0.79
+            }
+          ],
+          "message": "Lâm Thiển khẽ lắc đầu: Chuyện thân mật phải do cả hai đồng ý.",
+          "affinityGain": 0
+        },
+        {
+          "id": "leg",
+          "title": "Chân",
+          "pose": "front",
+          "requiresConsent": false,
+          "regions": [
+            {
+              "x1": 0.25,
+              "y1": 0.8,
+              "x2": 0.78,
+              "y2": 0.98
+            }
+          ],
+          "message": "Nàng nhìn xuống đường: Nếu muốn cùng đi thì nói một tiếng.",
+          "affinityGain": 1
+        },
+        {
+          "id": "buttocks",
+          "title": "Mông",
+          "pose": "back",
+          "requiresConsent": true,
+          "regions": [
+            {
+              "x1": 0.28,
+              "y1": 0.57,
+              "x2": 0.75,
+              "y2": 0.78
+            }
+          ],
+          "message": "Lâm Thiển nghiêm giọng: Đừng vượt quá giới hạn của ta.",
+          "affinityGain": 0
+        }
+      ],
+      "controls": [
+        {
+          "id": "undress",
+          "title": "LỘT ĐỒ / TRANG PHỤC",
+          "kind": "wardrobe",
+          "status": "Chưa có tài nguyên thay trang phục tương ứng; giữ nguyên hình hiện tại."
+        },
+        {
+          "id": "adult",
+          "title": "CẢNH 18+",
+          "kind": "fade",
+          "status": "Chưa có hoạt cảnh trong APK. Chỉ hỗ trợ chuyển cảnh kín đáo."
         }
       ]
     }
