@@ -1,0 +1,83 @@
+package vn.thanhvanky.prototype
+
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
+import android.os.SystemClock
+import android.view.View
+import kotlin.math.PI
+import kotlin.math.exp
+import kotlin.math.min
+import kotlin.math.sin
+
+/**
+ * Renders subtle, continuous local movement on an existing portrait:
+ * breathing in the upper torso and a slight delay in loose hair.
+ * This is a bitmap-mesh preview, NOT a skeletal Spine/Live2D rig.
+ * It cannot articulate limbs, change pose, or remove clothing.
+ */
+class TVKCharacterMotionView(
+    context: Context,
+    private val sprite: Bitmap,
+    private val cycleSeconds: Double = 3.6,
+    private val movement: Float = 1f
+) : View(context) {
+    private val cols = 16
+    private val rows = 28
+    private val mesh = FloatArray((cols + 1) * (rows + 1) * 2)
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+    private val bounds = RectF()
+    private val startMs = SystemClock.uptimeMillis()
+    private var animate = true
+
+    fun setMotionEnabled(enabled: Boolean) {
+        animate = enabled
+        invalidate()
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        invalidate()
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        if (sprite.width <= 0 || sprite.height <= 0 || width <= 0 || height <= 0) return
+        val scale = min(width.toFloat() / sprite.width, height.toFloat() / sprite.height)
+        val w = sprite.width * scale
+        val h = sprite.height * scale
+        bounds.set((width - w) * .5f, (height - h) * .5f,
+            (width + w) * .5f, (height + h) * .5f)
+        val elapsed = (SystemClock.uptimeMillis() - startMs).toDouble() / 1000.0
+        val phase = if (animate) elapsed * 2.0 * PI / cycleSeconds.coerceAtLeast(1.8) else 0.0
+        val breath = if (animate) sin(phase).toFloat() * movement else 0f
+        val hair = if (animate) sin(phase * .63 + .65).toFloat() * movement else 0f
+
+        for (row in 0..rows) {
+            val v = row.toFloat() / rows
+            val torsoY = exp(-((v - .365f) * (v - .365f) / (.135f * .135f)))
+            val headY = exp(-((v - .155f) * (v - .155f) / (.25f * .25f)))
+            for (col in 0..cols) {
+                val u = col.toFloat() / cols
+                val torsoX = exp(-((u - .5f) * (u - .5f) / (.35f * .35f)))
+                val looseHair = exp(-((u - .20f) * (u - .20f) / .05f)) +
+                    exp(-((u - .80f) * (u - .80f) / .05f))
+                val dx = (u - .5f) * .012f * breath * torsoY * torsoX +
+                    .0022f * hair * headY * looseHair
+                val dy = -.0052f * breath * torsoY * torsoX +
+                    .0015f * hair * headY * looseHair
+                val index = (row * (cols + 1) + col) * 2
+                mesh[index] = (u + dx) * w
+                mesh[index + 1] = (v + dy) * h
+            }
+        }
+        canvas.save()
+        canvas.clipRect(bounds)
+        canvas.translate(bounds.left, bounds.top)
+        canvas.drawBitmapMesh(sprite, cols, rows, mesh, 0, null, 0, paint)
+        canvas.restore()
+        if (animate && isAttachedToWindow) postInvalidateDelayed(40L)
+    }
+}
