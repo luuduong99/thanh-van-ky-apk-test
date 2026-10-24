@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "purpose": "Per-character touch zones over portrait plus two independent scene controls (wardrobe and 18+ fade-to-black); no explicit assets bundled",
+  "version": 3,
+  "purpose": "Touch zones depend on active pose. Front and rear use distinct original artwork; unavailable back artwork remains an honest placeholder. Two independent scene buttons.",
   "characters": [
     {
       "id": "to_nguyet_ly",
@@ -180,7 +180,7 @@
               "y2": 0.78
             }
           ],
-          "message": "Nguyệt Ly quay lại, giữ khoảng cách và chờ bạn tôn trọng ý nàng.",
+          "message": "Nguyệt Ly giữ khoảng cách và chờ bạn tôn trọng ý nàng.",
           "affinityGain": 0
         }
       ],
@@ -197,6 +197,12 @@
           "kind": "fade",
           "status": "Chưa có hoạt cảnh trong APK. Chỉ hỗ trợ chuyển cảnh kín đáo."
         }
+      ],
+      "backPortrait": "characters/to_nguyet_ly_back.png",
+      "backPortraitCrop": "full",
+      "poseOptions": [
+        "front",
+        "back"
       ]
     },
     {
@@ -394,6 +400,12 @@
           "kind": "fade",
           "status": "Chưa có hoạt cảnh trong APK. Chỉ hỗ trợ chuyển cảnh kín đáo."
         }
+      ],
+      "backPortrait": "characters/lin_qian_back.png",
+      "backPortraitCrop": "full",
+      "poseOptions": [
+        "front",
+        "back"
       ]
     }
   ]
