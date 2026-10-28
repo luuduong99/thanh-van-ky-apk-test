@@ -388,5 +388,35 @@
       }
     ],
     "strict_qa": "All small 103-160px wide native poster thumbnails; cropped with original background; cannot be used for rig or 7-landmark calibration."
+  },
+  "cp321_layer_templates": {
+    "status": "template_scaffold_created_not_separated_art",
+    "source": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "canvas_px": [
+      2048,
+      3072
+    ],
+    "ora_views": [
+      "front",
+      "back"
+    ],
+    "empty_art_layers_per_file": 15,
+    "reference_guide_visible": true,
+    "art_layer_pixels": 0,
+    "rig_ready": false,
+    "zip_file": "TVK_LamThien_CP321_Empty_ORA_Templates.zip",
+    "zip_sha256": "fe3726c0fae00ba7d233643a070719925fb0f6f0c6a207057e67819196894fb9",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CP321_Empty_ORA_Templates.zip",
+    "individual_oras": {
+      "front": "d72951b2bf18b5ac2cd20eb9ff00737bcde122fae0e9132fd058099bbcce7618",
+      "back": "876b04c31cb0fa298b150996f7bdb5c76190a02e077d79ddd2f01e6f4d478315"
+    },
+    "qa_result": {
+      "archive_crc": "passed",
+      "layer_count_each": "passed",
+      "art_layer_alpha": "all_empty",
+      "strict_gate": "failed_as_expected"
+    },
+    "warning": "Templates have 15 entirely transparent art layers; do not mark P0-03 or rig complete."
   }
 }
