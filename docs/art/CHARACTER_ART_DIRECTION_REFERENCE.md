@@ -1,3 +1,5 @@
+> **CẬP NHẬT NGUỒN NHÂN VẬT MẪU (28/10/2026):** Ngoại hình Lâm Thiển mới nhất là [CANON BODY V2](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) / [ảnh V2](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk). Quy chuẩn chung về ma trận pose, biểu cảm, state trang phục vẫn có hiệu lực cho mọi nhân vật; **tỷ lệ body Lâm Thiển không áp cho nhân vật khác**. Ảnh V1 trong các đoạn dưới chỉ là mẫu lịch sử.
+
 # Thanh Vân Ký — chuẩn mỹ thuật dùng chung cho các nhân vật (2026-10-28)
 
 **Nguồn chuẩn tham khảo đã được người dùng chốt:** [bảng thiết kế Lâm Thiển 2026-10-28](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk).  
