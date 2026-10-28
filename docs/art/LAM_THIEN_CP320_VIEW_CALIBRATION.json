@@ -195,5 +195,198 @@
     "requires_preview_review": true,
     "requires_alpha_seam_QA": true,
     "technical_gate_status": "pending"
+  },
+  "poster_reference_crops": {
+    "status": "extracted_and_archived_reference_only",
+    "source_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "source_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+    "extract_date": "2026-10-28",
+    "archive_name": "TVK_LamThien_CP320_CanonV2_Reference_Crops.zip",
+    "archive_sha256": "b48e2084f165a29e15e67f35b09983f0a87f323e755082929942809e669fd5f3",
+    "library_archive_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CP320_CanonV2_Reference_Crops.zip",
+    "library_contact_sheet_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/CP320_CONTACT_SHEET_REFERENCE_ONLY.png",
+    "items": [
+      {
+        "kind": "view",
+        "id": "front",
+        "source_bbox_xyxy": [
+          1198,
+          519,
+          1301,
+          715
+        ],
+        "native_size_px": [
+          103,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "back",
+        "source_bbox_xyxy": [
+          1309,
+          519,
+          1416,
+          715
+        ],
+        "native_size_px": [
+          107,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "side",
+        "source_bbox_xyxy": [
+          1422,
+          519,
+          1528,
+          715
+        ],
+        "native_size_px": [
+          106,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "front_three_quarter",
+        "source_bbox_xyxy": [
+          1534,
+          519,
+          1639,
+          715
+        ],
+        "native_size_px": [
+          105,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_front",
+        "source_bbox_xyxy": [
+          11,
+          475,
+          141,
+          692
+        ],
+        "native_size_px": [
+          130,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_back",
+        "source_bbox_xyxy": [
+          149,
+          475,
+          271,
+          692
+        ],
+        "native_size_px": [
+          122,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_side",
+        "source_bbox_xyxy": [
+          278,
+          475,
+          408,
+          692
+        ],
+        "native_size_px": [
+          130,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_recline",
+        "source_bbox_xyxy": [
+          415,
+          475,
+          575,
+          692
+        ],
+        "native_size_px": [
+          160,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_kneel_forward",
+        "source_bbox_xyxy": [
+          584,
+          475,
+          721,
+          692
+        ],
+        "native_size_px": [
+          137,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_sit",
+        "source_bbox_xyxy": [
+          727,
+          475,
+          872,
+          692
+        ],
+        "native_size_px": [
+          145,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "chair_sit",
+        "source_bbox_xyxy": [
+          878,
+          475,
+          1028,
+          692
+        ],
+        "native_size_px": [
+          150,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "wall_lean",
+        "source_bbox_xyxy": [
+          1034,
+          475,
+          1180,
+          692
+        ],
+        "native_size_px": [
+          146,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      }
+    ],
+    "strict_qa": "All small 103-160px wide native poster thumbnails; cropped with original background; cannot be used for rig or 7-landmark calibration."
   }
 }
