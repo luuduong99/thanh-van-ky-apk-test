@@ -70,5 +70,28 @@ class GlobalAppearanceTests(unittest.TestCase):
         self.assertIn("CharacterAppearanceState.setPose(", activity)
 
 
+    def test_damage_visuals_include_dirt_scratches_and_tears(self):
+        visual = DATA["appearanceSystem"]["damageVisualProfile"]
+        self.assertEqual(set(visual["types"]), {"dirt", "abrasion", "tear"})
+        for key in ("dirt", "abrasion", "tear"):
+            self.assertEqual([visual["levels"][str(p)][key] for p in [100, 70, 50, 30]], [0, 1, 2, 3])
+
+    def test_must_not_omit_scratches_or_damage_progression(self):
+        d = copy.deepcopy(DATA)
+        del d["appearanceSystem"]["damageVisualProfile"]["types"][1]
+        self.assertTrue(validate(d))
+        d = copy.deepcopy(DATA)
+        d["appearanceSystem"]["damageVisualProfile"]["levels"]["30"]["tear"] = 0
+        self.assertTrue(validate(d))
+
+    def test_damage_visual_rules_apply_to_every_character(self):
+        d = copy.deepcopy(DATA)
+        d["appearanceSystem"]["damageVisualProfile"]["scope"] = "lin_qian_only"
+        self.assertTrue(validate(d))
+        d = copy.deepcopy(DATA)
+        d["appearanceSystem"]["damageVisualProfile"]["consistentAcrossPose"] = False
+        self.assertTrue(validate(d))
+
+
 if __name__ == "__main__":
     unittest.main()
