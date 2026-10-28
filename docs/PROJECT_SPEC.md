@@ -8,7 +8,9 @@
 > - **CHƯA CHỐT**: không tự coi là quyết định cuối cùng.  
 > - **TRẠNG THÁI KỸ THUẬT**: phải kiểm tra trực tiếp repository/GitHub trước khi khẳng định vẫn đúng.
 
-**Cập nhật lần cuối:** 2026-10-23  
+> **ẢNH NGOẠI HÌNH CANON LÂM THIỂN MỚI NHẤT (28/10/2026):** [V2 đã chốt](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk) · mã `LT_CANON_BODY_REF_2026-10-28_V2` · SHA-256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`. V2 **thay thế V1 về body/trang phục**, không thay quy tắc toàn game về pose/outfit/damage. [Hồ sơ canon V2](art/LAM_THIEN_CANON_BODY_V2_2026_10_28.md) và [plan thực hiện](art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md). **Không tự đổi model theo poster cũ.**
+
+**Cập nhật lần cuối:** 2026-10-28  
 **Repository thử nghiệm:** https://github.com/luuduong99/thanh-van-ky-apk-test  
 **Nhánh prototype:** `map-2d-prototype`  
 **PR:** https://github.com/luuduong99/thanh-van-ky-apk-test/pull/1  
@@ -651,3 +653,21 @@ Bổ sung quyết định chọn biến thể trang phục mới và quy tắc �
 
 ### Lịch sử cập nhật 2026-10-28
 Nâng yêu cầu giữ mức cởi khi đổi pose từ nhân vật Lâm Thiển thành **luật toàn dự án cho mọi mức**. Thêm code lưu trạng thái toàn nhân vật, data placeholder và gate kiểm tra asset.
+
+
+---
+
+## 25. Lâm Thiển — CHỐT MẪU NGOẠI HÌNH GỐC CANON BODY V2 (2026-10-28)
+
+**ĐÃ CHỐT:** Người dùng chốt chính ảnh Lâm Thiển mới nhất đính kèm ngày 28/10/2026 làm **model gốc trực quan CANON V2**. Ảnh PNG RGBA 1672×941 / 3,747,713 bytes, [đã xác minh trên Drive](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk); SHA-256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`. ChatGPT Library: `/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/`. Trạng thái là **ảnh tạo hình đã duyệt**, chưa phải layered sprite/Spine rig hay APK.
+
+- **Body đã chốt qua hình ảnh V2:** hình thể, khuôn mặt, chiều cao cảm nhận, đường nét ngực/eo/hông giữ như ảnh chuẩn qua mọi góc. Không tự nhân đôi kích thước hay cộng lại phần +17% đã quyết định trong lịch sử khi làm từ V2.
+- **Trang phục đã chốt:** tông trắng–xanh nhạt, chất liệu **lụa mềm, voan rủ**, phụ kiện vàng ít và tinh tế; loại bỏ viền phụ kiện kim loại vàng dày, đặc biệt vùng viền áo thân trên. Các trạng thái trang phục trong game phát triển trên mẫu V2 này và phù hợp bối cảnh.
+- **THẺ SỐ DỄ NHỚ:** `LT_CANON_BODY_REF_2026-10-28_V2`; chỉ số **chuẩn hóa trực quan** của bốn nhóm (bust/waist/hips/height) được lấy **100% = chính V2**, giúp so các pose mới với ảnh mẫu. Gợi ý B/W/H 102/60/110 từ trao đổi cũ chỉ là ký hiệu minh họa chưa đo hoặc chốt theo cm, **không** dùng làm thông số vật lý, rig hay lore. Ảnh gốc + SHA luôn ưu tiên hơn mọi số đề xuất.
+- **TỪ V1 SANG V2:** Registry `docs/art/LAM_THIEN_DESIGN_REGISTRY.json` đã đưa V1 vào `archived_approved_designs`. CP317/318/319 và các preview khác là lịch sử. Bộ ảnh biểu cảm/pose đã chốt trước dùng bổ trợ về **hành động**, không tự áp lại body/trang phục V1.
+- **TOÀN GAME:** Các mức wardrobe (default / outer_removed / private_fantasy hoặc mức khác), độ bền 100/70/50/30 và biểu cảm/hành động giữ trạng thái theo ID nhân vật khi đổi pose; áp dụng cho tất cả nhân vật, nhưng **không sao chép body Lâm Thiển sang nhân vật khác**.
+- **PLAN / NGHIỆM THU:** [LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md](art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md): P0 kiểm chứng art nguồn và tách layer/sửa tám pose, P1 texture trạng thái/Spine/animation, P2 gameplay QA/build APK và đóng gói template dùng chung. **Mỗi bước chỉ đánh dấu hoàn thành khi có artifact thật + kiểm thử.**
+- **THẺ DỮ LIỆU:** [LAM_THIEN_MODEL_CARD_V2.json](art/LAM_THIEN_MODEL_CARD_V2.json), [tài liệu model gốc](art/LAM_THIEN_CANON_BODY_V2_2026_10_28.md).
+
+### Lịch sử cập nhật 2026-10-28 (Canon V2)
+Đã nhận/chốt PNG V2, lưu nguyên bản Drive/Library, lập model card và checklist, chuyển V1 sang lịch sử và khóa quy tắc tránh đoán số đo từ poster.
