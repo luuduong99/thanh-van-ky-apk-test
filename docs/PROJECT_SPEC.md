@@ -502,3 +502,19 @@ Bổ sung công cụ QA CP315 và unit tests; phân biệt rõ kiểm thử côn
 
 ### Lịch sử cập nhật ngày 2026-10-28
 CP316 hoàn thành bước khôi phục nguồn dưới dạng rà soát/đối soát và xây công cụ, nguồn ORA vẫn thiếu. Không đánh dấu art thực tế hoàn thành.
+
+
+
+---
+
+## 16. Lâm Thiển — CP317 bản ORA phục dựng từ PNG (2026-10-28)
+
+- **ĐÃ CHỐT — KHÔNG ĐỔI:** Lâm Thiển theo màu trắng–xanh–vàng, tóc bạc và nhận diện người dùng đã duyệt. Mốc tỷ lệ +17% vẫn giữ, mọi tinh chỉnh chiều cao/tỷ lệ mới phải có preview và xác nhận; CP317 không tự thay đổi tỷ lệ.
+- **ĐÃ TẠO CP317, nhưng KHÔNG PHẢI FILE NGUỒN:** Một file `CP317_LamThien_Back_10Layer_RECONSTRUCTION_NOT_ORIGINAL.ora` phục dựng từ PNG Back 207×656, gồm 10 lớp nhìn thấy và phần nền dưới tóc/tay áo được **ước lượng**. Composite đứng yên so với PNG gốc: 0 pixel khác biệt. Không được ghi đè, thay thế hoặc gọi file này là CP313 ORA gốc.
+- **KIỂM THỬ:** 12/12 bài unit test chạy thành công trong môi trường cục bộ (CP315/CP316/CP317). Công cụ `source_inventory.py` đã được sửa để loại ORA phục dựng khỏi danh sách ứng viên nguồn CP313 dựa trên metadata/tên lớp. File kỹ thuật cấu trúc hợp lệ nhưng **đường mép chuyển động còn thô, chưa nghiệm thu mỹ thuật**.
+- **CHƯA HOÀN THÀNH:** ORA CP313 gốc chưa phục hồi. Vùng tóc/scalp–gáy–vai và tay áo chưa có art layer chính xác; rig/physics/APK của Lâm Thiển chưa kiểm chứng.
+- **TIẾP TỤC CP318:** Ưu tiên tìm CP313 gốc; nếu không có, vẽ lại chính xác viền phân lớp và phần dưới tóc trên bản proxy, sửa gáy–vai, dây trang sức, hai tay áo. Chạy motion ±5px và so với ảnh reference. Chỉ sau preview được duyệt mới rig/physics.
+- Chi tiết: `docs/art/LAM_THIEN_CP317_RECONSTRUCTION.md`. File ORA proxy đã tạo trong phiên làm việc, cung cấp qua gói bàn giao; không ghi nhận đã upload binary asset vào GitHub.
+
+### Lịch sử bổ sung (2026-10-28)
+CP317 tạo bản phục dựng có thể chỉnh, không thay thế ORA nguồn; bổ sung kiểm soát xuất xứ và kiểm thử trong khi giữ nguyên quyết định +17%.
