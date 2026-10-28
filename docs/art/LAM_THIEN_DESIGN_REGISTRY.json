@@ -4,20 +4,23 @@
   "updated_on": "2026-10-28",
   "policy": "Always implement latest user-approved design. A draft preview does not automatically replace approval.",
   "latest_user_approved_design": {
-    "id": "lam_thien_visual_reference_approved_2026_10_28",
+    "id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_on": "2026-10-28",
-    "approval_type": "explicit_user_confirmed_approved_visual_sheet",
+    "approval_type": "explicit_user_confirmed_superseding_visual",
     "visual_source_status": "verified_stored_google_drive_and_library",
-    "visual_reference_location": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
-    "visual_reference_name": "TVK_LamThien_Approved_Reference_20261028.png",
-    "visual_reference_sha256": "4b6cbf29ee8aef6aa2d927e7bb89428a9fda5bca1bb67a3f1c7b08e3a94129fd",
+    "visual_reference_location": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+    "visual_reference_name": "TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+    "visual_reference_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
     "visual_reference_dimensions": [
       1672,
       941
     ],
-    "library_backup_path": "/Thanh Van Ky/Approved References/TVK_LamThien_Approved_Reference_20261028.png",
-    "documentation_path": "docs/art/LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md",
-    "asset_type": "flat_RGB_concept_sheet_not_layered_rig",
+    "visual_reference_mode": "RGBA",
+    "visual_reference_bytes": 3747713,
+    "library_backup_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+    "documentation_path": "docs/art/LAM_THIEN_CANON_BODY_V2_2026_10_28.md",
+    "model_card_path": "docs/art/LAM_THIEN_MODEL_CARD_V2.json",
+    "asset_type": "flat_RGBA_concept_sheet_not_layered_rig",
     "required_traits": [
       "long_silver_hair",
       "white_pale_blue_gold_costume",
@@ -27,9 +30,21 @@
       "tall_balanced_proportions",
       "restrained_gold_ornamentation",
       "consistent_bust_waist_hip_proportions_in_all_views",
-      "approved_indoor_bed_chair_wall_pose_sheet"
+      "approved_indoor_bed_chair_wall_pose_sheet",
+      "soft_silk_bodice_without_heavy_gold_edge_trim",
+      "reduced_gold_chain_and_border_density",
+      "approved_v2_bust_waist_hip_visual_silhouette",
+      "bust_waist_hips_consistent_across_views"
     ],
-    "note": "Use this exact approved visual sheet for Lam Thien. The prior +17% is Lam Thien-specific; do not infer exact pixel ratio from poster. AI-generated numerical profile fields are illustrative and not canonical. This art approval does not imply Spine/physics/APK approval."
+    "body_scale_reference": {
+      "bust_percent_of_v2": 100,
+      "waist_percent_of_v2": 100,
+      "hip_percent_of_v2": 100,
+      "height_percent_of_v2": 100,
+      "absolute_dimensions_from_image": "not_measured",
+      "historical_plus_17_percent_already_in_approved_reference": true
+    },
+    "note": "Visual image and SHA-256 authoritative; optional B/W/H mnemonic 102/60/110 is unmeasured and not real or separately approved measurement. Reference supersedes old exterior model but not global expression/pose/wardrobe/state rules. No completed rig/APK implied."
   },
   "latest_pending_preview": null,
   "deprecated_visual_sources": [
@@ -39,7 +54,7 @@
     "CP319_LamThien_Clean_Primary_Back_Review.png"
   ],
   "implementation": {
-    "design_reference_id": "lam_thien_visual_reference_approved_2026_10_28",
+    "design_reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "sprite_layers_complete": false,
     "spine_rig_complete": false,
     "physics_approved": false,
@@ -61,6 +76,36 @@
       ],
       "visual_reference_location": null,
       "note": "Do not replace known user-approved requirements with old flat Back PNG or CP317 proxy. Exact pixel measurements unavailable."
+    },
+    {
+      "id": "lam_thien_visual_reference_approved_2026_10_28",
+      "approved_on": "2026-10-28",
+      "approval_type": "explicit_user_confirmed_approved_visual_sheet",
+      "visual_source_status": "verified_stored_google_drive_and_library",
+      "visual_reference_location": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
+      "visual_reference_name": "TVK_LamThien_Approved_Reference_20261028.png",
+      "visual_reference_sha256": "4b6cbf29ee8aef6aa2d927e7bb89428a9fda5bca1bb67a3f1c7b08e3a94129fd",
+      "visual_reference_dimensions": [
+        1672,
+        941
+      ],
+      "library_backup_path": "/Thanh Van Ky/Approved References/TVK_LamThien_Approved_Reference_20261028.png",
+      "documentation_path": "docs/art/LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md",
+      "asset_type": "flat_RGB_concept_sheet_not_layered_rig",
+      "required_traits": [
+        "long_silver_hair",
+        "white_pale_blue_gold_costume",
+        "symmetrical_hip_cutouts",
+        "defined_rear_silhouette",
+        "character_specific_plus_17_percent_upper_body_guideline",
+        "tall_balanced_proportions",
+        "restrained_gold_ornamentation",
+        "consistent_bust_waist_hip_proportions_in_all_views",
+        "approved_indoor_bed_chair_wall_pose_sheet"
+      ],
+      "note": "Use this exact approved visual sheet for Lam Thien. The prior +17% is Lam Thien-specific; do not infer exact pixel ratio from poster. AI-generated numerical profile fields are illustrative and not canonical. This art approval does not imply Spine/physics/APK approval.",
+      "superseded_by": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "archived_on": "2026-10-28"
     }
   ],
   "archived_previews": [
@@ -88,7 +133,7 @@
     "verified_asset_url": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
     "image_sha256": "96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2",
     "note": "Verified two user-uploaded PNG references. These reference sheets do not constitute layered sprites or rig/APK; base body remains separately approved.",
-    "base_body_design_reference_id": "lam_thien_visual_reference_approved_2026_10_28",
+    "base_body_design_reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "revised_damage_guideline": "moderate_damage_replacing_earlier_fixed_plus_20_percent",
     "durability_levels": [
       100,
