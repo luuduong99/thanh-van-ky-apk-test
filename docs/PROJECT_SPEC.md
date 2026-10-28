@@ -540,3 +540,16 @@ CP317 tạo bản phục dựng có thể chỉnh, không thay thế ORA nguồn
 
 ### Lịch sử 2026-10-28
 Làm rõ sai lệch của proxy CP317 để bảo toàn thiết kế Back Lâm Thiển đã duyệt ngày 2026-10-27.
+
+
+---
+
+## 18. Lâm Thiển — CP318 preview mới chờ duyệt (2026-10-28)
+
+- **ĐÃ THỰC HIỆN:** Tạo concept Back Lâm Thiển mới dựa trên các yêu cầu đã chốt: tóc bạc/trắng–xanh–vàng, hông hai bên khoét cân đối, silhouette phía sau rõ, dáng thanh hơn; ảnh preview lưu tại Library `/Thanh Van Ky/CP318_LamThien_Back_NEW_DESIGN_REVIEW_NOT_APPROVED.png`.
+- **TRẠNG THÁI CHƯA DUYỆT:** Concept mới là hình xem trước, KHÔNG phải tệp CP251 canon gốc hay sprite phân lớp; không có phép đo pixel xác minh +17%, không có thử alpha/hair physics trên concept mới.
+- **NGUYÊN TẮC:** Không dùng hình Back PNG cũ và CP317 proxy làm preview chính; chỉ dùng mẫu đã được người dùng duyệt làm canon. CP318 preview vẫn chờ người dùng xác nhận trước khi thay thế.
+- **TIẾP TỤC CP319:** tiếp thu nhận xét/duyệt CP318; đồng bộ các góc/tư thế; tạo layer thực và kiểm thử trước rig/physics/APK. Chi tiết: `docs/art/LAM_THIEN_CP318_PREVIEW.md`.
+
+### Lịch sử 2026-10-28
+Tạo preview Back dựa thiết kế mới; tách trạng thái đề xuất khỏi bản chốt, tránh hiểu nhầm thành asset game hoàn thiện.
