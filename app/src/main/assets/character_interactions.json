@@ -1102,6 +1102,18 @@
             "bed_recline": "characters/lin_qian_bed_recline_outer_removed.png"
           },
           "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter."
+        },
+        {
+          "id": "private_fantasy",
+          "label": "Trang phục riêng tư (mức cuối)",
+          "status": "asset_required",
+          "images": {
+            "front": "characters/lin_qian_front_private_fantasy.png",
+            "back": "characters/lin_qian_back_private_fantasy.png",
+            "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy.png",
+            "bed_recline": "characters/lin_qian_bed_recline_private_fantasy.png"
+          },
+          "description": "Approved design direction: final wardrobe stage persists across poses and scenes. Requires separately approved pose-specific fully covered fantasy fabric/lining artwork. Never use transparent filters or substitute default clothing art when files are missing. Not ready in APK."
         }
       ],
       "motionNotes": {
