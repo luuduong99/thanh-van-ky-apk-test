@@ -199,6 +199,8 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 
 ### Quy tắc ưu tiên thiết kế mới nhất đã được duyệt — ĐÃ CHỐT (2026-10-28)
 
+**THAM CHIẾU HIỆN HÀNH — Lâm Thiển (đã chốt 2026-10-28):** [mở bảng thiết kế đã duyệt](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk) · [hồ sơ chuẩn](art/LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md) · [quy chuẩn mỹ thuật các nhân vật sau](art/CHARACTER_ART_DIRECTION_REFERENCE.md). Đây là **ảnh chuẩn thay thế bản preview CP318/319**, không thay thế quyết định riêng về pose/hệ thống kỹ thuật; chỉ thay khi người dùng duyệt bản mới hơn.
+
 1. **Nguồn chuẩn triển khai (canon):** Với mỗi nhân vật, trang phục, tư thế, UI, cảnh và asset, **luôn dùng phiên bản mới nhất đã được người dùng xác nhận/chốt** làm cơ sở tạo ảnh, sửa art, phân lớp, rig, hoạt ảnh, tích hợp APK và preview. Khi một phần (ví dụ hông/trang phục) được duyệt mới, chỉ thay phần đó; giữ các quyết định đã chốt khác (gương mặt, màu sắc, tỷ lệ…) nếu chưa bị thay thế.
 2. **Không quay về thiết kế cũ:** Bản cũ, PNG phẳng, proxy, fixture test, concept và bản chưa duyệt chỉ được dùng để tham khảo lịch sử/kỹ thuật, **không dùng làm mẫu sản xuất hoặc ảnh preview chính**. Ghi nhãn `DEPRECATED / HISTORICAL / TECHNICAL PROXY` rõ ràng; không xóa dữ liệu gốc.
 3. **Phân biệt trạng thái:** Thiết kế mới được đề xuất hoặc mới tạo preview **chưa tự động thành bản chốt**. Chỉ sau khi người dùng xác nhận mới thay bản chuẩn. Nếu cùng lúc có nhiều bản chưa rõ trạng thái hoặc có mâu thuẫn không được giải quyết, đối chiếu lịch sử và hỏi xác nhận, không tự chọn tùy tiện.
@@ -214,6 +216,7 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 
 ## 10. Lịch sử cập nhật
 
+- **2026-10-28 (chốt hình mới):** Người dùng duyệt bảng tạo hình Lâm Thiển mới nhất; lưu ảnh nguyên gốc, checksum và link trong mục 20; dùng làm chuẩn tạo hình Lâm Thiển và mẫu trình bày mỹ thuật cho nhân vật khác, không sao chép hình thể cá nhân.
 - **2026-10-28:** Người dùng chốt quy tắc dự án: luôn dùng **thiết kế mới nhất đã duyệt** cho việc triển khai và preview; mẫu cũ/proxy chỉ lưu làm tài liệu đối chiếu kỹ thuật, không tự lấy làm bản chính. Áp dụng cho mọi asset và giữ lại các quyết định thành phần không thay đổi.
 - **2026-10-23:** Tạo tài liệu tổng hợp đầu tiên từ các yêu cầu đã thống nhất và trạng thái repository được ghi nhận. Ghi rõ bản đồ 2D, cách di chuyển bằng chạm, phạm vi prototype, định hướng nhân vật/trang phục, nguyên tắc kỹ thuật và lộ trình APK. Trạng thái build vẫn cần kiểm tra trực tiếp.
 - **2026-10-23:** Người dùng xác nhận định hướng nội dung người trưởng thành: mọi nhân vật trong tuyến tình cảm từ 18 tuổi trở lên theo tuổi thực; cảnh thân mật kết hợp lãng mạn và chuyển cảnh khi quan hệ tình dục diễn ra, tùy tình huống. Hồ sơ nhân vật và chi tiết hệ thống quan hệ vẫn là định hướng/chưa chốt.
@@ -568,3 +571,20 @@ Tạo preview Back dựa thiết kế mới; tách trạng thái đề xuất kh
 
 ### Lịch sử cập nhật 2026-10-28
 Tạo ảnh review Back sạch và bổ sung gate không cho concept chưa duyệt/proxy lỗi thời đi vào asset sản xuất.
+
+
+
+---
+
+## 20. Lâm Thiển — ảnh mẫu đã chốt & chuẩn tham khảo nhân vật sau (2026-10-28)
+
+- **ĐÃ CHỐT CHÍNH THỨC:** Người dùng xác nhận “ok chốt như này nha” với bảng ảnh Lâm Thiển cuối cùng trong cuộc trò chuyện. Đặt `lam_thien_visual_reference_approved_2026_10_28` làm bản hình ảnh chính thức (canon art reference) hiện hành; **không dùng lại CP317 proxy, CP318 và CP319 preview cũ** làm chuẩn ngoại hình.
+- **ẢNH GỐC:** `TVK_LamThien_Approved_Reference_20261028.png` — 1672×941 px RGB, SHA-256 `4b6cbf29ee8aef6aa2d927e7bb89428a9fda5bca1bb67a3f1c7b08e3a94129fd`. [Mở file trên Google Drive (đã xác minh)](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk). Sao lưu ChatGPT Library: `/Thanh Van Ky/Approved References/TVK_LamThien_Approved_Reference_20261028.png`.
+- **THÀNH PHẦN ĐÃ CHỐT CHO LÂM THIỂN:** tóc bạc dài, phụ kiện hoa, tông trắng–xanh nhạt–vàng, **dây/trang sức vàng vừa đủ**, dáng thanh thoát, tỷ lệ cơ thể/đường cong nhất quán giữa front/side/back/3/4, phần hông khoét theo mẫu, bảng biểu cảm và phụ kiện. Tiếp tục giữ quyết định tăng +17% dành **riêng cho Lâm Thiển** trong lịch sử; **không suy ra số đo pixel chính xác** từ poster.
+- **POSE/BỐI CẢNH ĐÃ DUYỆT:** các cảnh tương tác trong phòng với giường, ghế/sofa, mép giường, tường; pose nằm, quỳ ngoảnh lại, ngồi giường, ngồi ghế và dựa tường. Vẫn phân biệt `bed_recline` (nằm ngửa nghỉ ngơi theo đặc tả trước đó) và `bed_kneel_forward` (quỳ/ngoảnh lại), không đánh đồng chỉ vì ảnh poster vẽ các góc khác nhau.
+- **ÁP DỤNG CHO NHÂN VẬT SAU:** dùng ảnh làm **chuẩn chất lượng art, bố cục bảng turnaround, biểu cảm, chi tiết trang phục vừa phải, cách thể hiện pose indoor và danh sách phân lớp**. Không sao chép gương mặt, màu tóc, trang phục, tỷ lệ hình thể hoặc +17% của Lâm Thiển sang nhân vật khác.
+- **PHÂN BIỆT TRẠNG THÁI:** ảnh là **concept phẳng đã duyệt**, chưa phải ORA/Spine rig, physics, animation thật hoặc APK. Các số đo/chiều cao/ngày sinh trên poster do hình minh họa thể hiện **chưa được chốt riêng**, không tự nhập thành canon game.
+- **TÀI LIỆU CHUẨN:** `docs/art/LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md`, `docs/art/CHARACTER_ART_DIRECTION_REFERENCE.md` và `docs/art/LAM_THIEN_DESIGN_REGISTRY.json` (đã chuyển từ CP318 pending sang approved mới). Chỉ sau khi tách lớp/hình pose, QA và duyệt từng bước mới tích hợp rig/physics/APK.
+
+### Lịch sử cập nhật 2026-10-28
+Chốt ảnh tạo hình Lâm Thiển mới nhất, lưu ảnh nguyên bản trên Drive và Library; ghi quy trình tham khảo dùng chung và khóa chống hồi quy ảnh cũ.
