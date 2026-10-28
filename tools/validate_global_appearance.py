@@ -38,6 +38,24 @@ def validate(data, assets_root=ASSETS):
         errors.append("Integrity levels must be 100/70/50/30")
     if set(sys.get("stateKeys", [])) != {"wardrobe", "integrity", "pose", "expression", "action"}:
         errors.append("Appearance state keys incomplete")
+    visual = sys.get("damageVisualProfile", {})
+    if visual.get("scope") != "all_characters_all_wardrobes":
+        errors.append("Damage visual profile must apply to all characters and wardrobe states")
+    if visual.get("surface") != "clothing_material_only":
+        errors.append("Dirt/abrasion/tears must be assigned to clothing, not injuries")
+    if set(visual.get("types", [])) != {"dirt", "abrasion", "tear"}:
+        errors.append("Damage visual types must include dirt, abrasion and tear")
+    if not all(visual.get(k) is True for k in (
+        "consistentAcrossPose", "cumulativeVisualDamage", "wardrobeIndependent",
+        "notEqualToHpOrSkinExposure", "preserveCoverage"
+    )):
+        errors.append("Damage visuals must be persistent, cumulative, independent and covered")
+    levels = visual.get("levels", {})
+    for name in ("dirt", "abrasion", "tear"):
+        values = [levels.get(level, {}).get(name) for level in INTEGRITY]
+        if values != [0, 1, 2, 3]:
+            errors.append("Invalid damage visual progression for " + name +
+                          ": expected severity 0/1/2/3 at integrity 100/70/50/30")
     ids = set()
     for ch in data.get("characters", []):
         cid = ch.get("id", "")
