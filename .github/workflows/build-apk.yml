@@ -18,6 +18,9 @@ jobs:
       - name: Validate character artwork and touch regions
         run: python3 tools/validate_pose_assets.py
 
+      - name: Validate global character appearance rules
+        run: python3 tools/validate_global_appearance.py
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
