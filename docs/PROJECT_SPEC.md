@@ -687,3 +687,19 @@ Nâng yêu cầu giữ mức cởi khi đổi pose từ nhân vật Lâm Thiển
 
 ### Lịch sử 2026-10-28
 Bổ sung quy tắc đa dạng dấu hư hại theo mức độ và nguyên nhân, thống nhất xuyên tư thế/nhân vật. Không thay ảnh canon V2 hiện tại.
+
+
+---
+
+## 27. Lâm Thiển — CHỐT PREVIEW 4 MỨC HƯ HẠI (2026-10-28)
+
+**ĐÃ CHỐT BẰNG HÌNH ẢNH:** Người dùng duyệt preview bốn cột 100% / 70% / 50% / 30%, ngày 28/10/2026. 100% sạch nguyên vẹn; 70% bụi/xước/rách rất nhẹ; 50% bẩn rõ và sờn/rách vừa; 30% bẩn/xước/rách nhiều **kể cả vùng vải còn che phủ**, vẫn giữ che phủ phù hợp. Không tự sửa mức độ tổn hại khác preview đã duyệt.
+
+- **Nguồn đối chiếu:** PNG 1672×941 RGB trong cuộc trò chuyện, SHA-256 `03251b5ec9b020b325687b530c98e026622ba7b3334466ab5d2323a0a89c9e23`. Chưa xác minh lưu bền vững lên Drive/GitHub; cần upload PNG nguồn trước khi triển khai art.
+- **TOÀN BỘ NHÂN VẬT:** áp dụng 4 cấp và quy tắc chuyển pose/cảnh, giữ nguyên `wardrobe_state` và `clothing_integrity` độc lập; không sao chép body Lâm Thiển sang các nhân vật khác.
+- **Triển khai:** dựng texture riêng cho từng mức/góc/pose, kiểm rig, alpha và hiệu ứng lần đầu tụt ngưỡng; hồi HP không tự sửa quần áo, thiếu asset không lấy nhầm ảnh lành thay thế.
+- **TRẠNG THÁI:** preview/cấp độ **APPROVED**; sprite, rig, physics, animation và APK **PENDING**.
+- **TÀI LIỆU CHI TIẾT:** [LAM_THIEN_DAMAGE_PREVIEW_APPROVED_2026_10_28.md](art/LAM_THIEN_DAMAGE_PREVIEW_APPROVED_2026_10_28.md).
+
+### Lịch sử 2026-10-28
+Ghi xác nhận chính thức của người dùng cho preview hư hại bốn mức, đóng băng mức độ trực quan và bổ sung checklist nghiệm thu.
