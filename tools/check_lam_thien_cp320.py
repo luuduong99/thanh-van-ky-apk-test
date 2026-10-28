@@ -50,6 +50,31 @@ def validate_manifest(data, strict=False):
     if landmarks != EXPECTED_LANDMARKS:
         errors.append("Incorrect or reordered rig landmarks")
 
+    refs = data.get("poster_reference_crops", {})
+    if refs:
+        if refs.get("source_sha256") != canon.get("sha256"):
+            errors.append("Poster crop source must match approved CANON V2 SHA")
+        if refs.get("status") != "extracted_and_archived_reference_only":
+            errors.append("Poster crops must remain reference-only")
+        crops = refs.get("items", [])
+        if len(crops) != 12 or len({(i.get("kind"), i.get("id")) for i in crops}) != 12:
+            errors.append("Poster crop map must contain 12 unique view/pose references")
+        for crop in crops:
+            key = str(crop.get("id"))
+            box = crop.get("source_bbox_xyxy")
+            size = crop.get("native_size_px")
+            if (not isinstance(box, list) or len(box) != 4
+                or any(isinstance(v, bool) or not isinstance(v, int) for v in box)
+                or not (0 <= box[0] < box[2] <= canon.get("width", 0))
+                or not (0 <= box[1] < box[3] <= canon.get("height", 0))):
+                errors.append(f"poster/{key}: invalid source bbox")
+            elif size != [box[2] - box[0], box[3] - box[1]]:
+                errors.append(f"poster/{key}: native crop size mismatch")
+            if crop.get("status") != "reference_only_not_full_body_or_layered":
+                errors.append(f"poster/{key}: cannot promote poster crop to production art")
+    else:
+        pending.append("Poster reference crops not yet catalogued")
+
     def check_records(key, required):
         records = data.get(key, [])
         ids = [r.get("id") for r in records]
