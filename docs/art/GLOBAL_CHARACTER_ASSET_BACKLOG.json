@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "created": "2026-10-28",
+  "scope": "all_current_and_future_characters",
+  "character_count": 2,
+  "combination_definition": "pose × wardrobe_state × integrity_level (expression/action animations separately)",
+  "total_required_combinations": 288,
+  "total_unverified_or_pending": 280,
+  "notes": [
+    "Counts are an initial matrix, not a claim of existing art quality or runtime availability.",
+    "An active default 100% pose may have a legacy PNG; those are not canon-quality layered assets.",
+    "Future characters follow global contract automatically when added; refresh counts after each new character.",
+    "Expressions/action animations require their own asset set; counts here exclude combinations of expression/action.",
+    "Never fill missing combinations by automatically reusing intact/full-clothes art."
+  ],
+  "characters": [
+    {
+      "character_id": "to_nguyet_ly",
+      "active_pose_count": 4,
+      "planned_pose_count": 8,
+      "wardrobe_levels": 3,
+      "integrity_levels": 4,
+      "required_combinations": 144,
+      "existing_base_pose_png_registered": 4,
+      "unverified_or_pending_combinations": 140,
+      "planned_pose_ids": [
+        "side",
+        "front_three_quarter",
+        "back_three_quarter",
+        "back_turn",
+        "bed_side_lying",
+        "bed_sit",
+        "chair_sit",
+        "wall_lean"
+      ],
+      "wardrobe_ids": [
+        "default",
+        "outer_removed",
+        "private_fantasy"
+      ],
+      "reference_status": "legacy default pose PNGs are registered but NOT a completed canon layered rig"
+    },
+    {
+      "character_id": "lin_qian",
+      "active_pose_count": 4,
+      "planned_pose_count": 8,
+      "wardrobe_levels": 3,
+      "integrity_levels": 4,
+      "required_combinations": 144,
+      "existing_base_pose_png_registered": 4,
+      "unverified_or_pending_combinations": 140,
+      "planned_pose_ids": [
+        "side",
+        "front_three_quarter",
+        "back_three_quarter",
+        "back_turn",
+        "bed_side_lying",
+        "bed_sit",
+        "chair_sit",
+        "wall_lean"
+      ],
+      "wardrobe_ids": [
+        "default",
+        "outer_removed",
+        "private_fantasy"
+      ],
+      "reference_status": "legacy default pose PNGs are registered but NOT a completed canon layered rig"
+    }
+  ],
+  "approved_references": {
+    "lam_thien_base": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
+    "lam_thien_interactions": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk"
+  },
+  "new_preview": {
+    "status": "pending_user_approval",
+    "url": "https://drive.google.com/file/d/1QjqPz6gJnT0vl9zr5mWme4_x0BvCCh7Y/view?usp=drivesdk",
+    "sha256": "33e432d7373eaddc0ad54305b466baf15c2233045bbe6356f9907c9036ac5b8e",
+    "dimensions": [
+      1536,
+      1024
+    ]
+  }
+}
