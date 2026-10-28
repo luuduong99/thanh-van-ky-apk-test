@@ -59,7 +59,7 @@ class CharacterInteractionActivity : Activity() {
             ?: "to_nguyet_ly"
         if (findCharacter(selectedId) == null) selectedId = "to_nguyet_ly"
         currentPose = savedInstanceState?.getString("selected_pose")
-            ?: prefs.getString("pose_" + selectedId, "front") ?: "front"
+            ?: CharacterAppearanceState.read(this, selectedId).pose
         currentPose = canonicalPose(selectedId, currentPose)
         render()
     }
@@ -161,7 +161,7 @@ class CharacterInteractionActivity : Activity() {
             val id = item.optString("id")
             val choose = btn(item.optString("name")) {
                 selectedId = id
-                currentPose = prefs.getString("pose_" + id, "front") ?: "front"
+                currentPose = CharacterAppearanceState.read(this, id).pose
                 currentPose = canonicalPose(id, currentPose)
                 prefs.edit().putString("selected_character", id).apply()
                 render()
@@ -178,35 +178,20 @@ class CharacterInteractionActivity : Activity() {
         portraits.addView(txt("NAM CHÍNH  &  " + heroine.optString("name").uppercase(), 15f, gold, true))
         val pose = poseDefinition(heroine, currentPose)
             ?: poseDefinition(heroine, "front") ?: return
-        var heroineImage = pose.optString("image")
-        val heroineCrop = pose.optString("crop", "full")
-        // Outfit is saved per character, not per pose. Never silently show default clothes
-        // when a selected outfit (including the final private-fantasy state) lacks pose art.
-        val outfitId = prefs.getString("outfit_" + selectedId, "default") ?: "default"
+        // One shared character state for wardrobe, damage and pose. Never fallback to
+        // fully clothed, undamaged artwork when the requested combination is missing.
+        val appearance = CharacterAppearanceState.read(this, selectedId).copy(pose = currentPose)
+        val artwork = CharacterAppearanceState.resolveArt(heroine, appearance, ::hasAsset)
+        val heroineImage = artwork.path.orEmpty()
+        val heroineCrop = artwork.crop
+        val outfitId = appearance.wardrobe
         var outfitLabel = outfitId
-        var missingSelectedOutfitArt = false
-        if (outfitId != "default") {
-            var matched = false
-            val variants = heroine.optJSONArray("wardrobeStates")
-            if (variants != null) for (index in 0 until variants.length()) {
-                val outfit = variants.getJSONObject(index)
-                if (outfit.optString("id") == outfitId) {
-                    matched = true
-                    outfitLabel = outfit.optString("label", outfitId)
-                    val overridePath = outfit.optJSONObject("images")
-                        ?.optString(currentPose).orEmpty()
-                    if (hasAsset(overridePath)) {
-                        heroineImage = overridePath
-                    } else {
-                        heroineImage = ""
-                        missingSelectedOutfitArt = true
-                    }
-                    break
-                }
-            }
-            if (!matched) {
-                heroineImage = ""
-                missingSelectedOutfitArt = true
+        val variants = heroine.optJSONArray("wardrobeStates")
+        if (variants != null) for (i in 0 until variants.length()) {
+            val outfit = variants.getJSONObject(i)
+            if (outfit.optString("id") == outfitId) {
+                outfitLabel = outfit.optString("label", outfitId)
+                break
             }
         }
         val motionSettings = pose.optJSONObject("motionProfile")
@@ -247,7 +232,7 @@ class CharacterInteractionActivity : Activity() {
             val poseId = option.optString("id")
             val poseButton = btn(option.optString("label")) {
                 currentPose = poseId
-                prefs.edit().putString("pose_" + selectedId, poseId).apply()
+                CharacterAppearanceState.setPose(this, selectedId, poseId)
                 render()
             }
             poseButton.setBackgroundDrawable(rounded(if (poseId == currentPose) gold else bgColor))
@@ -259,17 +244,15 @@ class CharacterInteractionActivity : Activity() {
         poseScroller.addView(poseRow)
         portraits.addView(poseScroller)
         portraits.addView(txt(pose.optString("description"), 12f, cream))
-        if (missingSelectedOutfitArt) {
+        portraits.addView(txt(
+            "Trang phục: " + outfitLabel + " · Độ nguyên vẹn: " + appearance.integrity +
+                "% · Tư thế: " + pose.optString("label", currentPose),
+            12f, gold
+        ))
+        if (artwork.issue != null) {
             portraits.addView(txt(
-                "Đang giữ trang phục: " + outfitLabel + ". Chưa có ảnh cho tư thế " +
-                    pose.optString("label", currentPose) +
-                    " ở trạng thái này. Không tự mặc lại đồ mặc định; vùng chạm tạm vô hiệu.",
-                11f, muted
-            ))
-        } else if (!hasAsset(heroineImage)) {
-            portraits.addView(txt(
-                "Chưa có ảnh riêng cho tư thế này của " + heroine.optString("name") +
-                    ". Các vùng chạm chưa hoạt động ở tư thế này.",
+                artwork.issue + ". Trạng thái đã lưu được giữ nguyên khi đổi tư thế, " +
+                    "không mặc lại đồ mặc định. Cần asset đúng trạng thái để hiển thị/tương tác.",
                 11f, muted
             ))
         }
@@ -511,27 +494,31 @@ class CharacterInteractionActivity : Activity() {
             return
         }
         val options = ArrayList<String>()
-        val available = ArrayList<String>()
+        val wardrobeIds = ArrayList<String>()
         val pose = currentPose
+        val integrity = CharacterAppearanceState.read(this, characterId).integrity
         for (i in 0 until outfits.length()) {
             val state = outfits.getJSONObject(i)
             val id = state.optString("id")
-            val asset = state.optJSONObject("images")?.optString(pose).orEmpty()
-            val ready = hasAsset(asset)
-            val text = state.optString("label") + if (!ready) " · chưa có ảnh" else ""
-            options.add(text)
-            available.add(if (ready) id else "")
+            // Show all wardrobe levels so state can be selected/preserved even while
+            // artwork is still being produced. Missing art gets a clear placeholder.
+            val preview = CharacterAppearanceState.resolveArt(
+                character,
+                CharacterAppearanceState.State(wardrobe = id, integrity = integrity, pose = pose),
+                ::hasAsset
+            )
+            val label = state.optString("label") + if (preview.path == null) " · thiếu ảnh" else ""
+            options.add(label)
+            wardrobeIds.add(id)
         }
         android.app.AlertDialog.Builder(this)
             .setTitle("Trang phục · " + character.optString("name"))
             .setItems(options.toTypedArray()) { _, which ->
-                val chosen = available.getOrNull(which).orEmpty()
-                if (chosen.isEmpty()) {
-                    messageView?.text = "Chưa có ảnh trang phục riêng cho tư thế này; giữ nguyên trạng thái trang phục đang chọn."
-                    return@setItems
-                }
-                // Save only verified resource-backed states. Avoid inventing missing art.
-                prefs.edit().putString("outfit_" + characterId, chosen).apply()
+                val chosen = wardrobeIds.getOrNull(which).orEmpty()
+                if (chosen.isBlank()) return@setItems
+                // Persist user's selection even without art, but never fabricate a
+                // preview or replace it with another outfit when switching poses.
+                CharacterAppearanceState.setWardrobe(this, characterId, chosen)
                 render()
             }
             .setNegativeButton("Đóng", null)
