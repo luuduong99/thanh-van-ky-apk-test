@@ -58,6 +58,18 @@ def analyze_ora(ora, locator, digest, expect_layers, min_nonempty):
         if w <= 0 or h <= 0 or w * h > MAX_FILE_PIXELS:
             raise ValueError('out-of-range canvas')
         nodes = list(root.iter('layer'))
+        # A work-in-progress reconstruction may be useful to editors, but must
+        # NEVER be promoted as a recovered CP313 ORA source by source inventory.
+        provenance_text = ' '.join([
+            root.attrib.get('name', ''),
+            *(n.attrib.get('name', '') for n in nodes),
+        ]).lower()
+        markers = ('reconstruction', 'proxy', 'not_source', 'non-original',
+                   'not original', 'synthetic', 'derived from flat')
+        if any(m in provenance_text for m in markers) or any(
+            'provenance' in name.lower() for name in names
+        ):
+            errors.append('derived/proxy reconstruction explicitly not original CP313 source')
         count = len(nodes)
         if count != expect_layers:
             errors.append(f'expected {expect_layers} layers; found {count}')
