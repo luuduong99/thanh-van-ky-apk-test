@@ -624,3 +624,16 @@ Ghi kế hoạch xử lý trang phục cùng giai đoạn phân lớp theo đề
 
 ### Lịch sử cập nhật 2026-10-28
 Bổ sung quyết định chọn biến thể trang phục mới và quy tắc đồng bộ trạng thái qua tư thế; bỏ yêu cầu tăng mức rách +20% cố định, giữ ràng buộc nguồn ảnh chưa thể truy xuất.
+
+
+---
+
+## 23. Lâm Thiển — lưu ảnh tham khảo biểu cảm/pose và giữ mức cởi cuối khi đổi tư thế (2026-10-28)
+
+- **ẢNH ĐÃ TẢI LÊN THÀNH CÔNG, THAY THẾ TRẠNG THÁI `blob:` CHƯA TRUY CẬP Ở MỤC 22:** [Bảng biểu cảm, hành động, trạng thái đồ và tư thế](https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk) (1672×941, SHA-256 `96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2`), [Bảng kế hoạch art/rig/gameplay](https://drive.google.com/file/d/1ZgMB8nkRlkar3-MYCrH32uQaYxO29S5Q/view?usp=drivesdk) (1672×941, SHA-256 `380d21c2b8f6e862ce7b7a9f4b751e8625716a9c02b06b3bb672e4d0dc49b31a`). Hai ảnh do người dùng đính kèm trực tiếp; đã lưu cả nguyên bản trong Google Drive và ChatGPT Library. Xem [hồ sơ nguồn ảnh và quy tắc](art/LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md).
+- **ĐÃ CHỐT BỔ SUNG:** Biến thể thay/cởi đồ ở **mức cuối** phải giữ nguyên khi đổi pose và góc nhìn, từ mặt trước/sau/3-4 tới nằm/quỳ/ngồi giường, ngồi ghế/sofa, dựa tường, cả chuyển giữa tương tác/hội thoại/chiến đấu. Không tự động mặc lại hoặc giảm mức cởi. Mỗi pose phải dùng asset `wardrobe_state × pose` phù hợp, đồng bộ biểu cảm/hành động, tóc và vải. **Nếu chưa có ảnh đúng pose thì giữ trạng thái lựa chọn nhưng báo thiếu ảnh, không dùng ảnh mặc đủ thay thế gây hiểu nhầm**.
+- **STATE ĐỘC LẬP:** `wardrobe_state` và `clothing_integrity` 100/70/50/30 là hai trục độc lập. Bốn mức hư hại đã chốt, điều chỉnh độ rách tự nhiên, không tăng cứng +20%; cấp 30% cả vải che phủ còn lại cũng có dấu hao mòn. Hồi HP không tự phục hồi vải.
+- **PHÂN BIỆT THAM CHIẾU VỚI TRIỂN KHAI:** Bảng ảnh mới là nguồn thiết kế biểu cảm/hành động/trang phục, không thay thế ảnh Lâm Thiển canon về hình thể được chốt riêng tại mục 20. Số liệu nhân vật xuất hiện trong poster AI không được tự gán thành thông số game; ảnh layer trong poster không phải sprite layer thật. Chưa có bộ art từng pose/wardrobe/damage, rig hay APK hoàn chỉnh.
+
+### Lịch sử 2026-10-28
+Đã nhận 2 PNG thật, lưu kiểm chứng hash; xác nhận mức cởi cuối vẫn áp dụng qua mọi tư thế.
