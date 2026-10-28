@@ -518,3 +518,16 @@ CP316 hoàn thành bước khôi phục nguồn dưới dạng rà soát/đối 
 
 ### Lịch sử bổ sung (2026-10-28)
 CP317 tạo bản phục dựng có thể chỉnh, không thay thế ORA nguồn; bổ sung kiểm soát xuất xứ và kiểm thử trong khi giữ nguyên quyết định +17%.
+
+
+---
+
+## 17. Lâm Thiển — sửa sai lệch tham chiếu trang phục Back (2026-10-28)
+
+- **ĐÃ CHỐT 2026-10-27:** Lâm Thiển mặc định trắng–xanh–vàng; **khoét hai bên hông cân đối** và **vùng mông/phía sau đầy đặn, nổi khối rõ, tôn dáng** theo ảnh đã duyệt. Áp dụng đồng bộ sang mọi tư thế. Không tự che kín hai bên hông hoặc làm phẳng/giảm nét tạo hình đã chốt.
+- **ĐÃ CHỐT 2026-10-28:** Điều chỉnh thân trên +17%; chiều cao bản preview 947→971px, vai–eo 144→168px, không kéo giãn vùng hông/chân. Giữ cảm giác thanh, cân đối, tránh thấp/lùn; phải có preview trước mọi tinh chỉnh tiếp theo. Mốc +17% dành riêng cho Lâm Thiển.
+- **PHÂN BIỆT KỸ THUẬT:** CP317 dùng ảnh Back PNG cũ 207×656 để làm **proxy tách lớp**, vì vậy **không phản ánh đầy đủ thiết kế trang phục canon**; dù static composite khớp 0px cũng không được nghiệm thu mỹ thuật. Không dùng bản này để thay thế model cuối cùng hoặc dựa vào đó để bỏ phần khoét hông / tạo hình phía sau.
+- **TIẾP TỤC CP318:** đối chiếu đúng ảnh Back canon đã duyệt trước khi vẽ lại trang phục, tách các phần hông–váy–mông phù hợp cho hoạt ảnh và giữ các chi tiết gáy–vai–tay áo. Preview full-body/Back cho người dùng xem trước khi duyệt, sau đó mới rig, physics và APK.
+
+### Lịch sử 2026-10-28
+Làm rõ sai lệch của proxy CP317 để bảo toàn thiết kế Back Lâm Thiển đã duyệt ngày 2026-10-27.
