@@ -180,17 +180,33 @@ class CharacterInteractionActivity : Activity() {
             ?: poseDefinition(heroine, "front") ?: return
         var heroineImage = pose.optString("image")
         val heroineCrop = pose.optString("crop", "full")
+        // Outfit is saved per character, not per pose. Never silently show default clothes
+        // when a selected outfit (including the final private-fantasy state) lacks pose art.
         val outfitId = prefs.getString("outfit_" + selectedId, "default") ?: "default"
+        var outfitLabel = outfitId
+        var missingSelectedOutfitArt = false
         if (outfitId != "default") {
+            var matched = false
             val variants = heroine.optJSONArray("wardrobeStates")
             if (variants != null) for (index in 0 until variants.length()) {
                 val outfit = variants.getJSONObject(index)
                 if (outfit.optString("id") == outfitId) {
+                    matched = true
+                    outfitLabel = outfit.optString("label", outfitId)
                     val overridePath = outfit.optJSONObject("images")
                         ?.optString(currentPose).orEmpty()
-                    if (hasAsset(overridePath)) heroineImage = overridePath
+                    if (hasAsset(overridePath)) {
+                        heroineImage = overridePath
+                    } else {
+                        heroineImage = ""
+                        missingSelectedOutfitArt = true
+                    }
                     break
                 }
+            }
+            if (!matched) {
+                heroineImage = ""
+                missingSelectedOutfitArt = true
             }
         }
         val motionSettings = pose.optJSONObject("motionProfile")
@@ -243,7 +259,14 @@ class CharacterInteractionActivity : Activity() {
         poseScroller.addView(poseRow)
         portraits.addView(poseScroller)
         portraits.addView(txt(pose.optString("description"), 12f, cream))
-        if (!hasAsset(heroineImage)) {
+        if (missingSelectedOutfitArt) {
+            portraits.addView(txt(
+                "Đang giữ trang phục: " + outfitLabel + ". Chưa có ảnh cho tư thế " +
+                    pose.optString("label", currentPose) +
+                    " ở trạng thái này. Không tự mặc lại đồ mặc định; vùng chạm tạm vô hiệu.",
+                11f, muted
+            ))
+        } else if (!hasAsset(heroineImage)) {
             portraits.addView(txt(
                 "Chưa có ảnh riêng cho tư thế này của " + heroine.optString("name") +
                     ". Các vùng chạm chưa hoạt động ở tư thế này.",
@@ -504,7 +527,7 @@ class CharacterInteractionActivity : Activity() {
             .setItems(options.toTypedArray()) { _, which ->
                 val chosen = available.getOrNull(which).orEmpty()
                 if (chosen.isEmpty()) {
-                    messageView?.text = "Chưa có ảnh trang phục riêng cho tư thế này; giữ nguyên mặc định."
+                    messageView?.text = "Chưa có ảnh trang phục riêng cho tư thế này; giữ nguyên trạng thái trang phục đang chọn."
                     return@setItems
                 }
                 // Save only verified resource-backed states. Avoid inventing missing art.
