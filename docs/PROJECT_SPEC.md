@@ -745,3 +745,7 @@ Thực hiện bàn giao CP320 và lưu PNG preview; cập nhật trạng thái k
 
 ### Lịch sử 2026-10-28
 Cập nhật bản thử alpha có ảnh thật, lưu audit và phân biệt nghiêm với art đã được duyệt; giữ nguyên P0/P1/P2.
+
+
+### Bổ sung CP322 — kiểm chứng test và nguồn art (2026-10-28)
+Đã lưu bản dự thảo khác CANON V2 tại **Library Development** (không đẩy vào Approved References); hoàn tất kiểm tra 5 PNG alpha/IDAT/CRC và 4 unit test local PASS. CI workflow `.github/workflows/cp322-art-alpha-validation.yml` đã được tạo nhưng **chưa có bằng chứng kết quả GitHub Actions**. Source draft SHA256 `f171a06f9d67cb510cd46067a30d12763850620970e3d724c93d5c8a681c2d60`, ZIP SHA256 `bf73215eaa09baa27d024c0aeaf864137a90d1d06d3291bc5e2975790062a437`. Hình ảnh này **KHÔNG ĐƯỢC DUYỆT, KHÔNG THAY CANON V2**, P0-02/P0-03 chưa đóng.
