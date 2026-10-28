@@ -1,3 +1,5 @@
+> **NGUỒN NGOẠI HÌNH BẮT BUỘC CHO BATCH NÀY (28/10/2026):** [CANON BODY V2](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) — [ảnh gốc V2](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk) — SHA-256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`. Các link V1 bên dưới là tài liệu lịch sử/bố cục, không dùng để khóa tỷ lệ mới. Tám pose vẫn **chưa có sprite được duyệt**.
+
 # Thanh Vân Ký — Lâm Thiển · P0 art review batch 01 (tư thế còn thiếu)
 
 **Ngày mở batch:** 2026-10-28  
