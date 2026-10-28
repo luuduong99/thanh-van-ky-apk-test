@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "character_id": "lin_qian",
+  "character_name": "Lâm Thiển",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "approved_on": "2026-10-28",
+  "approval_status": "explicitly_user_approved",
+  "source": {
+    "url": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+    "name": "TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+    "format": "PNG",
+    "mode": "RGBA",
+    "dimensions_px": [
+      1672,
+      941
+    ],
+    "file_size_bytes": 3747713,
+    "sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+    "storage": "verified_Google_Drive_and_ChatGPT_Library"
+  },
+  "body_reference": {
+    "authority": "visual_asset",
+    "normalized_scales_percent": {
+      "bust": 100,
+      "waist": 100,
+      "hips": 100,
+      "height": 100
+    },
+    "guideline": "+17% adjustment was historical; already reflected by accepted visual—do not add it again",
+    "unmeasured_illustrative_bwh_index": {
+      "bust": 102,
+      "waist": 60,
+      "hips": 110,
+      "units": "art-direction mnemonics only, NOT cm",
+      "is_approved_real_measurement": false
+    },
+    "precedence": "approved_image_sha256_over_mnemonic_numbers"
+  },
+  "style": {
+    "long_silver_hair": true,
+    "white_pale_blue_palette": true,
+    "gold_detail_density": "minimal",
+    "bodice_gold_edge_ornament": "remove_heavy_decorative_gold_border",
+    "fabric": "soft_silk_chiffon_draping",
+    "overall_height_feel": "balanced_slender"
+  },
+  "global_policy": "Every character/wardrobe/integrity state persists across pose changes; each character keeps its own unique body.",
+  "production_status": {
+    "flat_reference_approved": true,
+    "layered_sprite_complete": false,
+    "spine_rig_complete": false,
+    "physics_approved": false,
+    "apk_integrated": false
+  },
+  "plan": "docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md"
+}
