@@ -11,7 +11,8 @@
     "An active default 100% pose may have a legacy PNG; those are not canon-quality layered assets.",
     "Future characters follow global contract automatically when added; refresh counts after each new character.",
     "Expressions/action animations require their own asset set; counts here exclude combinations of expression/action.",
-    "Never fill missing combinations by automatically reusing intact/full-clothes art."
+    "Never fill missing combinations by automatically reusing intact/full-clothes art.",
+    "Lam Thien base art was explicitly updated to approved V2 on 2026-10-28; previous V1 stored for historical comparison only. Base visual approved does not mean any 3D/Spine assets are complete."
   ],
   "characters": [
     {
@@ -68,8 +69,11 @@
     }
   ],
   "approved_references": {
-    "lam_thien_base": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
-    "lam_thien_interactions": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk"
+    "lam_thien_base": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+    "lam_thien_interactions": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
+    "lam_thien_base_superseded_v1": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
+    "lam_thien_base_design_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "lam_thien_base_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711"
   },
   "new_preview": {
     "status": "pending_user_approval",
