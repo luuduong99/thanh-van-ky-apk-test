@@ -34,3 +34,17 @@ python -m unittest discover -s tests/art -v
 ```
 
 **Điểm tiếp tục CP318:** sửa seam thực tế trên các lớp phục dựng hoặc file gốc phục hồi, không lặp lại QA source inventory; preview trước khi chốt.
+
+## Bổ sung quyết định thiết kế đã duyệt — 2026-10-28
+
+**LƯU Ý NGHIỆM THU: PNG Back cũ dùng trong CP317 KHÔNG được coi là bản thiết kế trang phục Back cuối cùng.** Bản CP317 giữ nguyên pixel ảnh cũ và chỉ thử tách lớp; kiểm thử 0px không thể chứng minh trang phục đúng với thiết kế canon.
+
+**ĐÃ CHỐT trước đó (2026-10-27):**
+- Trang phục mặc định Lâm Thiển giữ trắng–xanh–vàng, tóc bạc dài và nhận diện gốc.
+- **Khoét cân đối hai bên hông**, thấy được phom dáng tại hai sườn/hông; không tự bịt kín bằng tà áo nguyên khối.
+- **Phần mông/phía sau đầy đặn, nổi khối rõ và tôn dáng** theo ảnh Back đã được người dùng duyệt; các lớp trang phục/vải phải thể hiện silhouette và độ nổi khối này. Không làm phẳng/che khuất hết chi tiết đã chốt.
+- Áp dụng đồng bộ thiết kế đó vào các tư thế, không chỉ góc Back.
+
+**ĐÃ CHỐT sau đó (2026-10-28):** lấy mốc +17% cho phần thân trên theo mẫu; bản preview điều chỉnh chiều cao hình 947→971px và vai–eo 144→168px, **không kéo giãn hông/chân**, giữ tổng thể thanh thoát. Mốc +17% là riêng Lâm Thiển, quy trình trình preview mới có thể dùng cho các nhân vật khác.
+
+**YÊU CẦU CHO CP318:** Trước khi tách lớp hoặc nghiệm thu rig mới, phục hồi ảnh Back canon thực tế hoặc vẽ lại tạo hình Back theo các tiêu chí trên. So sánh bản đầy đủ cả người với ảnh canon được duyệt, gồm vùng hông, mông và tỷ lệ thân trên. Không sửa proxy kỹ thuật hiện tại và gọi đó là asset cuối, cũng không coi test 0px trên proxy là pass về trang phục. Gửi preview người dùng duyệt trước khi xác nhận asset chính thức.
