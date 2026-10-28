@@ -78,5 +78,42 @@
       "ready_for_approval": true,
       "archived_reason": "superseded_by_approved_2026_10_28_visual_reference"
     }
-  ]
+  ],
+  "latest_outfit_damage_decision": {
+    "id": "lam_thien_outfit_damage_chosen_2026_10_28",
+    "date": "2026-10-28",
+    "user_decision": "confirmed_choice",
+    "source_status": "browser_blob_url_only_not_retrieved",
+    "source_blob_url_for_provenance_only": "blob:https://chatgpt.com/8d8b9f33-3a9b-47c6-a677-c31dd0dcfccc",
+    "verified_asset_url": null,
+    "image_sha256": null,
+    "note": "Do not claim visual asset saved or rig-ready. Obtain actual PNG/JPG attachment before production and checksum verification.",
+    "base_body_design_reference_id": "lam_thien_visual_reference_approved_2026_10_28",
+    "revised_damage_guideline": "moderate_damage_replacing_earlier_fixed_plus_20_percent",
+    "durability_levels": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "damage_remaining_covering_fabric_at_30": true,
+    "damage_and_wardrobe_are_independent": true,
+    "preserve_state_across_poses": true,
+    "apply_to_poses": [
+      "front",
+      "back",
+      "side",
+      "front_three_quarter",
+      "back_three_quarter",
+      "bed_kneel_forward",
+      "bed_recline",
+      "bed_side_lying",
+      "bed_sit",
+      "chair_sit",
+      "wall_lean"
+    ],
+    "include_contextual_expression_and_action": true,
+    "documented_in": "docs/art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md",
+    "production_art_verified": false
+  }
 }
