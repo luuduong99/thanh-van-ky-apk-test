@@ -1,3 +1,5 @@
+> **PHÂN BIỆT NGUỒN (28/10/2026):** Hai ảnh của tài liệu này vẫn là reference cho biểu cảm/hành động/tư thế/wardrobe, nhưng **ngoại hình/body/trang phục canon hiện hành phải lấy từ [LAM_THIEN_CANON_BODY_V2_2026_10_28.md](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) và [ảnh V2](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk)**. Không hồi quy ngoại hình theo poster tham khảo cũ.
+
 # Thanh Vân Ký — Lâm Thiển: biểu cảm, hành động, pose và roadmap (bản tham khảo được người dùng xác nhận)
 
 **Ngày:** 2026-10-28. **Nguồn:** 2 ảnh PNG người dùng đính kèm trực tiếp trong hội thoại để thay thế liên kết blob không thể tải ở phiên trước. **Trạng thái:** VISUAL REFERENCE SAVED + USER APPROVED DIRECTION; chưa phải sprite/animation/rig/APK hoàn chỉnh.
