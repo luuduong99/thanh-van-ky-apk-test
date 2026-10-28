@@ -73,15 +73,24 @@ class GlobalAppearanceTests(unittest.TestCase):
     def test_damage_visuals_include_dirt_scratches_and_tears(self):
         visual = DATA["appearanceSystem"]["damageVisualProfile"]
         self.assertEqual(set(visual["types"]), {"dirt", "abrasion", "tear"})
-        for key in ("dirt", "abrasion", "tear"):
-            self.assertEqual([visual["levels"][str(p)][key] for p in [100, 70, 50, 30]], [0, 1, 2, 3])
+        self.assertEqual(
+            [visual["levels"][str(p)]["severity"] for p in [100, 70, 50, 30]],
+            [0, 1, 2, 3]
+        )
+        for level in ("70", "50", "30"):
+            self.assertEqual(
+                set(visual["levels"][level]["possibleEffects"]), {"dirt", "abrasion", "tear"}
+            )
 
     def test_must_not_omit_scratches_or_damage_progression(self):
         d = copy.deepcopy(DATA)
         del d["appearanceSystem"]["damageVisualProfile"]["types"][1]
         self.assertTrue(validate(d))
         d = copy.deepcopy(DATA)
-        d["appearanceSystem"]["damageVisualProfile"]["levels"]["30"]["tear"] = 0
+        d["appearanceSystem"]["damageVisualProfile"]["levels"]["30"]["severity"] = 0
+        self.assertTrue(validate(d))
+        d = copy.deepcopy(DATA)
+        d["appearanceSystem"]["damageVisualProfile"]["levels"]["50"]["possibleEffects"].remove("tear")
         self.assertTrue(validate(d))
 
     def test_damage_visual_rules_apply_to_every_character(self):
