@@ -48,3 +48,9 @@ python -m unittest discover -s tests/art -v
 **ĐÃ CHỐT sau đó (2026-10-28):** lấy mốc +17% cho phần thân trên theo mẫu; bản preview điều chỉnh chiều cao hình 947→971px và vai–eo 144→168px, **không kéo giãn hông/chân**, giữ tổng thể thanh thoát. Mốc +17% là riêng Lâm Thiển, quy trình trình preview mới có thể dùng cho các nhân vật khác.
 
 **YÊU CẦU CHO CP318:** Trước khi tách lớp hoặc nghiệm thu rig mới, phục hồi ảnh Back canon thực tế hoặc vẽ lại tạo hình Back theo các tiêu chí trên. So sánh bản đầy đủ cả người với ảnh canon được duyệt, gồm vùng hông, mông và tỷ lệ thân trên. Không sửa proxy kỹ thuật hiện tại và gọi đó là asset cuối, cũng không coi test 0px trên proxy là pass về trang phục. Gửi preview người dùng duyệt trước khi xác nhận asset chính thức.
+
+## Quy tắc toàn dự án: luôn dùng thiết kế mới nhất đã chốt — 2026-10-28
+
+- **ĐÃ CHỐT:** Với Lâm Thiển và mọi nhân vật, **mọi bước tạo art/rig/preview/gameplay phải theo thiết kế mới nhất đã được người dùng duyệt**, chứ không được quay về ảnh cũ khi bản mới đã được chốt. Quy tắc chính nằm tại `docs/PROJECT_SPEC.md` §9.
+- **CP317 bị giới hạn ở kỹ thuật:** ORA proxy dựng từ PNG Back cũ chỉ được dùng để thử phân lớp, không là hình để duyệt ngoại hình và không được thay thế thiết kế khoét hông/hình thể phía sau của Lâm Thiển.
+- **Điểm bắt đầu CP318:** Dựng theo bản Lâm Thiển mới nhất đã chốt, preview toàn thân (đặc biệt Back và hai bên hông) trước khi phân lớp cuối và rig. Nếu bản nguồn chưa phục hồi thì giữ rõ nhãn `RECONSTRUCTED / NOT APPROVED`.
