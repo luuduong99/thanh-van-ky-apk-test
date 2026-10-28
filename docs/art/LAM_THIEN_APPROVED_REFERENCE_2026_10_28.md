@@ -1,3 +1,5 @@
+> **LỊCH SỬ — MẪU NGOẠI HÌNH ĐÃ ĐƯỢC THAY THẾ (28/10/2026):** Mẫu RGB V1 trong tài liệu này đã được người dùng thay bằng [**Lâm Thiển CANON BODY V2**](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) / [ảnh V2](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk). Nội dung dưới chỉ lưu lịch sử quyết định cũ; **không dùng mẫu V1 làm body hoặc trang phục khi sản xuất asset mới**. Giữ nguyên tài liệu để đối chiếu lịch sử.
+
 # Lâm Thiển — bảng thiết kế đã chốt (CANON ART REFERENCE)
 
 **Ngày chốt:** 2026-10-28  
