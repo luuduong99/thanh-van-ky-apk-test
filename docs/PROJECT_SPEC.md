@@ -703,3 +703,17 @@ Bổ sung quy tắc đa dạng dấu hư hại theo mức độ và nguyên nhâ
 
 ### Lịch sử 2026-10-28
 Ghi xác nhận chính thức của người dùng cho preview hư hại bốn mức, đóng băng mức độ trực quan và bổ sung checklist nghiệm thu.
+
+
+---
+
+## 28. CP320 — khởi động P0-02/P0-03 sau khi chốt damage preview (2026-10-28)
+
+- **ĐÃ LÀM:** xác minh Drive vẫn có mẫu ngoại hình `LT_CANON_BODY_REF_2026-10-28_V2`, tạo bản sao lưu nguyên byte của PNG hư hại bốn mức đã duyệt vào ChatGPT Library và thêm ma trận view/pose/layer, validator, unit tests.
+- **HỒ SƠ CP320:** [LAM_THIEN_CP320_HANDOFF.md](art/LAM_THIEN_CP320_HANDOFF.md); [LAM_THIEN_CP320_VIEW_CALIBRATION.json](art/LAM_THIEN_CP320_VIEW_CALIBRATION.json); `tools/check_lam_thien_cp320.py`; `tests/art/test_lam_thien_cp320.py`.
+- **CHƯA HOÀN THÀNH:** ảnh full-body thống nhất Front/Back/Side/3⁄4, landmark đo trực tiếp, layer PNG alpha/ORA/PSD và phép thử Spine/physics. Bản V2 trên Drive là **ảnh phẳng**, không được đánh dấu đã rig hoặc đã có art nhiều trạng thái.
+- **ƯU TIÊN:** Front–Back → Side/3⁄4 → bảy landmark mỗi view → chia layer → kiểm seam/underpaint/draw order → mới triển khai texture hư hại. Chốt 100/70/50/30 giữ nguyên.
+- **QUY TẮC:** Mẫu +17% đã nằm trong V2, không cộng lại. View/pose/wardrobe/integrity giữ riêng; preview damage là hướng hình ảnh, chưa là asset game.
+
+### Lịch sử 2026-10-28
+Thực hiện bàn giao CP320 và lưu PNG preview; cập nhật trạng thái kỹ thuật minh bạch, chưa đóng P0.
