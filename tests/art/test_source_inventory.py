@@ -64,6 +64,20 @@ class SourceInventoryTests(unittest.TestCase):
         self.assertEqual(report['candidate_count'],0)
         self.assertIn('missing layer', ' '.join(report['ora_candidates'][0]['errors']))
 
+    def test_reconstruction_is_never_recovered_as_original(self):
+        source = bytearray(ora_bytes())
+        # Set an explicit provenance marker in root metadata.
+        with zipfile.ZipFile(io.BytesIO(source)) as before:
+            payload={k: before.read(k) for k in before.namelist()}
+        root=ET.fromstring(payload['stack.xml'])
+        root.set('name','CP317 PROXY RECONSTRUCTION — NOT ORIGINAL')
+        payload['stack.xml']=ET.tostring(root)
+        with zipfile.ZipFile(self.base/'reconstruction.ora','w') as z:
+            for name,blob in payload.items():z.writestr(name,blob)
+        report=inv.scan([self.base])
+        self.assertEqual(report['candidate_count'],0)
+        self.assertIn('not original CP313', ' '.join(report['ora_candidates'][0]['errors']))
+
     def test_no_source_reports_missing_not_success(self):
         with zipfile.ZipFile(self.base/'only_png.zip','w') as z:
             z.writestr('flat.png', b'flat image')
