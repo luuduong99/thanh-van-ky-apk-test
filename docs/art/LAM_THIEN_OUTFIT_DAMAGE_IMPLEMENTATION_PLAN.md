@@ -28,8 +28,23 @@
 | 100% | Trang phục mặc định từ ảnh đã duyệt | Ảnh concept; chưa phân lớp |
 | 70% | Hư hại nhẹ, vải và phụ kiện có dấu va chạm | Chưa có asset |
 | 50% | Hư hại vừa ở nhiều nhóm trang phục | Chưa có asset |
-| 30% | Hư hại nặng nhưng còn che phủ phù hợp | Chưa có asset |
+| 30% | Hư hại nặng **kể cả trên mảnh vải còn che phủ**: mép rách, chỉ bung, xước và nếp vải lệch; vẫn giữ vùng che phủ kín đáo | Chưa có asset |
 
 **Chưa chốt riêng:** Công thức ánh xạ sát thương/HP sang độ bền quần áo và tiêu chí kích hoạt từng mốc cụ thể. Không gán sai 70% HP = trạng thái 70% độ nguyên vẹn.
 
 **Điểm tiếp tục:** Phân lớp mẫu Lâm Thiển 100% trước; thiết kế bốn bộ texture đồng bộ ngay trong pipeline, rồi nghiệm thu từng bộ. Đây chưa phải báo cáo hoàn thành cởi/thay đồ, animation, rig hay APK.
+
+
+## 4. Bổ sung 28/10 — hư hại cuối và đề xuất cởi đồ
+
+### ĐÃ CHỐT — cập nhật hiệu ứng 30%
+
+- Ở cấp **30%**, ngay cả những mảnh trang phục còn đảm nhiệm việc che phủ cũng **có hiệu ứng rách/hao mòn** (mép sờn, vải rách, đường may bung, nếp xô lệch) thay vì để chúng hoàn toàn nguyên vẹn.
+- Duy trì hình thể đúng reference đã duyệt và mức che phủ phù hợp; dùng lớp lót/miếng vải có thiết kế để các vùng cần che vẫn kín. Không đồng nhất % nguyên vẹn với % da lộ ra.
+- Thực hiện đồng bộ ở thân áo, tay áo, vạt váy và phụ kiện, kiểm tra front/back/3-4 cùng các tư thế có asset.
+
+### MỚI CHỈ LÀ ĐỀ XUẤT — các mức tháo/thay trang phục riêng tư
+
+- Cân nhắc **3 trạng thái**: (1) mặc đủ trang phục, (2) tháo lớp ngoài, (3) bộ nội y fantasy riêng tư.
+- Trạng thái (3) đề xuất dùng **voan/lưới xuyên sáng ở lớp phủ**, thêm **lớp lót không xuyên thấu ở vùng cần che phủ**, tiết chế phụ kiện vàng. Không thiết kế lớp vải hoàn toàn xuyên thấu để lộ các vùng nhạy cảm.
+- **Chưa được người dùng chốt số cấp/thiết kế nội y**. Chưa tạo asset và không thay registry canon. Nếu được duyệt, ghi trạng thái wardrobe riêng biệt với độ bền quần áo 100/70/50/30; không tự động dùng các trạng thái hư hại cho sự kiện tháo đồ.
