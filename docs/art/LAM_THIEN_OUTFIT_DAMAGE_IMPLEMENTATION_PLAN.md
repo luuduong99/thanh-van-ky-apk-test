@@ -58,3 +58,12 @@
 - **Trạng thái thay/cởi đồ** độc lập với hư hại chiến đấu. Chi tiết số mức và chất liệu chính xác sẽ đối chiếu khi có ảnh đã chốt; giữ che phủ phù hợp.
 - **Nguồn sử dụng**: mẫu ngoại hình Lâm Thiển gốc 28/10 trên Drive đã xác minh; mẫu biến thể trang phục được chốt nhưng **asset chưa nhận**. Không nhận là đã có hình biến thể chính thức để rig.
 - **Hồ sơ chi tiết**: `docs/art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md`.
+
+
+## 6. Mức cởi cuối phải giữ khi đổi tư thế — ĐÃ CHỐT
+
+- **Nguồn ẢNH MỚI đã khôi phục:** [Bảng trạng thái & biểu cảm](https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk); [Bảng kế hoạch](https://drive.google.com/file/d/1ZgMB8nkRlkar3-MYCrH32uQaYxO29S5Q/view?usp=drivesdk). Đây là **ảnh thật người dùng đã gửi** ngày 28/10, thay thế tình trạng thiếu file từ liên kết `blob:` đã mô tả trong mục 5. File nguyên bản đã được sao lưu và xác minh checksum; xem `LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md`.
+- **Không reset mức cởi cuối:** khi ở state riêng tư cuối, đổi Front/Back/Side/3/4, quỳ/nằm/ngồi giường, ghế/sofa, dựa tường, cũng như đổi màn không đưa nhân vật về `outer_removed` hoặc `default`. Cử chỉ và biểu cảm đổi theo tư thế, **mức trang phục và cấu trúc trang phục vẫn giữ**.
+- Kế hoạch ID kỹ thuật: `private_fantasy` là tên đề xuất cho mức cởi cuối, cần ảnh riêng từng pose và lớp lót che phủ; không dùng lọc trong suốt hay crop hình mặc đủ để giả lập.
+- Khi thiếu art cho cặp `pose × wardrobe`: **giữ giá trị state** nhưng hiển thị thiếu asset và vô hiệu vùng chạm không có mapping; không tự fallback sang ảnh mặc đủ. Không đánh dấu từng pose hoàn tất khi chưa có sprite.
+- Độ hư hại 100/70/50/30 tiếp tục độc lập, không tự giảm hoặc reset vì chuyển pose; hiệu ứng rách bám cấu trúc lớp vải và vẫn che phủ phù hợp.
