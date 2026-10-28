@@ -38,3 +38,11 @@ python3 -m unittest discover -s tests/art -p 'test_lam_thien_cp320.py'
 - Mọi view bắt buộc có source đủ độ phân giải, 7 landmark, ảnh review được chốt, file layer thực và thử nghiệm alpha/occlusion.
 - Tài nguyên đã đo không được thay hình thể V2; cảnh quay indoor là pose khác, không làm reset wardrobe/integrity.
 - Đến lúc hoàn thành bước trên, mới đánh dấu P0-02 và P0-03 DONE. Hiện tại: **P0-01 done, CP320 contract+validator done, các sản phẩm art chưa done.**
+
+
+## CP320 — Gói tham chiếu hư hại 4 mức (đã tạo)
+
+- Đã cắt ảnh preview đã duyệt thành **4 ảnh tham chiếu phẳng**, mỗi ảnh rộng 418×941 px; không chỉnh sửa nội dung mỹ thuật, chỉ tách theo ranh giới 4 cột nguyên bản.
+- Đã tạo ZIP `TVK_LamThien_CP320_Damage_Reference_Handoff.zip` kèm README, `manifest.json` và SHA256 của từng file; đã kiểm tra ZIP không lỗi. Sao lưu cùng ảnh gốc trong ChatGPT Library tại `/Thanh Van Ky/Approved References/Lam_Thien_Damage_20261028/`.
+- SHA256 của các crop: 100=`a53618d4f5fe3eab9ea37af474f2192630157f01a56cf795ad08194b9cb431f2`; 70=`d4b64ab57e76f3c0287a7806a6c684da321a67580e95e0a2dc467e1271072ae0`; 50=`10e491167d0dbe23deb860de705c6bd671db2dff190022b31511a2244b535886`; 30=`bfb5c01b639b431531eb6b860072305b333477c1d6dbf80314c84d81487685d0`.
+- **Lưu ý nghiệm thu:** Crop từ poster không phải sprite alpha, không có Rig hay pose-specific texture; chỉ là mẫu đối chiếu độ rách/bẩn/xước P1. Không được dùng crop này để đánh dấu P0-02/P0-03 hay P1-02 hoàn thành.
