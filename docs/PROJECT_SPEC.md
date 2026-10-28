@@ -588,3 +588,17 @@ Tạo ảnh review Back sạch và bổ sung gate không cho concept chưa duy�
 
 ### Lịch sử cập nhật 2026-10-28
 Chốt ảnh tạo hình Lâm Thiển mới nhất, lưu ảnh nguyên bản trên Drive và Library; ghi quy trình tham khảo dùng chung và khóa chống hồi quy ảnh cũ.
+
+
+---
+
+## 21. Lâm Thiển — lộ trình thay đồ và hư hại trang phục khi chiến đấu (2026-10-28)
+
+- **Đã chốt trước:** Có nút thay/cởi lớp ngoài trong màn Nhân vật và hư hại trang phục trong chiến đấu. Mức nguyên vẹn **100% / 70% / 50% / 30%**, tác động toàn bộ nhóm trang phục; ở mức cuối vẫn che phủ phù hợp. Độ nguyên vẹn quần áo khác lượng da lộ và không tự hồi khi hồi HP.
+- **Nên làm cùng lúc với tách lớp:** Lấy [ảnh Lâm Thiển đã chốt 28/10/2026](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk) làm chuẩn tạo layer áo, tay áo, váy/vạt, phụ kiện, underpaint; chuẩn bị bốn bộ texture tương ứng và biến thể tháo lớp áo ngoài để không phải sửa lại rig.
+- **Tương tác/gameplay:** Artwork 2D hiển thị lần đầu chạm mốc hư hại mới và có trạng thái tiếp nối qua màn Nhân vật/hội thoại/tương tác khi có asset. Việc cởi/thay trang phục khác với bị rách do chiến đấu. **Ánh xạ chính xác sát thương/HP sang độ bền chưa chốt riêng**, không tự áp 70% HP = 70% quần áo.
+- **Trạng thái:** Mới có ảnh concept và bộ khung nút/trạng thái, chưa có sprite bốn mức, rig, animation hay APK được nghiệm thu. Không ghi đã hoàn thành.
+- **Chi tiết triển khai:** [Kế hoạch trang phục và hư hại Lâm Thiển](art/LAM_THIEN_OUTFIT_DAMAGE_IMPLEMENTATION_PLAN.md). Không dùng mẫu CP317/318 cũ để tạo biến thể.
+
+### Lịch sử 2026-10-28
+Ghi kế hoạch xử lý trang phục cùng giai đoạn phân lớp theo đề nghị của người dùng, giữ nguyên các quyết định đã chốt trước.
