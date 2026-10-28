@@ -1,4 +1,4 @@
-# Lâm Thiển — quyết định trang phục, độ rách và đồng bộ tư thế (28/10/2026)
+> **CẬP NHẬT 2026-10-28 — ĐÃ NHẬN ĐƯỢC FILE ẢNH THẬT.** Hai ảnh người dùng vừa đính kèm đã được lưu và xác minh: [bảng biểu cảm/tư thế/trang phục](https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk) và [bảng kế hoạch](https://drive.google.com/file/d/1ZgMB8nkRlkar3-MYCrH32uQaYxO29S5Q/view?usp=drivesdk). Những đoạn nói "chưa lấy được ảnh từ blob" bên dưới là **tình trạng lịch sử trước khi nhận file**, không còn là trạng thái hiện tại. Xem hồ sơ chuẩn [LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md](LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md). **Quyết định bổ sung đã chốt:** ở mức cởi cuối khi đổi bất kỳ tư thế nào, costume state vẫn giữ; nếu thiếu ảnh đúng pose phải báo thiếu asset thay vì âm thầm đổi sang trang phục mặc đủ.\n\n# Lâm Thiển — quyết định trang phục, độ rách và đồng bộ tư thế (28/10/2026)
 
 **Trạng thái quyết định:** **NGƯỜI DÙNG ĐÃ CHỐT PHƯƠNG ÁN THAM CHIẾU MỚI** trong hội thoại bằng câu: “hãy dùng này đi. Chốt phần này. Nhớ lưu lại để làm tài liệu. Tránh bị nhầm sau này. Nhớ là cũng sẽ áp dụng khi đổi tư thế đó nha”.
 
