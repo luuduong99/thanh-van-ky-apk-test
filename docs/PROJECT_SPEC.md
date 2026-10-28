@@ -474,3 +474,17 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 
 ### Cập nhật lịch sử ngày 2026-10-28
 Ghi nhận chuẩn +17% và mốc giao việc CP314; không coi các bước sửa ảnh chưa chạy trên ORA là hoàn thành.
+
+
+---
+
+## 14. Lâm Thiển — CP315 QA và điểm tiếp tục CP316 (2026-10-28)
+
+- **ĐÃ CHỐT — KHÔNG ĐỔI:** Model Lâm Thiển giữ reference và mốc +17%; chỉ tinh chỉnh nhẹ chiều cao/tỷ lệ tổng thể sau preview và duyệt. Đây là quy trình chung cho nhân vật sau, không phải tỷ lệ cơ thể bắt buộc giống hệt nhau.
+- **ĐÃ THỰC HIỆN CP315:** Tạo script `tools/art/audit_ora.py` kiểm tra ORA theo layer, so pixel thay đổi với `--baseline` và ROI cho phép, mô phỏng dịch chuyển layer tóc ±5px, xuất alpha-hole mask. Tạo `tests/art/test_audit_ora.py` với **5/5 bài kiểm thử tổng hợp PASS** tại môi trường làm việc. Đã thêm workflow `.github/workflows/art-qa.yml`, nhưng cần kiểm chứng workflow GitHub thực tế sau khi push.
+- **GIỚI HẠN:** 70 alpha holes và 9 pixel ngoài ROI được phát hiện trên fixture giả lập, không phải ảnh Lâm Thiển. Chưa có CP313 ORA 10 lớp nguồn trong repo/Drive đã truy cập nên không thể nghiệm thu artwork và rig.
+- **TIẾP TỤC CP316:** Xác minh ORA 10 lớp CP313; sửa tóc/scalp–gáy–vai và phụ kiện; tiếp hai tay áo; chạy kiểm thử với ROI canvas thật; preview người dùng duyệt trước khi tích hợp Spine/physics/APK.
+- Xem tài liệu chi tiết `docs/art/LAM_THIEN_CP315_QA.md`.
+
+### Cập nhật lịch sử ngày 2026-10-28
+Bổ sung công cụ QA CP315 và unit tests; phân biệt rõ kiểm thử công cụ thành công với hoàn tất asset/rig thực tế.
