@@ -609,3 +609,18 @@ Ghi kế hoạch xử lý trang phục cùng giai đoạn phân lớp theo đề
 - **ĐÃ CHỐT:** Khi trang phục hư hại xuống mức **30%**, ngay cả các mảnh vải còn lại để che phủ cũng phải **có dấu hư hại rõ** (rách mép, sờn, chỉ bung, vải xô lệch) chứ không giữ nguyên như mới. Không làm lộ trực diện vùng nhạy cảm; phần che phủ vẫn sử dụng cấu trúc nhiều lớp có chủ đích. Mốc 30% vẫn chỉ là **độ nguyên vẹn trang phục**, không phải % da lộ ra.
 - **ĐỀ XUẤT / CHƯA CHỐT:** Cởi/thay trang phục có thể chia ba trạng thái: trang phục đầy đủ → tháo áo ngoài → nội y fantasy có lớp voan/lưới mỏng phủ ngoài và lớp lót không xuyên thấu tại vùng cần che phủ. Người dùng đang cân nhắc nội y trong suốt; **chưa coi đã duyệt ba mức hoặc mẫu nội y cuối cùng**.
 - **QUY TẮC CẤU TRÚC:** Trạng thái tháo/thay đồ là trục riêng, không đồng nhất 4 cấp độ hư hại 100/70/50/30. Ghi quy chuẩn và ma trận art ở [LAM_THIEN_OUTFIT_DAMAGE_IMPLEMENTATION_PLAN.md](art/LAM_THIEN_OUTFIT_DAMAGE_IMPLEMENTATION_PLAN.md). Chưa có sprite/rig/animation đã hoàn tất cho biến thể mới.
+
+
+---
+
+## 22. Lâm Thiển — chốt phương án hư hại/trang phục & đồng bộ tư thế (2026-10-28)
+
+- **ĐÃ CHỐT PHƯƠNG ÁN THAM CHIẾU MỚI:** Người dùng chọn một ảnh qua `blob:https://chatgpt.com/8d8b9f33-3a9b-47c6-a677-c31dd0dcfccc`, đồng thời yêu cầu ghi làm chuẩn tham khảo và **áp dụng cả khi đổi tư thế**. Đây là URL tạm trong trình duyệt, **chưa lấy được file bytes**, không thể gọi là ảnh đã upload hay kiểm chứng. Không thay bằng ảnh cũ mà gắn nhãn mới.
+- **MỨC RÁCH:** Điều chỉnh khỏi phương án tăng +20% cố định; ưu tiên **giảm bớt độ rách cho hợp lý** theo lựa chọn mới. Giữ các mức độ nguyên vẹn **100/70/50/30**, kể cả vải che phủ còn lại ở 30% vẫn có dấu hư hại nhưng giữ che phủ phù hợp.
+- **TƯ THẾ / TƯƠNG TÁC:** Mọi biến thể trang phục và độ hư hại **giữ cùng trạng thái** khi đổi Front/Back/Side/3/4, quỳ/nằm trên giường, ngồi giường/ghế/sofa, tựa tường, hội thoại và chiến đấu. Vết rách bám đúng cấu trúc lớp vải, thay đổi theo trọng lực/tư thế; biểu cảm, hành động phù hợp từng hoàn cảnh.
+- **THAY/CỞI ĐỒ:** Trạng thái riêng với hư hại chiến đấu; phương án voan/lưới chỉ được khóa chi tiết chính xác sau khi nhận tệp ảnh nguồn. Giữ lớp che phủ phù hợp.
+- **NGUỒN CHUẨN:** Ngoại hình gốc Lâm Thiển vẫn tham chiếu [ảnh đã lưu chính thức](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk). Ảnh biến thể trang phục vừa chốt cần **tải lên lại dạng PNG/JPG** để lưu và xác minh. Xem [hồ sơ quyết định mới](art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md).
+- **TRẠNG THÁI KỸ THUẬT:** Chốt yêu cầu bằng chữ, **chưa xác minh ảnh blob mới**, chưa có sprite từng tư thế/mức và rig/APK cho các biến thể này. Không đánh dấu sản xuất hoàn tất.
+
+### Lịch sử cập nhật 2026-10-28
+Bổ sung quyết định chọn biến thể trang phục mới và quy tắc đồng bộ trạng thái qua tư thế; bỏ yêu cầu tăng mức rách +20% cố định, giữ ràng buộc nguồn ảnh chưa thể truy xuất.
