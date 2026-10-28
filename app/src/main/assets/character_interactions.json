@@ -535,6 +535,28 @@
             "back": "characters/to_nguyet_ly_back.png",
             "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward.png",
             "bed_recline": "characters/to_nguyet_ly_bed_recline.png"
+          },
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/to_nguyet_ly_front_default_damage_30.png",
+              "back": "characters/to_nguyet_ly_back_default_damage_30.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_30.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_30.png"
+            },
+            "50": {
+              "front": "characters/to_nguyet_ly_front_default_damage_50.png",
+              "back": "characters/to_nguyet_ly_back_default_damage_50.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_50.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_50.png"
+            },
+            "70": {
+              "front": "characters/to_nguyet_ly_front_default_damage_70.png",
+              "back": "characters/to_nguyet_ly_back_default_damage_70.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_70.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_70.png"
+            }
           }
         },
         {
@@ -547,14 +569,136 @@
             "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed.png",
             "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed.png"
           },
-          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter."
+          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter.",
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/to_nguyet_ly_front_outer_removed_damage_30.png",
+              "back": "characters/to_nguyet_ly_back_outer_removed_damage_30.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_30.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_30.png"
+            },
+            "50": {
+              "front": "characters/to_nguyet_ly_front_outer_removed_damage_50.png",
+              "back": "characters/to_nguyet_ly_back_outer_removed_damage_50.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_50.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_50.png"
+            },
+            "70": {
+              "front": "characters/to_nguyet_ly_front_outer_removed_damage_70.png",
+              "back": "characters/to_nguyet_ly_back_outer_removed_damage_70.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_70.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_70.png"
+            }
+          }
+        },
+        {
+          "id": "private_fantasy",
+          "label": "Trang phục riêng tư (mức cuối)",
+          "status": "asset_required",
+          "images": {
+            "front": "characters/to_nguyet_ly_front_private_fantasy.png",
+            "back": "characters/to_nguyet_ly_back_private_fantasy.png",
+            "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy.png",
+            "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy.png"
+          },
+          "description": "Future character-specific fantasy privacy outfit: translucent overlay with opaque coverage. Persist across all poses; unavailable artwork never falls back to other outfit.",
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/to_nguyet_ly_front_private_fantasy_damage_30.png",
+              "back": "characters/to_nguyet_ly_back_private_fantasy_damage_30.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_30.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_30.png"
+            },
+            "50": {
+              "front": "characters/to_nguyet_ly_front_private_fantasy_damage_50.png",
+              "back": "characters/to_nguyet_ly_back_private_fantasy_damage_50.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_50.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_50.png"
+            },
+            "70": {
+              "front": "characters/to_nguyet_ly_front_private_fantasy_damage_70.png",
+              "back": "characters/to_nguyet_ly_back_private_fantasy_damage_70.png",
+              "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_70.png",
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_70.png"
+            }
+          }
         }
       ],
       "motionNotes": {
         "currentRenderer": "Android bitmap-mesh breath and hair deformation for any available pose portrait",
         "skeletalRenderer": "Spine/Live2D rig integration pending",
         "noPretendAnimation": "If pose art or rig is unavailable, UI shows a message rather than swapping to unrelated standing art."
-      }
+      },
+      "plannedPoses": [
+        {
+          "id": "side",
+          "label": "Nghiêng",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_side.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "front_three_quarter",
+          "label": "Trước 3/4",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_front_three_quarter.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "back_three_quarter",
+          "label": "Sau 3/4",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_back_three_quarter.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "back_turn",
+          "label": "Quay nhìn lại",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_back_turn.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "bed_side_lying",
+          "label": "Nằm nghiêng",
+          "context": "bed",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_bed_side_lying.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "bed_sit",
+          "label": "Ngồi mép giường",
+          "context": "bed",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_bed_sit.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "chair_sit",
+          "label": "Ngồi ghế",
+          "context": "chair",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_chair_sit.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "wall_lean",
+          "label": "Dựa tường",
+          "context": "wall",
+          "status": "asset_required",
+          "artworkPath": "characters/to_nguyet_ly_wall_lean.png",
+          "touchZonesStatus": "not_calibrated"
+        }
+      ]
     },
     {
       "id": "lin_qian",
@@ -1089,6 +1233,28 @@
             "back": "characters/lin_qian_back.png",
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward.png",
             "bed_recline": "characters/lin_qian_bed_recline.png"
+          },
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/lin_qian_front_default_damage_30.png",
+              "back": "characters/lin_qian_back_default_damage_30.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_30.png",
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_30.png"
+            },
+            "50": {
+              "front": "characters/lin_qian_front_default_damage_50.png",
+              "back": "characters/lin_qian_back_default_damage_50.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_50.png",
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_50.png"
+            },
+            "70": {
+              "front": "characters/lin_qian_front_default_damage_70.png",
+              "back": "characters/lin_qian_back_default_damage_70.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_70.png",
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_70.png"
+            }
           }
         },
         {
@@ -1101,7 +1267,29 @@
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed.png",
             "bed_recline": "characters/lin_qian_bed_recline_outer_removed.png"
           },
-          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter."
+          "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter.",
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/lin_qian_front_outer_removed_damage_30.png",
+              "back": "characters/lin_qian_back_outer_removed_damage_30.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_30.png",
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_30.png"
+            },
+            "50": {
+              "front": "characters/lin_qian_front_outer_removed_damage_50.png",
+              "back": "characters/lin_qian_back_outer_removed_damage_50.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_50.png",
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_50.png"
+            },
+            "70": {
+              "front": "characters/lin_qian_front_outer_removed_damage_70.png",
+              "back": "characters/lin_qian_back_outer_removed_damage_70.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_70.png",
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_70.png"
+            }
+          }
         },
         {
           "id": "private_fantasy",
@@ -1113,14 +1301,124 @@
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy.png",
             "bed_recline": "characters/lin_qian_bed_recline_private_fantasy.png"
           },
-          "description": "Approved design direction: final wardrobe stage persists across poses and scenes. Requires separately approved pose-specific fully covered fantasy fabric/lining artwork. Never use transparent filters or substitute default clothing art when files are missing. Not ready in APK."
+          "description": "Approved design direction: final wardrobe stage persists across poses and scenes. Requires separately approved pose-specific fully covered fantasy fabric/lining artwork. Never use transparent filters or substitute default clothing art when files are missing. Not ready in APK.",
+          "appearancePersistence": "character_scoped_all_poses",
+          "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
+          "integrityImages": {
+            "30": {
+              "front": "characters/lin_qian_front_private_fantasy_damage_30.png",
+              "back": "characters/lin_qian_back_private_fantasy_damage_30.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_30.png",
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_30.png"
+            },
+            "50": {
+              "front": "characters/lin_qian_front_private_fantasy_damage_50.png",
+              "back": "characters/lin_qian_back_private_fantasy_damage_50.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_50.png",
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_50.png"
+            },
+            "70": {
+              "front": "characters/lin_qian_front_private_fantasy_damage_70.png",
+              "back": "characters/lin_qian_back_private_fantasy_damage_70.png",
+              "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_70.png",
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_70.png"
+            }
+          }
         }
       ],
       "motionNotes": {
         "currentRenderer": "Android bitmap-mesh breath and hair deformation for any available pose portrait",
         "skeletalRenderer": "Spine/Live2D rig integration pending",
         "noPretendAnimation": "If pose art or rig is unavailable, UI shows a message rather than swapping to unrelated standing art."
-      }
+      },
+      "plannedPoses": [
+        {
+          "id": "side",
+          "label": "Nghiêng",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_side.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "front_three_quarter",
+          "label": "Trước 3/4",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_front_three_quarter.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "back_three_quarter",
+          "label": "Sau 3/4",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_back_three_quarter.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "back_turn",
+          "label": "Quay nhìn lại",
+          "context": "standing",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_back_turn.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "bed_side_lying",
+          "label": "Nằm nghiêng",
+          "context": "bed",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_bed_side_lying.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "bed_sit",
+          "label": "Ngồi mép giường",
+          "context": "bed",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_bed_sit.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "chair_sit",
+          "label": "Ngồi ghế",
+          "context": "chair",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_chair_sit.png",
+          "touchZonesStatus": "not_calibrated"
+        },
+        {
+          "id": "wall_lean",
+          "label": "Dựa tường",
+          "context": "wall",
+          "status": "asset_required",
+          "artworkPath": "characters/lin_qian_wall_lean.png",
+          "touchZonesStatus": "not_calibrated"
+        }
+      ]
     }
-  ]
+  ],
+  "appearanceSystem": {
+    "schema_version": 1,
+    "scope": "all_current_and_future_characters",
+    "stateKeys": [
+      "wardrobe",
+      "integrity",
+      "pose",
+      "expression",
+      "action"
+    ],
+    "integrityLevels": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "poseChangePolicy": "preserve_wardrobe_and_integrity_for_all_levels",
+    "missingArtPolicy": "show_missing_asset_without_reverting_to_default",
+    "characterScopedPersistence": true,
+    "outfitDamageIndependent": true,
+    "implementationStatus": "state_store_and_missing_art_guard_implemented_sprite_assets_incomplete"
+  }
 }
