@@ -637,3 +637,17 @@ Bổ sung quyết định chọn biến thể trang phục mới và quy tắc �
 
 ### Lịch sử 2026-10-28
 Đã nhận 2 PNG thật, lưu kiểm chứng hash; xác nhận mức cởi cuối vẫn áp dụng qua mọi tư thế.
+
+
+---
+
+## 24. QUY CHUẨN CHUNG — trang phục, hư hại và trạng thái khi đổi tư thế (2026-10-28)
+
+- **ĐÃ CHỐT CHUNG CHO TOÀN BỘ NHÂN VẬT HIỆN TẠI VÀ SAU NÀY**: Khi đổi tư thế/góc nhìn/chuyển cảnh, **TẤT CẢ mức trang phục** (`default`, `outer_removed`, mức cuối `private_fantasy` nếu nhân vật có, hoặc biến thể riêng) **phải giữ nguyên**. Không chỉ riêng mức cởi cuối của Lâm Thiển. Mọi nhân vật cũng giữ `integrity` (100/70/50/30) độc lập với `wardrobe`, và đổi biểu cảm/hành động theo bối cảnh.
+- **ĐÃ THÊM BỘ QUẢN LÝ CHUNG:** `CharacterAppearanceState.kt` lưu 5 key theo ID nhân vật: wardrobe, integrity, pose, expression, action. `CharacterInteractionActivity.kt` dùng resolver tìm đúng asset; thiếu ảnh thì không tự hiển thị lại trang phục đầy đủ. Màn Nhân vật của Tô Nguyệt Ly chia sẻ độ nguyên vẹn, không còn sử dụng riêng chỉ số demo cho hiệu ứng này. Thư viện asset khai báo tổ hợp các mức hư hại cho cả Tô Nguyệt Ly và Lâm Thiển, cùng danh sách pose bổ sung ở trạng thái chờ asset.
+- **ĐÃ CHỐT KHI THIẾU ẢNH:** Phải giữ giá trị state đã chọn và báo thiếu tệp thật, tắt hotspot phụ thuộc art; không giả mạo bằng crop, flip hay ảnh khác. Vết rách nằm đúng cấu trúc vải ở mọi góc nhìn; các lớp che phủ còn lại ở 30% cũng hư hại nhưng vẫn che kín phù hợp.
+- **CHƯA HOÀN THÀNH MỸ THUẬT:** Khai báo đường dẫn và placeholder không đồng nghĩa đã có texture pose × wardrobe × damage. Chưa có bộ sprite tất cả trạng thái, rig Spine hoặc APK được nghiệm thu.
+- **ĐẶC TẢ CHUNG BẮT BUỘC:** [GLOBAL_CHARACTER_APPEARANCE_SPEC.md](art/GLOBAL_CHARACTER_APPEARANCE_SPEC.md) và quy chuẩn art [CHARACTER_ART_DIRECTION_REFERENCE.md](art/CHARACTER_ART_DIRECTION_REFERENCE.md). Kiểm tra metadata qua `tools/validate_global_appearance.py` và `tests/art/test_global_appearance.py`; build pipeline cũng chạy kiểm tra global. Rule dùng cho **mọi nhân vật mới**, không chép số đo/hình thể của Lâm Thiển sang nhân vật khác.
+
+### Lịch sử cập nhật 2026-10-28
+Nâng yêu cầu giữ mức cởi khi đổi pose từ nhân vật Lâm Thiển thành **luật toàn dự án cho mọi mức**. Thêm code lưu trạng thái toàn nhân vật, data placeholder và gate kiểm tra asset.
