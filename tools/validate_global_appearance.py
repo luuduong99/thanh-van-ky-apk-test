@@ -51,11 +51,15 @@ def validate(data, assets_root=ASSETS):
     )):
         errors.append("Damage visuals must be persistent, cumulative, independent and covered")
     levels = visual.get("levels", {})
-    for name in ("dirt", "abrasion", "tear"):
-        values = [levels.get(level, {}).get(name) for level in INTEGRITY]
-        if values != [0, 1, 2, 3]:
-            errors.append("Invalid damage visual progression for " + name +
-                          ": expected severity 0/1/2/3 at integrity 100/70/50/30")
+    if [levels.get(level, {}).get("severity") for level in INTEGRITY] != [0, 1, 2, 3]:
+        errors.append("Visual severity must increase with garment wear at 100/70/50/30")
+    if levels.get("100", {}).get("possibleEffects") != []:
+        errors.append("Intact clothing should not have wear effects")
+    for level in INTEGRITY[1:]:
+        if set(levels.get(level, {}).get("possibleEffects", [])) != {"dirt", "abrasion", "tear"}:
+            errors.append("Missing dirt, abrasion or tear option at durability " + level)
+    if visual.get("effectsMayVaryByCause") is not True:
+        errors.append("Damage effects must depend on hit/environment instead of a rigid mixture")
     ids = set()
     for ch in data.get("characters", []):
         cid = ch.get("id", "")
