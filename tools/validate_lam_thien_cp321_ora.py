@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import struct
 import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -44,8 +45,14 @@ def audit(path, strict=False):
                     errors.append('Invalid layer source')
                     continue
                 raw = z.read(src)
-                if not raw.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])):
+                if len(raw) < 29 or not raw.startswith(bytes([137, 80, 78, 71, 13, 10, 26, 10])) or raw[12:16] != b'IHDR':
                     errors.append('Layer is not PNG')
+                else:
+                    width, height = struct.unpack('>II', raw[16:24])
+                    if (width, height) != (2048, 3072):
+                        errors.append(f'Layer {src} dimensions {width}x{height} differ from canvas 2048x3072')
+                    if raw[25] != 6:
+                        errors.append(f'Layer {src} must be RGBA PNG for alpha-ready export')
                 if layer in actual:
                     hashes.append(hashlib.sha256(raw).hexdigest())
             if len(set(hashes)) == 1 and len(hashes) == 15:
