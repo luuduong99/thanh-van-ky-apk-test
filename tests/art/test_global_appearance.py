@@ -46,6 +46,29 @@ class GlobalAppearanceTests(unittest.TestCase):
         d["characters"][0]["plannedPoses"][0]["status"] = "ready"
         self.assertTrue(validate(d))
 
+    def test_backlog_matches_all_registered_characters(self):
+        backlog_path = CATALOGUE.parents[4] / "docs/art/GLOBAL_CHARACTER_ASSET_BACKLOG.json"
+        backlog = json.loads(backlog_path.read_text(encoding="utf-8"))
+        chars = {c["character_id"]: c for c in backlog["characters"]}
+        self.assertEqual(set(chars), {c["id"] for c in DATA["characters"]})
+        total = 0
+        for character in DATA["characters"]:
+            expected = (len(character["poses"]) + len(character["plannedPoses"])) * \
+                       len(character["wardrobeStates"]) * len(DATA["appearanceSystem"]["integrityLevels"])
+            self.assertEqual(chars[character["id"]]["required_combinations"], expected)
+            total += expected
+        self.assertEqual(backlog["total_required_combinations"], total)
+
+    def test_android_store_is_generic_and_not_pose_scoped(self):
+        app = CATALOGUE.parents[1] / "java/vn/thanhvanky/prototype"
+        store = (app / "CharacterAppearanceState.kt").read_text(encoding="utf-8")
+        activity = (app / "CharacterInteractionActivity.kt").read_text(encoding="utf-8")
+        self.assertIn("prefKey(id, \"wardrobe\")", store)
+        self.assertIn("prefKey(id, \"integrity\")", store)
+        self.assertIn("fun resolveArt(", store)
+        self.assertIn("CharacterAppearanceState.resolveArt(", activity)
+        self.assertIn("CharacterAppearanceState.setPose(", activity)
+
 
 if __name__ == "__main__":
     unittest.main()
