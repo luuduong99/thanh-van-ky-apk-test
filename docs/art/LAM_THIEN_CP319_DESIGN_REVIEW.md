@@ -1,3 +1,5 @@
+> **LỊCH SỬ — ĐÃ BỊ THAY THẾ (2026-10-28):** File này chỉ ghi nhận preview cũ. Người dùng đã chốt ảnh mới tại [LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md](LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md) và [ảnh chuẩn trên Google Drive](https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk). Không sử dụng ảnh CP318/319 làm chuẩn tạo hình hoặc đầu vào rig mới; các dòng “chờ duyệt” bên dưới là **lịch sử**, không phải trạng thái hiện hành.
+
 # Thanh Vân Ký — Lâm Thiển · CP319 clean design review
 
 **Ngày:** 2026-10-28  
