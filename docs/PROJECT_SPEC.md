@@ -671,3 +671,19 @@ Nâng yêu cầu giữ mức cởi khi đổi pose từ nhân vật Lâm Thiển
 
 ### Lịch sử cập nhật 2026-10-28 (Canon V2)
 Đã nhận/chốt PNG V2, lưu nguyên bản Drive/Library, lập model card và checklist, chuyển V1 sang lịch sử và khóa quy tắc tránh đoán số đo từ poster.
+
+
+---
+
+## 26. Toàn bộ nhân vật — bổ sung bẩn, xước và rách trang phục theo hư hại (2026-10-28)
+
+**ĐÃ CHỐT từ người dùng:** Các tình trạng trang phục sau chiến đấu phải thể hiện phối hợp **vết bẩn**, **vết xước/sờn trên chất liệu**, và **vết rách**. Mức tăng phù hợp với độ tổn hại: `100%` nguyên vẹn; `70%` nhẹ; `50%` trung bình; `30%` nặng, kể cả các mảnh vải còn đảm nhiệm che phủ cũng mang dấu sờn/rách nhưng vẫn che phủ phù hợp. Không đặt mức tăng cố định +20% hoặc nhầm con số này với tỷ lệ da lộ ra.
+
+- **PHÂN BỐ THEO NGUYÊN NHÂN:** Các hình thức hư hại có thể khác nhau theo va chạm/môi trường/chất vải: có tình huống thiên về bụi bẩn, có tình huống thiên về cọ xát/sờn, có tình huống làm rách đường may. Không bắt buộc mỗi lần trúng đòn tạo cả ba vết với cùng độ nặng.
+- **TRẠNG THÁI VÀ TƯ THẾ:** Tổn hại phải bám cùng cấu trúc quần áo khi đổi Front/Back/Side/3⁄4, nằm, quỳ, ngồi, dựa tường; không tự xóa hoặc thêm dấu vết chỉ do đổi pose. `wardrobe` và `integrity` vẫn độc lập, giữ theo nhân vật khi chuyển cảnh/hội thoại/chiến đấu. Hồi HP không tự giặt/sửa đồ.
+- **PHẠM VI:** Áp dụng cho **tất cả nhân vật hiện tại và tương lai**; Lâm Thiển làm mẫu triển khai đầu tiên theo **CANON BODY V2**.
+- **NGUỒN KỸ THUẬT:** [GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md](art/GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md) là chuẩn art; `app/src/main/assets/character_interactions.json` có `appearanceSystem.damageVisualProfile` và `tools/validate_global_appearance.py` có kiểm tra metadata tương ứng; [kế hoạch Lâm Thiển V2](art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md) đã có việc tạo/dò preview.
+- **PHÂN BIỆT HOÀN THÀNH:** Đã lưu quyết định và lập profile metadata, **chưa có hình texture/animation thực** cho vết bẩn, xước hay rách; cần duyệt preview rồi mới tách layer/rig và xác minh APK.
+
+### Lịch sử 2026-10-28
+Bổ sung quy tắc đa dạng dấu hư hại theo mức độ và nguyên nhân, thống nhất xuyên tư thế/nhân vật. Không thay ảnh canon V2 hiện tại.
