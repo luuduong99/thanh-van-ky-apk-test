@@ -82,17 +82,22 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
         garmentMessage = "Đã chọn " + outfitNames[index] + "."
         invalidate()
     }
-    private var garmentStep = storyPrefs.getInt("garment_step", 0).coerceIn(0, 3)
+    // Shared across equipment/interaction screens; wardrobe and pose remain unchanged.
+    private val equipmentCharacterId = "to_nguyet_ly"
+    private var garmentStep = garmentSteps.indexOf(
+        CharacterAppearanceState.read(context, equipmentCharacterId).integrity
+    ).coerceAtLeast(0)
     private var garmentMessage = "Trang phục có thể hư hại ở mọi lớp."
     private fun applyGarmentDamage() {
-        garmentStep = (garmentStep + 1).coerceAtMost(3)
-        storyPrefs.edit().putInt("garment_step", garmentStep).apply()
+        val integrity = CharacterAppearanceState.read(context, equipmentCharacterId).integrity
+        garmentStep = (garmentSteps.indexOf(integrity).coerceAtLeast(0) + 1).coerceAtMost(3)
+        CharacterAppearanceState.setIntegrity(context, equipmentCharacterId, garmentSteps[garmentStep])
         garmentMessage = if (garmentStep == 3) "Trang phục hư hại tối đa." else "Trang phục bị hư hại thêm."
         invalidate()
     }
     private fun repairGarment() {
         garmentStep = 0
-        storyPrefs.edit().putInt("garment_step", 0).apply()
+        CharacterAppearanceState.setIntegrity(context, equipmentCharacterId, 100)
         garmentMessage = "Đã sửa toàn bộ trang phục."
         invalidate()
     }
@@ -230,9 +235,19 @@ private class MapPrototypeView(activity: Activity) : View(activity) {
     private fun drawEquipment(c: Canvas) {
         text(c, "TRANG PHỤC • TÔ NGUYỆT LY", 195f, 48f, 19f, gold, true)
         rounded(c, 22f, 78f, 368f, 495f, Color.rgb(39, 59, 77), 18f)
-        portrait(c, nguyetLyPortrait, RectF(70f, 85f, 320f, 480f))
+        val appearance = CharacterAppearanceState.read(context, equipmentCharacterId)
+        garmentStep = garmentSteps.indexOf(appearance.integrity).coerceAtLeast(0)
+        if (appearance.wardrobe == "default" && appearance.integrity == 100) {
+            portrait(c, nguyetLyPortrait, RectF(70f, 85f, 320f, 480f))
+        } else {
+            // Never silently show undamaged/full-clothing art for an altered state.
+            text(c, "Đang giữ: " + appearance.wardrobe, 195f, 232f, 13f, cream, true)
+            text(c, "Độ bền: " + appearance.integrity + "%", 195f, 255f, 13f, cream)
+            text(c, "Chưa có ảnh trạng thái", 195f, 290f, 12f, gold)
+            text(c, "Cần sprite đúng pose/đồ", 195f, 314f, 11f, cream)
+        }
         text(c, "Đang chọn: " + outfitNames[selectedOutfit], 195f, 510f, 15f, gold, true)
-        text(c, "Độ nguyên vẹn: " + garmentSteps[garmentStep] + "%", 195f, 532f, 15f, cream, true)
+        text(c, "Độ nguyên vẹn: " + appearance.integrity + "%", 195f, 532f, 15f, cream, true)
         text(c, "Chọn mẫu: Bạch Nguyệt / Huyền Hỏa / Hồ Tiên / Du hành", 195f, 551f, 10f)
         for (i in outfitNames.indices) {
             val left = 16f + i * 93f
