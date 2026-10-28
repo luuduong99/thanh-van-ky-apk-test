@@ -48,3 +48,13 @@
 - Cân nhắc **3 trạng thái**: (1) mặc đủ trang phục, (2) tháo lớp ngoài, (3) bộ nội y fantasy riêng tư.
 - Trạng thái (3) đề xuất dùng **voan/lưới xuyên sáng ở lớp phủ**, thêm **lớp lót không xuyên thấu ở vùng cần che phủ**, tiết chế phụ kiện vàng. Không thiết kế lớp vải hoàn toàn xuyên thấu để lộ các vùng nhạy cảm.
 - **Chưa được người dùng chốt số cấp/thiết kế nội y**. Chưa tạo asset và không thay registry canon. Nếu được duyệt, ghi trạng thái wardrobe riêng biệt với độ bền quần áo 100/70/50/30; không tự động dùng các trạng thái hư hại cho sự kiện tháo đồ.
+
+
+## 5. Quyết định mới nhất về mức rách và thay đổi tư thế — ĐÃ CHỐT 2026-10-28
+
+- **Cập nhật mới nhất thay thế đề xuất cũ tăng rách +20%**: hạ bớt mức rách cho tự nhiên. Các mốc độ bền quần áo 100% / 70% / 50% / 30% **giữ nguyên**. Kể cả lớp che phủ ở 30% cũng được vẽ dấu hiệu hư hại nhưng vẫn che kín các vùng cần che.
+- **Ảnh lựa chọn mới được người dùng chốt trong hội thoại**: `blob:https://chatgpt.com/8d8b9f33-3a9b-47c6-a677-c31dd0dcfccc`. **Chưa truy xuất/không lưu được bytes từ blob URL**. Hình thực được nhận sau này phải được đối chiếu, lưu ảnh gốc và hash; không tự điền dữ liệu hình.
+- **Quy tắc đồng bộ qua pose**: tiếp tục các trạng thái đang mặc và hư hại khi đổi Front/Back/Side/3/4, quỳ/nằm/ngồi trên giường, ghế/sofa, dựa tường, hội thoại và chiến đấu. Không reset trạng thái hoặc sinh vết rách ngẫu nhiên khi đổi pose. Mỗi pose có biểu cảm/động tác tự nhiên phù hợp với bối cảnh.
+- **Trạng thái thay/cởi đồ** độc lập với hư hại chiến đấu. Chi tiết số mức và chất liệu chính xác sẽ đối chiếu khi có ảnh đã chốt; giữ che phủ phù hợp.
+- **Nguồn sử dụng**: mẫu ngoại hình Lâm Thiển gốc 28/10 trên Drive đã xác minh; mẫu biến thể trang phục được chốt nhưng **asset chưa nhận**. Không nhận là đã có hình biến thể chính thức để rig.
+- **Hồ sơ chi tiết**: `docs/art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md`.
