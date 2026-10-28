@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "character_id": "lin_qian",
+  "checkpoint": "CP320",
+  "updated_at": "2026-10-28",
+  "status": "calibration_contract_prepared_not_art_approved",
+  "canon": {
+    "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "file_name": "TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+    "url": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+    "sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+    "width": 1672,
+    "height": 941,
+    "source_type": "flat_sheet_not_layered",
+    "historical_plus_17_already_included": true
+  },
+  "approved_damage": {
+    "levels": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "sha256": "03251b5ec9b020b325687b530c98e026622ba7b3334466ab5d2323a0a89c9e23",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Damage_20261028/TVK_LamThien_Damage_4Levels_Approved_20261028.png",
+    "storage": "uploaded_to_ChatGPT_Library_2026-10-28",
+    "status": "preview_approved_not_texture"
+  },
+  "coordinate_system": {
+    "unit": "normalized_0_to_1",
+    "origin": "top_left_of_individual_full_body_view_image",
+    "x_axis": "right",
+    "y_axis": "down",
+    "landmark_names": [
+      "head_top",
+      "chin",
+      "shoulder_center",
+      "waist_center",
+      "hip_center",
+      "knee_center",
+      "ankle_center"
+    ],
+    "landmark_requirements": "All seven landmarks must be independently measured on actual full-body view; no inferred measurements from small poster crops"
+  },
+  "views": [
+    {
+      "id": "front",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "side",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "front_three_quarter",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back_three_quarter",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back_turn",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    }
+  ],
+  "additional_poses": [
+    {
+      "id": "bed_side_lying",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_sit",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "chair_sit",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "wall_lean",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_recline",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_kneel_forward",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    }
+  ],
+  "layer_contract": {
+    "root": "character/lin_qian",
+    "required": [
+      "hair_back",
+      "body_underpaint",
+      "face_base",
+      "eye_left",
+      "eye_right",
+      "mouth",
+      "hair_front",
+      "costume_inner",
+      "costume_outer",
+      "sleeve_left",
+      "sleeve_right",
+      "skirt_front",
+      "skirt_back",
+      "ornaments",
+      "damage_overlay"
+    ],
+    "format": "PNG with alpha per layer; editable ORA/PSD package required",
+    "status": "not_created"
+  },
+  "acceptance": {
+    "requires_full_body_sources": true,
+    "requires_7_landmarks_per_view": true,
+    "requires_layered_art": true,
+    "requires_preview_review": true,
+    "requires_alpha_seam_QA": true,
+    "technical_gate_status": "pending"
+  }
+}
