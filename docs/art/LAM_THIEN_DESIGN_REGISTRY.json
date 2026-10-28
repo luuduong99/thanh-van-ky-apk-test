@@ -83,11 +83,11 @@
     "id": "lam_thien_outfit_damage_chosen_2026_10_28",
     "date": "2026-10-28",
     "user_decision": "confirmed_choice",
-    "source_status": "browser_blob_url_only_not_retrieved",
+    "source_status": "verified_user_uploaded_two_png_reference_sheets",
     "source_blob_url_for_provenance_only": "blob:https://chatgpt.com/8d8b9f33-3a9b-47c6-a677-c31dd0dcfccc",
-    "verified_asset_url": null,
-    "image_sha256": null,
-    "note": "Do not claim visual asset saved or rig-ready. Obtain actual PNG/JPG attachment before production and checksum verification.",
+    "verified_asset_url": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
+    "image_sha256": "96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2",
+    "note": "Verified two user-uploaded PNG references. These reference sheets do not constitute layered sprites or rig/APK; base body remains separately approved.",
     "base_body_design_reference_id": "lam_thien_visual_reference_approved_2026_10_28",
     "revised_damage_guideline": "moderate_damage_replacing_earlier_fixed_plus_20_percent",
     "durability_levels": [
@@ -114,6 +114,36 @@
     ],
     "include_contextual_expression_and_action": true,
     "documented_in": "docs/art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md",
-    "production_art_verified": false
+    "production_art_verified": false,
+    "image_dimensions": [
+      1672,
+      941
+    ],
+    "reference_images": [
+      {
+        "role": "expression_action_pose_wardrobe_damage",
+        "name": "TVK_LamThien_Expression_Action_Pose_Outfit_Approved_20261028.png",
+        "url": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
+        "sha256": "96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      {
+        "role": "art_production_roadmap",
+        "name": "TVK_LamThien_Production_Roadmap_Approved_20261028.png",
+        "url": "https://drive.google.com/file/d/1ZgMB8nkRlkar3-MYCrH32uQaYxO29S5Q/view?usp=drivesdk",
+        "sha256": "380d21c2b8f6e862ce7b7a9f4b751e8625716a9c02b06b3bb672e4d0dc49b31a",
+        "dimensions": [
+          1672,
+          941
+        ]
+      }
+    ],
+    "wardrobe_last_stage_persists_across_all_poses": true,
+    "wardrobe_last_stage_internal_id_proposed": "private_fantasy",
+    "no_fallback_to_default_art_when_variant_pose_missing": true,
+    "reference_document": "docs/art/LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md"
   }
 }
