@@ -41,3 +41,10 @@ Preview là **chuẩn hướng nghệ thuật và mức độ tương quan**, kh
 **Tình trạng tại thời điểm chốt:** thiết kế/preview **APPROVED**; sprite nhiều mức, rig, animation, tích hợp APK **PENDING**, chưa nghiệm thu.
 
 Tham chiếu: `docs/PROJECT_SPEC.md` §25–26, `docs/art/GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md`, `docs/art/GLOBAL_CHARACTER_APPEARANCE_SPEC.md`, `docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md`.
+
+
+## Cập nhật lưu trữ và bàn giao CP320 (2026-10-28)
+
+- **Đã sao lưu PNG nguyên byte** vào ChatGPT Library: `/Thanh Van Ky/Approved References/Lam_Thien_Damage_20261028/TVK_LamThien_Damage_4Levels_Approved_20261028.png`. Tệp nguồn cục bộ được xác minh có SHA256 `03251b5ec9b020b325687b530c98e026622ba7b3334466ab5d2323a0a89c9e23`.
+- Đây là bản backup Library đã xác nhận; **không nhận là đã upload Google Drive/GitHub**, không nhầm với PNG body V2 trên Drive.
+- Triển khai art theo [CP320 handoff](LAM_THIEN_CP320_HANDOFF.md) và [ma trận calibration](LAM_THIEN_CP320_VIEW_CALIBRATION.json), tiếp tục P0-02/P0-03 trước khi sản xuất texture.
