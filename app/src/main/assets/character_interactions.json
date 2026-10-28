@@ -1625,28 +1625,36 @@
       "intensityScale": "0_none_1_light_2_moderate_3_heavy",
       "levels": {
         "30": {
-          "dirt": 3,
-          "abrasion": 3,
-          "tear": 3,
-          "description": "heavy_dirt_worn_fabric_tears_including_remaining_covering_fabric"
+          "severity": 3,
+          "possibleEffects": [
+            "dirt",
+            "abrasion",
+            "tear"
+          ],
+          "description": "heavy_damage"
         },
         "50": {
-          "dirt": 2,
-          "abrasion": 2,
-          "tear": 2,
-          "description": "moderate_dirt_fabric_wear_visible_tears"
+          "severity": 2,
+          "possibleEffects": [
+            "dirt",
+            "abrasion",
+            "tear"
+          ],
+          "description": "medium_damage"
         },
         "70": {
-          "dirt": 1,
-          "abrasion": 1,
-          "tear": 1,
-          "description": "light_dust_scratches_small_fabric_tears"
+          "severity": 1,
+          "possibleEffects": [
+            "dirt",
+            "abrasion",
+            "tear"
+          ],
+          "description": "minor_damage"
         },
         "100": {
-          "dirt": 0,
-          "abrasion": 0,
-          "tear": 0,
-          "description": "clean_intact"
+          "severity": 0,
+          "possibleEffects": [],
+          "description": "clean"
         }
       },
       "consistentAcrossPose": true,
@@ -1656,7 +1664,27 @@
       "preserveCoverage": true,
       "contextSpecificDirtAndMaterialResponse": true,
       "avoidFixedPlus20PercentDamage": true,
-      "sourceDocument": "docs/art/GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md"
+      "sourceDocument": "docs/art/GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md",
+      "effectsMayVaryByCause": true,
+      "causeWeights": {
+        "environment": [
+          "dirt",
+          "abrasion"
+        ],
+        "fabric_friction": [
+          "abrasion",
+          "tear"
+        ],
+        "fabric_tension": [
+          "tear"
+        ],
+        "mixed": [
+          "dirt",
+          "abrasion",
+          "tear"
+        ]
+      },
+      "appearanceMarkAnchor": "garment_piece"
     }
   }
 }
