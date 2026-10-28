@@ -37,3 +37,11 @@ Ngày: 2026-10-28. **Status: TECHNICAL PIPELINE TRIAL PASSED; VISUAL ART NOT APP
 4. Chỉ khi qua QA art mới chuyển sang damage texture 100/70/50/30, biểu cảm, animation, runtime battle và APK.
 
 **Không tự đánh dấu P0-02/P0-03 hoàn thành do có 5 PNG alpha nháp.**
+
+
+## Bổ sung kiểm chứng / nguồn và CI (2026-10-28)
+
+- Ảnh nguồn dự thảo **không được duyệt**: `CP322_SOURCE_UNAPPROVED_CONCEPT.png`, RGB 1536×1024, SHA256 `f171a06f9d67cb510cd46067a30d12763850620970e3d724c93d5c8a681c2d60`; đã lưu **riêng trong Library Development**, không nằm trong Approved References: `/Thanh Van Ky/Development/CP322_Alpha_Trial/CP322_SOURCE_UNAPPROVED_CONCEPT.png`.
+- Chạy kiểm tra thực tế trong cây source tương đương GitHub: **4/4 unittest PASS**; manifest của 5 PNG alpha: PASS, CRC/IDAT/alpha occupancy: PASS. `--strict`: **FAIL như mong đợi** do `NOT_APPROVED`.
+- Đã thêm `.github/workflows/cp322-art-alpha-validation.yml` chạy unittest trên push/PR phù hợp. **Chưa xác minh job GitHub Actions đã chạy hoặc PASS**; không dùng kết quả local thay CI.
+- ZIP cuối cùng trên Library có SHA256 `bf73215eaa09baa27d024c0aeaf864137a90d1d06d3291bc5e2975790062a437`, CRC PASS, 10 entry (5 PNG, contact sheet, manifest, README, validator, test).
