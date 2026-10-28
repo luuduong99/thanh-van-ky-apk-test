@@ -38,6 +38,19 @@ class CP320Tests(unittest.TestCase):
         errors, _ = cp320.validate_manifest(x)
         self.assertTrue(any("+17%" in e for e in errors))
 
+    def test_poster_crops_are_reference_only(self):
+        refs = self.data["poster_reference_crops"]
+        self.assertEqual(len(refs["items"]), 12)
+        errors, pending = cp320.validate_manifest(self.data)
+        self.assertEqual(errors, [])
+        self.assertTrue(pending, "Poster crop extraction is not production art")
+
+    def test_poster_crop_cannot_be_promoted_to_rig_ready(self):
+        x = json.loads(json.dumps(self.data))
+        x["poster_reference_crops"]["items"][0]["status"] = "production_ready"
+        errors, _ = cp320.validate_manifest(x)
+        self.assertTrue(any("cannot promote poster crop" in e for e in errors))
+
     def test_source_header_rejects_non_png(self):
         with tempfile.TemporaryDirectory() as tmp:
             fake = Path(tmp) / "fake.png"
