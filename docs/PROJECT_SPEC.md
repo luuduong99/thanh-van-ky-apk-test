@@ -731,3 +731,17 @@ Thực hiện bàn giao CP320 và lưu PNG preview; cập nhật trạng thái k
 
 ### Lịch sử 2026-10-28
 Đối chiếu nguồn và kiểm tra artifact ORA thật; ghi trạng thái đúng, chưa tự đánh dấu hoàn thành art hoặc rig.
+
+
+---
+
+## 30. CP322 — thử nghiệm pipeline PNG alpha, CANON V2 vẫn bất biến (2026-10-28)
+
+- **ĐÃ LÀM KỸ THUẬT:** tạo 5 PNG RGBA native-resolution từ *preview chưa duyệt* để thử alpha/export, ZIP backup Library, manifest checksum, validator PNG IDAT/CRC/alpha và unit test 4/4 PASS trong container.
+- **TUYỆT ĐỐI KHÔNG NHẬP CANON:** tạo hình bản thử có khác biệt so với V2. Không sử dụng nó để thay ngoại hình Lâm Thiển, tự đổi tỷ lệ +17%, tạo sprite/Spine production hoặc thay bốn mức hư hại đã duyệt.
+- **CHƯA ĐẠT P0-02/P0-03:** cần art full-body đạt chuẩn riêng cho Front/Back/Side/3/4, 7 mốc đo và 15 lớp art thực trong ORA; không suy từ crop poster/PNG alpha demo. Rig, physics và APK vẫn chờ.
+- **TÀI LIỆU:** [CP322 handoff](art/LAM_THIEN_CP322_ALPHA_TRIAL_HANDOFF.md), [manifest nguồn nháp](art/LAM_THIEN_CP322_ALPHA_TRIAL_MANIFEST.json), `tools/validate_lam_thien_cp322_proxy.py`, `tests/art/test_lam_thien_cp322_proxy.py`.
+- **ĐIỂM TIẾP TỤC:** tạo art Front/Back mới **theo V2 gốc** và gửi duyệt, rồi chỉnh các lớp ORA/tay áo/tóc/underpaint. Không đánh dấu đã rig/APK.
+
+### Lịch sử 2026-10-28
+Cập nhật bản thử alpha có ảnh thật, lưu audit và phân biệt nghiêm với art đã được duyệt; giữ nguyên P0/P1/P2.
