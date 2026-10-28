@@ -58,3 +58,13 @@ Từ catalogue hiện có: **2 nhân vật × 12 pose (4 hiện đăng ký hoạ
 - Ảnh preview chỉ là concept, không phải sprite theo state. Bản đồ đường dẫn `integrityImages` chưa đồng nghĩa ảnh tồn tại.
 - Không ghi art/rig/physics/APK hoàn tất nếu chưa có file thực + build/test tương ứng.
 - Mỗi nhân vật mới phải được thêm vào catalogue và theo **cùng quy chuẩn**; không đồng nhất thiết kế gương mặt/vóc dáng với Lâm Thiển.
+
+
+## P1 supplement — effects for clothing wear
+
+**ĐÃ CHỐT YÊU CẦU MỸ THUẬT:** Không chỉ rách. Mỗi nhân vật và mỗi wardrobe khi bị hư hại cần có **vết bẩn, xước/sờn vải và rách vải** tương ứng độ nguyên vẹn 100/70/50/30. Phối hợp loại vết tùy va chạm/môi trường và chất liệu. Cần preview chốt trước khi dùng cho Spine/APK.
+
+- [ ] **P1-02B:** Art sample 4 mức độ cho Lâm Thiển CANON V2 và kiểm tra giữ nguyên điểm neo vết qua Front/Back/Side/pose nội thất.
+- [ ] **P1-02C:** Sau khi template Lâm Thiển đạt art QA, áp dụng cùng **quy tắc**, không sao chép vết bẩn/texture/người sang Tô Nguyệt Ly và các nhân vật khác.
+
+Chi tiết: [GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md](GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md).
