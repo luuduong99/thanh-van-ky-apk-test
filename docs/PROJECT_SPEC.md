@@ -553,3 +553,18 @@ Làm rõ sai lệch của proxy CP317 để bảo toàn thiết kế Back Lâm T
 
 ### Lịch sử 2026-10-28
 Tạo preview Back dựa thiết kế mới; tách trạng thái đề xuất khỏi bản chốt, tránh hiểu nhầm thành asset game hoàn thiện.
+
+
+---
+
+## 19. Lâm Thiển — CP319 clean review và kiểm soát thiết kế (2026-10-28)
+
+- **ĐÃ THỰC HIỆN:** Tách/crop nguyên pixel thiết kế Back CP318 mới thành ảnh toàn thân góc sau và các vùng tóc–gáy–vai, khoét hông, tay áo/phụ kiện. Bảng xem sạch `CP319_LamThien_Clean_Primary_Back_Review.png` đã lưu trong Library `/Thanh Van Ky/`; gói bàn giao `TVK_CP319_LamThien_Clean_Review_Design_Gates.zip` ở cùng thư mục.
+- **NGUỒN:** Ảnh CP318 725×981 RGB với SHA-256 `29bca1bb136394bcca3b31f05b0c4f43e8dbe15766f921436d2a27649e729e26`. Các hình chi tiết là crop từ cùng ảnh nguồn, KHÔNG phải sprite tách lớp. Hình tóc bay là concept riêng trong poster, KHÔNG phải frame từ rig.
+- **QUẢN LÝ CANON:** Thêm `docs/art/LAM_THIEN_DESIGN_REGISTRY.json` để phân biệt **đặc điểm đã được người dùng chốt** (2026-10-27) với **ảnh concept CP318 chưa được duyệt riêng**. CP317 proxy và PNG Back cũ bị hạn chế chỉ cho lịch sử/kỹ thuật, không dùng làm preview sản xuất.
+- **CÔNG CỤ:** Thêm `tools/art/validate_design_registry.py` và `tests/art/test_design_registry.py`; 5/5 bài kiểm thử trạng thái trong môi trường cục bộ PASS. Ba kiểm tra crop/sha nguồn trên file CP318 cũng PASS tại máy làm việc; GitHub CI chưa xác nhận.
+- **KHÔNG ĐƯỢC TUYÊN BỐ:** CP318/CP319 chưa có art layer, phép đo +17% chính xác, alpha/Spine rig/physics hay APK; không tự chuyển CP318 thành bản canon đã được duyệt.
+- **TIẾP TỤC CP320:** Sau khi người dùng duyệt/điều chỉnh ảnh Back, phát triển bộ hình nhất quán Front/Back/3/4, vẽ layer có alpha và underpaint; kiểm tra tóc–gáy–vai, khoét hông, tay áo, trang sức và chuyển động trước rig/physics. Chi tiết tại `docs/art/LAM_THIEN_CP319_DESIGN_REVIEW.md`.
+
+### Lịch sử cập nhật 2026-10-28
+Tạo ảnh review Back sạch và bổ sung gate không cho concept chưa duyệt/proxy lỗi thời đi vào asset sản xuất.
