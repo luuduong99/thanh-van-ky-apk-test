@@ -460,3 +460,17 @@ Không triển khai tất cả cùng lúc. Ưu tiên hoàn thiện một lát c�
 - Các mục **đã chốt thiết kế** (4 nhân vật chiến đấu tối đa, HP riêng, 3 ngưỡng rách đồ, túi đồ/vũ khí, UI chuẩn, bốn tư thế cơ bản, nút trang phục và cảnh riêng, phản ứng chạm) không được suy ra là đã lập trình xong. Các tư thế/cảnh bổ sung chưa có ảnh và động tác được xếp vào danh sách chờ.
 - **Ưu tiên tiếp:** (a) nâng chất lượng sprite/ảnh tư thế và nhận diện nhân vật; (b) kết nối chuyển động rig/khung hình thực cùng hiệu chỉnh hotspot; (c) hoàn thiện trang phục theo tư thế; (d) thêm nhân vật/túi đồ và chiến đấu nhiều nhân vật với HP riêng/hư hại 2D; (e) hoàn thiện nhiệm vụ Chương I và thử APK trên thiết bị thật. Nội dung tương tác lãng mạn/tình cảm bảo đảm nhân vật trưởng thành và có đồng thuận.
 - **LỊCH SỬ CẬP NHẬT 2026-10-24:** Kiểm tra nguồn và kết quả GitHub Actions sau đợt nhập ảnh pose. Cập nhật trạng thái ảnh từ "chưa có" thành "đã có bản crop concept", phân biệt **asset**, **code**, **build**, **runtime trên máy**, **nghiệm thu nghệ thuật** và **tính năng chưa làm**, tránh khẳng định sai rằng đã hoàn thành toàn bộ Chương I.
+
+
+
+---
+
+## 13. Lâm Thiển — chuẩn +17% và trạng thái CP314 (2026-10-28)
+
+- **ĐÃ CHỐT:** Giữ tạo hình/reference riêng của Lâm Thiển. Mốc tỷ lệ +17% là nền chốt; cho phép điều chỉnh nhẹ chiều cao/tỷ lệ tổng thể để thanh, cân đối hơn, tránh cảm giác thấp/lùn. Mọi điều chỉnh phải có preview để duyệt trước. Dùng quy trình này làm chuẩn tham khảo cho nhân vật mới, không tự ý đồng nhất vóc dáng.
+- **TRẠNG THÁI KỸ THUẬT từ phiên trước:** CP312 ORA 8 lớp; CP313 ORA 10 lớp, báo cáo chuyển 365 pixel gán sai từ da sang chân tóc, thêm dây trang sức xanh–vàng và bốn test PASS. Cần kiểm tra trực tiếp nguồn trước khi coi là xác nhận kỹ thuật.
+- **CHƯA NGHIỆM THU:** Ranh giới tóc/scalp–gáy–da vai và hai tay áo chưa hoàn tất, chưa có Spine rig/physics được chốt, chưa xác nhận vào APK.
+- **TIẾP TỤC:** CP314 sửa tóc/scalp–gáy–vai, rồi tay áo; pixel diff và alpha ở ±5px, preview duyệt. Xem [hồ sơ CP314](art/LAM_THIEN_CP314.md). Đã tìm được PNG Back và sheet ở Drive, chưa tìm được ORA 10 lớp CP313 trong nguồn hiện truy cập.
+
+### Cập nhật lịch sử ngày 2026-10-28
+Ghi nhận chuẩn +17% và mốc giao việc CP314; không coi các bước sửa ảnh chưa chạy trên ORA là hoàn thành.
