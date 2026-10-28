@@ -1,3 +1,5 @@
+> **MẪU NGOẠI HÌNH LÂM THIỂN HIỆN HÀNH (28/10/2026):** [CANON BODY V2](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) ([ảnh nguồn](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk)). Quy tắc toàn game vẫn dùng chung, không sao chép body V2 sang nhân vật khác. Những tham chiếu V1 bên dưới là lịch sử.
+
 # Thanh Vân Ký — GLOBAL CHARACTER APPEARANCE CONTRACT v1
 
 **Ngày chốt:** 2026-10-28. **Phạm vi:** TẤT CẢ nhân vật hiện có và nhân vật mới của dự án (bao gồm Tô Nguyệt Ly, Lâm Thiển). Đây là quy tắc runtime/art bắt buộc, không phải thiết kế riêng của Lâm Thiển.
