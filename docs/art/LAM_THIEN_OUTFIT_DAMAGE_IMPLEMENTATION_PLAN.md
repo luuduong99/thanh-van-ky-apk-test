@@ -67,3 +67,15 @@
 - Kế hoạch ID kỹ thuật: `private_fantasy` là tên đề xuất cho mức cởi cuối, cần ảnh riêng từng pose và lớp lót che phủ; không dùng lọc trong suốt hay crop hình mặc đủ để giả lập.
 - Khi thiếu art cho cặp `pose × wardrobe`: **giữ giá trị state** nhưng hiển thị thiếu asset và vô hiệu vùng chạm không có mapping; không tự fallback sang ảnh mặc đủ. Không đánh dấu từng pose hoàn tất khi chưa có sprite.
 - Độ hư hại 100/70/50/30 tiếp tục độc lập, không tự giảm hoặc reset vì chuyển pose; hiệu ứng rách bám cấu trúc lớp vải và vẫn che phủ phù hợp.
+
+
+## 7. Bổ sung bẩn / xước / rách theo loại sát thương (ĐÃ CHỐT)
+
+- **Mẫu body/costume mới nhất:** [CANON V2](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) ([PNG nguồn](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk)); **không tạo trạng thái rách dựa trên trang phục V1 cũ**.
+- Áp dụng ba thành phần chính: **bụi/bùn/vệt bẩn**, **vết trầy/sờn/đường chỉ xù trên lụa**, **rách theo thớ vải/đường may**. Mỗi loại tăng tương đối theo mức độ hư hại; sự kết hợp phụ thuộc kiểu va chạm và môi trường.
+- **70%:** dấu nhỏ, rải rác. **50%:** rõ hơn và tích lũy. **30%:** dấu mạnh ở các lớp trang phục, **kể cả mảnh còn che phủ cũng sờn/rách**, nhưng vẫn bảo đảm lớp che phủ cần thiết.
+- Tách `garment_damage` khỏi `wardrobe_state` và khỏi thương tích cơ thể. Ghi nhãn vị trí bẩn/xước/rách theo mảnh vải để các pose Front, Back, Side, Back Turn, giường, ghế, tường đều thể hiện đúng dấu đã có.
+- **Đã có:** quy chuẩn + metadata `damageVisualProfile`. **Chưa có:** bản vẽ bẩn/xước/rách thực tế cho bốn trạng thái và các tư thế; cần preview để người dùng duyệt trước khi rig/đưa vào APK.
+
+Xem [quy chuẩn chung về vết bẩn/xước/rách](GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md).
+
