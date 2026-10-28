@@ -602,3 +602,10 @@ Chốt ảnh tạo hình Lâm Thiển mới nhất, lưu ảnh nguyên bản tr�
 
 ### Lịch sử 2026-10-28
 Ghi kế hoạch xử lý trang phục cùng giai đoạn phân lớp theo đề nghị của người dùng, giữ nguyên các quyết định đã chốt trước.
+
+
+### Bổ sung thiết kế 30% & đề xuất trang phục riêng tư (2026-10-28)
+
+- **ĐÃ CHỐT:** Khi trang phục hư hại xuống mức **30%**, ngay cả các mảnh vải còn lại để che phủ cũng phải **có dấu hư hại rõ** (rách mép, sờn, chỉ bung, vải xô lệch) chứ không giữ nguyên như mới. Không làm lộ trực diện vùng nhạy cảm; phần che phủ vẫn sử dụng cấu trúc nhiều lớp có chủ đích. Mốc 30% vẫn chỉ là **độ nguyên vẹn trang phục**, không phải % da lộ ra.
+- **ĐỀ XUẤT / CHƯA CHỐT:** Cởi/thay trang phục có thể chia ba trạng thái: trang phục đầy đủ → tháo áo ngoài → nội y fantasy có lớp voan/lưới mỏng phủ ngoài và lớp lót không xuyên thấu tại vùng cần che phủ. Người dùng đang cân nhắc nội y trong suốt; **chưa coi đã duyệt ba mức hoặc mẫu nội y cuối cùng**.
+- **QUY TẮC CẤU TRÚC:** Trạng thái tháo/thay đồ là trục riêng, không đồng nhất 4 cấp độ hư hại 100/70/50/30. Ghi quy chuẩn và ma trận art ở [LAM_THIEN_OUTFIT_DAMAGE_IMPLEMENTATION_PLAN.md](art/LAM_THIEN_OUTFIT_DAMAGE_IMPLEMENTATION_PLAN.md). Chưa có sprite/rig/animation đã hoàn tất cho biến thể mới.
