@@ -25,7 +25,7 @@ def verify_png(path, expected_sha=None, expected_dimensions=None):
         return [f"Missing PNG: {path}"]
     raw = path.read_bytes()
     errors = []
-    if len(raw) < 24 or raw[:8] != b"\\x89PNG\\r\\n\\x1a\\n" or raw[12:16] != b"IHDR":
+    if len(raw) < 24 or raw[:8] != bytes([137, 80, 78, 71, 13, 10, 26, 10]) or raw[12:16] != b"IHDR":
         return [f"Not a valid PNG header: {path}"]
     width, height = struct.unpack(">II", raw[16:24])
     if expected_dimensions and [width, height] != list(expected_dimensions):
