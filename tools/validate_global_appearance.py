@@ -63,22 +63,24 @@ def validate(data, assets_root=ASSETS):
             wid = w.get("id", "")
             if w.get("appearancePersistence") != "character_scoped_all_poses":
                 errors.append(cid + "/" + wid + ": wardrobe not persistent")
-            for p in poses:
+            all_poses = poses + planned
+            for p in all_poses:
                 name = w.get("images", {}).get(p.get("id", ""))
                 if not check_path(name):
                     errors.append(cid + "/" + wid + ": invalid base image for " + str(p.get("id")))
-                if wid == "default" and name != p.get("image"):
-                    errors.append(cid + ": default art disagrees with pose")
+                expected = p.get("image") if p in poses else p.get("artworkPath")
+                if wid == "default" and name != expected:
+                    errors.append(cid + ": default art disagrees with pose " + str(p.get("id")))
             damage = w.get("integrityImages", {})
             if not all(key in damage for key in INTEGRITY[1:]):
                 errors.append(cid + "/" + wid + ": missing damage level registration")
             for level in INTEGRITY[1:]:
-                for p in poses:
+                for p in all_poses:
                     name = damage.get(level, {}).get(p.get("id", ""))
                     if not check_path(name):
                         errors.append(cid + "/" + wid + ": invalid damage art for " + level + "/" + str(p.get("id")))
                     elif assets_root and (assets_root / name).is_file() and w.get("status") == "asset_required":
-                        # A file could have been added; status must still be reviewed manually.
+                        # A file could have been added; status still needs art review.
                         pass
     if not ids:
         errors.append("No characters registered")
