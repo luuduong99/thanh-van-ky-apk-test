@@ -488,3 +488,17 @@ Ghi nhận chuẩn +17% và mốc giao việc CP314; không coi các bước s�
 
 ### Cập nhật lịch sử ngày 2026-10-28
 Bổ sung công cụ QA CP315 và unit tests; phân biệt rõ kiểm thử công cụ thành công với hoàn tất asset/rig thực tế.
+
+
+---
+
+## 15. Lâm Thiển — CP316 kiểm kê nguồn ORA (2026-10-28)
+
+- **ĐÃ CHỐT – KHÔNG THAY:** Mốc Lâm Thiển +17%, giữ nhận diện tóc bạc và trang phục trắng–xanh–vàng. Được tinh chỉnh nhẹ chiều cao/tỷ lệ tổng thể để thanh thoát, **chỉ sau khi có preview và người dùng duyệt**. Đây là quy trình tham khảo cho nhân vật khác, không dùng làm khuôn giống nhau.
+- **HOÀN THÀNH CP316 (QA/nghiệp vụ kiểm kê):** Đã thêm `tools/art/source_inventory.py` để quét ORA trong các ZIP lồng nhau, kiểm tra cấu trúc 10 lớp, lớp alpha trống/placeholder và ghi sha256; thêm 5 test ở `tests/art/test_source_inventory.py`. Tổng cộng **10/10 unit tests PASS** trên fixture giả lập (5 CP315 + 5 CP316). Có ảnh khoanh vùng bốn điểm kiểm tra Back trong gói CP316.
+- **ĐÃ KIỂM CHỨNG NGUỒN HIỆN CÓ:** Hai gói CP314/CP315 được rà soát trong phiên này không có ORA; ảnh Back 207×656 và sheet là PNG RGB phẳng. Tool trả `NO_QUALIFYING_ORA_SOURCE` (2 archives, 0 ORA). Tên `CP312`, `CP313`, `linqian`, `.ora` không có kết quả phù hợp từ tìm kiếm Drive phiên này; có thể tồn tại ở nguồn chưa truy cập.
+- **CHƯA LÀM:** Chưa sửa art chân tóc–gáy–vai trên ORA thật, chưa sửa hai tay áo, chưa nghiệm thu rig/physics/Android APK. 10 test đạt **không đồng nghĩa model đạt**.
+- **TIẾP TỤC CP317:** Phục hồi CP313 ORA 10 lớp hoặc CP312 8 lớp, kiểm tra hash và composite/layer, sửa gáy–vai/dây trang sức/hai tay áo; thử dịch ±5px và so pixel ngoài ROI; preview trước khi duyệt. Xem `docs/art/LAM_THIEN_CP316_SOURCE_RECOVERY.md`.
+
+### Lịch sử cập nhật ngày 2026-10-28
+CP316 hoàn thành bước khôi phục nguồn dưới dạng rà soát/đối soát và xây công cụ, nguồn ORA vẫn thiếu. Không đánh dấu art thực tế hoàn thành.
