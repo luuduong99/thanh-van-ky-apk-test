@@ -1611,6 +1611,52 @@
     "missingArtPolicy": "show_missing_asset_without_reverting_to_default",
     "characterScopedPersistence": true,
     "outfitDamageIndependent": true,
-    "implementationStatus": "state_store_and_missing_art_guard_implemented_sprite_assets_incomplete"
+    "implementationStatus": "state_store_and_missing_art_guard_implemented_sprite_assets_incomplete",
+    "damageVisualProfile": {
+      "version": 1,
+      "scope": "all_characters_all_wardrobes",
+      "status": "visual_metadata_only_art_not_ready",
+      "surface": "clothing_material_only",
+      "types": [
+        "dirt",
+        "abrasion",
+        "tear"
+      ],
+      "intensityScale": "0_none_1_light_2_moderate_3_heavy",
+      "levels": {
+        "30": {
+          "dirt": 3,
+          "abrasion": 3,
+          "tear": 3,
+          "description": "heavy_dirt_worn_fabric_tears_including_remaining_covering_fabric"
+        },
+        "50": {
+          "dirt": 2,
+          "abrasion": 2,
+          "tear": 2,
+          "description": "moderate_dirt_fabric_wear_visible_tears"
+        },
+        "70": {
+          "dirt": 1,
+          "abrasion": 1,
+          "tear": 1,
+          "description": "light_dust_scratches_small_fabric_tears"
+        },
+        "100": {
+          "dirt": 0,
+          "abrasion": 0,
+          "tear": 0,
+          "description": "clean_intact"
+        }
+      },
+      "consistentAcrossPose": true,
+      "cumulativeVisualDamage": true,
+      "wardrobeIndependent": true,
+      "notEqualToHpOrSkinExposure": true,
+      "preserveCoverage": true,
+      "contextSpecificDirtAndMaterialResponse": true,
+      "avoidFixedPlus20PercentDamage": true,
+      "sourceDocument": "docs/art/GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md"
+    }
   }
 }
