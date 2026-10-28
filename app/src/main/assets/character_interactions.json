@@ -534,7 +534,15 @@
             "front": "characters/heroines_reference.png",
             "back": "characters/to_nguyet_ly_back.png",
             "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward.png",
-            "bed_recline": "characters/to_nguyet_ly_bed_recline.png"
+            "bed_recline": "characters/to_nguyet_ly_bed_recline.png",
+            "side": "characters/to_nguyet_ly_side.png",
+            "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter.png",
+            "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter.png",
+            "back_turn": "characters/to_nguyet_ly_back_turn.png",
+            "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying.png",
+            "bed_sit": "characters/to_nguyet_ly_bed_sit.png",
+            "chair_sit": "characters/to_nguyet_ly_chair_sit.png",
+            "wall_lean": "characters/to_nguyet_ly_wall_lean.png"
           },
           "appearancePersistence": "character_scoped_all_poses",
           "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
@@ -543,19 +551,43 @@
               "front": "characters/to_nguyet_ly_front_default_damage_30.png",
               "back": "characters/to_nguyet_ly_back_default_damage_30.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_30.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_30.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_30.png",
+              "side": "characters/to_nguyet_ly_side_default_damage_30.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_default_damage_30.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_default_damage_30.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_default_damage_30.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_default_damage_30.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_default_damage_30.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_default_damage_30.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_default_damage_30.png"
             },
             "50": {
               "front": "characters/to_nguyet_ly_front_default_damage_50.png",
               "back": "characters/to_nguyet_ly_back_default_damage_50.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_50.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_50.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_50.png",
+              "side": "characters/to_nguyet_ly_side_default_damage_50.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_default_damage_50.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_default_damage_50.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_default_damage_50.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_default_damage_50.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_default_damage_50.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_default_damage_50.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_default_damage_50.png"
             },
             "70": {
               "front": "characters/to_nguyet_ly_front_default_damage_70.png",
               "back": "characters/to_nguyet_ly_back_default_damage_70.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_default_damage_70.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_70.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_default_damage_70.png",
+              "side": "characters/to_nguyet_ly_side_default_damage_70.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_default_damage_70.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_default_damage_70.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_default_damage_70.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_default_damage_70.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_default_damage_70.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_default_damage_70.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_default_damage_70.png"
             }
           }
         },
@@ -567,7 +599,15 @@
             "front": "characters/to_nguyet_ly_front_outer_removed.png",
             "back": "characters/to_nguyet_ly_back_outer_removed.png",
             "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed.png",
-            "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed.png"
+            "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed.png",
+            "side": "characters/to_nguyet_ly_side_outer_removed.png",
+            "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_outer_removed.png",
+            "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_outer_removed.png",
+            "back_turn": "characters/to_nguyet_ly_back_turn_outer_removed.png",
+            "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_outer_removed.png",
+            "bed_sit": "characters/to_nguyet_ly_bed_sit_outer_removed.png",
+            "chair_sit": "characters/to_nguyet_ly_chair_sit_outer_removed.png",
+            "wall_lean": "characters/to_nguyet_ly_wall_lean_outer_removed.png"
           },
           "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter.",
           "appearancePersistence": "character_scoped_all_poses",
@@ -577,19 +617,43 @@
               "front": "characters/to_nguyet_ly_front_outer_removed_damage_30.png",
               "back": "characters/to_nguyet_ly_back_outer_removed_damage_30.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_30.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_30.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_30.png",
+              "side": "characters/to_nguyet_ly_side_outer_removed_damage_30.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_outer_removed_damage_30.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_outer_removed_damage_30.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_outer_removed_damage_30.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_outer_removed_damage_30.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_outer_removed_damage_30.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_outer_removed_damage_30.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_outer_removed_damage_30.png"
             },
             "50": {
               "front": "characters/to_nguyet_ly_front_outer_removed_damage_50.png",
               "back": "characters/to_nguyet_ly_back_outer_removed_damage_50.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_50.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_50.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_50.png",
+              "side": "characters/to_nguyet_ly_side_outer_removed_damage_50.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_outer_removed_damage_50.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_outer_removed_damage_50.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_outer_removed_damage_50.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_outer_removed_damage_50.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_outer_removed_damage_50.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_outer_removed_damage_50.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_outer_removed_damage_50.png"
             },
             "70": {
               "front": "characters/to_nguyet_ly_front_outer_removed_damage_70.png",
               "back": "characters/to_nguyet_ly_back_outer_removed_damage_70.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_outer_removed_damage_70.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_70.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_outer_removed_damage_70.png",
+              "side": "characters/to_nguyet_ly_side_outer_removed_damage_70.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_outer_removed_damage_70.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_outer_removed_damage_70.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_outer_removed_damage_70.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_outer_removed_damage_70.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_outer_removed_damage_70.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_outer_removed_damage_70.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_outer_removed_damage_70.png"
             }
           }
         },
@@ -601,7 +665,15 @@
             "front": "characters/to_nguyet_ly_front_private_fantasy.png",
             "back": "characters/to_nguyet_ly_back_private_fantasy.png",
             "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy.png",
-            "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy.png"
+            "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy.png",
+            "side": "characters/to_nguyet_ly_side_private_fantasy.png",
+            "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_private_fantasy.png",
+            "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_private_fantasy.png",
+            "back_turn": "characters/to_nguyet_ly_back_turn_private_fantasy.png",
+            "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_private_fantasy.png",
+            "bed_sit": "characters/to_nguyet_ly_bed_sit_private_fantasy.png",
+            "chair_sit": "characters/to_nguyet_ly_chair_sit_private_fantasy.png",
+            "wall_lean": "characters/to_nguyet_ly_wall_lean_private_fantasy.png"
           },
           "description": "Future character-specific fantasy privacy outfit: translucent overlay with opaque coverage. Persist across all poses; unavailable artwork never falls back to other outfit.",
           "appearancePersistence": "character_scoped_all_poses",
@@ -611,19 +683,43 @@
               "front": "characters/to_nguyet_ly_front_private_fantasy_damage_30.png",
               "back": "characters/to_nguyet_ly_back_private_fantasy_damage_30.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_30.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_30.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_30.png",
+              "side": "characters/to_nguyet_ly_side_private_fantasy_damage_30.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_private_fantasy_damage_30.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_private_fantasy_damage_30.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_private_fantasy_damage_30.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_private_fantasy_damage_30.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_private_fantasy_damage_30.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_private_fantasy_damage_30.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_private_fantasy_damage_30.png"
             },
             "50": {
               "front": "characters/to_nguyet_ly_front_private_fantasy_damage_50.png",
               "back": "characters/to_nguyet_ly_back_private_fantasy_damage_50.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_50.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_50.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_50.png",
+              "side": "characters/to_nguyet_ly_side_private_fantasy_damage_50.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_private_fantasy_damage_50.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_private_fantasy_damage_50.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_private_fantasy_damage_50.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_private_fantasy_damage_50.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_private_fantasy_damage_50.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_private_fantasy_damage_50.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_private_fantasy_damage_50.png"
             },
             "70": {
               "front": "characters/to_nguyet_ly_front_private_fantasy_damage_70.png",
               "back": "characters/to_nguyet_ly_back_private_fantasy_damage_70.png",
               "bed_kneel_forward": "characters/to_nguyet_ly_bed_kneel_forward_private_fantasy_damage_70.png",
-              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_70.png"
+              "bed_recline": "characters/to_nguyet_ly_bed_recline_private_fantasy_damage_70.png",
+              "side": "characters/to_nguyet_ly_side_private_fantasy_damage_70.png",
+              "front_three_quarter": "characters/to_nguyet_ly_front_three_quarter_private_fantasy_damage_70.png",
+              "back_three_quarter": "characters/to_nguyet_ly_back_three_quarter_private_fantasy_damage_70.png",
+              "back_turn": "characters/to_nguyet_ly_back_turn_private_fantasy_damage_70.png",
+              "bed_side_lying": "characters/to_nguyet_ly_bed_side_lying_private_fantasy_damage_70.png",
+              "bed_sit": "characters/to_nguyet_ly_bed_sit_private_fantasy_damage_70.png",
+              "chair_sit": "characters/to_nguyet_ly_chair_sit_private_fantasy_damage_70.png",
+              "wall_lean": "characters/to_nguyet_ly_wall_lean_private_fantasy_damage_70.png"
             }
           }
         }
@@ -1232,7 +1328,15 @@
             "front": "characters/lin_qian.png",
             "back": "characters/lin_qian_back.png",
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward.png",
-            "bed_recline": "characters/lin_qian_bed_recline.png"
+            "bed_recline": "characters/lin_qian_bed_recline.png",
+            "side": "characters/lin_qian_side.png",
+            "front_three_quarter": "characters/lin_qian_front_three_quarter.png",
+            "back_three_quarter": "characters/lin_qian_back_three_quarter.png",
+            "back_turn": "characters/lin_qian_back_turn.png",
+            "bed_side_lying": "characters/lin_qian_bed_side_lying.png",
+            "bed_sit": "characters/lin_qian_bed_sit.png",
+            "chair_sit": "characters/lin_qian_chair_sit.png",
+            "wall_lean": "characters/lin_qian_wall_lean.png"
           },
           "appearancePersistence": "character_scoped_all_poses",
           "integrityImageConvention": "characters/{characterId}_{poseId}_{wardrobeId}_damage_{integrity}.png",
@@ -1241,19 +1345,43 @@
               "front": "characters/lin_qian_front_default_damage_30.png",
               "back": "characters/lin_qian_back_default_damage_30.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_30.png",
-              "bed_recline": "characters/lin_qian_bed_recline_default_damage_30.png"
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_30.png",
+              "side": "characters/lin_qian_side_default_damage_30.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_default_damage_30.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_default_damage_30.png",
+              "back_turn": "characters/lin_qian_back_turn_default_damage_30.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_default_damage_30.png",
+              "bed_sit": "characters/lin_qian_bed_sit_default_damage_30.png",
+              "chair_sit": "characters/lin_qian_chair_sit_default_damage_30.png",
+              "wall_lean": "characters/lin_qian_wall_lean_default_damage_30.png"
             },
             "50": {
               "front": "characters/lin_qian_front_default_damage_50.png",
               "back": "characters/lin_qian_back_default_damage_50.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_50.png",
-              "bed_recline": "characters/lin_qian_bed_recline_default_damage_50.png"
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_50.png",
+              "side": "characters/lin_qian_side_default_damage_50.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_default_damage_50.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_default_damage_50.png",
+              "back_turn": "characters/lin_qian_back_turn_default_damage_50.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_default_damage_50.png",
+              "bed_sit": "characters/lin_qian_bed_sit_default_damage_50.png",
+              "chair_sit": "characters/lin_qian_chair_sit_default_damage_50.png",
+              "wall_lean": "characters/lin_qian_wall_lean_default_damage_50.png"
             },
             "70": {
               "front": "characters/lin_qian_front_default_damage_70.png",
               "back": "characters/lin_qian_back_default_damage_70.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_default_damage_70.png",
-              "bed_recline": "characters/lin_qian_bed_recline_default_damage_70.png"
+              "bed_recline": "characters/lin_qian_bed_recline_default_damage_70.png",
+              "side": "characters/lin_qian_side_default_damage_70.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_default_damage_70.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_default_damage_70.png",
+              "back_turn": "characters/lin_qian_back_turn_default_damage_70.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_default_damage_70.png",
+              "bed_sit": "characters/lin_qian_bed_sit_default_damage_70.png",
+              "chair_sit": "characters/lin_qian_chair_sit_default_damage_70.png",
+              "wall_lean": "characters/lin_qian_wall_lean_default_damage_70.png"
             }
           }
         },
@@ -1265,7 +1393,15 @@
             "front": "characters/lin_qian_front_outer_removed.png",
             "back": "characters/lin_qian_back_outer_removed.png",
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed.png",
-            "bed_recline": "characters/lin_qian_bed_recline_outer_removed.png"
+            "bed_recline": "characters/lin_qian_bed_recline_outer_removed.png",
+            "side": "characters/lin_qian_side_outer_removed.png",
+            "front_three_quarter": "characters/lin_qian_front_three_quarter_outer_removed.png",
+            "back_three_quarter": "characters/lin_qian_back_three_quarter_outer_removed.png",
+            "back_turn": "characters/lin_qian_back_turn_outer_removed.png",
+            "bed_side_lying": "characters/lin_qian_bed_side_lying_outer_removed.png",
+            "bed_sit": "characters/lin_qian_bed_sit_outer_removed.png",
+            "chair_sit": "characters/lin_qian_chair_sit_outer_removed.png",
+            "wall_lean": "characters/lin_qian_wall_lean_outer_removed.png"
           },
           "description": "Only an author-provided clothed alternative image may activate this; never generate nudity with shader or transparent filter.",
           "appearancePersistence": "character_scoped_all_poses",
@@ -1275,19 +1411,43 @@
               "front": "characters/lin_qian_front_outer_removed_damage_30.png",
               "back": "characters/lin_qian_back_outer_removed_damage_30.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_30.png",
-              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_30.png"
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_30.png",
+              "side": "characters/lin_qian_side_outer_removed_damage_30.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_outer_removed_damage_30.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_outer_removed_damage_30.png",
+              "back_turn": "characters/lin_qian_back_turn_outer_removed_damage_30.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_outer_removed_damage_30.png",
+              "bed_sit": "characters/lin_qian_bed_sit_outer_removed_damage_30.png",
+              "chair_sit": "characters/lin_qian_chair_sit_outer_removed_damage_30.png",
+              "wall_lean": "characters/lin_qian_wall_lean_outer_removed_damage_30.png"
             },
             "50": {
               "front": "characters/lin_qian_front_outer_removed_damage_50.png",
               "back": "characters/lin_qian_back_outer_removed_damage_50.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_50.png",
-              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_50.png"
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_50.png",
+              "side": "characters/lin_qian_side_outer_removed_damage_50.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_outer_removed_damage_50.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_outer_removed_damage_50.png",
+              "back_turn": "characters/lin_qian_back_turn_outer_removed_damage_50.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_outer_removed_damage_50.png",
+              "bed_sit": "characters/lin_qian_bed_sit_outer_removed_damage_50.png",
+              "chair_sit": "characters/lin_qian_chair_sit_outer_removed_damage_50.png",
+              "wall_lean": "characters/lin_qian_wall_lean_outer_removed_damage_50.png"
             },
             "70": {
               "front": "characters/lin_qian_front_outer_removed_damage_70.png",
               "back": "characters/lin_qian_back_outer_removed_damage_70.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_outer_removed_damage_70.png",
-              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_70.png"
+              "bed_recline": "characters/lin_qian_bed_recline_outer_removed_damage_70.png",
+              "side": "characters/lin_qian_side_outer_removed_damage_70.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_outer_removed_damage_70.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_outer_removed_damage_70.png",
+              "back_turn": "characters/lin_qian_back_turn_outer_removed_damage_70.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_outer_removed_damage_70.png",
+              "bed_sit": "characters/lin_qian_bed_sit_outer_removed_damage_70.png",
+              "chair_sit": "characters/lin_qian_chair_sit_outer_removed_damage_70.png",
+              "wall_lean": "characters/lin_qian_wall_lean_outer_removed_damage_70.png"
             }
           }
         },
@@ -1299,7 +1459,15 @@
             "front": "characters/lin_qian_front_private_fantasy.png",
             "back": "characters/lin_qian_back_private_fantasy.png",
             "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy.png",
-            "bed_recline": "characters/lin_qian_bed_recline_private_fantasy.png"
+            "bed_recline": "characters/lin_qian_bed_recline_private_fantasy.png",
+            "side": "characters/lin_qian_side_private_fantasy.png",
+            "front_three_quarter": "characters/lin_qian_front_three_quarter_private_fantasy.png",
+            "back_three_quarter": "characters/lin_qian_back_three_quarter_private_fantasy.png",
+            "back_turn": "characters/lin_qian_back_turn_private_fantasy.png",
+            "bed_side_lying": "characters/lin_qian_bed_side_lying_private_fantasy.png",
+            "bed_sit": "characters/lin_qian_bed_sit_private_fantasy.png",
+            "chair_sit": "characters/lin_qian_chair_sit_private_fantasy.png",
+            "wall_lean": "characters/lin_qian_wall_lean_private_fantasy.png"
           },
           "description": "Approved design direction: final wardrobe stage persists across poses and scenes. Requires separately approved pose-specific fully covered fantasy fabric/lining artwork. Never use transparent filters or substitute default clothing art when files are missing. Not ready in APK.",
           "appearancePersistence": "character_scoped_all_poses",
@@ -1309,19 +1477,43 @@
               "front": "characters/lin_qian_front_private_fantasy_damage_30.png",
               "back": "characters/lin_qian_back_private_fantasy_damage_30.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_30.png",
-              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_30.png"
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_30.png",
+              "side": "characters/lin_qian_side_private_fantasy_damage_30.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_private_fantasy_damage_30.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_private_fantasy_damage_30.png",
+              "back_turn": "characters/lin_qian_back_turn_private_fantasy_damage_30.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_private_fantasy_damage_30.png",
+              "bed_sit": "characters/lin_qian_bed_sit_private_fantasy_damage_30.png",
+              "chair_sit": "characters/lin_qian_chair_sit_private_fantasy_damage_30.png",
+              "wall_lean": "characters/lin_qian_wall_lean_private_fantasy_damage_30.png"
             },
             "50": {
               "front": "characters/lin_qian_front_private_fantasy_damage_50.png",
               "back": "characters/lin_qian_back_private_fantasy_damage_50.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_50.png",
-              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_50.png"
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_50.png",
+              "side": "characters/lin_qian_side_private_fantasy_damage_50.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_private_fantasy_damage_50.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_private_fantasy_damage_50.png",
+              "back_turn": "characters/lin_qian_back_turn_private_fantasy_damage_50.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_private_fantasy_damage_50.png",
+              "bed_sit": "characters/lin_qian_bed_sit_private_fantasy_damage_50.png",
+              "chair_sit": "characters/lin_qian_chair_sit_private_fantasy_damage_50.png",
+              "wall_lean": "characters/lin_qian_wall_lean_private_fantasy_damage_50.png"
             },
             "70": {
               "front": "characters/lin_qian_front_private_fantasy_damage_70.png",
               "back": "characters/lin_qian_back_private_fantasy_damage_70.png",
               "bed_kneel_forward": "characters/lin_qian_bed_kneel_forward_private_fantasy_damage_70.png",
-              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_70.png"
+              "bed_recline": "characters/lin_qian_bed_recline_private_fantasy_damage_70.png",
+              "side": "characters/lin_qian_side_private_fantasy_damage_70.png",
+              "front_three_quarter": "characters/lin_qian_front_three_quarter_private_fantasy_damage_70.png",
+              "back_three_quarter": "characters/lin_qian_back_three_quarter_private_fantasy_damage_70.png",
+              "back_turn": "characters/lin_qian_back_turn_private_fantasy_damage_70.png",
+              "bed_side_lying": "characters/lin_qian_bed_side_lying_private_fantasy_damage_70.png",
+              "bed_sit": "characters/lin_qian_bed_sit_private_fantasy_damage_70.png",
+              "chair_sit": "characters/lin_qian_chair_sit_private_fantasy_damage_70.png",
+              "wall_lean": "characters/lin_qian_wall_lean_private_fantasy_damage_70.png"
             }
           }
         }
