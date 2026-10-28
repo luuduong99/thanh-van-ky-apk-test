@@ -717,3 +717,17 @@ Ghi xác nhận chính thức của người dùng cho preview hư hại bốn m
 
 ### Lịch sử 2026-10-28
 Thực hiện bàn giao CP320 và lưu PNG preview; cập nhật trạng thái kỹ thuật minh bạch, chưa đóng P0.
+
+
+---
+
+## 29. CP321 — đã chuẩn bị ORA Front/Back, art tách lớp vẫn CHỜ (2026-10-28)
+
+- **ĐÃ TẠO CÓ FILE THẬT:** bộ `TVK_LamThien_CP321_Empty_ORA_Templates.zip` (checksum trong [CP321 handoff](art/LAM_THIEN_CP321_HANDOFF.md)), gồm 2 file ORA Front/Back kích thước 2048×3072, mỗi file 15 layer art RGBA rỗng + guide. Đã sao lưu ChatGPT Library. Đây là **editable scaffold**, không phải sprite chia lớp.
+- **QA THỰC TẾ:** cả hai ORA CRC PASS, canvas đúng, alpha có nội dung **0/15 layer** mỗi file; do đó **P0-02/P0-03/P1/rig/APK chưa được nghiệm thu**.
+- **CODE KIỂM TRA:** `tools/validate_lam_thien_cp321_ora.py` và `tests/art/test_lam_thien_cp321_ora.py`, bổ sung kiểm kích thước và loại PNG RGBA, gate strict để ngăn template rỗng được nhận là production art. Kiểm thử CI GitHub chưa xác minh.
+- **TIẾP TỤC:** hoàn thiện hình full-body Front/Back chất lượng đủ, đo 7 landmark, vẽ và kiểm các lớp, sau đó mới rig Spine; ảnh V2 chính thức và mức hư hại đã chốt không thay đổi.
+- **TÀI LIỆU BÀN GIAO:** [LAM_THIEN_CP321_HANDOFF.md](art/LAM_THIEN_CP321_HANDOFF.md).
+
+### Lịch sử 2026-10-28
+Đối chiếu nguồn và kiểm tra artifact ORA thật; ghi trạng thái đúng, chưa tự đánh dấu hoàn thành art hoặc rig.
