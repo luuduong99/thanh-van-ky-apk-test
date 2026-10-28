@@ -1,3 +1,5 @@
+> **MODEL LÂM THIỂN MỚI NHẤT (28/10/2026):** [CANON BODY V2](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) / [PNG gốc](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk). Áp dụng V2 cho mọi pose/outfit/damage mới; link ảnh cũ trong tài liệu là lịch sử. Task list P0–P2 chi tiết của Lâm Thiển: [LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md](LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md).
+
 # Thanh Vân Ký — kế hoạch công việc tiếp theo (đặc tả toàn nhân vật)
 
 **Ghi ngày:** 2026-10-28. **Cơ sở:** [GLOBAL_CHARACTER_APPEARANCE_SPEC.md](GLOBAL_CHARACTER_APPEARANCE_SPEC.md), [GLOBAL_CHARACTER_ASSET_BACKLOG.json](GLOBAL_CHARACTER_ASSET_BACKLOG.json).
