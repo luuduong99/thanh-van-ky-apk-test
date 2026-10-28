@@ -62,3 +62,13 @@ Ví dụ: `to_nguyet_ly / outer_removed / 50 / chair_sit` → chuyển sang `wal
 - **Đã làm ở mức code:** có `CharacterAppearanceState.kt` lưu trạng thái theo nhân vật, resolver tìm ảnh đúng tích hợp tại màn tương tác; độ nguyên vẹn màn Nhân vật Tô Nguyệt Ly chia sẻ với màn tương tác, không fallback sai costume. App catalogue khai báo wardrobe và integrity matrix cho hai nữ chính.
 - **Chưa làm:** hình từng mức/pose, rig/secondary motion, hình combat thật, trạng thái battle cuối cùng toàn bộ đội hình, thử APK trên máy thực; chọn pose mới đã đăng ký trong `plannedPoses` nhưng chưa có artwork.
 - **Kiểm chứng:** `tools/validate_global_appearance.py`, `tests/art/test_global_appearance.py` và GitHub Actions CI cần xem kết quả chạy thực tế, không gọi hoàn thành chỉ vì đã tạo test.
+
+
+## Quy chuẩn hình ảnh hư hại mới (28/10/2026)
+
+**ĐÃ CHỐT toàn game:** Trang phục chịu hư hại phải có **vết bẩn (dirt), vết xước/sờn vải (abrasion), vết rách (tear)**. Độ nặng tăng cùng mức tổn hại, nhưng **phối hợp theo loại va chạm và chất liệu**, không bắt buộc mọi đòn tạo đủ ba loại vết hoặc cùng một tỷ lệ. Mốc 100% sạch; 70% nhẹ; 50% trung bình; 30% nặng (kể cả trên phần vải còn che phủ, nhưng giữ che phủ phù hợp). **Không tính các con số là % diện tích vải rách hoặc % HP.**
+
+Vết bẩn và rách bám đúng mảnh trang phục qua mọi góc và pose, không phát sinh mới chỉ vì đổi pose. Khi tăng mức hư hại, hiệu ứng đã có tiếp tục tồn tại cho đến khi sửa/giặt/thay đồ theo luật game. Các đặc tính cần mô phỏng theo chất vải; riêng Lâm Thiển lấy lụa/voan từ CANON V2 làm nguồn.
+
+Chi tiết: [GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md](GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md). Metadata `appearanceSystem.damageVisualProfile` mới chỉ mô tả tiêu chuẩn/độ nặng, **chưa phải vết bẩn, texture rách hoặc renderer đã hoạt động**.
+
