@@ -233,6 +233,14 @@ class CharacterInteractionActivity : Activity() {
             val poseButton = btn(option.optString("label")) {
                 currentPose = poseId
                 CharacterAppearanceState.setPose(this, selectedId, poseId)
+                // Expression and action adapt to the new context, but clothing
+                // state and garment integrity are NOT changed by pose selection.
+                val roomPose = poseId.startsWith("bed_") ||
+                    poseId == "chair_sit" || poseId == "wall_lean"
+                CharacterAppearanceState.setExpression(
+                    this, selectedId, if (roomPose) "relaxed" else "normal"
+                )
+                CharacterAppearanceState.setAction(this, selectedId, "pose_change")
                 render()
             }
             poseButton.setBackgroundDrawable(rounded(if (poseId == currentPose) gold else bgColor))
@@ -248,6 +256,11 @@ class CharacterInteractionActivity : Activity() {
             "Trang phục: " + outfitLabel + " · Độ nguyên vẹn: " + appearance.integrity +
                 "% · Tư thế: " + pose.optString("label", currentPose),
             12f, gold
+        ))
+        portraits.addView(txt(
+            "Biểu cảm (state): " + appearance.expression + " · Hành động: " +
+                appearance.action + " · Chưa có sprite biểu cảm/hoạt ảnh riêng",
+            11f, muted
         ))
         if (artwork.issue != null) {
             portraits.addView(txt(
@@ -418,6 +431,11 @@ class CharacterInteractionActivity : Activity() {
     private fun respondToTouch(zone: JSONObject) {
         animatedPortrait?.react(zone.optString("id"))
         val sensitive = zone.optBoolean("requiresConsent", false)
+        val expression = zone.optString(
+            "expression", if (sensitive) "troubled" else "smile"
+        )
+        CharacterAppearanceState.setExpression(this, selectedId, expression)
+        CharacterAppearanceState.setAction(this, selectedId, "touch_reaction")
         val zoneName = zone.optString("title", "Tương tác")
         val reactionText = zoneName + ": " + zone.optString("message")
         messageView?.text = reactionText
@@ -454,6 +472,15 @@ class CharacterInteractionActivity : Activity() {
 
     private fun selectScene(character: JSONObject, scene: JSONObject) {
         val characterId = character.optString("id")
+        val sceneKind = scene.optString("kind", "dialogue")
+        val expression = when (sceneKind) {
+            "romance" -> "blush"
+            "fade" -> "relaxed"
+            "dialogue" -> "smile"
+            else -> "normal"
+        }
+        CharacterAppearanceState.setExpression(this, characterId, expression)
+        CharacterAppearanceState.setAction(this, characterId, "scene_" + sceneKind)
         val points = prefs.getInt("affinity_" + characterId, 0) + scene.optInt("affinityGain", 0)
         prefs.edit().putInt("affinity_" + characterId, points).apply()
         affinityView?.text = "Thân thiết (bản thử): " + points
