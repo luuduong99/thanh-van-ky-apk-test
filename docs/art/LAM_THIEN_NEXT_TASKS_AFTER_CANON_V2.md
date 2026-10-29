@@ -127,3 +127,13 @@
 - [x] Kiểm resolver trong môi trường Kotlin mock: 11/11 PASS. Đã commit Python tests/CI workflow, **chưa có bằng chứng Github Actions PASS hay APK mới**.
 - [ ] **P1-03 sprite/rig/animation** chưa hoàn thành: cần vẽ face layers thật dựa CANON V2, QC ảnh nhỏ, Front/3⁄4 và integration/Spine. P0-02/P0-03 cũng chưa qua cổng art.
 - **Tiếp tục:** [CP324 handoff](LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md) → dựng face sprites V2 → QA dưới góc nhìn hội thoại và lưu game → Spine/APK. Không hỏi duyệt lại 5 nét mặt.
+
+
+## CP325 — OpenRaster vùng biểu cảm từ preview APPROVED (2026-10-29)
+
+- [x] Tạo **5 file ORA chỉnh sửa được** từ chính ảnh 5 biểu cảm đã chốt, tổng cộng **35 vùng ảnh có alpha pixel thật** (7 vùng/biểu cảm: 2 mắt, 2 mày, 1 miệng, 2 má); mỗi file còn có nguồn reference gốc ở layer ẩn. Kích thước native chỉ 285–303×385. Những layer này là **pixel patch feather từ ảnh phẳng, không phải bộ phận khuôn mặt độc lập để rig**.
+- [x] Tạo biểu đồ vùng ảnh, bảng thu nhỏ thoại 132/64px, manifest SHA và QA mã nguồn. **5/5 local tests PASS**, chạy `--strict` bị chặn như thiết kế do chưa có sprite V2.
+- [x] Lưu ZIP + ảnh QA tại `/Thanh Van Ky/Development/CP325_Face_Region_Prototypes/`, tạo [CP325 handoff](LAM_THIEN_CP325_FACE_ART_HANDOFF.md), [manifest](LAM_THIEN_CP325_FACE_REGION_PROXY_MANIFEST.json), `tools/cp325/validate_cp325_face_proxies.py`, metadata tests/CI workflow. GitHub Actions chưa được xác minh.
+- [ ] **P1-03 vẫn CHƯA XONG:** cần vẽ/tách **mắt/mày/miệng thật theo CANON V2** với underpaint/alpha đúng, dùng quy chuẩn biểu cảm làm đối chiếu, thử hội thoại/Spine thật. Không đăng ký patch CP325 như `sprite_paths`.
+- [ ] **P0-02/P0-03 giữ trạng thái chưa hoàn thành:** cần full-body Front/Back đủ độ phân giải, artwork 15 lớp thật đúng V2, điểm neo và QA.
+- **Điểm tiếp tục:** CP326 dựng face sprites V2 độc lập và kiểm composite 5 trạng thái. Không cần chốt lại thiết kế concept đã được duyệt; asset mới cần QA riêng.
