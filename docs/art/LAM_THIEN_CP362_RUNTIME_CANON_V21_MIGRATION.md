@@ -41,3 +41,12 @@ This ensures the active V2.1 body reference is enforced at *both* sprite-release
 - GitHub artifact ID `12905118427`, name `thanh-van-ky-debug-apk`: downloaded artifact ZIP CRC PASS and extracted `TVK_CP362_Debug.apk` CRC PASS, 27 entries, **8,791,461 bytes**, SHA256 `2ee780ed142fb60d1f2cea720fdebd5ec9a033980290a12f6ea21f0f5115dce0`.
 - Inspected actual packaged `assets/character_expression_profiles.json`: active V2.1 ID/SHA correct, release stays `blocked_pending_art` and sprite paths empty. Compiled DEX contains V2.1 SHA, `ẢNH TEST / LEGACY`, and safe portrait path.
 - User Library: `/Thanh Van Ky/Development/CP362_Runtime_CANON_V2_1_Migration/` with verified APK and release notes. No physical device installation or measured 60 FPS.
+
+
+## CP362 final fail-closed partial-release safeguard (supersedes earlier debug APK)
+
+- Further inspected the neutral-pose fallback: even if a single expression sprite eventually gained release approval, old neutral or unrelated pose artwork from `resolveArt` must **never** appear in a release build. `CharacterInteractionActivity.kt` now uses `expressionArt.orEmpty()` for **all nondebug Lâm Thiển** displays, and `heroineImage` only for tagged debugging. This is intentionally restrictive until a separately approved neutral-state sprite resolver exists.
+- `tests/art/test_cp362_runtime_canon_v21.py` checks this safe selection across both normal and bed portraits; CP358's earlier legacy-banner regression test was updated for the factored `hasApprovedLamThienSprite` variable.
+- **Final verified CI:** [Art QA 40894537812](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40894537812) **SUCCESS** and [Android build 40894537829](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40894537829) **SUCCESS**, at `45369552696610a62322846f54ac7586aa9495e4`.
+- **Superseding final debug APK:** GitHub artifact `12906906193`, `TVK_CP362_Debug_Final.apk`, **8,791,463 bytes**, SHA256 `09c0ed2599b8ccd1aeed348a748100deb80ad65d6c06da62556774127596f26a`, ZIP CRC PASS. Inspected packaged assets: V2.1 ID and hash, `blocked_pending_art`, `sprite_paths={}`; DEX retains V2.1 contract and legacy-debug banner. Uploaded as `TVK_CP362_Debug.apk` into the CP362 Library folder, overwriting the previous CP362 draft debug APK; final notes also saved.
+- **Still not production art:** Native high-resolution Lâm Thiển shoulder paint and Spine rig not approved. No device performance measurement.
