@@ -540,22 +540,56 @@ class CharacterInteractionActivity : Activity() {
         affinityView?.text = "Thân thiết (bản thử): " + points
     }
 
+    // Preserve source details for normal character portraits. The old hardcoded
+    // inSampleSize=2 needlessly cut even small artwork to half in each dimension.
+    // Large future PNGs are still bounded to avoid allocation spikes on Android.
+    private fun portraitSampleSize(width: Int, height: Int): Int {
+        if (width <= 0 || height <= 0) return 1
+        val maxSide = 4096L
+        val maxPixels = 8_000_000L // up to ~32 MiB at ARGB_8888
+        var sample = 1
+        while (width.toLong() / sample > maxSide ||
+               height.toLong() / sample > maxSide ||
+               (width.toLong() / sample) * (height.toLong() / sample) > maxPixels) {
+            sample *= 2
+        }
+        return sample
+    }
+
     private fun bitmap(assetPath: String, crop: String): Bitmap? {
+        if (assetPath.isBlank()) return null
         return try {
-            assets.open(assetPath).use { source ->
-                if (crop == "leftThird") {
+            if (crop == "leftThird") {
+                assets.open(assetPath).use { source ->
                     val decoder = BitmapRegionDecoder.newInstance(source, false)
                     if (decoder == null) null else try {
+                        val right = (decoder.width / 3).coerceAtLeast(1)
                         decoder.decodeRegion(
-                            Rect(0, 0, decoder.width / 3, decoder.height),
-                            BitmapFactory.Options().apply { inSampleSize = 2 }
+                            Rect(0, 0, right, decoder.height),
+                            BitmapFactory.Options().apply {
+                                inSampleSize = portraitSampleSize(right, decoder.height)
+                                inPreferredConfig = Bitmap.Config.ARGB_8888
+                                inScaled = false
+                            }
                         )
                     } finally {
                         decoder.recycle()
                     }
-                } else {
+                }
+            } else {
+                // Decode only header in the first pass; reopen the asset for pixels.
+                val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+                assets.open(assetPath).use { source ->
+                    BitmapFactory.decodeStream(source, null, bounds)
+                }
+                if (bounds.outWidth <= 0 || bounds.outHeight <= 0) null
+                else assets.open(assetPath).use { source ->
                     BitmapFactory.decodeStream(source, null,
-                        BitmapFactory.Options().apply { inSampleSize = 2 })
+                        BitmapFactory.Options().apply {
+                            inSampleSize = portraitSampleSize(bounds.outWidth, bounds.outHeight)
+                            inPreferredConfig = Bitmap.Config.ARGB_8888
+                            inScaled = false
+                        })
                 }
             }
         } catch (_: Exception) {
