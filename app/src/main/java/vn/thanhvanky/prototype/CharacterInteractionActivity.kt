@@ -243,6 +243,15 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(row)
         }
 
+        if (selectedId == "lin_qian" &&
+            !CharacterExpressionCatalog.hasRuntimeArtApproval(expressionProfiles, selectedId)) {
+            portraits.addView(txt(
+                "ẢNH TEST / LEGACY — Lâm Thiển chưa có sprite CANON V2.1 được nghiệm thu. " +
+                    "Chuyển động đang thấy chỉ là bitmap-mesh demo, không phải Spine/rig chính thức.",
+                11f, Color.rgb(255, 214, 142), true
+            ))
+        }
+
         val poseScroller = android.widget.HorizontalScrollView(this).apply {
             isHorizontalScrollBarEnabled = false
         }
