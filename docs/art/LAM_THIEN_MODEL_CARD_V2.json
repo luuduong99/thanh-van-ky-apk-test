@@ -77,7 +77,10 @@
     "cp332_new_vector_face_visual_approved": false,
     "cp333_semantic_svg_vector_details_refined": true,
     "cp333_real_binary_ora_qa_pass": true,
-    "cp333_artist_approved_facial_art": false
+    "cp333_artist_approved_facial_art": false,
+    "cp334_flat_concept_candidate_previews_created": true,
+    "cp334_artist_approved_new_face": false,
+    "cp334_clean_semantic_art_ready": false
   },
   "plan": "docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md",
   "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
@@ -89,5 +92,6 @@
   "cp330_handoff": "docs/art/LAM_THIEN_CP330_FACE_TRIAL_HANDOFF.md",
   "cp331_handoff": "docs/art/LAM_THIEN_CP331_SHARED_FACE_HANDOFF.md",
   "cp332_handoff": "docs/art/LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md",
-  "cp333_handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md"
+  "cp333_handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md",
+  "cp334_handoff": "docs/art/LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md"
 }
