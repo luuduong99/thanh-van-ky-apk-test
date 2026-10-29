@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "approved_character_specific_expression_profiles_metadata_only",
+  "source_document": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+  "independent_state_keys": [
+    "expression",
+    "wardrobe",
+    "integrity",
+    "pose",
+    "action"
+  ],
+  "required_approval_rule": "Each character needs its own explicitly approved five-expression preview",
+  "characters": [
+    {
+      "id": "lin_qian",
+      "name": "Lâm Thiển",
+      "approval_status": "approved_reference_sprite_pending",
+      "approved_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+      "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+      "expression_preview_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+      "approved_expressions": [
+        {
+          "id": "shy",
+          "label": "Ngại ngùng"
+        },
+        {
+          "id": "angry",
+          "label": "Tức giận"
+        },
+        {
+          "id": "pain",
+          "label": "Đau đớn"
+        },
+        {
+          "id": "embarrassed",
+          "label": "Xấu hổ"
+        },
+        {
+          "id": "alluring",
+          "label": "Quyến rũ"
+        }
+      ],
+      "sprite_paths": {},
+      "sprite_status": "not_created",
+      "spine_status": "not_created",
+      "missing_sprite_policy": "withhold_instead_of_showing_wrong_expression_or_damage_state",
+      "note": "Art preview approved, but no face alpha sprites. Do not substitute unapproved CP322 draft or modify body V2."
+    },
+    {
+      "id": "to_nguyet_ly",
+      "name": "Tô Nguyệt Ly",
+      "approval_status": "individual_preview_required",
+      "approved_profile_id": null,
+      "approved_expressions": [],
+      "sprite_paths": {},
+      "sprite_status": "not_created",
+      "spine_status": "not_created",
+      "note": "Use this character's own face canon and personality; do not auto-approve Lam Thien artwork."
+    }
+  ]
+}
