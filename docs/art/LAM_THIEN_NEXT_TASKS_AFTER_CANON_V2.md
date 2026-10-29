@@ -177,3 +177,13 @@
 - [ ] **P0-02/P0-03 và P1-03 CHƯA HOÀN THÀNH:** cần redraw high-resolution đúng V2 và đưa *nội dung art thật* vào các lớp để QA; không nhầm x8 guide hoặc poster AI với HD art.
 - [ ] **CP330 (tiếp):** vẽ face master/underpaint sạch, vẽ 35 lớp nét mặt thật phù hợp 5 cảm xúc (mắt hổ phách), test ở 256/132/64 và góc Front/3⁄4, duyệt sprite art → Spine → Android APK. Không cần hỏi lại V2, +17%, damage 100/70/50/30, hay 5 biểu cảm đã chốt.
 - **Đầu mối:** [CP329 handoff](LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md) · [manifest](LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json). `sprite_paths` vẫn **chưa đăng ký** vì game art chưa hoàn thiện.
+
+
+## CP330 — Kết quả 5 ORA phân rã vùng mặt có alpha thật (2026-10-29)
+
+- [x] 5 mặt nháp riêng kích thước **native 251–260×370 px**, tạo 5 ORA có **7 layer vùng nét mặt có alpha/ảnh thật** mỗi file (35 layer) + `face_base_cutout` + underpaint tự động + source guide ẩn.
+- [x] QA local **9/9 PASS**: nội dung vùng ảnh, đúng source SHA, composite pixel-perfect với ảnh nháp, cutout không chồng, thử chuyển dịch mắt/miệng không tạo lỗ alpha. Production gate `--strict` **FAIL đúng** vì không đạt điều kiện art chính thức.
+- [x] Sao lưu gói ZIP, preview, generator, QA và manifest vào Library Development. [CP330 handoff](LAM_THIEN_CP330_FACE_TRIAL_HANDOFF.md), [art manifest](LAM_THIEN_CP330_ART_TRIAL_MANIFEST.json).
+- [ ] **Năm mặt khác nhau, không phải một face master**; chưa khớp hoàn toàn CANON V2, underpaint còn cần vẽ lại, bản 250px không phải native HD. **Không** đưa vào `sprite_paths` hay rig Spine.
+- [ ] **CP331 ƯU TIÊN:** tạo face master duy nhất đúng V2 ở độ phân giải thật; vẽ lại mắt/mày/miệng/má 5 trạng thái có alpha sạch + underpaint, thử dialogue/avatar và biến dạng ở Front/3/4 → nghiệm thu sprite art rồi mới Spine/APK.
+- Không chốt lại 5 biểu cảm, V2, tỷ lệ +17% hoặc damage 100/70/50/30; chỉ nghiệm thu **asset thực sự được sản xuất**.
