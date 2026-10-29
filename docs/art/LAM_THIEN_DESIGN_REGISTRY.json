@@ -242,31 +242,27 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "id": "CP326",
+    "checkpoint": "CP327",
     "date": "2026-10-29",
-    "status": "independent_vector_face_alpha_prototype_unapproved",
-    "source_canon": "LT_CANON_BODY_REF_2026-10-28_V2",
-    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "art_source_native_resolution": [
-      230,
-      114
+    "status": "tech_atlas_byte_exact_not_approved_character_art",
+    "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "source_art": "CP326 vector face prototype (NOT APPROVED)",
+    "palette_gate": "new drafts rejected due eye-color/face/ornament drift from CANON V2",
+    "atlas_dimensions": [
+      2048,
+      2048
     ],
-    "canvas_render_resolution": [
-      920,
-      456
-    ],
-    "alpha_layers_created": 35,
-    "openraster_files_created": 5,
-    "inpaint_underpaint_status": "placeholder_not_artist_approved",
-    "visual_match_to_canon": "pending_redraw",
-    "visual_match_to_approved_expressions": "pending_redraw",
-    "sprite_registration_allowed": false,
-    "rig_ready": false,
+    "atlas_regions": 35,
+    "atlas_sha256": "2ef4e619e6d496598db835093e1be5f72ca8b7385ee3bfdc84f24188d7ea9739",
+    "package_sha256": "69be3de41b2e33dd15dd67899b27bb2b7a4ef86813afe3e91443f7b51e1b14db",
+    "atlas_format": "PNG+JSON engine-neutral NOT Spine atlas",
+    "strict_gate": "blocked_pending_art_approval",
+    "image_art_approval": false,
+    "spine_ready": false,
     "apk_ready": false,
-    "zip_sha256": "377086143ce7a85449e9ade18d1de02f64431ba15e8c8024b2ce5bc86f37f4f6",
-    "library_backup_path": "/Thanh Van Ky/Development/CP326_Vector_Face_Prototype/TVK_LamThien_CP326_Vector_Face_Prototype_NOT_GAME_READY.zip",
-    "manifest": "docs/art/LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json",
-    "handoff": "docs/art/LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md",
-    "next": "CP327: redraw high-resolution V2 facebase/underpaint and approved expression attachments then art QA/Spine"
+    "library_backup_path": "/Thanh Van Ky/Development/CP327_Rig_Atlas_Preflight/",
+    "handoff": "docs/art/LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md",
+    "next_step": "CP328: production face master redraw matching CANON V2 amber eyes and approved expression direction"
   }
 }
