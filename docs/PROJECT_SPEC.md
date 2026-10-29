@@ -928,3 +928,22 @@ Hoàn thành gói ORA và regression tests để bàn giao redraw; vẫn xác nh
 
 ### Lịch sử 2026-10-29
 Từ ORA CP329 trống chuyển sang thí nghiệm CP330 có các lớp mặt thật từ bản nháp riêng, không nâng nhầm lên canon hoặc rig.
+
+
+---
+
+## 41. CP331 — dùng chung một nền khuôn mặt cho năm biểu cảm (2026-10-29)
+
+**KẾT QUẢ KỸ THUẬT THỰC, CHƯA PHẢI ART GAME ĐÃ DUYỆT:**
+
+- **Hai quyết định bất biến:** BODY/FACE `LT_CANON_BODY_REF_2026-10-28_V2` (SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`, mắt hổ phách, +17% đã có), 5 biểu cảm `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` (SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`); mức damage 100/70/50/30 và wardrobe/pose độc lập.
+- CP330 dùng năm nguồn ảnh mặt khác nhau; CP331 thử **một base FLAT duy nhất** (258×364 native từ poster **mới chưa duyệt**), lắp 7 vùng cảm xúc × 5 thành **35 alpha patch thật/5 file ORA**. Tóc, phụ kiện, trang phục, vùng ngoài ROI nét mặt không thay pixel khi chuyển expression. Có ảnh đối chiếu V2 và preview 132/64px, GIF mô phỏng chuyển hình.
+- **9/9 unit tests local PASS**, audit ORA thật (CRC, 7 alpha layers mỗi file, compositor preview, cùng layer base, bất biến pixel ngoài ROI). `--strict` **FAIL có chủ đích** để ngăn dùng production. Đây là kiểm thử kỹ thuật, không phải nghiệm thu hình.
+- **CHƯA ĐẠT MỸ THUẬT:** Bản tạo mới CP331 SHA `a923f2125fbac40bd3a5975cc50d22ff12926d4f69b6d461d76f6be647c8a729` chưa được duyệt và không tự thay CANON V2; các mảnh vẫn chứa da/tóc, base còn **mắt/mày/miệng baked**, underpaint OpenCV chỉ ở lớp ẩn, native 258×364 không phải master HD. Poster sinh tự động có chữ *Production Ready* không đáng tin về tình trạng sprite.
+- **LƯU TRỮ:** ZIP `TVK_LamThien_CP331_Shared_Face_Technical_Trial_NOT_APPROVED.zip`, SHA256 `e48174f1b0831942cc03f0ff5a0f98d51ae83ee01540135f24b6ffa9b2232578`, ChatGPT Library `/Thanh Van Ky/Development/CP331_Shared_Face_Technical_Trial/`. GitHub lưu manifest, code tạo/audit, công cụ QA, tài liệu art work-order và workflow chỉ kiểm metadata.
+- **P0-02/P0-03/P1-03/P2 KHÔNG ĐỔI DONE:** art khuôn mặt master chất lượng native, underpaint họa sĩ, 35 attachment semantic, Spine rig và APK vẫn chưa có nghiệm thu.
+- **CP332 TIẾP THEO:** dựng art highres thật từ nhận diện CANON V2, vẽ underpaint sạch không baked mắt/môi, làm 5 biểu cảm trên cùng master rồi QA 256/132/64px và Art Preview duyệt riêng; sau đó mới rig/Spine/Android.
+- **HỒ SƠ:** [CP331 handoff](art/LAM_THIEN_CP331_SHARED_FACE_HANDOFF.md), [manifest](art/LAM_THIEN_CP331_SHARED_FACE_TRIAL_MANIFEST.json), [artist work order](art/LAM_THIEN_CP331_ARTIST_WORK_ORDER.md).
+
+### Lịch sử 2026-10-29
+Giảm sai lệch nhận dạng giữa năm bản face nháp bằng thử nghiệm dùng chung một nền; không thay bản đã chốt và không đánh dấu các patch là sprite game.
