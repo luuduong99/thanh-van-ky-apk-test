@@ -53,7 +53,10 @@
     "apk_integrated": false,
     "expression_preview_approved": true,
     "expression_sprites_complete": false,
-    "expression_spine_animation_complete": false
+    "expression_spine_animation_complete": false,
+    "expression_state_selector_implemented": true,
+    "expression_sprite_resolver_implemented": true,
+    "expression_android_build_verified": false
   },
   "plan": "docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md",
   "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
