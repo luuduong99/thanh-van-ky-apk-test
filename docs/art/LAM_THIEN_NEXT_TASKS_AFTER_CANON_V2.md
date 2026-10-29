@@ -246,3 +246,11 @@
 - [x] **16/16 local tests PASS:** 12 bài trên 138 PNG **synthetic fixture** và 4 bài so pixel với nguồn approved thật. `--strict` FAIL đúng dự kiến; ZIP SHA256 `29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5`. GitHub CP336 workflow run `40829848852` **SUCCESS**. CP335 release gate vẫn BLOCK art chưa duyệt.
 - [ ] **CP337 ART THẬT:** vẽ native head master Front và 3/4 theo CANON V2 (hai góc phân biệt rõ), dưới tóc có skin underpaint sạch; 13 facial layers ×5 trên từng góc, mắt hổ phách, hoa tóc/viền vàng tiết chế; QA 256/132/64, blink/mesh/occlusion. **Sau nghiệm thu art thành phẩm** mới đăng ký sprite/Spine/APK.
 - [ ] `production_release` vẫn `blocked_pending_art`, `sprite_paths={}`. P0-02/P0-03/P1-03/P2 chưa DONE. **Không hỏi chốt lại** CANON V2, +17%, năm cảm xúc hay damage 100/70/50/30.
+
+
+## CP337 — khởi tạo triển khai art Front/3/4 thực (2026-10-29)
+
+- [x] Kiểm nguồn CANON V2 + các crop CP336; xác minh Drive source chưa có source ORA/PSD/KRA thật qua quyền truy cập hiện tại.
+- [x] Tạo work order [CP337](LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md), bảo vệ hai nguồn approved và ghi tiêu chuẩn đủ 2 góc để nghiệm thu.
+- [ ] Chân dung FRONT được yêu cầu tạo riêng qua task `880ac92b-bf38-48ae-bd33-e7fde597efd8` đang **PENDING** tại checkpoint; chưa có ảnh kết quả được kiểm. **Không gọi là completed sprite**.
+- [ ] 3/4 asset và clean native layered artwork cần sản xuất; 13 semantic parts × 5 expressions mỗi góc vẫn chưa có production art. CP335 release gate BLOCKED, Spine/APK NOT DONE.
