@@ -37,7 +37,7 @@ Bộ công cụ đọc **file PNG thực**, kiểm SHA-256, path traversal, canv
 
 ## 4. Gói nguồn và bàn giao
 
-- ZIP: `TVK_LamThien_CP336_Source_Master_Gate_NOT_SPINE_READY.zip`, SHA-256 **`54fe65d7201fb7b616a79ab8c030eeeb70b2291d50a2998689b2825964e864e4`**, **161 entries**, ZIP CRC PASS.
+- ZIP: `TVK_LamThien_CP336_Source_Master_Gate_NOT_SPINE_READY.zip`, SHA-256 **`29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5`**, **161 entries**, ZIP CRC PASS.
 - Gói chứa: hai ảnh gốc approved, 8 crop reference, board QA, manifest SHA/bbox, `README.md`, script tạo board, validator, 138 PNG **SYNTHETIC_TEST_FIXTURE_NOT_ART** (dùng để test, không dùng game), 16 tests nguồn/validator và báo cáo strict gate.
 - ChatGPT Library Development: `/Thanh Van Ky/Development/CP336_Face_Master_Source_And_QA/`. Không đưa nguồn R&D CP336 vào Approved Production Art.
 - [Manifest nguồn](LAM_THIEN_CP336_SOURCE_MASTER_MANIFEST.json). Có SHA từng crop và cờ `real_production_png_layers_created=0`.
@@ -51,3 +51,10 @@ Bộ công cụ đọc **file PNG thực**, kiểm SHA-256, path traversal, canv
 5. Chỉ sau nghiệm thu visual+alpha và user acceptance, điền `production_release`, SHA các PNG và `sprite_paths`, tiếp tục Spine/Android, build APK và test thiết bị.
 
 **CP336 đóng phần kiểm nguồn, cấu trúc QA và bàn giao, không đóng P0-02/P0-03/P1-03/P2.**
+
+
+## GitHub CI (verified)
+
+GitHub Actions `CP336 two-angle facial layer contract`, run `40829848852`, job `123301289375`, **SUCCESS**. CP335 facial art release gate run `40829848868` cũng **SUCCESS**. CI CP336 chạy 12 bài synthetic PNG và 5 bài metadata/approval-contract; **4 bài kiểm pixel hai nguồn approved với 8 crop chạy local**, không có ảnh gốc trên GitHub runner. Không có Spine/Android build trong hai workflow này.
+
+Bản ZIP cuối đã đồng bộ README ghi **16/16 local tests** và hash mới `29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5` (thay cho hash trước khi chỉnh README). Nguồn ảnh và quyết định đã duyệt giữ nguyên.
