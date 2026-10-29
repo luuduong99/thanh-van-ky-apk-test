@@ -1,0 +1,30 @@
+name: CP330 facial painted-region technical contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP330_ART_TRIAL_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_CP330_PACKAGE_MANIFEST.json'
+      - 'tools/cp330/*.py'
+      - 'tests/art/test_cp330_art_trial_contract.py'
+      - '.github/workflows/cp330-face-art-trial.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP330_ART_TRIAL_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_CP330_PACKAGE_MANIFEST.json'
+      - 'tools/cp330/*.py'
+      - 'tests/art/test_cp330_art_trial_contract.py'
+jobs:
+  review-art-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install technical image dependencies
+        run: python3 -m pip install Pillow numpy opencv-python-headless
+      - name: Verify CP330 can't override approved V2 or five expressions
+        run: python3 -m unittest discover -s tests/art -p 'test_cp330_art_trial_contract.py' -v
+      # CI is a METADATA + SYNTHETIC test. Source artwork and ORA binaries are
+      # Library-backed and checked locally; this CI cannot approve production art.
