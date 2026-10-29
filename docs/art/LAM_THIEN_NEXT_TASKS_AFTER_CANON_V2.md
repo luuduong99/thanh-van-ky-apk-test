@@ -167,3 +167,13 @@
 - [x] Lưu [CP328 handoff](LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md), [gate manifest](LAM_THIEN_CP328_FACE_MASTER_GATE.json), ZIP tại ChatGPT Library Development; source tests & CI workflow ghi trên GitHub. **Không đổi nguồn V2 / biểu cảm / damage**.
 - [ ] **CP329:** làm face master art thật native high-res, mắt hổ phách, tóc/phụ kiện/bố cục V2, underpaint do họa sĩ hoàn thiện; tạo 5 nét trên cùng khuôn mặt và sprite alpha tách lớp; QA ở khung thoại/góc Front và 3⁄4.
 - [ ] **Rig/Spine/APK** chờ art nghiệm thu. Các concept CP328 nháp, dù có text “production-ready” do model vẽ, **không được dùng làm asset**. P0-02/P0-03/P1-03/P2 vẫn mở.
+
+
+## CP329 — Face Master Intake theo hai nguồn đã duyệt (2026-10-29)
+
+- [x] Tạo 6 ORA chỉnh sửa được: **1 face master 11 slot + 5 expression 7 slot mỗi loại**. Khóa source CANON BODY V2 và sheet biểu cảm (SHA256), hai eye ROI và tọa độ chuyển từ native crop `230×114` sang canvas guide `2048×2048`. Bảng đối chiếu CP329 ghi rõ mặt V2 khác **mẫu sắc thái**.
+- [x] **6/6 ORA PASS cấu trúc**, 8/8 bài test local PASS; mode production `--strict` cố ý chặn vì **0/46 layer mỹ thuật được vẽ**, không có underpaint thực hoặc duyệt asset cuối.
+- [x] Lưu ZIP, PNG QA và mã/manifest trong Library Development `/Thanh Van Ky/Development/CP329_Face_Master_Intake/`; commit công cụ và CI GitHub `cp329-face-art-intake.yml`. CI metadata/synthetic CP329 **SUCCESS** run `40812464457`.
+- [ ] **P0-02/P0-03 và P1-03 CHƯA HOÀN THÀNH:** cần redraw high-resolution đúng V2 và đưa *nội dung art thật* vào các lớp để QA; không nhầm x8 guide hoặc poster AI với HD art.
+- [ ] **CP330 (tiếp):** vẽ face master/underpaint sạch, vẽ 35 lớp nét mặt thật phù hợp 5 cảm xúc (mắt hổ phách), test ở 256/132/64 và góc Front/3⁄4, duyệt sprite art → Spine → Android APK. Không cần hỏi lại V2, +17%, damage 100/70/50/30, hay 5 biểu cảm đã chốt.
+- **Đầu mối:** [CP329 handoff](LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md) · [manifest](LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json). `sprite_paths` vẫn **chưa đăng ký** vì game art chưa hoàn thiện.
