@@ -288,5 +288,44 @@
     "spine_rig_verified": false,
     "apk_verified": false,
     "next": "draw native layered face and clothing to original CANON V2; optionally trim only nonessential fringe with user-visible side-by-side QA"
+  },
+  "user_selected_final_visual_reference_roles_CP339": {
+    "date": "2026-10-29",
+    "source_priority": "user explicitly selected images 2 and 3 as final note references; image 1 restricted to chest bodice cut and upper torso proportion adjustment",
+    "image_2_body_wardrobe": {
+      "sha256": "3cd8977383ba2fd2563a8f3c07aa85e5a7af4572d37c0fdb80d0e52cba0a3501",
+      "pixel_size": [
+        1536,
+        1024
+      ],
+      "status": "user_selected_final_reference_for_body_costume_angles_poses_damage",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_2_MODEL_BODY_WARDROBE_BASE.png"
+    },
+    "image_3_facial_expressions": {
+      "sha256": "186ec1fef284d702229af9e10c6d27a7f3e27b664b22f204863a3f20469d6a50",
+      "pixel_size": [
+        1536,
+        1024
+      ],
+      "status": "user_selected_final_five_emotions_direction_only",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_3_FIVE_EXPRESSIONS_REFERENCE.png"
+    },
+    "image_1_limited_bodice_reference": {
+      "sha256": "5bd69fff139c4908d122786655babbf08301e345388f1fe6fa6d6b42e21e3d99",
+      "pixel_size": [
+        1400,
+        1540
+      ],
+      "usage": "REFERENCE ONLY: bodice/chest garment styling and upper-torso/bust proportion, not a replacement design",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_1_BODICE_REFERENCE_ONLY.png"
+    },
+    "revision_status": "requested_changes_under_review_preview_required_before_approving_revised_game_art",
+    "approved_model_style_reference_is_image_2": true,
+    "approved_emotion_style_reference_is_image_3": true,
+    "historical_registry_sha_are_archived_historical_canon_evidence_not_active_user_uploaded_reference_files": true,
+    "game_sprite_release_still_blocked": true,
+    "no_spine_or_apk_complete": true,
+    "handoff": "docs/art/LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md",
+    "note": "Do not change existing runtime SHA/source mappings until production revision is artist-approved and actual independent sprite/rig assets exist."
   }
 }
