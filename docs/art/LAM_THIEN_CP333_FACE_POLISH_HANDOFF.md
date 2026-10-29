@@ -44,3 +44,10 @@
 5. Only after accepted art, link assets in Android, import actual Spine project, check animation/blend/occlusion, build/test APK and update P0/P1/P2 acceptance flags with evidence.
 
 **CP333 does not close P0-02, P0-03, P1-03 or P2.**
+
+
+## Verified GitHub CI result (2026-10-29)
+
+- GitHub Actions `CP333 refined semantic face contract`: run **40820930195**, job **123272972666** (`Approved reference lock and independent SVG geometry`) **SUCCESS**. The source-only CI verifies the V2 and five-expression SHA metadata, SVG layer changes, amber iris, and production-approval flags.
+- **13/13 binary-ORA tests passed locally** against six real ORAs, including exact base-layer byte equality and CRC/recomposition. Those binary files are Library-backed and **are not present on the GitHub runner**.
+- Neither CI nor local tests constitute visual artist approval, Spine mesh animation, or APK build verification.
