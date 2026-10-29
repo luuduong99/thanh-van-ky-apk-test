@@ -74,5 +74,23 @@
     "local_binary_validation_passed": 9,
     "package_sha256": "51cafc14800032712eeed7f0d1ff47edf6f486659ac38c28279298a1be0cb535",
     "handoff": "docs/art/LAM_THIEN_CP340_SOURCE_EXACT_FRONT_ALPHA_HANDOFF.md"
+  },
+  "cp341_art_intake": {
+    "status": "source_exact_front_matte_recovered_not_rig",
+    "original_rgb_pixels_unchanged": true,
+    "front_size_px": [
+      215,
+      449
+    ],
+    "regained_opaque_alpha_px": 19983,
+    "local_binary_tests": 13,
+    "editable_alpha_mask_exists": true,
+    "comparison_openraster_layers": 3,
+    "separate_artist_body_face_garment_layers_complete": false,
+    "painter_approved": false,
+    "spine_complete": false,
+    "apk_verified": false,
+    "library_backup": "/Thanh Van Ky/Development/CP341_Canon_V2_1_Matte_Recovery/",
+    "handoff": "docs/art/LAM_THIEN_CP341_MATTE_HANDOFF.md"
   }
 }
