@@ -72,3 +72,12 @@ Vết bẩn và rách bám đúng mảnh trang phục qua mọi góc và pose, k
 
 Chi tiết: [GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md](GLOBAL_CLOTHING_DAMAGE_VISUAL_STANDARD.md). Metadata `appearanceSystem.damageVisualProfile` mới chỉ mô tả tiêu chuẩn/độ nặng, **chưa phải vết bẩn, texture rách hoặc renderer đã hoạt động**.
 
+
+
+## Biểu cảm nhân vật — QUY CHUẨN CHUNG ĐÃ CHỐT (2026-10-29)
+
+- **Mẫu Lâm Thiển được duyệt:** [5 biểu cảm chính thức](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md), ảnh SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Năm sắc thái: `shy` (Ngại ngùng), `angry` (Tức giận), `pain` (Đau đớn), `embarrassed` (Xấu hổ), `alluring` (Quyến rũ).
+- **Áp dụng với nhân vật chính trưởng thành khác:** cùng mục tiêu *phân biệt rõ cảm xúc*, nhưng điều chỉnh nét mặt, cường độ, ánh mắt, má đỏ, miệng và phong thái theo mỗi nhân vật; **không copy** khuôn mặt/tóc/body/tỷ lệ Lâm Thiển. Tham khảo [GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md](GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md).
+- **Đặc biệt không nhầm:** `shy` khác `embarrassed` qua né ánh mắt + độ đỏ má + cúi đầu; `angry` khác `pain` qua mày/mắt/miệng; `alluring` là chủ động có chủ ý, không phải chỉ cười. Mỗi nhân vật phải có preview biểu cảm của riêng mình trước khi chốt.
+- **Tách state:** `expression` tách biệt và giữ nguyên các giá trị `wardrobe`, `integrity`, `pose`, `action` khi đổi nét mặt. Áp dụng biểu cảm phù hợp độ tuổi và bối cảnh nhân vật.
+- **Phân biệt rõ tiến độ:** chuẩn chung và biểu cảm mẫu Lâm Thiển đã duyệt về hướng hình ảnh; asset PNG alpha tách mắt/mày/miệng, Spine animation và APK **chưa nghiệm thu**. Không sử dụng ảnh concept phẳng để giả hoàn tất.
