@@ -1,0 +1,357 @@
+{
+  "checkpoint": "CP330",
+  "date": "2026-10-29",
+  "status": "candidate_flat_art_decomposed_technical_only_NOT_CANON",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "source_unapproved_generated_sheet_sha256": "ebffd161e2d400a33a7b337d870c950c9de7cf967b842a5d9c515f1447df4089",
+  "source_generated_sheet_px": [
+    1536,
+    1024
+  ],
+  "source_warning": "New AI art has not been approved and includes spurious final/Spine-ready labels. All such claims are false; images are R&D only.",
+  "production_asset_allowed": false,
+  "same_canonical_face_master": false,
+  "new_artist_redraw_complete": false,
+  "spine_ready": false,
+  "apk_ready": false,
+  "art_preview_needs_review": true,
+  "total_candidate_portraits": 5,
+  "total_independent_facial_painted_region_layers": 35,
+  "total_ora_files": 5,
+  "source_native_resolution_only": true,
+  "results": [
+    {
+      "expression_id": "shy",
+      "source_crop_xyxy": [
+        11,
+        90,
+        271,
+        460
+      ],
+      "native_dimensions_px": [
+        260,
+        370
+      ],
+      "candidate_sha256": "c123f7badfe8a7f37a8e21614bfc9bcdaf36d82ce6bf40399b9c31b15f803eb8",
+      "ora_sha256": "7934419d5d575048ba0ae0800fda871a524a1e91dc5dd258080c0e6f937f4663",
+      "independent_alpha_layers": 7,
+      "underpaint": "cv2_telea_auto_not_approved",
+      "base_has_cutouts": true,
+      "default_composite_pixel_exact": true,
+      "shift_test_no_alpha_holes": true,
+      "face_shared_across_emotions": false,
+      "qa": "tech_valid_art_unapproved",
+      "region_bounds": {
+        "brow_image_left": [
+          63,
+          124,
+          110,
+          145
+        ],
+        "brow_image_right": [
+          132,
+          105,
+          182,
+          130
+        ],
+        "eye_image_left": [
+          61,
+          141,
+          114,
+          177
+        ],
+        "eye_image_right": [
+          130,
+          119,
+          189,
+          156
+        ],
+        "mouth": [
+          112,
+          183,
+          147,
+          211
+        ],
+        "blush_image_left": [
+          68,
+          170,
+          116,
+          200
+        ],
+        "blush_image_right": [
+          151,
+          148,
+          198,
+          187
+        ]
+      }
+    },
+    {
+      "expression_id": "angry",
+      "source_crop_xyxy": [
+        281,
+        90,
+        538,
+        460
+      ],
+      "native_dimensions_px": [
+        257,
+        370
+      ],
+      "candidate_sha256": "c0bf88884829361d1b521d553f90bfb29a8d19d62bfa4ee64c03bed88bf9cb1a",
+      "ora_sha256": "554c1d2950ac8d97a434a241987893d28e834f142ab6d03b480fc2643e93fb68",
+      "independent_alpha_layers": 7,
+      "underpaint": "cv2_telea_auto_not_approved",
+      "base_has_cutouts": true,
+      "default_composite_pixel_exact": true,
+      "shift_test_no_alpha_holes": true,
+      "face_shared_across_emotions": false,
+      "qa": "tech_valid_art_unapproved",
+      "region_bounds": {
+        "brow_image_left": [
+          68,
+          120,
+          120,
+          143
+        ],
+        "brow_image_right": [
+          145,
+          111,
+          197,
+          136
+        ],
+        "eye_image_left": [
+          66,
+          136,
+          120,
+          168
+        ],
+        "eye_image_right": [
+          143,
+          132,
+          203,
+          165
+        ],
+        "mouth": [
+          122,
+          186,
+          155,
+          211
+        ],
+        "blush_image_left": [
+          68,
+          159,
+          114,
+          192
+        ],
+        "blush_image_right": [
+          172,
+          155,
+          214,
+          192
+        ]
+      }
+    },
+    {
+      "expression_id": "pain",
+      "source_crop_xyxy": [
+        546,
+        90,
+        803,
+        460
+      ],
+      "native_dimensions_px": [
+        257,
+        370
+      ],
+      "candidate_sha256": "67c7a57d453b8d642efe36a6584046bbd631c9dc7af121f99fa7c05435416f57",
+      "ora_sha256": "225ba9c976a7602929b552f5889b360b47dab30e8e1bd5228cb4d9014fa1338e",
+      "independent_alpha_layers": 7,
+      "underpaint": "cv2_telea_auto_not_approved",
+      "base_has_cutouts": true,
+      "default_composite_pixel_exact": true,
+      "shift_test_no_alpha_holes": true,
+      "face_shared_across_emotions": false,
+      "qa": "tech_valid_art_unapproved",
+      "region_bounds": {
+        "brow_image_left": [
+          67,
+          135,
+          124,
+          162
+        ],
+        "brow_image_right": [
+          144,
+          114,
+          197,
+          140
+        ],
+        "eye_image_left": [
+          61,
+          151,
+          125,
+          182
+        ],
+        "eye_image_right": [
+          143,
+          124,
+          201,
+          161
+        ],
+        "mouth": [
+          106,
+          180,
+          168,
+          214
+        ],
+        "blush_image_left": [
+          71,
+          174,
+          122,
+          210
+        ],
+        "blush_image_right": [
+          155,
+          156,
+          210,
+          194
+        ]
+      }
+    },
+    {
+      "expression_id": "embarrassed",
+      "source_crop_xyxy": [
+        811,
+        90,
+        1067,
+        460
+      ],
+      "native_dimensions_px": [
+        256,
+        370
+      ],
+      "candidate_sha256": "c30f203d38faeab108594f53fc989d484bbbed44f331294934a904ba4c366008",
+      "ora_sha256": "09e08eb3298489dd55fa57fc80d2df9d8d56b5c893731f8e009b84a9a84d23d9",
+      "independent_alpha_layers": 7,
+      "underpaint": "cv2_telea_auto_not_approved",
+      "base_has_cutouts": true,
+      "default_composite_pixel_exact": true,
+      "shift_test_no_alpha_holes": true,
+      "face_shared_across_emotions": false,
+      "qa": "tech_valid_art_unapproved",
+      "region_bounds": {
+        "brow_image_left": [
+          62,
+          132,
+          116,
+          152
+        ],
+        "brow_image_right": [
+          132,
+          125,
+          191,
+          150
+        ],
+        "eye_image_left": [
+          59,
+          148,
+          117,
+          186
+        ],
+        "eye_image_right": [
+          132,
+          141,
+          191,
+          178
+        ],
+        "mouth": [
+          109,
+          199,
+          144,
+          229
+        ],
+        "blush_image_left": [
+          66,
+          176,
+          118,
+          217
+        ],
+        "blush_image_right": [
+          147,
+          166,
+          206,
+          210
+        ]
+      }
+    },
+    {
+      "expression_id": "alluring",
+      "source_crop_xyxy": [
+        1074,
+        90,
+        1325,
+        460
+      ],
+      "native_dimensions_px": [
+        251,
+        370
+      ],
+      "candidate_sha256": "7fe43f09d4abcc0cdd30b62561de303dd96cd1861c7bea73abfa6f037c7e0637",
+      "ora_sha256": "1a6c658b454e3b4e5ab8ad75537e17a852df2b24bb18156df2a43e0c4c563480",
+      "independent_alpha_layers": 7,
+      "underpaint": "cv2_telea_auto_not_approved",
+      "base_has_cutouts": true,
+      "default_composite_pixel_exact": true,
+      "shift_test_no_alpha_holes": true,
+      "face_shared_across_emotions": false,
+      "qa": "tech_valid_art_unapproved",
+      "region_bounds": {
+        "brow_image_left": [
+          61,
+          136,
+          113,
+          157
+        ],
+        "brow_image_right": [
+          131,
+          117,
+          191,
+          143
+        ],
+        "eye_image_left": [
+          62,
+          153,
+          120,
+          190
+        ],
+        "eye_image_right": [
+          135,
+          133,
+          202,
+          170
+        ],
+        "mouth": [
+          125,
+          188,
+          165,
+          219
+        ],
+        "blush_image_left": [
+          71,
+          178,
+          123,
+          220
+        ],
+        "blush_image_right": [
+          153,
+          161,
+          205,
+          204
+        ]
+      }
+    }
+  ]
+}
