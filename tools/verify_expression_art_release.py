@@ -169,7 +169,7 @@ def validate(root: Path, *, profile_file: Path | None = None) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
     args = parser.parse_args()
     try:
         errors = validate(args.repo)
