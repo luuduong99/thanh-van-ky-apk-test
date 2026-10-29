@@ -242,37 +242,35 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP328",
+    "checkpoint": "CP329",
     "date": "2026-10-29",
-    "status": "canon_face_color_lock_verified_production_art_pending",
+    "status": "six_editable_ora_artist_intake_only_not_art_approved",
     "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "native_face_crop_px": [
+    "source_native_face_size_px": [
       230,
       114
     ],
-    "eye_color_reference": "warm_amber_gold_in_CANON_V2",
-    "eye_color_audit_roi_counts": {
-      "left": {
-        "amber": 124,
-        "blue": 0
-      },
-      "right": {
-        "amber": 105,
-        "blue": 0
-      }
-    },
-    "method_limit": "HSV heuristic on eye ROIs including skin and eyelashes; NOT artist approval",
-    "source_sha_checked": true,
-    "local_tests_passed": 9,
-    "generated_new_face_art_approved": false,
-    "production_highres_face_master_ready": false,
-    "clean_underpaint_artist_approved": false,
+    "guide_canvas_px": [
+      2048,
+      2048
+    ],
+    "guide_is_only_enlarged_native_canon": true,
+    "editable_oras": 6,
+    "art_layers_total": 46,
+    "art_layers_painted": 0,
+    "local_ora_tests_passed": 8,
+    "github_cp329_contract_run": 40812464457,
+    "github_cp329_contract_conclusion": "success",
+    "package_sha256": "e6b8e952b2a7028ac2314cf95d5fb0c94d008b9c0baf6c2064dc2b7130c91b9d",
+    "library_path": "/Thanh Van Ky/Development/CP329_Face_Master_Intake/",
+    "handoff": "docs/art/LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md",
+    "production_face_master_ready": false,
+    "underpaint_artist_approved": false,
+    "expression_sprite_art_ready": false,
     "spine_ready": false,
     "apk_ready": false,
-    "package_sha256": "4fe87b2ce4610da81919215ed3395d01f0a4a699fe472d6ba965c433755a360e",
-    "library_backup": "/Thanh Van Ky/Development/CP328_Canon_Face_Color_Lock/",
-    "handoff": "docs/art/LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md",
-    "next": "CP329 high-res production face redraw / 5 real alpha expression attachments"
+    "rig_registration_allowed": false,
+    "next_step": "CP330 redraw true highres V2 face master + clean underpaint + 35 independent expression attachments"
   }
 }
