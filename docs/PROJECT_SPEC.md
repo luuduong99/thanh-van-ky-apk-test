@@ -1400,3 +1400,10 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Cập nhật kiểm thử CP324, CP335 cho việc bảo toàn **historical V2** nhưng yêu cầu runtime **active V2.1**; thêm bộ `tests/art/test_cp362_runtime_canon_v21.py` (6 phép kiểm tra source/contract), không tự chứng minh art đạt chuẩn. [Handoff CP362](art/LAM_THIEN_CP362_RUNTIME_CANON_V21_MIGRATION.md).
 - **Công việc native art CP362 chưa hoàn thành**: các lớp CP361 là 4 nghiên cứu vector cục bộ trên base raster 215×449 phóng lớn, Visual QA FAIL; chưa có bộ phận tay/áo/tóc/thân high-res vẽ lại đầy đủ, cặp keyframe cùng góc và Spine/Android FPS. `production_release.status=blocked_pending_art`, `sprite_paths={}` được giữ nguyên.
 - **CP363 next:** cần sản xuất lại hình Front phân lớp native artist-grade, vẽ vùng da/vải/tóc ẩn sau tay, xuất cặp idle/raise same-view và đối chiếu CANON; chỉ sau Visual QA/user approval mới tích hợp rig và thử APK.
+
+
+### CP362 verified build and final QA — 2026-10-29
+
+- Đã sửa kiểm thử nguồn cũ CP335/CP358 tương thích cách tách **V2 lịch sử** và **CANON V2.1 active runtime**. GitHub Art QA [run 40893899956](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893899956) **SUCCESS**. Build Android [run 40893908748](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893908748) **SUCCESS** trên commit code `911cd9f22921cce07f24b95b0bfea2db704464c4`.
+- Đã tải đúng artifact APK debug `12905118427`, kiểm ZIP/CRC **PASS**, file `TVK_CP362_Debug.apk` **8.791.461 byte**, SHA256 `2ee780ed142fb60d1f2cea720fdebd5ec9a033980290a12f6ea21f0f5115dce0`. Trong assets APK ID/SHA V2.1 đúng, production release art vẫn blocked; DEX có cảnh báo legacy. Đã lưu tại Library `/Thanh Van Ky/Development/CP362_Runtime_CANON_V2_1_Migration/` cùng hướng dẫn CP362.
+- **Đây không phải bản nghệ thuật cuối:** chưa có art native full highres, chưa nghiệm thu animation thực hoặc FPS trên Android. CP363 phải tập trung vẽ nội dung thực và gửi preview kiểm Visual QA.
