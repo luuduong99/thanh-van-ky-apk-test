@@ -1,0 +1,25 @@
+name: CP340 native source and nonproduction alpha contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP340_ALPHA_TRIAL_MANIFEST.json'
+      - 'tests/art/test_cp340_metadata.py'
+      - '.github/workflows/cp340-source-alpha-metadata.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP340_ALPHA_TRIAL_MANIFEST.json'
+      - 'tests/art/test_cp340_metadata.py'
+jobs:
+  canon-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Protect exact V2.1 identity and block experimental alpha from game
+        run: python3 -m unittest discover -s tests/art -p 'test_cp340_metadata.py' -v
+      # Actual approved PNG and 14 source-exact crops + two-layer ORA
+      # were audited locally from the Library-backed binary ZIP (9/9 PASS).
+      # This CI has no binaries and cannot visually approve sprite art.
