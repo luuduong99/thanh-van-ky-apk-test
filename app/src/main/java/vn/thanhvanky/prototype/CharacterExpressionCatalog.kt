@@ -65,6 +65,19 @@ internal object CharacterExpressionCatalog {
             !release.optBoolean("runtime_qa_passed") ||
             release.optString("user_asset_approval_id").isBlank()) return null
 
+        // Lâm Thiển is locked to user-approved CANON V2.1. Legacy V2 reference
+        // remains archival expression metadata and must NEVER authorize game art.
+        if (character.optString("id") == "lin_qian") {
+            val active = character.optJSONObject("active_user_approved_art_reference") ?: return null
+            val canonId = "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29"
+            val canonSha = "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
+            if (active.optString("id") != canonId || active.optString("sha256") != canonSha ||
+                character.optString("canonical_body_visual_id") != canonId ||
+                character.optString("canonical_body_sha256") != canonSha ||
+                release.optString("canonical_body_visual_id") != canonId ||
+                release.optString("canonical_body_sha256") != canonSha) return null
+        }
+
         if (release.optString("canonical_body_visual_id") != character.optString("canonical_body_visual_id") ||
             release.optString("canonical_body_sha256") != character.optString("canonical_body_sha256") ||
             release.optString("approved_expression_profile_id") != character.optString("approved_profile_id") ||
