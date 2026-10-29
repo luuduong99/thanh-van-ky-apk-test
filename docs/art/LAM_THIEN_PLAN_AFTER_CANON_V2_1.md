@@ -35,3 +35,12 @@
 - [ ] **Bước P1 kế tiếp — REDRAW ART THẬT:** từ cutout làm guide, họa sĩ cần redraw native high-res thành semantic RGBA + clean underpaint (body, áo, tóc, tay, phụ kiện), QA silhouette/bodice V2.1 trước các biểu cảm/góc còn lại.
 - [ ] Preview của nguồn V2.1 cho thấy `3/4 Front` chưa rõ khác Front ở khuôn mặt; artist phải làm phối cảnh đúng khi thực hiện view production mà **không thiết kế lại model**. Vẽ damage/biểu cảm theo đúng bản mới nhất, không tăng vết rách ở 30.
 - [ ] CP335 art gate còn **BLOCKED**, Spine/APK chưa hoàn thành. Không tự chốt bản alpha trial.
+
+
+## CP341 — Refine alpha foreground trên crop Front gốc (2026-10-29)
+
+- [x] CANON V2.1 vẫn được SHA-checked (941×1672, SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`); không thay RGB nhân vật hay trang phục.
+- [x] Phục hồi tóc bạc/viền tay áo/vạt vải sáng từ source crop 215×449 bị CP340 làm mất; alpha >128 tăng 19.983 pixel có kiểm vùng. Tạo **PNG RGBA**, **mask grayscale chỉnh sửa được**, **ORA 3 lớp so sánh (không phải bộ phận rig)** và preview.
+- [x] **13/13 local binary tests PASS**, ZIP CRC PASS; [CP341 handoff](LAM_THIEN_CP341_MATTE_HANDOFF.md), [manifest](LAM_THIEN_CP341_MATTE_MANIFEST.json), gói ZIP SHA `08d8aa08bc4b00163e092d056f1e067a5652b0f80b9462e5308277dbe8baacb1` tại Library Development.
+- [ ] **CP342 cần thực hiện:** cleanup thủ công white halo + shadow dưới chân và vạt, tạo **art native Front semantically layered** với underpaint thực và vùng vải/tóc ẩn khi bone chuyển động. Preview bắt buộc so silhouette/body/bodice với CANON V2.1 để tránh sai mẫu.
+- [ ] Mới sau Front artist-approved: tách 5 nét biểu cảm độc lập, 4 mức hư hại vừa phải, góc nhìn khác; rig/Spine và Android APK vẫn chưa DONE. CP335 release gate tiếp tục BLOCK.
