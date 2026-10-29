@@ -970,3 +970,19 @@ Giảm sai lệch nhận dạng giữa năm bản face nháp bằng thử nghi�
 ### Bổ sung CP332 — xác minh GitHub CI (2026-10-29)
 
 Đã kiểm tra trực tiếp GitHub Actions CP332: run `40819544556` / job `123268528135` **SUCCESS**. CI xác minh mã vector, metadata và một số layer RGBA tổng hợp, **không đọc sáu ORA nhị phân** trong Library. Các bài kiểm ORA thật **10/10 PASS local** vẫn là chứng cứ riêng; trạng thái mỹ thuật `NOT APPROVED`, Spine/APK `NOT DONE` không thay đổi.
+
+
+---
+
+## 43. CP333 — tinh chỉnh 65 layer nét mặt độc lập trên cùng master (2026-10-29)
+
+- **Hai chuẩn đã duyệt vẫn là nguồn duy nhất:** CANON BODY/FACE `LT_CANON_BODY_REF_2026-10-28_V2` (SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`), năm biểu cảm `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` (SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`). Mắt hổ phách, tóc bạc, trang phục trắng-xanh-vàng, tỷ lệ +17% đã trong V2, damage 100/70/50/30 **không thay đổi**.
+- **ĐÃ LÀM ART VECTOR R&D THỰC:** trên CP332 chỉnh các nét SVG tóc, hoa/châu vàng, vân/hắt sáng mống mắt hổ phách, mi/đường chân mày/miệng; xuất **6 OpenRaster có art thật** (1 base 10 lớp + 5 expression cùng base và mỗi expression 13 attachment RGBA, **65 lớp nét mặt**). Face base không baked mắt/mày/miệng; các layer base giữ nguyên byte giữa năm trạng thái. Có ảnh so trước/sau và QA hội thoại.
+- **QA LOCAL:** 13/13 test trên file ORA thật PASS, ZIP CRC/alpha/composite/ảnh khác nhau và khóa SHA nguồn PASS; production `--strict` FAIL đúng thiết kế; source-only 9/9 test PASS. GitHub workflow `cp333-refined-face-contract.yml` kiểm mã nguồn và metadata, **không có ORA nhị phân trên runner**. Chưa xác minh kết quả CI mới khi ghi phần này.
+- **GÓI ART:** `TVK_LamThien_CP333_Refined_Vector_Study_NOT_APPROVED.zip`, SHA256 `1f8aa806758332194e258f941530b18b54e00991c877c3397a274d7c134517ad`, 179 file/ZIP CRC PASS, sao lưu ChatGPT Library Development `/Thanh Van Ky/Development/CP333_Refined_Vector_Study/`. Không chuyển sang Approved References hoặc Android `sprite_paths`.
+- **CHƯA ĐẠT MỸ THUẬT:** hình vector còn đơn giản và khác tỷ lệ/độ tinh tế CANON V2; chưa có Front 3/4, underpaint tóc khi deformation hoặc bone/mesh Spine thực; APK chưa build/test. Các chữ “Production Ready” trên infographic AI mới không phải bằng chứng nghiệm thu.
+- **CP334 NEXT:** ưu tiên redraw theo chuẩn anime CANON V2 trên các semantic layer đang có, rồi gửi preview **art thành phẩm**; kiểm nét mắt/mày/miệng cả 5 emotion ở 256/132/64px, tạo Front/3⁄4, sửa hair occlusion/underpaint, chỉ sau QA art mới Spine/Android APK.
+- **HỒ SƠ:** [CP333 handoff](art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md), [manifest](art/LAM_THIEN_CP333_ART_HANDOFF_MANIFEST.json). P0-02/P0-03/P1-03/P2 vẫn chưa nghiệm thu.
+
+### Lịch sử 2026-10-29
+Có cải tiến pixel thực trên SVG semantic, xác minh bằng ORA 6 file và regression tests; vẫn giữ ranh giới technical R&D và production art chưa được duyệt.
