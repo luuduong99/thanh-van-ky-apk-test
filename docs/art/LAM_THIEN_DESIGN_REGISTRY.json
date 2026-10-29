@@ -242,29 +242,41 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP335",
+    "checkpoint": "CP336",
     "date": "2026-10-29",
-    "status": "production_face_asset_release_gate_implemented_visual_candidate_not_approved",
+    "status": "approved_reference_crop_and_dual_angle_layer_validation_ready_art_missing",
     "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "generated_flat_candidate_sha256": "7935e04f5fa04c3bd9d772577ad7ddbc806a9e5723629d8b963bb0611d7315d1",
-    "generated_flat_candidate_approved": false,
-    "native_shared_face_master_front_three_quarter_ready": false,
-    "production_facial_layers_ready": false,
-    "clean_underpaint_artist_approved": false,
-    "artist_qa_passed": false,
-    "user_asset_approval_received": false,
-    "android_production_release_status": "blocked_pending_art",
-    "android_registered_sprite_paths": 0,
+    "source_crop_front_native": [
+      145,
+      151
+    ],
+    "source_crop_three_quarter_native": [
+      143,
+      151
+    ],
+    "source_crop_closeup_native": [
+      230,
+      114
+    ],
+    "front_reference_actually_tilted": true,
+    "two_angles_production_differentiated": false,
+    "original_native_layered_source_found": false,
+    "artist_native_highres_face_masters_created": 0,
+    "artist_drawn_expression_alpha_layers_created": 0,
+    "minimum_layer_gate_slots": 138,
+    "synthetic_qa_pngs_generated": 138,
+    "local_synthetic_layer_test_passed": 12,
+    "local_source_pixel_crops_test_passed": 4,
+    "github_ci_run_id": 40829848852,
+    "github_ci_conclusion": "success",
     "spine_verified": false,
     "apk_verified": false,
-    "kotlin_local_compiled_scenarios_passed": 17,
-    "python_local_tests_passed": 14,
-    "github_actions_run_id": 40823727298,
-    "github_actions_conclusion": "success",
-    "package_sha256": "d656146585681ce1a5b05d322fdab3a12eccb2c5f21b2afd6cc9e9d773dcf2df",
-    "library_backup": "/Thanh Van Ky/Development/CP335_Art_Release_Gate/",
-    "handoff": "docs/art/LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md",
-    "next": "CP336 authentic native detailed Front/3-4 face master underpaint and 5-semantic-emotion art; explicit asset acceptance before unlocking face release"
+    "approved_sprite_paths_registered": 0,
+    "runtime_art_release_status": "blocked_pending_art",
+    "package_sha256": "29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5",
+    "library_backup": "/Thanh Van Ky/Development/CP336_Face_Master_Source_And_QA/",
+    "handoff": "docs/art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md",
+    "next": "CP337 native Front and 3/4 painted face masters matching V2, clean underpaint, real semantic expression attachments and final art approval"
   }
 }
