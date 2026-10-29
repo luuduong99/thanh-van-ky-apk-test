@@ -1,0 +1,31 @@
+name: CP327 face rig atlas safety contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP327_ART_GATE_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_CP327_TECH_ATLAS.json'
+      - 'tools/cp327/export_cp327_atlas.py'
+      - 'tools/cp327/validate_cp327_atlas.py'
+      - 'tests/art/test_cp327_atlas_contract.py'
+      - '.github/workflows/cp327-face-atlas-preflight.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP327_ART_GATE_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_CP327_TECH_ATLAS.json'
+      - 'tools/cp327/export_cp327_atlas.py'
+      - 'tests/art/test_cp327_atlas_contract.py'
+jobs:
+  atlas-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python3 -m pip install Pillow
+      - name: Enforce approved CANON V2 and prototype-only atlas
+        run: python3 -m unittest discover -s tests/art -p 'test_cp327_atlas_contract.py' -v
+      # The actual CP326 ORA binaries are in Library, not in GitHub.
+      # This metadata CI does not verify actual ORA pixels or build Android.
