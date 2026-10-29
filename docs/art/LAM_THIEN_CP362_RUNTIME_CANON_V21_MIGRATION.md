@@ -20,3 +20,15 @@ The CP361 real editable ORA and original CANON were reopened. The four new shape
 - Runtime contract correct != actual production sprites exist. `production_release.status=blocked_pending_art` and `sprite_paths={}` remain untouched.
 - For CP363: author an artist-quality high-resolution independent front figure including hidden layers beneath shoulders, upper arm/sleeve, bodice and rear hair; export **same-camera/same-canvas/same-pivot idle and deliberate arm-raise frames**; compare against active V2.1 portrait and two shoe toes; manual visual approval required before importing rig/Spine and testing on Android.
 - CI results, once obtained, must be appended separately; do not mark as pass before observing workflow conclusions.
+
+
+## Additional CP362 runtime leak fixed
+
+A second, distinct fallback risk was found in `CharacterInteractionActivity.kt`: even when expression sprite resolution refused unapproved art, the **neutral pose** could still use `CharacterAppearanceState.resolveArt(...).path` and display a legacy placeholder bitmap, merely labelled `ẢNH TEST / LEGACY`. CP362 now uses `safeHeroineImage` for both normal and bed portrait layouts:
+
+- **Debuggable APK:** may show existing legacy illustration for development, with explicit banner.
+- **Non-debuggable/release APK:** if `lin_qian` has no approved runtime sprite release, passes empty asset path and renders the no-image placeholder instead. It must NOT silently display a wrong V2 model.
+- Other characters unaffected; all established expression/pose/damage fallback protections remain in place.
+- `tests/art/test_cp362_runtime_canon_v21.py` now also checks both portrait branches and this release-build guard. This is source/metadata-level regression; **physical device screenshots and measured FPS remain untested**.
+
+This ensures the active V2.1 body reference is enforced at *both* sprite-release metadata and actual portrait display paths. It does not create any approved artwork.
