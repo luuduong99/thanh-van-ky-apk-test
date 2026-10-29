@@ -104,5 +104,10 @@
   "cp333_handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md",
   "cp334_handoff": "docs/art/LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md",
   "cp335_handoff": "docs/art/LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md",
-  "cp336_handoff": "docs/art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md"
+  "cp336_handoff": "docs/art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md",
+  "historical_status": "SUPSERSEDED_VISUAL_REFERENCE_NOT_CURRENT",
+  "superseded_by_canonical_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "superseded_by_model_card": "docs/art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json",
+  "current_reference_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "note_about_legacy": "This file represents the historical V2 source. Do not use its old source hash to draw future character art; read active V2.1 model card and original PNG instead."
 }
