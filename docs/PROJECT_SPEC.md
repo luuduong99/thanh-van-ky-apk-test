@@ -856,3 +856,20 @@ Kiểm tra thực tế GitHub Actions trên commit `4cab946f91efdaf5c08988df85f7
 
 ### Lịch sử 2026-10-29
 Đã chuyển từ pixel-patch CP325 sang *layer vector riêng* CP326 và ghi rõ mức trung thực của hình ảnh; chuẩn canon/5 cảm xúc bất biến.
+
+
+---
+
+## 37. CP327 — kiểm atlas 35 lớp nét mặt và đối chiếu CANON V2 (2026-10-29)
+
+**ĐÃ LÀM BẰNG FILE THẬT (TECH PIPELINE):** xuất **35 thành phần RGBA** từ năm ORA CP326 chưa được duyệt thành atlas thử `2048×2048` và manifest `expression × part × atlas bbox × original offset`. Có nguồn ZIP/PNG và checksum, **5/5 local unit tests PASS**; từng vùng atlas đã so trực tiếp byte RGBA với source ORA, không overlap. Sửa lỗi alpha-composite làm đổi RGB má: phiên bản cuối dùng direct copy `paste`, SHA atlas **`2ef4e619e6d496598db835093e1be5f72ca8b7385ee3bfdc84f24188d7ea9739`**, ZIP cuối **`69be3de41b2e33dd15dd67899b27bb2b7a4ef86813afe3e91443f7b51e1b14db`**.
+
+- **ART MỚI CHƯA CHỐT:** poster CP327 mới có mắt thiên xanh và chi tiết mặt/phụ kiện khác CANON V2; chỉ làm ví dụ nghiên cứu, **không thay ảnh body V2, không dùng sprite mới**, bất kể text trên poster có nhắc Spine/2048. Ảnh chuẩn V2 mắt hổ phách vẫn là mẫu chính thức. Năm biểu cảm APPROVED chỉ quyết định nét cảm xúc.
+- **KHÔNG PHẢI SPINE ATLAS:** export ở đây là PNG + JSON **engine-neutral** từ CP326 vector demo, không có skeleton/mesh/underpaint production, không có APK. Strict gate FAIL theo thiết kế, `sprite_paths` không thay.
+- **LƯU TRỮ:** Library Development `/Thanh Van Ky/Development/CP327_Rig_Atlas_Preflight/` chứa ZIP, PNG atlas, contact sheet so sánh, mã export/validate/test. GitHub có `tools/cp327/export_cp327_atlas.py`, `tools/cp327/validate_cp327_atlas.py`, `tests/art/test_cp327_atlas_contract.py` và CI metadata `.github/workflows/cp327-face-atlas-preflight.yml`.
+- **CHƯA HOÀN THÀNH:** P0-02/P0-03, face art production P1-03, Spine rig/animation, Android APK. Nguồn khuôn mặt V2 hiện chỉ 230×114 px; phải phục hồi/vẽ lại master độ phân giải thật và underpaint before production.
+- **NEXT CP328:** vẽ face master đúng CANON V2 → tách lớp độc lập mỹ thuật → QA kích thước hội thoại/góc → rig Spine/Android → APK; không hỏi chốt lại các mẫu đã duyệt.
+- **BÀN GIAO:** [LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md](art/LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md), [CP327 manifest](art/LAM_THIEN_CP327_ART_GATE_MANIFEST.json).
+
+### Lịch sử 2026-10-29
+Đóng gói atlas PNG/JSON và khắc phục lỗi giữ nguyên pixel alpha, lưu các mẫu art nháp ở Development (không làm canon), chỉ tăng mốc kỹ thuật.
