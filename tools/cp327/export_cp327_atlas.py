@@ -84,7 +84,7 @@ def export(ora_dir:Path,out_dir:Path):
     records=[]
     for part in parts:
         x,y=part['atlas_origin'];pic=part['image']
-        atlas.alpha_composite(pic,(x,y))
+        atlas.paste(pic,(x,y))
         bbox=part['original_bbox_xyxy']
         records.append({
             'id':part['id'], 'expression':part['expression'],'slot':part['slot'],
