@@ -19,7 +19,7 @@
 
 ## Nguồn file và bàn giao
 
-- ZIP **`TVK_LamThien_CP326_Vector_Face_Prototype_NOT_GAME_READY.zip`**, SHA-256 `c9108a665611cd09755be3e1a5ced6a7fc6d655efdb497c394b48907388dc0c9`, 19 files, ZIP CRC PASS.
+- ZIP **`TVK_LamThien_CP326_Vector_Face_Prototype_NOT_GAME_READY.zip`**, SHA-256 `377086143ce7a85449e9ade18d1de02f64431ba15e8c8024b2ce5bc86f37f4f6`, 19 files, ZIP CRC PASS.
 - Library backup: `/Thanh Van Ky/Development/CP326_Vector_Face_Prototype/` (gồm ZIP, contact sheet, manifest, generator, validator, test). **Không lưu vào Approved production art**.
 - [Manifest file & alpha](LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json).
 - Mã tạo (chạy lại với `--canon <V2.png> --out <dir>`): `tools/cp326/create_cp326_face_vectors.py`. Phụ thuộc Python Pillow/Numpy/OpenCV/CairoSVG.
@@ -41,3 +41,11 @@
 3. Tách các bản PNG alpha có vùng ẩn được bù đầy đủ để animating eyelids/mouth; đo mốc trên mỗi góc Front/3⁄4.
 4. Test mặt ở kích thước đối thoại, ghép với body đúng trạng thái wardrobe × integrity × pose, kiểm các nét không giật hoặc hiện hai đôi mắt, mới khai báo `sprite_paths` và Spine.
 5. Chạy pipeline CI Android thực, kiểm APK trên thiết bị và lập phiếu nghiệm thu. **P0-02/P0-03, P1-03, P2 vẫn chưa DONE**.
+
+
+## Bổ sung QA UI và bản động kỹ thuật CP326 (2026-10-29)
+
+- `CP326_DIALOGUE_THUMBNAIL_QA_TECH_DEMO.png`: đối chiếu 5 biểu cảm khi giảm xuống 132px và 64px; ở cỡ nhỏ có sự khác biệt nhưng vẫn chưa đạt chất lượng anime/source duyệt.
+- `CP326_EXPRESSION_SWITCHING_TECH_DEMO.gif`: mô phỏng đổi state giữa 5 expression trên cùng nền face; **chỉ là GIF chuyển ảnh, không có rig hoặc Spine animation**.
+- Hai file trên đã được lưu Library Development cùng ZIP và **được bổ sung vào ZIP cuối**. Vì vậy SHA-256 ZIP là `377086143ce7a85449e9ade18d1de02f64431ba15e8c8024b2ce5bc86f37f4f6`, tổng 21 file; checksum bản ZIP 19 file trước đã thay thế. ZIP CRC PASS.
+- Nghiệm thu production nghiêm ngặt vẫn FAIL đúng kỳ vọng; không nhập bất kỳ attachment demo nào vào `sprite_paths`.
