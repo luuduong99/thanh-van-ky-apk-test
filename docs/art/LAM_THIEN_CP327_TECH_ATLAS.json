@@ -1,0 +1,990 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP327",
+  "character_id": "lin_qian",
+  "production_ready": false,
+  "spine_ready": false,
+  "android_asset_registration_allowed": false,
+  "source_kind": "CP326_existing_vector_prototype_not_approved",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sheet_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "atlas_format": "engine_neutral_png_json_not_spine_atlas",
+  "atlas_file": "CP327_TECH_DEMO_FACE_ATLAS_RGBA.png",
+  "atlas_size_px": [
+    2048,
+    2048
+  ],
+  "atlas_sha256": "16f0f1b3b7662935097addadc16e56eba02f0c3628474f537b9bdf35f7282b91",
+  "alpha_mode": "straight_RGBA",
+  "extrusion_pixels": 0,
+  "padding_pixels": 6,
+  "regions_count": 35,
+  "source_ora_files": [
+    {
+      "expression": "shy",
+      "filename": "CP326_01_shy_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "a9192e1b6b3eb71f5bb8b2944431e340a18cffbb18aa2c0ebeb645ab528a02e6",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "angry",
+      "filename": "CP326_02_angry_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "e367adcfd0e05c7e193327f5896ca6b77828af0eeaaf18720a5fdfddf56b1018",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "pain",
+      "filename": "CP326_03_pain_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "4cf6eb0ffa8ebe2f6dca7d93455f3b6e8b76b5dd5529f6b5bf7032646dc91365",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "embarrassed",
+      "filename": "CP326_04_embarrassed_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "8723aa12dc9958f6a14462efba15d2ef137d8ac60db7cde2848009f20da40b7c",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "alluring",
+      "filename": "CP326_05_alluring_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "3169b50beeaa6f45bf78c48de36fd3fe53f3aa24aac94a5267b4d63fbff9593e",
+      "canvas": [
+        920,
+        456
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "id": "pain__eye_image_right",
+      "expression": "pain",
+      "slot": "eye_image_right",
+      "atlas_rect_xywh": [
+        6,
+        6,
+        120,
+        122
+      ],
+      "offset_in_original_canvas_xy": [
+        540,
+        134
+      ],
+      "original_bbox_xyxy": [
+        540,
+        134,
+        660,
+        256
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1807
+    },
+    {
+      "id": "embarrassed__blush_image_right",
+      "expression": "embarrassed",
+      "slot": "blush_image_right",
+      "atlas_rect_xywh": [
+        132,
+        6,
+        159,
+        121
+      ],
+      "offset_in_original_canvas_xy": [
+        577,
+        232
+      ],
+      "original_bbox_xyxy": [
+        577,
+        232,
+        736,
+        353
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 15247
+    },
+    {
+      "id": "shy__blush_image_right",
+      "expression": "shy",
+      "slot": "blush_image_right",
+      "atlas_rect_xywh": [
+        297,
+        6,
+        149,
+        115
+      ],
+      "offset_in_original_canvas_xy": [
+        582,
+        235
+      ],
+      "original_bbox_xyxy": [
+        582,
+        235,
+        731,
+        350
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 13495
+    },
+    {
+      "id": "pain__eye_image_left",
+      "expression": "pain",
+      "slot": "eye_image_left",
+      "atlas_rect_xywh": [
+        452,
+        6,
+        124,
+        114
+      ],
+      "offset_in_original_canvas_xy": [
+        276,
+        238
+      ],
+      "original_bbox_xyxy": [
+        276,
+        238,
+        400,
+        352
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1796
+    },
+    {
+      "id": "angry__eye_image_right",
+      "expression": "angry",
+      "slot": "eye_image_right",
+      "atlas_rect_xywh": [
+        582,
+        6,
+        124,
+        104
+      ],
+      "offset_in_original_canvas_xy": [
+        538,
+        134
+      ],
+      "original_bbox_xyxy": [
+        538,
+        134,
+        662,
+        238
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 4462
+    },
+    {
+      "id": "alluring__blush_image_right",
+      "expression": "alluring",
+      "slot": "blush_image_right",
+      "atlas_rect_xywh": [
+        712,
+        6,
+        135,
+        103
+      ],
+      "offset_in_original_canvas_xy": [
+        589,
+        241
+      ],
+      "original_bbox_xyxy": [
+        589,
+        241,
+        724,
+        344
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 10921
+    },
+    {
+      "id": "pain__blush_image_right",
+      "expression": "pain",
+      "slot": "blush_image_right",
+      "atlas_rect_xywh": [
+        853,
+        6,
+        133,
+        101
+      ],
+      "offset_in_original_canvas_xy": [
+        590,
+        242
+      ],
+      "original_bbox_xyxy": [
+        590,
+        242,
+        723,
+        343
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 10653
+    },
+    {
+      "id": "angry__eye_image_left",
+      "expression": "angry",
+      "slot": "eye_image_left",
+      "atlas_rect_xywh": [
+        992,
+        6,
+        128,
+        96
+      ],
+      "offset_in_original_canvas_xy": [
+        274,
+        238
+      ],
+      "original_bbox_xyxy": [
+        274,
+        238,
+        402,
+        334
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 4225
+    },
+    {
+      "id": "embarrassed__blush_image_left",
+      "expression": "embarrassed",
+      "slot": "blush_image_left",
+      "atlas_rect_xywh": [
+        1126,
+        6,
+        215,
+        93
+      ],
+      "offset_in_original_canvas_xy": [
+        265,
+        294
+      ],
+      "original_bbox_xyxy": [
+        265,
+        294,
+        480,
+        387
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 15847
+    },
+    {
+      "id": "shy__blush_image_left",
+      "expression": "shy",
+      "slot": "blush_image_left",
+      "atlas_rect_xywh": [
+        1347,
+        6,
+        203,
+        89
+      ],
+      "offset_in_original_canvas_xy": [
+        271,
+        296
+      ],
+      "original_bbox_xyxy": [
+        271,
+        296,
+        474,
+        385
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 14055
+    },
+    {
+      "id": "angry__blush_image_right",
+      "expression": "angry",
+      "slot": "blush_image_right",
+      "atlas_rect_xywh": [
+        1556,
+        6,
+        117,
+        89
+      ],
+      "offset_in_original_canvas_xy": [
+        598,
+        248
+      ],
+      "original_bbox_xyxy": [
+        598,
+        248,
+        715,
+        337
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 8113
+    },
+    {
+      "id": "alluring__eye_image_right",
+      "expression": "alluring",
+      "slot": "eye_image_right",
+      "atlas_rect_xywh": [
+        1679,
+        6,
+        122,
+        87
+      ],
+      "offset_in_original_canvas_xy": [
+        539,
+        134
+      ],
+      "original_bbox_xyxy": [
+        539,
+        134,
+        661,
+        221
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 4060
+    },
+    {
+      "id": "embarrassed__eye_image_right",
+      "expression": "embarrassed",
+      "slot": "eye_image_right",
+      "atlas_rect_xywh": [
+        1807,
+        6,
+        120,
+        87
+      ],
+      "offset_in_original_canvas_xy": [
+        540,
+        134
+      ],
+      "original_bbox_xyxy": [
+        540,
+        134,
+        660,
+        221
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1484
+    },
+    {
+      "id": "shy__eye_image_right",
+      "expression": "shy",
+      "slot": "eye_image_right",
+      "atlas_rect_xywh": [
+        6,
+        134,
+        120,
+        86
+      ],
+      "offset_in_original_canvas_xy": [
+        540,
+        134
+      ],
+      "original_bbox_xyxy": [
+        540,
+        134,
+        660,
+        220
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 4674
+    },
+    {
+      "id": "embarrassed__eye_image_left",
+      "expression": "embarrassed",
+      "slot": "eye_image_left",
+      "atlas_rect_xywh": [
+        132,
+        134,
+        124,
+        80
+      ],
+      "offset_in_original_canvas_xy": [
+        276,
+        238
+      ],
+      "original_bbox_xyxy": [
+        276,
+        238,
+        400,
+        318
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1479
+    },
+    {
+      "id": "alluring__blush_image_left",
+      "expression": "alluring",
+      "slot": "blush_image_left",
+      "atlas_rect_xywh": [
+        262,
+        134,
+        183,
+        79
+      ],
+      "offset_in_original_canvas_xy": [
+        281,
+        301
+      ],
+      "original_bbox_xyxy": [
+        281,
+        301,
+        464,
+        380
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 11361
+    },
+    {
+      "id": "pain__blush_image_left",
+      "expression": "pain",
+      "slot": "blush_image_left",
+      "atlas_rect_xywh": [
+        451,
+        134,
+        181,
+        79
+      ],
+      "offset_in_original_canvas_xy": [
+        282,
+        301
+      ],
+      "original_bbox_xyxy": [
+        282,
+        301,
+        463,
+        380
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 11127
+    },
+    {
+      "id": "alluring__eye_image_left",
+      "expression": "alluring",
+      "slot": "eye_image_left",
+      "atlas_rect_xywh": [
+        638,
+        134,
+        126,
+        79
+      ],
+      "offset_in_original_canvas_xy": [
+        275,
+        238
+      ],
+      "original_bbox_xyxy": [
+        275,
+        238,
+        401,
+        317
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 3679
+    },
+    {
+      "id": "shy__eye_image_left",
+      "expression": "shy",
+      "slot": "eye_image_left",
+      "atlas_rect_xywh": [
+        770,
+        134,
+        124,
+        78
+      ],
+      "offset_in_original_canvas_xy": [
+        276,
+        238
+      ],
+      "original_bbox_xyxy": [
+        276,
+        238,
+        400,
+        316
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 4280
+    },
+    {
+      "id": "angry__blush_image_left",
+      "expression": "angry",
+      "slot": "blush_image_left",
+      "atlas_rect_xywh": [
+        900,
+        134,
+        157,
+        69
+      ],
+      "offset_in_original_canvas_xy": [
+        294,
+        306
+      ],
+      "original_bbox_xyxy": [
+        294,
+        306,
+        451,
+        375
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 8441
+    },
+    {
+      "id": "angry__brow_image_right",
+      "expression": "angry",
+      "slot": "brow_image_right",
+      "atlas_rect_xywh": [
+        1063,
+        134,
+        116,
+        60
+      ],
+      "offset_in_original_canvas_xy": [
+        520,
+        80
+      ],
+      "original_bbox_xyxy": [
+        520,
+        80,
+        636,
+        140
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 999
+    },
+    {
+      "id": "pain__mouth",
+      "expression": "pain",
+      "slot": "mouth",
+      "atlas_rect_xywh": [
+        1185,
+        134,
+        64,
+        54
+      ],
+      "offset_in_original_canvas_xy": [
+        490,
+        340
+      ],
+      "original_bbox_xyxy": [
+        490,
+        340,
+        554,
+        394
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 2635
+    },
+    {
+      "id": "shy__brow_image_left",
+      "expression": "shy",
+      "slot": "brow_image_left",
+      "atlas_rect_xywh": [
+        1255,
+        134,
+        132,
+        48
+      ],
+      "offset_in_original_canvas_xy": [
+        284,
+        156
+      ],
+      "original_bbox_xyxy": [
+        284,
+        156,
+        416,
+        204
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1086
+    },
+    {
+      "id": "embarrassed__brow_image_left",
+      "expression": "embarrassed",
+      "slot": "brow_image_left",
+      "atlas_rect_xywh": [
+        1393,
+        134,
+        128,
+        45
+      ],
+      "offset_in_original_canvas_xy": [
+        284,
+        163
+      ],
+      "original_bbox_xyxy": [
+        284,
+        163,
+        412,
+        208
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1059
+    },
+    {
+      "id": "embarrassed__brow_image_right",
+      "expression": "embarrassed",
+      "slot": "brow_image_right",
+      "atlas_rect_xywh": [
+        1527,
+        134,
+        120,
+        42
+      ],
+      "offset_in_original_canvas_xy": [
+        520,
+        90
+      ],
+      "original_bbox_xyxy": [
+        520,
+        90,
+        640,
+        132
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 984
+    },
+    {
+      "id": "pain__brow_image_left",
+      "expression": "pain",
+      "slot": "brow_image_left",
+      "atlas_rect_xywh": [
+        1653,
+        134,
+        136,
+        40
+      ],
+      "offset_in_original_canvas_xy": [
+        284,
+        156
+      ],
+      "original_bbox_xyxy": [
+        284,
+        156,
+        420,
+        196
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1105
+    },
+    {
+      "id": "alluring__mouth",
+      "expression": "alluring",
+      "slot": "mouth",
+      "atlas_rect_xywh": [
+        1795,
+        134,
+        80,
+        40
+      ],
+      "offset_in_original_canvas_xy": [
+        478,
+        346
+      ],
+      "original_bbox_xyxy": [
+        478,
+        346,
+        558,
+        386
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1335
+    },
+    {
+      "id": "pain__brow_image_right",
+      "expression": "pain",
+      "slot": "brow_image_right",
+      "atlas_rect_xywh": [
+        1881,
+        134,
+        116,
+        39
+      ],
+      "offset_in_original_canvas_xy": [
+        520,
+        77
+      ],
+      "original_bbox_xyxy": [
+        520,
+        77,
+        636,
+        116
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 981
+    },
+    {
+      "id": "angry__brow_image_left",
+      "expression": "angry",
+      "slot": "brow_image_left",
+      "atlas_rect_xywh": [
+        6,
+        226,
+        132,
+        36
+      ],
+      "offset_in_original_canvas_xy": [
+        284,
+        176
+      ],
+      "original_bbox_xyxy": [
+        284,
+        176,
+        416,
+        212
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1044
+    },
+    {
+      "id": "alluring__brow_image_left",
+      "expression": "alluring",
+      "slot": "brow_image_left",
+      "atlas_rect_xywh": [
+        144,
+        226,
+        120,
+        32
+      ],
+      "offset_in_original_canvas_xy": [
+        288,
+        168
+      ],
+      "original_bbox_xyxy": [
+        288,
+        168,
+        408,
+        200
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 941
+    },
+    {
+      "id": "shy__brow_image_right",
+      "expression": "shy",
+      "slot": "brow_image_right",
+      "atlas_rect_xywh": [
+        270,
+        226,
+        124,
+        30
+      ],
+      "offset_in_original_canvas_xy": [
+        520,
+        90
+      ],
+      "original_bbox_xyxy": [
+        520,
+        90,
+        644,
+        120
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 969
+    },
+    {
+      "id": "shy__mouth",
+      "expression": "shy",
+      "slot": "mouth",
+      "atlas_rect_xywh": [
+        400,
+        226,
+        69,
+        29
+      ],
+      "offset_in_original_canvas_xy": [
+        478,
+        353
+      ],
+      "original_bbox_xyxy": [
+        478,
+        353,
+        547,
+        382
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 1324
+    },
+    {
+      "id": "angry__mouth",
+      "expression": "angry",
+      "slot": "mouth",
+      "atlas_rect_xywh": [
+        475,
+        226,
+        77,
+        25
+      ],
+      "offset_in_original_canvas_xy": [
+        475,
+        349
+      ],
+      "original_bbox_xyxy": [
+        475,
+        349,
+        552,
+        374
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 965
+    },
+    {
+      "id": "embarrassed__mouth",
+      "expression": "embarrassed",
+      "slot": "mouth",
+      "atlas_rect_xywh": [
+        558,
+        226,
+        58,
+        23
+      ],
+      "offset_in_original_canvas_xy": [
+        485,
+        358
+      ],
+      "original_bbox_xyxy": [
+        485,
+        358,
+        543,
+        381
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 580
+    },
+    {
+      "id": "alluring__brow_image_right",
+      "expression": "alluring",
+      "slot": "brow_image_right",
+      "atlas_rect_xywh": [
+        622,
+        226,
+        120,
+        20
+      ],
+      "offset_in_original_canvas_xy": [
+        524,
+        104
+      ],
+      "original_bbox_xyxy": [
+        524,
+        104,
+        644,
+        124
+      ],
+      "source_canvas_px": [
+        920,
+        456
+      ],
+      "trimmed_alpha_nonzero": 913
+    }
+  ],
+  "limits": [
+    "CP326 vector shapes diverge from approved anime linework",
+    "body V2 face source is native 230x114 px",
+    "inpainted underpaint has artifacts",
+    "no approved production full-body layered artwork",
+    "atlas is not a Spine skeleton and is not registered in Android"
+  ]
+}
