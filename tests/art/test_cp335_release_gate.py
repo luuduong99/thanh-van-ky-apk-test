@@ -7,7 +7,8 @@ import unittest
 from pathlib import Path
 from PIL import Image
 
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
+ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2]/"tools").exists() else Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/"tools"))
 from verify_expression_art_release import validate, flatten_sprites
 
 CANON_SHA="41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711"
