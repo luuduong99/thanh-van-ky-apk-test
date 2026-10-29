@@ -217,3 +217,12 @@
 - [ ] **MỸ THUẬT CÒN MỞ:** vector CP333 vẫn chưa giống đủ CANON V2, thiếu Front/3⁄4, underpaint tóc cho mesh/deform, Spine và APK. Không tự điền `sprite_paths`; poster infographic có chữ “production ready” không xác nhận điều này.
 - [ ] **CP334 ưu tiên:** redraw chất lượng cao **trên semantic layer đã có**, kiểm nhận diện/góc/5 nét mặt và QA ở 256/132/64px; sau nghiệm thu mỹ thuật mới rig/animation và build APK.
 - **Không chốt lại:** body V2, tỷ lệ +17% đã có, 5 nét biểu cảm, 4 mốc hư hại 100/70/50/30.
+
+
+## CP334 — 5 portrait ứng viên mỹ thuật và QA nguồn (2026-10-29)
+
+- [x] Tạo 5 ảnh preview mới từ một bảng phẳng, mỗi ảnh đúng 5 mã `shy/angry/pain/embarrassed/alluring`, bảo vệ SHA của CANON V2 và sheet biểu cảm đã chốt.
+- [x] Tạo bảng đối chiếu mặt V2, approved expression directions và ứng viên mới, cùng QA thu nhỏ 256/132/64; một **review workspace ORA 7 layer flat**, không phải attachment để rig.
+- [x] QA binary **8/8 local tests PASS**, ZIP CRC sạch, 5 crop trùng byte nguồn, ORA review hợp lệ. Lưu tại Library Development với ZIP SHA256 `8602b28f6df43952b6f70adcdffd4c0945bd0463ba6144c449a0a5b192a5dc8b`. [CP334 handoff](LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md).
+- [ ] **Art chưa đạt**: candidate mắt hổ phách/chi tiết tóc tốt hơn CP333, nhưng hình dáng và phụ kiện khác V2; model vẫn là flat concept chưa có underpaint/layer semantic; không Spine/Android APK.
+- [ ] **CP335:** ưu tiên **redraw thực trên chung face master Front + 3/4** từ V2, clean underpaint, iris/lashes/eyelids/brows/mouth/blush tách riêng và QA nhỏ; gửi preview asset rồi mới làm rig/Spine/APK. **Không tạo thêm atlas/crop để đánh dấu sai tiến độ.**
