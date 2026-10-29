@@ -1,3 +1,5 @@
+> **CẬP NHẬT 29/10/2026 — 5 BIỂU CẢM ĐÃ CHỐT:** nhóm `shy / angry / pain / embarrassed / alluring` phải lấy từ [LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md), ảnh SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Đây là chuẩn mới nhất cho **cách thể hiện năm nét mặt**, các hình cũ bên dưới chỉ tham khảo các state/pose/wardrobe khác. Tạo hình chính vẫn theo CANON V2.
+
 > **PHÂN BIỆT NGUỒN (28/10/2026):** Hai ảnh của tài liệu này vẫn là reference cho biểu cảm/hành động/tư thế/wardrobe, nhưng **ngoại hình/body/trang phục canon hiện hành phải lấy từ [LAM_THIEN_CANON_BODY_V2_2026_10_28.md](LAM_THIEN_CANON_BODY_V2_2026_10_28.md) và [ảnh V2](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk)**. Không hồi quy ngoại hình theo poster tham khảo cũ.
 
 # Thanh Vân Ký — Lâm Thiển: biểu cảm, hành động, pose và roadmap (bản tham khảo được người dùng xác nhận)
