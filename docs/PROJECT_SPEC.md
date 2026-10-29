@@ -991,3 +991,19 @@ Có cải tiến pixel thực trên SVG semantic, xác minh bằng ORA 6 file v�
 ### CP333 — GitHub Actions verification (2026-10-29)
 
 Workflow `CP333 refined semantic face contract` run `40820930195`, job `123272972666` **SUCCESS**. CI validates repository source/metadata and synthetic SVG alpha, **not the six OpenRaster binaries in Library**. Real binary ORAs were tested locally (13/13 PASS). **Art remains NOT APPROVED; Spine and Android APK remain unverified.** See [CP333 handoff](art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md).
+
+
+---
+
+## 44. CP334 — art direction preview năm biểu cảm Lâm Thiển (2026-10-29)
+
+**ĐÃ TẠO CANDIDATE PREVIEW / CHƯA DUYỆT THÀNH ART GAME:**
+- **CANON BODY V2 vẫn là thiết kế đã chốt** `LT_CANON_BODY_REF_2026-10-28_V2` SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711` (+17% đã áp dụng). **5 biểu cảm đã chốt** `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Tóc bạc, mắt hổ phách, trang phục trắng–xanh–vàng và mức hư hại 100/70/50/30 không đổi.
+- Bản tạo mới CP334: PNG phẳng `1536×1024`, SHA256 `1286237fd958990ffaf69f3b57c6997b00fbcd756d93887c351bb6ee84dda9ee`. Trích đúng 5 chân dung, làm bảng đối chiếu với V2, hướng biểu cảm và thumbnail 256/132/64. Có ORA review **7 lớp chứa các chân dung flat**, **KHÔNG phải semantic face rig**. Chữ *Production Ready* trên ảnh chỉ là text do trình tạo ảnh vẽ.
+- Kiểm file thật local: **8/8 tests PASS**, 5 crop khớp byte gốc, ORA ZIP/CRC/7 lớp và nguồn SHA đúng. ZIP `TVK_LamThien_CP334_Art_Direction_Review_NOT_GAME_READY.zip` SHA256 `8602b28f6df43952b6f70adcdffd4c0945bd0463ba6144c449a0a5b192a5dc8b`, Library Development `/Thanh Van Ky/Development/CP334_Art_Direction_Review/`.
+- **Chưa đúng mỹ thuật V2:** mới có chi tiết tóc/mắt hổ phách tốt hơn CP333, nhưng trang sức vàng/hoa, neckline và tỷ lệ chi tiết mặt vẫn khác; năm chân dung không chứng minh một master chung. **KHÔNG đăng ký `sprite_paths`**, không gắn vào Spine/APK, không thay ảnh đã được duyệt.
+- **CP335 tiếp theo:** redraw một face master high-fidelity từ V2, underpaint thật và attachment mắt/mày/miệng/má semantic tách sạch, art Front/3⁄4, preview QA 256/132/64 và nghiệm thu art riêng rồi mới rig/Spine và APK.
+- Tài liệu: [CP334 handoff](art/LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md), [manifest](art/LAM_THIEN_CP334_ART_REVIEW_MANIFEST.json). CP334 = preview kỹ thuật/mỹ thuật R&D, không đóng các công việc P0-02/P0-03/P1-03/P2.
+
+### Lịch sử 2026-10-29
+Tạo preview mỹ thuật chất lượng cao hơn CP333, nhưng tách biệt tình trạng art concept với production rig; ưu tiên sửa tương đồng CANON V2 thay vì thêm pixel patches.
