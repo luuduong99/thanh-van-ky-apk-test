@@ -43,7 +43,8 @@ class Cp362RuntimeCanonTests(unittest.TestCase):
     def test_release_build_does_not_fallback_to_legacy_flat_portrait(self):
         activity = (ROOT / "app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt").read_text(encoding="utf-8")
         self.assertIn("ApplicationInfo.FLAG_DEBUGGABLE", activity)
-        self.assertIn('selectedId == "lin_qian" && !hasApprovedLamThienSprite && !debugArtPreview', activity)
+        self.assertIn('selectedId == "lin_qian" && !debugArtPreview) expressionArt.orEmpty()', activity)
+        self.assertIn('else heroineImage', activity)
         self.assertIn('val safeHeroineImage', activity)
         self.assertEqual(activity.count('portrait(heroine.optString("name"), safeHeroineImage,'), 2)
         self.assertNotIn('portrait(heroine.optString("name"), heroineImage,', activity)
