@@ -242,34 +242,38 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP331",
+    "checkpoint": "CP332",
     "date": "2026-10-29",
-    "status": "shared_flat_face_master_technical_trial_NOT_APPROVED",
+    "status": "new_semantic_vector_facial_layers_rnd_not_approved",
     "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "source_generated_sheet_sha256": "a923f2125fbac40bd3a5975cc50d22ff12926d4f69b6d461d76f6be647c8a729",
-    "source_visual_approved": false,
-    "native_face_size_px": [
-      258,
-      364
+    "native_vector_canvas": [
+      1024,
+      1024
     ],
-    "master_base_shared_between_emotions": true,
-    "outside_facial_region_pixels_identical": true,
-    "ora_count": 5,
-    "alpha_region_count": 35,
-    "facial_attachments_independently_drawn": false,
-    "flat_master_has_baked_face_features": true,
-    "automated_underpaint_hidden_not_approved": true,
-    "artist_face_master_highres_ready": false,
-    "local_real_ora_tests_passed": 9,
-    "strict_production_gate_passed": false,
-    "spine_ready": false,
-    "apk_ready": false,
+    "clean_base_has_no_baked_features": true,
+    "ora_files": 6,
+    "shared_base_art_layers": 10,
+    "facial_semantic_rgba_layers": 65,
+    "expression_ids": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "model_identity_visual_match_to_V2": "not_artist_approved_stylized_vector_study",
+    "clean_underpaint_technical": true,
+    "clean_underpaint_artist_approved": false,
+    "local_real_ora_unit_tests_passed": 10,
+    "production_strict_gate": "blocked_expected",
+    "approved_for_game_art": false,
+    "spine_rig_verified": false,
+    "apk_verified": false,
     "sprite_paths_registered": 0,
-    "package_sha256": "e48174f1b0831942cc03f0ff5a0f98d51ae83ee01540135f24b6ffa9b2232578",
-    "library_backup": "/Thanh Van Ky/Development/CP331_Shared_Face_Technical_Trial/",
-    "handoff": "docs/art/LAM_THIEN_CP331_SHARED_FACE_HANDOFF.md",
-    "artist_work_order": "docs/art/LAM_THIEN_CP331_ARTIST_WORK_ORDER.md",
-    "next": "CP332: single native high-resolution V2-authentic painted face master, clean underpaint, semantic expression sprite art acceptance"
+    "package_sha256": "a70a383076592c986bd887bd4477c71b6c60f9bf13a3e711b9c20b1376dbeb01",
+    "library_path": "/Thanh Van Ky/Development/CP332_Semantic_Face_Study/",
+    "handoff": "docs/art/LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md",
+    "next": "CP333 visual artist redraw/polish exact canon face on existing semantic layers, test before Spine/Android"
   }
 }
