@@ -1,0 +1,88 @@
+{
+  "checkpoint": "CP333",
+  "date": "2026-10-29",
+  "status": "VECTOR_LAYER_DETAIL_RND_NOT_APPROVED",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "approved_emotions": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "artist_review_required": true,
+  "new_production_face_master_ready": false,
+  "master_canvas_px": [
+    1024,
+    1024
+  ],
+  "native_source_canon_face_px": [
+    230,
+    114
+  ],
+  "ora_file_count": 6,
+  "shared_master_base_layers": 10,
+  "face_layer_count_per_emotion": 13,
+  "face_layer_count_total": 65,
+  "alpha_source": "deterministic_svg_vector_only_no_cropped_poster_features",
+  "source_inherited_from": "CP332 SVG semantic geometry",
+  "changes": [
+    "hair_fine_shines",
+    "gold_ornament_filaments",
+    "iris_amber_radial_marks",
+    "individual_lash_lines",
+    "mouth_secondary_contour",
+    "brow_hair_strokes"
+  ],
+  "underpaint_has_baked_face_features": false,
+  "same_base_layer_bytes_across_five_emotions": true,
+  "iris_color": "warm_amber",
+  "registered_game_sprites": 0,
+  "spine_ready": false,
+  "apk_ready": false,
+  "strict_gate_expected": "BLOCKED",
+  "local_unit_test_results": {
+    "pass": 13,
+    "fail": 0
+  },
+  "ora_checks": [
+    {
+      "path": "ora/CP333_ALLURING_SEMANTIC_NOT_APPROVED.ora",
+      "sha256": "a19e2d85ef439c05a932d70ac59ca880155782535208d09eb47585a75e22c76e",
+      "crc_pass": true
+    },
+    {
+      "path": "ora/CP333_ANGRY_SEMANTIC_NOT_APPROVED.ora",
+      "sha256": "0b71869cd849dd67f8c12cdd8df15bd861aa32ea0c0d170654a043d7db6a246c",
+      "crc_pass": true
+    },
+    {
+      "path": "ora/CP333_CLEAN_SEMANTIC_BASE_MASTER_NOT_APPROVED.ora",
+      "sha256": "ad01eb73b7a857e2bfc7ec4da3f35b9a0a0b3e0f671e9e062846fae7262a8593",
+      "crc_pass": true
+    },
+    {
+      "path": "ora/CP333_EMBARRASSED_SEMANTIC_NOT_APPROVED.ora",
+      "sha256": "6e25c463505b92c81131498a3785b780b2faafd7782edf38f44714e68dfd03c3",
+      "crc_pass": true
+    },
+    {
+      "path": "ora/CP333_PAIN_SEMANTIC_NOT_APPROVED.ora",
+      "sha256": "8f8ddca4dfc462659f258d1021a25a2b0ce515a7bff79d7aae4791973800c32f",
+      "crc_pass": true
+    },
+    {
+      "path": "ora/CP333_SHY_SEMANTIC_NOT_APPROVED.ora",
+      "sha256": "6db598a39126abc09808bae7d3d4b7fae520f5653ffe737509f4d9ec9f514163",
+      "crc_pass": true
+    }
+  ],
+  "comparison_sheet": "preview/CP333_BEFORE_AFTER_ART_QA_NOT_APPROVED.png",
+  "canon_reference_gate": "preview/CP333_CANON_REFERENCE_GATE.png",
+  "ui_sizes_qa": "preview/CP333_DIALOGUE_SIZES_QA.png",
+  "visual_art_is_NOT_same_as_CANON_V2": true,
+  "developer_note": "This art file is a native vector study with actual layer pixels, not artist-approved anime CANON V2 identity or Spine rig."
+}
