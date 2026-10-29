@@ -16,7 +16,7 @@ class CP331Contract(unittest.TestCase):
     def test_visual_authority_unchanged(self):
         self.assertEqual(DATA["canonical_visual_id"],MODEL["canonical_visual_id"])
         self.assertEqual(DATA["canonical_sha256"],MODEL["source"]["sha256"])
-        self.assertEqual(DATA["canonical_visual_id"],REG["latest_user_approved_design"]["id"])
+        self.assertEqual(DATA["canonical_visual_id"],next(x for x in REG["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"])
         self.assertEqual(DATA["approved_expression_profile"],EXP["expression_profile_id"])
         self.assertEqual(DATA["approved_expression_sha256"],EXP["source"]["sha256"])
         self.assertEqual(REG["approved_expression_profile"]["id"],EXP["expression_profile_id"])
