@@ -59,12 +59,16 @@
     "expression_android_build_verified": false,
     "canon_iris_identity_color_preflight_completed": true,
     "native_high_res_face_master_complete": false,
-    "artist_approved_clean_underpaint": false
+    "artist_approved_clean_underpaint": false,
+    "cp329_face_master_editable_ora_scaffold_created": true,
+    "cp329_production_face_master_painted": false,
+    "cp329_five_expression_independent_sprite_art_complete": false
   },
   "plan": "docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md",
   "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
   "approved_expression_spec": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md",
   "approved_expression_reference_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
   "approved_expression_count": 5,
-  "cp328_face_color_lock_spec": "docs/art/LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md"
+  "cp328_face_color_lock_spec": "docs/art/LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md",
+  "cp329_face_art_handoff": "docs/art/LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md"
 }
