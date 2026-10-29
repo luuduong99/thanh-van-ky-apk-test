@@ -1148,3 +1148,17 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Hồ sơ [CP341 handoff](art/LAM_THIEN_CP341_MATTE_HANDOFF.md) · [manifest](art/LAM_THIEN_CP341_MATTE_MANIFEST.json).
 
 **Đánh giá P1:** cải tiến matte kỹ thuật đã xong, **art riggable chưa xong**.
+
+
+---
+
+## 51. CP342 — xóa bóng nền bị giữ nhầm ở chân/vạt áo Front (2026-10-29)
+
+- **Nguồn duy nhất vẫn là CANON V2.1 đã chốt:** `LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29` SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Trang phục/vòng 1, tỷ lệ +17% đã có sẵn, tóc, phụ kiện, 5 biểu cảm và damage 100/70/50/30 (30% vừa phải) **không được thay**.
+- **Art technical thực:** tiếp tục RGBA crop Front 215×449 của CP341, **chỉ sửa alpha 39 dòng dưới (y≥410)** để giảm bóng sàn xanh-xám bị trộn vào giày và hai dải vải rủ. **RGB mọi pixel bất biến**, alpha 410 hàng trên bất biến. Sửa 2.364 pixel alpha, giảm 1.506 pixel alpha >128, vùng floor giảm tổng 209.000 giá trị alpha; vùng giày giữa không đổi.
+- Có PNG RGBA mới, mask grayscale, delta mask, **ORA 4 raster lớp để so sánh/rollback**, bảng QA toàn thân và zoom vùng bóng sàn. **Đây là flat cutout không có layer semantic hay underpaint để rig.**
+- **QA local 13/13 thực đạt:** SHA source, crop exact, RGB toàn ảnh, 410 dòng trên không đổi, shadow/giày/vạt, các hash PNG, ZIP/CRC/merge ORA; ZIP package 15 file CRC PASS, SHA256 `76d8fd962688dde6356d4853b5e522b5ce78567a1e08ae3739668851ec5ebf66`. Library Development `/Thanh Van Ky/Development/CP342_Canon_V2_1_Alpha_Shadow_Cleanup/`. [Handoff CP342](art/LAM_THIEN_CP342_SHADOW_CLEANUP_HANDOFF.md), [manifest](art/LAM_THIEN_CP342_SHADOW_CLEANUP_MANIFEST.json).
+- **Chưa xong** mép trắng của vài dải lụa, underpaint, body/hair/face/áo/tay tách thật, high-resolution painted art, Spine hoặc APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không đưa matte CP342 vào game.
+- **CP343 next:** dừng tạo thêm vòng pixel-mask không giải quyết được bản vẽ gốc; làm **Front native high-resolution phân lớp artist-quality** đúng V2.1 với underpaint phần bị che để chuyển động. Kiểm tư thế/đường viền/bodice rồi mới mở năm nét mặt, bốn damage và các góc khác. Nghiệm thu sprite riêng trước Spine/Android.
+
+**CP342 chỉ đóng một lỗi alpha kỹ thuật, không đóng P1 art/Spine/APK.**
