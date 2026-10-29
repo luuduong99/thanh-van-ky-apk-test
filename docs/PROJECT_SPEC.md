@@ -1045,3 +1045,14 @@ Thêm cổng bảo vệ production art thực ở runtime và CI, tách riêng d
 
 ### Lịch sử 2026-10-29
 Tách đúng nguồn Front/3⁄4 và phát hiện góc/nội dung pixel chưa đủ rig; có cổng QA đo được trước khi nhận art thật thay vì lặp thêm poster/crop rồi tự gọi “Production Ready”.
+
+
+---
+
+## 47. CP337 — thực hiện head artwork thật, Front + 3/4 (2026-10-29)
+
+- **Đã kiểm chứng nguồn và mở quy trình redraw thực**: CANON V2/5 biểu cảm nguồn như mục 46; source Drive CANON hiện vẫn chỉ có ảnh phẳng, ZIP ảnh, README, MODEL_CARD, chưa có ORA/PSD/KRA tìm thấy trong quyền truy cập hiện tại.
+- Đã gửi yêu cầu vẽ **một chân dung FRONT độc lập, không phải infographic** dựa trên hình CANON V2, task Runway `880ac92b-bf38-48ae-bd33-e7fde597efd8`. **Trạng thái khi ghi tài liệu: PENDING**; chưa quan sát và chưa duyệt ảnh hoàn chỉnh. Không tuyên bố đã có master production/native editable source; không có asset 3/4 được duyệt.
+- **Tiêu chuẩn CP337:** Front nhìn trực diện thật và 3/4 khác góc thật, giống mặt V2, mắt hổ phách, tóc bạc, hoa trắng và vàng vừa phải; phải vẽ lại 2 face masters editable native thật, underpaint, layer semantic cho 5 emotion, QA thumbnail + biến dạng trước khi phát hành sprite.
+- `production_release.status=blocked_pending_art`, `sprite_paths={}` vẫn nguyên. **Chưa DONE:** face art, mesh/Spine, APK. Chữ “Production Ready” trong tranh kỹ thuật không có giá trị nghiệm thu.
+- Điểm nối: [CP337 work order](art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md).
