@@ -77,3 +77,12 @@
 - [x] Công cụ và test kiểm chân tại `tools/art/cp367_canon_guard.py` và `tests/art/test_cp367_canon_guard.py`.
 - [ ] **CP368 tiếp theo:** nâng chất lượng art tay/vai/tóc/vải CP366 theo CANON, kiểm khớp/underpaint qua dịch/rotation và vẽ tiếp các layer full-body; đòi hỏi preview nhận xét của người dùng trước khi rig thật.
 - [ ] Spine/rig, art đã duyệt, APK vẫn **BLOCKED**. Chi tiết: [CP367 handoff](LAM_THIEN_CP367_CANON_ONLY_QA.md).
+
+
+## CP368 — Localized left-sleeve SVG refinement (2026-10-29)
+
+- [x] CANON V2.1 nguồn duy nhất: SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672 RGBA). Không dùng ảnh nhân vật thay thế; bản mới phải ghi rõ **DRAFT**.
+- [x] Tinh chỉnh 6 SVG art thực từ CP366: tóc sau, bodice khuất, da vai khuất, tay/bàn tay, lụa tay áo, hoa văn vàng. Có 6 PNG alpha, ORA 7 lớp (1 guide CANON ẩn), ảnh đối chiếu CANON/CP366/CP368; không chỉnh sửa ảnh gốc.
+- [x] **6/6 local tests PASS**, có QA vùng chồng lớp vai khi xoay 0/-8/-15/+8°; các vùng có pixel chồng nhưng **chưa chứng minh rig không hở hình**. ZIP CRC PASS, 25 files SHA256 `2a8ab1c8a5b22eac5a265ebfe07bcde592de501c9b98014aaa6c957f618009b8`, lưu Library `/Thanh Van Ky/Development/CP368_Refined_Sleeve_Study/`. [CP368 report](LAM_THIEN_CP368_REFINED_LEFT_SLEEVE_DRAFT.md).
+- [ ] **ART VISUAL QA NOT_PASSED**: nét vẽ còn khác ảnh chuẩn, chưa native painted full body hoặc keyframe tay nâng do họa sĩ vẽ; chưa được phê duyệt để nhập game. Spine/APK vẫn BLOCK.
+- [ ] **CP369 ưu tiên:** làm chi tiết nếp lụa/vải khuất và hair/ornament đúng CANON, phát triển các semantic layer full body, làm idle/raised-arm vẽ riêng và xin nghiệm thu hình trước khi tích hợp gameplay.
