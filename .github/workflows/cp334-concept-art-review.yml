@@ -1,0 +1,24 @@
+name: CP334 concept art review safety gate
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP334_ART_REVIEW_MANIFEST.json'
+      - 'tests/art/test_cp334_review_package.py'
+      - '.github/workflows/cp334-concept-art-review.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP334_ART_REVIEW_MANIFEST.json'
+      - 'tests/art/test_cp334_review_package.py'
+jobs:
+  reference-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify five emotion direction and unchanged V2 identity
+        run: python3 -m unittest discover -s tests/art -p 'test_cp334_review_package.py' -v
+      # Note: generated flat-candidate PNG and review ORA are backed up in
+      # Library, not repo. This workflow does NOT check binary art or APK.
