@@ -779,3 +779,21 @@ Theo đề nghị của người dùng, cần điều chỉnh **cả 5 biểu c�
 
 ### Lịch sử 2026-10-29
 Lập preview và tiêu chuẩn phân biệt năm nét mặt để người dùng duyệt trước khi cập nhật asset chính thức.
+
+
+---
+
+## 33. CHỐT 5 BIỂU CẢM LÂM THIỂN & ÁP DỤNG CHUNG NHÂN VẬT (2026-10-29)
+
+**ĐÃ CHỐT** theo xác nhận trực tiếp của người dùng sau khi xem preview 5 biểu cảm: “tôi thích như này, chốt biểu cảm này nha. Note vào cho tôi để tránh bị quên và làm sai hoặc nhầm khi hoàn thiện nhân vật. Các nhân vật khác cũng nên như này nhưng tinh chỉnh lại xíu cho các nhân vật khác”.
+
+- **LÂM THIỂN — MẪU CHÍNH THỨC CHO NÉT MẶT:** 5 biểu cảm `shy` (Ngại ngùng), `angry` (Tức giận), `pain` (Đau đớn), `embarrassed` (Xấu hổ), `alluring` (Quyến rũ). Ảnh đã duyệt `TVK_LamThien_5_Expressions_APPROVED_20261029.png`, SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`, 1536×1024 RGB. Đã sao lưu trong ChatGPT Library `/Thanh Van Ky/Approved References/Lam_Thien_Expressions_20261029/`.
+- **KHÔNG ĐỔI BODY CANON V2:** `LT_CANON_BODY_REF_2026-10-28_V2` tiếp tục là model chính thức duy nhất cho khuôn mặt/cơ thể/tóc/trang phục/tỷ lệ. Preview biểu cảm chỉ chốt **cách diễn đạt cảm xúc**, không thay ngoại hình nền. Mốc +17% đã nằm trong V2.
+- **KHÔNG ĐƯỢC NHẦM NĂM NÉT MẶT:** `shy` né mắt nhẹ/hồng má nhẹ, `embarrassed` cúi đầu/né mắt nhiều hơn/đỏ má rõ; `angry` mắt sắc/mày ép, `pain` mắt co/mày nhíu cong; `alluring` mí hạ nhẹ và nụ cười chủ động. Phải nhận diện được cả 5 trong chân dung hội thoại, không chỉ lúc zoom.
+- **MỌI NHÂN VẬT CHÍNH TRƯỞNG THÀNH PHÙ HỢP:** cùng hệ thống năm sắc thái rõ ràng và cách nghiệm thu, nhưng điều chỉnh mắt/mày/miệng/má/góc đầu/theo tính cách riêng; **không copy hình thể, mặt, tóc, trang phục, tỷ lệ hoặc sprite của Lâm Thiển**. Tô Nguyệt Ly và nhân vật tiếp theo phải có preview biểu cảm **riêng** trước khi chốt.
+- **TRẠNG THÁI GAME:** `expression` độc lập với `wardrobe`, `integrity`, `pose`, `action`; không reset trang phục/hư hại khi đổi cảm xúc. Không sử dụng biểu cảm tình cảm/quyến rũ ở nhân vật chưa trưởng thành hay bối cảnh không thích hợp.
+- **NGHIỆM THU:** hình preview của 5 biểu cảm Lâm Thiển **APPROVED**, còn PNG alpha tách nét mặt, Spine rig/animation và tích hợp APK **PENDING**. Những nhân vật khác mới **APPROVED về nguyên tắc tùy biến**, chưa duyệt art từng người.
+- **TÀI LIỆU CHÍNH:** [5 biểu cảm Lâm Thiển đã duyệt](art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md) và [JSON](art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json); [quy chuẩn chung](art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md); `LAM_THIEN_DESIGN_REGISTRY.json` lưu riêng approved expression profile.
+
+### Lịch sử 2026-10-29
+Người dùng xác nhận preview 5 biểu cảm đã đạt yêu cầu; chuyển từ review sang Approved, lưu checksum + bản sao ảnh, chuẩn hóa quy tắc riêng từng nhân vật, không sửa body canon hoặc tự nhận đã rig.
