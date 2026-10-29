@@ -101,7 +101,10 @@ class TVKCharacterMotionView(
         canvas.translate(bounds.left, bounds.top)
         canvas.drawBitmapMesh(sprite, cols, rows, mesh, 0, null, 0, paint)
         canvas.restore()
+        // Queue the next drawing at the display's VSYNC, instead of a fixed
+        // 40 ms delay (~25 FPS). This improves frame pacing on 60/90/120 Hz
+        // devices but does not guarantee a measured frame rate on any phone.
         if ((animate || reactAmplitude > 0f) && isAttachedToWindow)
-            postInvalidateDelayed(40L)
+            postInvalidateOnAnimation()
     }
 }
