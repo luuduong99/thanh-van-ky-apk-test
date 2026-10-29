@@ -1175,3 +1175,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Gói:** `TVK_LamThien_CP343_Source_Exact_Region_Layers_NOT_SPINE_READY.zip` (34 file, CRC PASS, SHA256 `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519`), sao lưu `/Thanh Van Ky/Development/CP343_Canon_V2_1_Front_Region_Layers/`. [CP343 handoff](art/LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md) · [manifest](art/LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json).
 - **CP344 next có mục tiêu cụ thể:** họa sĩ chỉnh một khớp tay–vai/trang phục Front và vẽ **vùng da/vải/tóc thực bị che phía sau**, làm 2 frame nghỉ→nhấc tay nhẹ, QA không hở vùng nào; sau đó mới tay còn lại và redraw native độ phân giải cao. Chưa sản xuất năm expression attachments, bốn overlay damage hay các góc còn lại.
 - CP335 Android vẫn `production_release=blocked_pending_art`, `sprite_paths={}`. **P1 semantic movable art, Spine, APK vẫn CHƯA NGHIỆM THU.**
+
+
+---
+
+## 53. CP346 — Kiểm tra tay–vai trên nguồn thật (2026-10-29)
+
+- Đã lấy đúng **CANON V2.1 user-approved** SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, cùng gói **CP343 source-region 10 lớp** SHA256 `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519` từ Library. Kiểm hash và ZIP PASS; composite CP343 ở trạng thái nghỉ pixel-exact PASS.
+- Test dịch pixel ở chính ảnh nguồn 215×449: tay trái trên ảnh `(-10,+5)` thiếu **914 px**, xuất hiện thêm **500 px**; tay phải trên ảnh `(+10,+5)` thiếu **884 px**, thêm **598 px**; cả hai tay thiếu **1.798 px**, thêm **1.098 px**. Kết quả tổng khớp CP343. Đây là số vùng phủ alpha thay đổi, **không phải đã sửa/đã vẽ bù**.
+- Tạo report JSON, preview khoanh lỗi thật, mask riêng mỗi tay và **mask hướng dẫn vùng cần underpaint** `underpaint_priority_mask_NOT_PAINT.png`. QA thực **5/5 local PASS** trên SHA, compositing, pixel counts, mask, release gate. Gói tải CP346 được tạo từ file thật; GitHub có [công cụ tái kiểm](../tools/art/cp346_joint_motion_audit.py) và [handoff](art/LAM_THIEN_CP346_REAL_SOURCE_JOINT_DIAGNOSIS.md).
+- **Bất biến CANON V2.1:** tỷ lệ +17%, form thân áo/vòng 1, nhận diện, tóc, hoa, màu trắng–xanh–vàng, năm nét mặt, damage 100/70/50/30. Không thay nguồn đã chốt.
+- **Cảnh báo:** sprite gốc hiện chỉ là **215×449 crop** và 10 nhóm vùng không có ảnh ẩn phía sau tay/vải/tóc. Không được nhận định mask QA là art cao cấp; chưa tạo native high-res painter art, chưa có frame chuyển động đạt chuẩn, rig Spine hoặc APK nghiệm thu. `production_release.status=blocked_pending_art`, `sprite_paths={}` vẫn giữ nguyên.
+- **CP347 next:** họa sĩ vẽ thật Front độ phân giải cao với vùng ẩn tay-vai/thân áo/tóc, tách lớp ngữ nghĩa và thử động tác nhấc tay; so preview với CANON V2.1 trước khi mở rộng sang các biểu cảm và mức damage.
