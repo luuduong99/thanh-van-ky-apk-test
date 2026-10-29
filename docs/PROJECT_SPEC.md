@@ -1308,3 +1308,10 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Có PNG minh họa actual-source QA + JSON báo lỗi chi tiết + ZIP tái kiểm `TVK_LamThien_CP356_Art_Readiness_GATE_NOT_ART.zip`, SHA256 `a17b66735cbafd13680dbb6c9f014fb10e3543e4bf1b1ce57e682ab584bf1910`, CRC PASS. Lưu Library `/Thanh Van Ky/Development/CP356_Native_Art_Readiness_Gate/`. [CP356 handoff](art/LAM_THIEN_CP356_NATIVE_ART_READINESS_GATE.md).
 - **Giới hạn:** CP356 **không sản xuất được art vẽ thật native high-res**, không rig Spine, không nghiệm thu animation hoặc FPS/Android APK. Kết quả kiểm tra kỹ thuật PASS ở tương lai chỉ có ý nghĩa `READY_FOR_HUMAN_VISUAL_REVIEW`, không tự duyệt mỹ thuật. `app/src/main/assets/character_expression_profiles.json`: `production_release.status=blocked_pending_art`, `sprite_paths={}` **giữ nguyên**.
 - **CP357 next:** tập trung sản xuất thật 6 phần art vai–tay trái độc lập (skin, sleeve, hidden shoulder, bodice, hidden bodice, hair back) từ CANON V2.1; xuất `idle` và `arm_raise` không hở/lem, kiểm art bên cạnh ảnh chốt; sau đó mới rig/kiểm thử APK.
+
+
+### CP356 CI reconciliation — 2026-10-29
+
+- Đã kiểm tra Actions thực tế: 6 test mới CP356 **PASS** ngay trong lần chạy đầu, nhưng workflow Art QA cũ báo FAIL do **2 import `cairosvg` thiếu dependency và 3 kiểm thử legacy dựa vào registry V2 chưa cập nhật CANON V2.1**. Đây là lỗi CI/metadata, không phải art Lâm Thiển.
+- Đã bổ sung CairoSVG cho workflow `.github/workflows/art-qa.yml`, đồng bộ `LAM_THIEN_DESIGN_REGISTRY.json` về nguồn CANON V2.1 đã khóa (ID + SHA, required_traits, Library source), và tăng kiểm tra CANON V2.1 hoạt động trong `tools/validate_lam_thien_expression_approval.py`. Bản V2 cũ giữ ở mục archive; **không đổi ảnh chuẩn và không bật release**.
+- Run **TVK Art QA (synthetic ORA tests)** GitHub Actions [40881142488](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40881142488) đã **completed/success** trên commit `0ad726bda97954ebd0959d93d3cac5304112fe4d`. Trạng thái CP356 art độc lập vẫn `BLOCKED`, 0/6 layer vai trái, thiếu hai pose art native.
