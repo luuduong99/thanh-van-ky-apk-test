@@ -10,7 +10,8 @@ CATALOGUE = ROOT / "app/src/main/java/vn/thanhvanky/prototype/CharacterExpressio
 STATE = ROOT / "app/src/main/java/vn/thanhvanky/prototype/CharacterAppearanceState.kt"
 APPROVED = ROOT / "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json"
 GLOBAL = ROOT / "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.json"
-MODEL = ROOT / "docs/art/LAM_THIEN_MODEL_CARD_V2.json"
+REGISTRY = ROOT / "docs/art/LAM_THIEN_DESIGN_REGISTRY.json"
+MODEL = ROOT / "docs/art/LAM_THIEN_MODEL_CARD_V2.json"  # historical expression design
 EXPECTED = ["shy", "angry", "pain", "embarrassed", "alluring"]
 
 
@@ -21,6 +22,7 @@ class CP324ExpressionRuntimeTests(unittest.TestCase):
         cls.approved = json.loads(APPROVED.read_text(encoding="utf-8"))
         cls.global_standard = json.loads(GLOBAL.read_text(encoding="utf-8"))
         cls.model = json.loads(MODEL.read_text(encoding="utf-8"))
+        cls.registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
         cls.app_src = APP.read_text(encoding="utf-8")
         cls.resolver_src = CATALOGUE.read_text(encoding="utf-8")
         cls.state_src = STATE.read_text(encoding="utf-8")
@@ -35,8 +37,12 @@ class CP324ExpressionRuntimeTests(unittest.TestCase):
 
     def test_body_and_expression_reference_ids_cannot_be_confused(self):
         lam = next(x for x in self.catalogue["characters"] if x["id"] == "lin_qian")
-        self.assertEqual(lam["canonical_body_visual_id"], self.model["canonical_visual_id"])
-        self.assertEqual(lam["canonical_body_sha256"], self.model["source"]["sha256"])
+        current = self.registry["latest_user_approved_design"]
+        self.assertEqual(lam["canonical_body_visual_id"], current["id"])
+        self.assertEqual(lam["canonical_body_sha256"], current["visual_reference_sha256"])
+        self.assertEqual(lam["production_release"]["canonical_body_visual_id"], current["id"])
+        self.assertEqual(lam["production_release"]["canonical_body_sha256"], current["visual_reference_sha256"])
+        self.assertNotEqual(lam["canonical_body_visual_id"], self.model["canonical_visual_id"])
         self.assertEqual(lam["expression_preview_sha256"], self.approved["source"]["sha256"])
         self.assertNotEqual(lam["canonical_body_sha256"], lam["expression_preview_sha256"])
 
