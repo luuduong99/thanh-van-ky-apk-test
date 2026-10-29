@@ -236,3 +236,13 @@
 - [x] Lưu [CP335 handoff](LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md), [manifest concept](LAM_THIEN_CP335_VISUAL_GATE_MANIFEST.json), ZIP SHA256 `d656146585681ce1a5b05d322fdab3a12eccb2c5f21b2afd6cc9e9d773dcf2df` tại Library Development.
 - [ ] **ART CHƯA CÓ:** CP335 generated sheet vẫn PNG phẳng, không có shared master Front/3⁄4, clean semantic layer, artist approval hoặc real asset registration. `production_release` tiếp tục BLOCKED.
 - [ ] **CP336 ưu tiên:** dựng thật một head master đúng CANON V2, sạch underpaint, hai góc Front/3⁄4, 5 nét alpha độc lập và cùng nhân dạng; duyệt art rồi mới đưa vào sprite manifest/Spine/Android APK. **Không hỏi lại CANON V2, tỷ lệ +17% hay 5 nét đã chốt.**
+
+
+## CP336 — xác minh góc mặt từ CANON thật và QA 138-slot art intake (2026-10-29)
+
+- [x] Đối chiếu checksum chính thức CANON V2/5 biểu cảm. Cắt **đúng pixel** nguồn V2: front-labeled 145×151, 3/4-labeled 143×151, closeup 230×114; hai góc V2 hiện gần giống nhau nên **chưa phải hai head masters rig**.
+- [x] Tạo [CP336 handoff](LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md) + [manifest nguồn](LAM_THIEN_CP336_SOURCE_MASTER_MANIFEST.json), bảng xem Front/3/4 + 5 cảm xúc đã duyệt. Có ZIP nguồn/lossless crop trong Library Development.
+- [x] Thêm validator `tools/cp336/validate_head_layers.py` kiểm 2 angle, base master dùng chung, 13 semantic parts ×5, checksum PNG RGBA, alpha/skin ROI, iris amber/path safety; không tự chấm mỹ thuật.
+- [x] **16/16 local tests PASS:** 12 bài trên 138 PNG **synthetic fixture** và 4 bài so pixel với nguồn approved thật. `--strict` FAIL đúng dự kiến; ZIP SHA256 `29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5`. GitHub CP336 workflow run `40829848852` **SUCCESS**. CP335 release gate vẫn BLOCK art chưa duyệt.
+- [ ] **CP337 ART THẬT:** vẽ native head master Front và 3/4 theo CANON V2 (hai góc phân biệt rõ), dưới tóc có skin underpaint sạch; 13 facial layers ×5 trên từng góc, mắt hổ phách, hoa tóc/viền vàng tiết chế; QA 256/132/64, blink/mesh/occlusion. **Sau nghiệm thu art thành phẩm** mới đăng ký sprite/Spine/APK.
+- [ ] `production_release` vẫn `blocked_pending_art`, `sprite_paths={}`. P0-02/P0-03/P1-03/P2 chưa DONE. **Không hỏi chốt lại** CANON V2, +17%, năm cảm xúc hay damage 100/70/50/30.
