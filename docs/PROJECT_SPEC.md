@@ -986,3 +986,8 @@ Giảm sai lệch nhận dạng giữa năm bản face nháp bằng thử nghi�
 
 ### Lịch sử 2026-10-29
 Có cải tiến pixel thực trên SVG semantic, xác minh bằng ORA 6 file và regression tests; vẫn giữ ranh giới technical R&D và production art chưa được duyệt.
+
+
+### CP333 — GitHub Actions verification (2026-10-29)
+
+Workflow `CP333 refined semantic face contract` run `40820930195`, job `123272972666` **SUCCESS**. CI validates repository source/metadata and synthetic SVG alpha, **not the six OpenRaster binaries in Library**. Real binary ORAs were tested locally (13/13 PASS). **Art remains NOT APPROVED; Spine and Android APK remain unverified.** See [CP333 handoff](art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md).
