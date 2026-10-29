@@ -1488,3 +1488,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Tài nguyên có thể tiếp tục:** [CP368 handoff](art/LAM_THIEN_CP368_REFINED_LEFT_SLEEVE_DRAFT.md), `tools/art/cp368_refine_sleeve.py`, `tests/art/test_cp368_refine_sleeve.py`, ZIP 25 files `TVK_CP368_LamThien_RefinedSleeve_NOT_APPROVED.zip` SHA256 `2a8ab1c8a5b22eac5a265ebfe07bcde592de501c9b98014aaa6c957f618009b8` trong Library `/Thanh Van Ky/Development/CP368_Refined_Sleeve_Study/`.
 - **Trạng thái:** **Visual QA NOT_PASSED**; chưa vẽ hoàn thiện full-body/face/giày, chưa hai keyframe thật, Spine/physics, APK; `production_release.status=blocked_pending_art` và `sprite_paths={}` tiếp tục bị khóa. Không coi ORA hay PNG thử nghiệm này là asset đã duyệt.
 - **CP369 tiếp theo:** tiếp tục refinements của 6 mảng thật theo CANON, mở rộng body/tóc/mặt/chiếc giày xanh thành layer native có underpaint, dùng 2 pose vẽ riêng để QA trước khi rig/game.
+
+
+
+---
+
+## 76. CP369 — Lâm Thiển: phân tách trang sức vai/cổ tay + lót khớp (2026-10-29)
+- **CANON-ONLY:** vẫn dùng đúng ảnh CANON V2.1 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; mọi preview mới phải đặt cạnh ảnh chuẩn và ghi DRAFT/CHƯA DUYỆT. Không dùng ảnh nhân vật khác hoặc proxy cũ để thay thế.
+- **Thay đổi thật:** CP368 có chung phần vàng vai và vàng cổ tay trên một lớp, nên xoay tay làm vai chuyển sai. CP369 đã tách thành 2 lớp độc lập: **vai cố định, cổ tay chuyển theo tay**. Bổ sung các path da/vải khuất ở khớp; 7 lớp SVG/PNG mới riêng biệt, một file ORA 8 lớp tính cả guide CANON ẩn.
+- **QA local:** kiểm ở x54..83, y124..170 trong crop Front; các góc -8/-15/+8° lần lượt lộ 3.192/5.905/789 pixel từ tay ở trạng thái nghỉ; vùng lót có pixel phủ tại tất cả điểm này. Negative control xóa hai lớp lót gây FAIL. 8/8 local tests PASS, nhưng **đây không phải bằng chứng rig hoặc toàn bộ nhân vật đã hết hở**.
+- **Lưu tài liệu và tài nguyên:** [CP369 handoff](art/LAM_THIEN_CP369_STATIC_SHOULDER_MOVING_WRIST.md). Script `tools/art/cp369_split_gold_and_underpaint.py`; test `tests/art/test_cp369_split_gold_and_underpaint.py`. Gói `TVK_CP369_LamThien_Seven_Layer_Art_Technical_NotApproved.zip`, SHA256 `84a5b29e6618c0b4901707f045e44b9020febc768181b758748355c513917dfb`, Library `/Thanh Van Ky/Development/CP369_Static_Shoulder_Moving_Wrist_Underpaint/`.
+- **Cổng release:** vẫn `production_release.status=blocked_pending_art`, `sprite_paths={}`. Bản CP369 không hoàn thiện full-body, không phải hai keyframe thật, chưa nghiệm thu mỹ thuật, Spine, APK hoặc FPS thiết bị.
+- **CP370:** art fidelity vùng tay + mặt/thân/giày, tạo keyframe vẽ thật, đối chiếu CANON và xin duyệt trước khi tích hợp APK.
