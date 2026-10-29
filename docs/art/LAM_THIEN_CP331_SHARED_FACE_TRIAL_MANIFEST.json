@@ -1,0 +1,151 @@
+{
+  "checkpoint": "CP331",
+  "date": "2026-10-29",
+  "status": "shared_face_master_technical_trial_unapproved_not_spine_ready",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "new_sheet_sha256": "a923f2125fbac40bd3a5975cc50d22ff12926d4f69b6d461d76f6be647c8a729",
+  "new_sheet_source_kind": "AI_generated_flat_unapproved",
+  "base_source_panel": "angry",
+  "native_source_dimensions_px": [
+    258,
+    364
+  ],
+  "source_is_true_high_resolution": false,
+  "shared_master_art_production_ready": false,
+  "new_generated_face_visual_approved": false,
+  "shared_underpaint_artist_approved": false,
+  "shared_underpaint_is_hidden_draft_only": true,
+  "flat_master_contains_baked_facial_features": true,
+  "all_variants_share_same_fixed_underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+  "outside_face_region_pixel_identical": true,
+  "face_attachment_semantics": "feathered_flat_painted_patches_on_baked_flat_base_not_independent_rig_attachments",
+  "target_region_boxes": {
+    "brow_image_left": [
+      72,
+      130,
+      126,
+      153
+    ],
+    "brow_image_right": [
+      140,
+      119,
+      208,
+      145
+    ],
+    "eye_image_left": [
+      63,
+      140,
+      130,
+      181
+    ],
+    "eye_image_right": [
+      140,
+      133,
+      213,
+      178
+    ],
+    "mouth": [
+      119,
+      192,
+      169,
+      226
+    ],
+    "blush_image_left": [
+      62,
+      177,
+      121,
+      209
+    ],
+    "blush_image_right": [
+      167,
+      162,
+      222,
+      208
+    ]
+  },
+  "layer_count_total": 35,
+  "orafiles": 5,
+  "spine_ready": false,
+  "apk_verified": false,
+  "asset_registration_allowed": false,
+  "results": [
+    {
+      "id": "shy",
+      "ora_sha256": "9eca1f03a09679bfb2ed67b0f6406367cd95b4a5ca1f2ebbc1f6590976f05a09",
+      "preview_sha256": "db29d90461a91f702f15f50fae034381642104ac480328639bf6f3d7eb33cbdc",
+      "source_patch_layers_nonempty": 7,
+      "alpha_pixels_across_layers": 15160,
+      "underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+      "shared_master_same_rgba_every_state": true,
+      "base_has_baked_eye_and_mouth": true,
+      "native_dimensions_px": [
+        258,
+        364
+      ],
+      "production_approved": false
+    },
+    {
+      "id": "angry",
+      "ora_sha256": "be0e36e175487c5d32fcb4647a52fd5f6560e4b07df0427a781c84308f1554a3",
+      "preview_sha256": "ec624d456a3df012498c7fe105eed056c6f01d0e2d327e241e8f5dfe3354a845",
+      "source_patch_layers_nonempty": 7,
+      "alpha_pixels_across_layers": 15160,
+      "underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+      "shared_master_same_rgba_every_state": true,
+      "base_has_baked_eye_and_mouth": true,
+      "native_dimensions_px": [
+        258,
+        364
+      ],
+      "production_approved": false
+    },
+    {
+      "id": "pain",
+      "ora_sha256": "c1ca9d9ff348777937031769e86e836a64e60d330f9977ceb989cb9b51e575b2",
+      "preview_sha256": "13ac3cab3c373d81c3df14514f6e35b64f12f2ba685d5d32ad30c146cbf3280e",
+      "source_patch_layers_nonempty": 7,
+      "alpha_pixels_across_layers": 15160,
+      "underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+      "shared_master_same_rgba_every_state": true,
+      "base_has_baked_eye_and_mouth": true,
+      "native_dimensions_px": [
+        258,
+        364
+      ],
+      "production_approved": false
+    },
+    {
+      "id": "embarrassed",
+      "ora_sha256": "4d27ef022c33d706524d6e96c6a100dd11cb4aa79bdc035c5c121c45dbe4a359",
+      "preview_sha256": "9ebbdabd0f9f579536144011bc8e1627ecc49726632d5ca7791a35bc21e4d27c",
+      "source_patch_layers_nonempty": 7,
+      "alpha_pixels_across_layers": 15160,
+      "underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+      "shared_master_same_rgba_every_state": true,
+      "base_has_baked_eye_and_mouth": true,
+      "native_dimensions_px": [
+        258,
+        364
+      ],
+      "production_approved": false
+    },
+    {
+      "id": "alluring",
+      "ora_sha256": "578df47a2ad702e203c50d932636a69f30939bed199ee54b2fb2da53e77cd11a",
+      "preview_sha256": "65a9d59e9dcff4abf9eca9fa8f563bacddea19247beee993fadf508b434b57df",
+      "source_patch_layers_nonempty": 7,
+      "alpha_pixels_across_layers": 15160,
+      "underpaint_sha256": "aad0e7e67ade93b29f8cd8afb4299341e8deb1eb4b127384d988bc97d92acfc9",
+      "shared_master_same_rgba_every_state": true,
+      "base_has_baked_eye_and_mouth": true,
+      "native_dimensions_px": [
+        258,
+        364
+      ],
+      "production_approved": false
+    }
+  ]
+}
