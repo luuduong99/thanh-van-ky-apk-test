@@ -147,3 +147,14 @@
 - [ ] **Art P1-03 CHƯA ĐẠT:** nét mắt/môi hiện khác phong cách hình biểu cảm đã duyệt, underpaint inpaint còn lỗi, nguồn quá nhỏ và chưa có full-body layer canonical. **Cấm** đưa bản CP326 demo vào `sprite_paths` hoặc APK.
 - [ ] **CP327 tiếp theo:** phục hồi nguồn layer art V2 độ phân giải sản xuất hoặc redraw sát V2, hoàn thiện face master và 5 bộ attachment thật, QA ảnh cỡ thoại 132/64px, ghép pose/wardrobe/damage rồi chạy Spine thực.
 - **Bàn giao:** [CP326 handoff](LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md), [manifest](LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json). Không chốt lại mẫu 5 nét mặt đã duyệt; không thay hình thể V2/tỷ lệ +17%.
+
+
+## CP327 — texture atlas 35 phần nét mặt (2026-10-29)
+
+- [x] Từ 5 ORA **demo CP326**, xuất **35 layer** đã cắt alpha thành atlas RGBA 2048² + JSON bbox/offset, preserve exact `expression × part`; có nguồn ZIP bền vững trong Library Development.
+- [x] **Phát hiện + sửa** alpha-composite vô tình đổi RGB layer má bằng direct pixel paste; 35/35 region so đúng bytes từ ORA, atlas non-overlap, SHA và reproducible; **5/5 local tests PASS**.
+- [x] Bảng [so sánh canon/approved/draft](LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md) cho thấy poster concept CP327 **không đạt**: mắt không đúng V2, khác face và phụ kiện. Không dùng thay mẫu chính thức.
+- [x] Thêm [CP327 handoff](LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md), [manifest](LAM_THIEN_CP327_ART_GATE_MANIFEST.json), exporter/validator và GitHub Actions kiểm metadata.
+- [ ] **Mỹ thuật P1-03 CHƯA ĐẠT:** chưa có full-resolution **CANON V2 face master**, underpaint được duyệt, mắt/mày/miệng layer chất lượng anime cuối; atlas prototype **không được** dùng làm Spine production/Android asset.
+- [ ] **CP328 (ưu tiên):** khôi phục/vẽ lại source V2 face thật ở độ phân giải sản xuất, chi tiết mắt hổ phách/tóc/phụ kiện đúng, 5 biểu cảm được duyệt → chỉnh face alpha/underpaint → QA nhỏ trong game → Spine/APK.
+- Mẫu V2 và 5 cảm xúc, tỷ lệ +17% và mức damage 100/70/50/30 **giữ nguyên**; P0-02/P0-03/P1-03/P2 còn chờ nghiệm thu.
