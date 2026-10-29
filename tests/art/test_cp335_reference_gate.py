@@ -15,7 +15,7 @@ class CP335ReferenceContract(unittest.TestCase):
     def test_canonical_body_and_emotion_references_are_unchanged(self):
         self.assertEqual(REF["canonical_body_sha256"],MODEL["source"]["sha256"])
         self.assertEqual(REF["approved_emotions_sha256"],APPROVED["source"]["sha256"])
-        self.assertEqual(REG["latest_user_approved_design"]["id"],MODEL["canonical_visual_id"])
+        self.assertEqual(next(x for x in REG["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"],MODEL["canonical_visual_id"])
         self.assertEqual(REG["approved_expression_profile"]["id"],APPROVED["expression_profile_id"])
 
     def test_cp335_sheet_is_a_draft_not_rig(self):
