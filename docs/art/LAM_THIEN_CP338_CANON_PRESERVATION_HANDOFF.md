@@ -32,3 +32,11 @@
 - 22 pixel-preserved reference images: **created and verified**.
 - Native high-resolution layered art, independent facial attachments, animation/Spine and APK: **NOT DONE**.
 - CP337 rejected candidate pair stays rejected. CP335 sprite release still **blocked_pending_art**.
+
+
+## Verified QA and CI
+
+- Final ZIP SHA-256: `a17de705436b5ad814507a8dc23135021d2ebd8ceb4d91027df8643df93d6757`; ZIP CRC PASS.
+- Local: **22/22** native reference hashes/dimensions PASS; **17/17** original CANON cropped images agree pixel-for-pixel with original PNG; approved original SHA values both verified.
+- GitHub Actions **CP338 CANON preservation and optional trim policy** run `40834204061`, job `123315072552` / `canon-reference-policy`: **SUCCESS**. This checks source metadata and allowed simplification constraints, not original PNG binary pixels and not artistic/rig/APK quality.
+- Current images in the pack remain **unmodified CANON reference crops**; the user-authorized trimming is a **future optional adjustment** to redundant dangling fringe, not a new approved model.
