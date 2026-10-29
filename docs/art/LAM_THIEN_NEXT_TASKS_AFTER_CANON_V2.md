@@ -106,3 +106,13 @@
 - [ ] Sau khi duyệt, dựng phiên bản các nét mặt đúng CANON V2, tách alpha layers mắt/mày/miệng/blush, animation Spine và QA hình nhỏ trong UI thoại.
 - [ ] Chạy QA biểu cảm qua Front/3/4 và các trạng thái wardrobe, integrity, pose; không đánh dấu P1-03 xong từ ảnh concept phẳng.
 - **Không đổi** bản CANON V2, tỷ lệ +17% đã tích hợp, hay mẫu hư hại 100/70/50/30.
+
+
+## P1-03 — 5 biểu cảm đã CHỐT (2026-10-29)
+
+- [x] **Preview năm biểu cảm đã được người dùng duyệt:** `shy`, `angry`, `pain`, `embarrassed`, `alluring` của Lâm Thiển; ảnh SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7` được sao lưu vào Approved References. **Không cần hỏi duyệt lại hình này.**
+- [x] Tạo [spec APPROVED](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md), [metadata đã duyệt](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json), liên kết trong Design Registry/Model Card V2 và [global standard](GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md).
+- [ ] **Vẽ face layer thật theo body/face CANON V2** cho cả 5 nét mặt, giữ mắt/tóc/màu da/nét nhận diện. Cần chân mày, mí, mắt, miệng, blush/tear theo từng loại; không copy poster thành sprite.
+- [ ] **Rig và QA:** chuyển `expression` qua Front/3⁄4 và giao diện hội thoại cỡ nhỏ; kiểm 5 nét phân biệt rõ; không reset wardrobe/integrity/pose; test animation/Spine trên asset thật.
+- [ ] **Nhân vật khác**: tạo bộ preview riêng năm cảm xúc dựa trên canon/tính cách của từng nhân vật (đầu tiên có thể là Tô Nguyệt Ly), phải duyệt riêng; không chép art Lâm Thiển.
+- **Phân biệt:** P1-03 mới **được duyệt về hướng art 5 biểu cảm**, chưa phải `DONE` kỹ thuật, không làm thay đổi P0-02/P0-03 chưa hoàn thành hoặc P1/P2 khác.
