@@ -187,3 +187,13 @@
 - [ ] **Năm mặt khác nhau, không phải một face master**; chưa khớp hoàn toàn CANON V2, underpaint còn cần vẽ lại, bản 250px không phải native HD. **Không** đưa vào `sprite_paths` hay rig Spine.
 - [ ] **CP331 ƯU TIÊN:** tạo face master duy nhất đúng V2 ở độ phân giải thật; vẽ lại mắt/mày/miệng/má 5 trạng thái có alpha sạch + underpaint, thử dialogue/avatar và biến dạng ở Front/3/4 → nghiệm thu sprite art rồi mới Spine/APK.
 - Không chốt lại 5 biểu cảm, V2, tỷ lệ +17% hoặc damage 100/70/50/30; chỉ nghiệm thu **asset thực sự được sản xuất**.
+
+
+## CP331 — một master cố định cho năm biểu cảm, mới ở mức R&D (2026-10-29)
+
+- [x] Tạo một base flat thống nhất kích thước native `258×364`; xuất 5 ORA có 7 patch alpha/biểu cảm (35 patch) và 5 ảnh composite, thumbnail 132/64px, GIF chuyển frame. Khác CP330 ở chỗ tóc/phụ kiện/trang phục bất biến pixel ngoài vùng mặt.
+- [x] **9/9 local test PASS**, audit ORA real source + stack/CRC/nonempty alpha/composition + pixel invariance, strict art gate cố tình FAIL vì asset chưa được duyệt.
+- [x] Lưu ZIP trong Library Development và [CP331 handoff](LAM_THIEN_CP331_SHARED_FACE_HANDOFF.md), [artist work order](LAM_THIEN_CP331_ARTIST_WORK_ORDER.md), công cụ Python + CI kiểm metadata.
+- [ ] **Vấn đề CP332 thực sự:** master hiện chỉ là tranh mới chưa duyệt, native 258×364, có nét mắt/mày/miệng **baked**; các patch dính nền; underpaint thuật toán chưa hoàn thiện. **Không dùng làm sprite**, Spine/Android APK chưa nghiệm thu.
+- [ ] **CP332:** dựng lại một face master *art HD native thật* theo CANON BODY V2, clean underpaint, 35 layer semantic cho năm cảm xúc, test avatar/dialogue 256/132/64px và Front/3⁄4, gửi preview nghiệm thu **asset mới**; sau art QA mới tích hợp và test APK.
+- **Giữ nguyên:** V2, +17%, 5 sắc thái và damage 100/70/50/30; không hỏi chốt lại các tiêu chuẩn này.
