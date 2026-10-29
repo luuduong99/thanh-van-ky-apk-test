@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "approved_character_specific_expression_profiles_metadata_only",
+  "status": "expression_reference_approved_art_release_blocked_until_separate_user_signoff",
   "source_document": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
   "independent_state_keys": [
     "expression",
@@ -45,7 +45,21 @@
       "sprite_status": "not_created",
       "spine_status": "not_created",
       "missing_sprite_policy": "withhold_instead_of_showing_wrong_expression_or_damage_state",
-      "note": "Art preview approved, but no face alpha sprites. Do not substitute unapproved CP322 draft or modify body V2."
+      "note": "Art preview approved, but no face alpha sprites. Do not substitute unapproved CP322 draft or modify body V2.",
+      "production_release": {
+        "status": "blocked_pending_art",
+        "artist_qa_passed": false,
+        "runtime_qa_passed": false,
+        "user_asset_approval_id": null,
+        "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+        "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+        "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+        "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+        "sprite_manifest_path": null,
+        "sprite_manifest_sha256": null,
+        "approved_sprite_hashes": {},
+        "note": "The five emotion design directions are approved only for Lam Thien; actual facial sprite art is NOT approved. Do not switch to approved_for_runtime until artist QA + explicit user asset acceptance + real PNG SHA manifest + Android QA."
+      }
     },
     {
       "id": "to_nguyet_ly",
@@ -56,7 +70,21 @@
       "sprite_paths": {},
       "sprite_status": "not_created",
       "spine_status": "not_created",
-      "note": "Use this character's own face canon and personality; do not auto-approve Lam Thien artwork."
+      "note": "Use this character's own face canon and personality; do not auto-approve Lam Thien artwork.",
+      "production_release": {
+        "status": "blocked_pending_art",
+        "artist_qa_passed": false,
+        "runtime_qa_passed": false,
+        "user_asset_approval_id": null,
+        "canonical_body_visual_id": null,
+        "canonical_body_sha256": null,
+        "approved_expression_profile_id": null,
+        "approved_expression_sha256": null,
+        "sprite_manifest_path": null,
+        "sprite_manifest_sha256": null,
+        "approved_sprite_hashes": {},
+        "note": "The five emotion design directions are approved only for Lam Thien; actual facial sprite art is NOT approved. Do not switch to approved_for_runtime until artist QA + explicit user asset acceptance + real PNG SHA manifest + Android QA."
+      }
     }
   ]
 }
