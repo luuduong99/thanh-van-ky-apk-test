@@ -1187,3 +1187,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Bất biến CANON V2.1:** tỷ lệ +17%, form thân áo/vòng 1, nhận diện, tóc, hoa, màu trắng–xanh–vàng, năm nét mặt, damage 100/70/50/30. Không thay nguồn đã chốt.
 - **Cảnh báo:** sprite gốc hiện chỉ là **215×449 crop** và 10 nhóm vùng không có ảnh ẩn phía sau tay/vải/tóc. Không được nhận định mask QA là art cao cấp; chưa tạo native high-res painter art, chưa có frame chuyển động đạt chuẩn, rig Spine hoặc APK nghiệm thu. `production_release.status=blocked_pending_art`, `sprite_paths={}` vẫn giữ nguyên.
 - **CP347 next:** họa sĩ vẽ thật Front độ phân giải cao với vùng ẩn tay-vai/thân áo/tóc, tách lớp ngữ nghĩa và thử động tác nhấc tay; so preview với CANON V2.1 trước khi mở rộng sang các biểu cảm và mức damage.
+
+
+---
+
+## 54. CP347 — Phục hồi mũi guốc xanh bị mask alpha xóa nhầm (2026-10-29)
+
+- Người dùng phát hiện Front Lâm Thiển trong ảnh CP346 chỉ còn **một mũi guốc xanh**, bên kia chỉ thấy trang sức vàng. Kiểm tra lại trực tiếp CANON V2.1 (SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`) xác nhận **mẫu chính thức có hai mũi guốc xanh**.
+- Lỗi bắt đầu **ít nhất từ CP341**: RGB ở bàn chân trái trên ảnh vẫn tồn tại, nhưng mask alpha đã ẩn nhầm phần mũi xanh. CP342/CP343/CP346 kế thừa; **không do test dịch tay**, không phải thiết kế chủ ý. Nếu chép PNG lỗi vào game sẽ mất mũi guốc.
+- Tạo bản thử nghiệm khôi phục alpha có giới hạn vùng `x=84..115, y=433..448` trên Front cutout 215×449: giữ nguyên tất cả RGB; thay 416 giá trị alpha, khôi phục 299 pixel có alpha>128; **ngoài ROI không thay đổi**, guốc còn lại không thay đổi. QA tái lập và ZIP CRC PASS.
+- Đã lưu ảnh so sánh **CANON / bản lỗi / bản khôi phục** và gói reproducible patch tại Library `/Thanh Van Ky/Development/CP347_Shoe_Toe_Alpha_Recovery_QA/`. Chi tiết: [CP347 handoff](art/LAM_THIEN_CP347_SHOE_TOE_ALPHA_REGRESSION.md).
+- **Chưa phát hành sprite:** bản sửa chỉ là thử nghiệm trên crop độ phân giải thấp; còn phải QA mép/halo và native high-res art, sửa underpaint vai tay, Spine và đo FPS Android. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- Bước kế tiếp phải có **gate hai mũi guốc xanh hiển thị rõ** trên Front, góc nhìn tương ứng và các frame cử động; không tự thay hình thể +17%, trang phục, mặt và mức damage 100/70/50/30 đã chốt.
