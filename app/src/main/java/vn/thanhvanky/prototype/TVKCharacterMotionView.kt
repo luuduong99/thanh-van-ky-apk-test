@@ -1,11 +1,13 @@
 package vn.thanhvanky.prototype
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import kotlin.math.PI
 import kotlin.math.exp
@@ -30,6 +32,38 @@ class TVKCharacterMotionView(
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
     private val bounds = RectF()
     private val startMs = SystemClock.uptimeMillis()
+    // Debug-only Canvas callback pacing; this is not GPU presentation time.
+    private val collectFrameStats =
+        (context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
+    private var windowStartMs = 0L
+    private var previousDrawMs = 0L
+    private var windowDraws = 0
+    private var lateDraws = 0
+
+    private fun sampleDrawCadence(nowMs: Long) {
+        if (!collectFrameStats || !animate || !isShown) return
+        if (previousDrawMs == 0L || nowMs - previousDrawMs > 1000L) {
+            windowStartMs = nowMs
+            windowDraws = 0
+            lateDraws = 0
+        } else {
+            if (nowMs - previousDrawMs > 33L) lateDraws++
+            windowDraws++
+        }
+        previousDrawMs = nowMs
+        val ms = nowMs - windowStartMs
+        if (ms >= 2000L) {
+            val fps = if (ms > 0L) windowDraws * 1000f / ms else 0f
+            Log.d("TVKMotion", "canvas_draw_fps=" +
+                String.format(java.util.Locale.US, "%.1f", fps) +
+                " slow_intervals_over_33ms=$lateDraws/$windowDraws" +
+                " debug_only_not_display_fps")
+            windowStartMs = nowMs
+            windowDraws = 0
+            lateDraws = 0
+        }
+    }
+
     private var animate = true
     private var reactionRegion = ""
     private var reactionStartMs = 0L
@@ -59,7 +93,9 @@ class TVKCharacterMotionView(
         val h = sprite.height * scale
         bounds.set((width - w) * .5f, (height - h) * .5f,
             (width + w) * .5f, (height + h) * .5f)
-        val elapsed = (SystemClock.uptimeMillis() - startMs).toDouble() / 1000.0
+        val nowMs = SystemClock.uptimeMillis()
+        sampleDrawCadence(nowMs)
+        val elapsed = (nowMs - startMs).toDouble() / 1000.0
         val phase = if (animate) elapsed * 2.0 * PI / cycleSeconds.coerceAtLeast(1.8) else 0.0
         val breath = if (animate) sin(phase).toFloat() * movement else 0f
         val hair = if (animate) sin(phase * .63 + .65).toFloat() * movement else 0f
