@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-29",
+  "checkpoint": "CP335",
+  "status": "visual_candidate_only_not_approved",
+  "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_emotions_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "new_flat_candidate_sha256": "7935e04f5fa04c3bd9d772577ad7ddbc806a9e5723629d8b963bb0611d7315d1",
+  "candidate_dimensions": [
+    1536,
+    1024
+  ],
+  "candidate_has_actual_rig_layers": false,
+  "candidate_art_user_approved": false,
+  "source_priority": "body/face/hair/costume from approved V2; expression cues from approved five-expression sheet",
+  "art_issues": [
+    "candidate added heavier gold ornamentation",
+    "face and garment neckline differ from V2",
+    "five poses not guaranteed one shared master",
+    "poster generated text is not evidence of layer files"
+  ],
+  "preview_file": "CP335_SOURCE_PRIORITY_VISUAL_GATE.png",
+  "preview_sha256": "22b2c1d54b19bae911c343d64e5b406de1e154187db0227701f3c52440c09d49",
+  "thumbnail_file": "CP335_DIALOGUE_THUMBNAIL_QA.png",
+  "thumbnail_sha256": "84daf4471ebe3cf54c342c2f1d58181fe3ec3871304fdb36eb75d83fb7a8a7a2",
+  "source_crop_boxes_xyxy": [
+    [
+      10,
+      90,
+      268,
+      454
+    ],
+    [
+      278,
+      90,
+      534,
+      454
+    ],
+    [
+      540,
+      90,
+      797,
+      454
+    ],
+    [
+      807,
+      90,
+      1062,
+      454
+    ],
+    [
+      1071,
+      90,
+      1328,
+      454
+    ]
+  ]
+}
