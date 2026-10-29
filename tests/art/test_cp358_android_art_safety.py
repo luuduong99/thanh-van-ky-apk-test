@@ -34,7 +34,8 @@ class Cp358AndroidArtSafety(unittest.TestCase):
     def test_blocked_lam_thien_art_is_labelled_in_runtime(self):
         self.assertIn('selectedId == "lin_qian"', self.activity)
         self.assertIn("ẢNH TEST / LEGACY", self.activity)
-        self.assertIn("!CharacterExpressionCatalog.hasRuntimeArtApproval", self.activity)
+        self.assertIn("hasApprovedLamThienSprite = CharacterExpressionCatalog.hasRuntimeArtApproval(", self.activity)
+        self.assertIn('if (selectedId == "lin_qian" && !hasApprovedLamThienSprite)', self.activity)
 
     def test_approval_requires_verified_release(self):
         self.assertIn("approvedSpriteRelease(approved) != null", self.resolver)
