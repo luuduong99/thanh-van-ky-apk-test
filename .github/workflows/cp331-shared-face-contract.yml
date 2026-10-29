@@ -1,0 +1,26 @@
+name: CP331 shared-face identity technical contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP331_SHARED_FACE_TRIAL_MANIFEST.json'
+      - 'tests/art/test_cp331_shared_face_contract.py'
+      - '.github/workflows/cp331-shared-face-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP331_SHARED_FACE_TRIAL_MANIFEST.json'
+      - 'tests/art/test_cp331_shared_face_contract.py'
+
+jobs:
+  shared-face-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check immutable V2 source, 5 emotions and unapproved art gate
+        run: python3 -m unittest discover -s tests/art -p 'test_cp331_shared_face_contract.py' -v
+      # Real PNG+ORA alpha/CRC/mergedimage were tested locally on Library ZIP.
+      # No binary source in GitHub runner and no Android/Spine build in this job.
