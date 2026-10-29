@@ -1076,3 +1076,18 @@ Hai ảnh **Front** (Runway task `880ac92b-bf38-48ae-bd33-e7fde597efd8`) và **3
 - **Bất biến:** 5 biểu cảm đã chốt, tủ trang phục và damage `100/70/50/30` vẫn theo tài liệu chính thức. CP337 và Spine/APK chưa hoàn thành.
 
 Quy chuẩn này áp dụng cho các nhân vật tiếp theo với **CANON riêng của từng nhân vật**, không dùng body/mặt Lâm Thiển làm mẫu thay thế.
+
+
+### CP338 — Quyền tinh giản tua rua phụ khi sản xuất art (2026-10-29)
+
+**Người dùng xác nhận:** Nếu khó khăn khi vẽ/tách layer/rig, có thể **bỏ bớt những tua rua và đầu dây trang trí thừa thãi**, miễn là **Lâm Thiển vẫn giống CANON V2**. Đây là lựa chọn tinh giản phụ kiện nhỏ, **KHÔNG phải thay đổi body hay thiết kế trang phục**.
+
+- **Bất biến:** vóc dáng và tỷ lệ +17% đã chốt, kết cấu/cắt may chính, vùng che phủ và cổ áo, các mảng trắng–xanh–vàng, tóc bạc/mắt hổ phách/hoa trắng, những dây buộc/vạt áo/tua chính tạo nên nhận diện. Bốn mức hư hại 100/70/50/30 và bộ 5 biểu cảm vẫn chốt.
+- **Được lược có điều kiện:** một số *đầu tua rua nhỏ, sợi trang trí rời lặp thừa*, không có công năng buộc trang phục và không quyết định silhouette. Chỉ thực hiện nếu thực sự giúp rõ hình/rig dễ hơn; không phải bắt buộc phải cắt giảm.
+- **Visual QA:** xem ảnh **toàn phần cơ thể/trang phục liên quan** cạnh CANON V2. Nếu giảm tua làm sai silhouette, đường buộc, độ che phủ, màu sắc, hoa hay nhận diện → `REVISE`. Nếu giữ đúng tổng thể nhưng giản lược ít chi tiết nhỏ → `PASS_WITH_MINOR_NOTES` và ghi chú. Không đặt ngưỡng % tùy tiện.
+- **CP338 artifact thật:** tách **22 crop PNG native giữ nguyên pixel** từ nguồn đã duyệt (4 outfit, 4 damage, 4 pose, 4 view, 1 mặt closeup, 5 expression). Check SHA CANON V2/5 biểu cảm, 22 file hash PASS, 17 crop poster pixel-identical, ZIP CRC PASS. Gói `TVK_LamThien_CP338_Canon_Reference_And_Trim_Policy.zip`, SHA256 `a17de705436b5ad814507a8dc23135021d2ebd8ceb4d91027df8643df93d6757`, Library `/Thanh Van Ky/Development/CP338_Canon_Costume_Trim/`.
+- **Giới hạn:** crop poster là nguồn đối chiếu, **không phải sprite đã tách lớp**; chưa chỉnh ảnh CANON V2, chưa có face master/underpaint artist-grade, Spine/APK chưa nghiệm thu. CP337 ảnh lệch đã REJECTED, CP335 `production_release=blocked_pending_art`.
+- **Tài liệu:** [CP338 handoff](art/LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md), [reference manifest](art/LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json).
+
+### Lịch sử 2026-10-29 — CP338
+Đã bổ sung ngoại lệ được người dùng cho phép tinh giản phụ kiện tua rua không quan trọng; giữ thiết kế chính thức V2 và mọi biểu cảm/độ hư hại; ưu tiên art trung thực thay vì giữ các đầu tua phức tạp mà không giúp nhân vật.
