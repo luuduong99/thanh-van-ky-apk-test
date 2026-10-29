@@ -49,3 +49,11 @@
 - `CP326_EXPRESSION_SWITCHING_TECH_DEMO.gif`: mô phỏng đổi state giữa 5 expression trên cùng nền face; **chỉ là GIF chuyển ảnh, không có rig hoặc Spine animation**.
 - Hai file trên đã được lưu Library Development cùng ZIP và **được bổ sung vào ZIP cuối**. Vì vậy SHA-256 ZIP là `377086143ce7a85449e9ade18d1de02f64431ba15e8c8024b2ce5bc86f37f4f6`, tổng 21 file; checksum bản ZIP 19 file trước đã thay thế. ZIP CRC PASS.
 - Nghiệm thu production nghiêm ngặt vẫn FAIL đúng kỳ vọng; không nhập bất kỳ attachment demo nào vào `sprite_paths`.
+
+
+## GitHub CI và rà tìm nguồn layer (kiểm tra tiếp trong phiên 2026-10-29)
+
+- **GitHub Actions đã xác minh thật** trên commit `ced9c34f8ea5e1fc52e362646dfc0cf8f02e276c`: `CP326 independent facial layers metadata gate` run `40806432024` **SUCCESS**; `CP324 character expression runtime contract` `40806431648` **SUCCESS**; `CP325 approved expression region contract` `40806431996` **SUCCESS**; `Approved character expressions consistency` `40806432192` **SUCCESS**; CP322/CP323 contracts cũng SUCCESS. **CI chỉ kiểm metadata/source code; không kiểm chứng file ORA nhị phân trên runner, không build APK.**
+- Kiểm lại Google Drive tìm theo tên `.ora`, `.psd`, `.kra`, `LT_CP313`: **không tìm thấy file layer gốc trong các kết quả Drive có quyền truy cập tại phiên này**. Điều này không chứng minh file không tồn tại ở vị trí khác; không tự nhận đã phục hồi ORA 10 lớp CP313.
+- ZIP cuối 21 file đã có 5 ORA, 5 composite ảnh, ảnh QA ở 132/64px, GIF mô phỏng chuyển nét mặt và mã Python. `CP326_EXPRESSION_SWITCHING_TECH_DEMO.gif` là *chuyển ảnh* theo trạng thái, **không phải Spine animation**.
+- **Trở ngại thực:** cần art gốc/face fullsize có lớp, hoặc redraw chất lượng sản xuất từ V2 trước khi nghiệm thu P0-02/P0-03/P1-03. Không nâng bậc từ technical prototype sang approved sprite chỉ vì CI xanh.
