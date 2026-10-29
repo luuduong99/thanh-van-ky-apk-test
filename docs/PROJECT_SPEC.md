@@ -965,3 +965,8 @@ Giảm sai lệch nhận dạng giữa năm bản face nháp bằng thử nghi�
 
 ### Lịch sử cập nhật 2026-10-29
 Đã nâng từ patch R&D CP331 sang SVG art thật tách theo bộ phận CP332, vẫn trung thực trạng thái NOT APPROVED để các bước sau không sử dụng nhầm.
+
+
+### Bổ sung CP332 — xác minh GitHub CI (2026-10-29)
+
+Đã kiểm tra trực tiếp GitHub Actions CP332: run `40819544556` / job `123268528135` **SUCCESS**. CI xác minh mã vector, metadata và một số layer RGBA tổng hợp, **không đọc sáu ORA nhị phân** trong Library. Các bài kiểm ORA thật **10/10 PASS local** vẫn là chứng cứ riêng; trạng thái mỹ thuật `NOT APPROVED`, Spine/APK `NOT DONE` không thay đổi.
