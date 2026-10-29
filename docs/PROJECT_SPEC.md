@@ -1,3 +1,5 @@
+> **NGUỒN MỸ THUẬT LÂM THIỂN HIỆN HÀNH — CANON V2.1 ĐÃ CHỐT (2026-10-29)**: Chỉ dùng **file nguyên bản** `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` (941×1672, 9:16, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`). Tài liệu [CANON V2.1](art/LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md) · [Model Card](art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json) · [Plan](art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md). **V2/CP337/CP338/CP339 là lịch sử, không được sử dụng làm mẫu chính.** Chỉ ảnh tham chiếu đã duyệt; layer/Spine/APK chưa hoàn thành.
+
 # THANH VÂN KÝ — TÀI LIỆU MÔ TẢ DỰ ÁN
 
 > **Mục đích:** Đây là nguồn thông tin chuẩn của dự án để tiếp tục công việc ở các thread khác mà không cần đọc lại toàn bộ lịch sử hội thoại. Khi có quyết định mới, hãy cập nhật tài liệu này trong cùng thay đổi/commit nếu phù hợp.
@@ -1104,3 +1106,18 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 **Ý định chỉnh sửa cần preview trước khi chốt art mới:** giữ form người và nhận diện ảnh 2, phối trang phục/góc/tóc/phụ kiện đặc trưng; chỉ tinh chỉnh **dáng phần ngực và cấu trúc áo khu vực đó** gần ảnh 1, hài hòa trên Front/3⁄4 và các biểu cảm ảnh 3. Không phát sinh khỏa thân, không tự đổi thiết kế ngoài vùng yêu cầu; giữ +17% đã chốt và các damage 100/70/50/30. Được giảm tua rua phụ theo CP338, không đổi phụ kiện nhận diện.
 
 **Không thay thế nguồn gốc bằng ảnh sinh mới chưa được xem/duyệt; không xem dòng “Production Ready / Spine” in trong ảnh 3 là bằng chứng có layer.** Giữ `production_release=blocked_pending_art`, `sprite_paths={}` và Spine/APK chưa hoàn thành. Chi tiết vai trò nguồn, mã ảnh và bộ kiểm tra: [CP339 handoff](art/LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md).
+
+---
+
+## 48. Lâm Thiển — CANON V2.1 9:16 là bản cuối người dùng đã chốt (2026-10-29)
+
+**MỐC QUAN TRỌNG HƠN CÁC GHI CHÚ V2/CP339 TRƯỚC ĐÓ.** Người dùng chỉ định ảnh PNG 9:16 cuối cùng làm **mẫu chuẩn duy nhất** cho hình thể, quần áo, góc nhìn, tư thế, năm biểu cảm và mức hư hại. Những nguồn V2 cũ, CP339 ba ảnh tham khảo, CP337 ảnh lệch chỉ giữ lịch sử.
+
+- Ảnh file nguyên bản không chỉnh sửa: `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Lưu `/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/`.
+- Form người +17% **đã có trong ảnh**, giữ nguyên; trang phục ngực và tổng thể theo đúng hình cuối. Tóc bạc/lavender, hoa trắng, phụ kiện và bảng màu trắng–xanh–vàng nhất quán. Có thể lược bớt tua rua phụ nếu không đổi nhận diện.
+- Năm sắc thái chơi game: **ngại ngùng / tức giận / đau đớn / xấu hổ / quyến rũ**. Các góc Front, Side, Back, 3/4 và tám tư thế thể hiện trong sheet là chuẩn tham khảo. Khi cần vẽ lại native art nhiều góc, phải đối chiếu từng preview với nguồn này; không tự sinh thiết kế mới.
+- Hư hại 100/70/50/30 theo **độ nặng của vết rách/bụi/vết xước trong bản đã chốt**. Đặc biệt mốc **30% không được bẩn, xước hoặc rách nhiều hơn ảnh chuẩn**, không thay độ che phủ/hình thể. Không sao chép mảng rách phẳng thành rig thật.
+- Ảnh phẳng được **duyệt làm visual reference**, không xác nhận đã có ORA, PNG alpha riêng, 15 layer, Spine skeleton hoặc Android APK dù trên ảnh có chữ gợi ý. `production_release.status=blocked_pending_art`, `sprite_paths={}` vẫn phải giữ đến khi nghiệm thu asset thật.
+- Bắt đầu lại việc triển khai theo [kế hoạch CANON V2.1](art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md): kiểm màu/góc nhìn → làm art native layer thật → damage/expression QA → rig/Spine → build/test APK. Mọi art phải giữ nguyên nhận diện theo file SHA mới.
+
+**Điểm tiếp tục sau checkpoint:** P0 đã lưu & khóa nguồn; P1 art phân lớp chưa hoàn thành; P2 rig/gameplay chưa nghiệm thu; P3 APK chưa có build được kiểm chứng.
