@@ -63,3 +63,17 @@
 - [x] Bảng QA source-composite-mask, bản đồ màu lớp và preview hở khớp; lưu [CP343 handoff](LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md), [manifest](LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json). ZIP 34 files SHA `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519` đã sao lưu Library Development.
 - [ ] **CP344 ưu tiên:** vẽ lại một vùng tay trái–vai/thân áo **có vùng ẩn thật**, chỉnh alpha đường biên thủ công và xem thử 2 frame với dịch/rotation nhỏ; không để lỗ/mất váy/đổi bodice. Sau QA tay trái mới làm tay phải/tóc.
 - [ ] Chưa native painted high-res art, chưa có layer mặt thật, năm expression sprites, damage overlay hay Android/Spine. **Release tiếp tục BLOCK**.
+
+
+## CP366 — Partial sleeve vector artwork (2026-10-29)
+- [x] Sáu mảng SVG vẽ độc lập dùng cho tay/vai/tóc/vải bên trái; ORA 7 lớp; 5/5 structural tests PASS.
+- [ ] **Visual QA NOT_PASSED**: sai khác đường nét, nếp lụa và đồ trang sức so với CANON; không thể thay thế ảnh chuẩn. Không phải full-body sprite/Spine/APK.
+- Tài liệu: [CP366 partial art study](LAM_THIEN_CP366_LEFT_SLEEVE_SIX_VECTOR_ART_STUDY.md).
+
+## CP367 — CANON-only QA và khóa quy tắc preview (2026-10-29)
+- [x] Xác minh file gốc người dùng gửi, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, 941×1672 RGBA.
+- [x] QA hai mũi guốc xanh từ crop Front chính xác: trái 163/163, phải 146/146 pixel nguồn. Hai lỗi xóa alpha mũi guốc bị phát hiện, crop lệch kích thước bị chặn; **6/6 local test PASS**.
+- [x] Cập nhật PROJECT_SPEC: mọi lần hiển thị nhân vật chỉ dùng ảnh CANON mới nhất đã duyệt của chính nhân vật hoặc crop đúng nguồn; ảnh draft phải ghi rõ draft và so với CANON, không dùng hình khác thay thế.
+- [x] Công cụ và test kiểm chân tại `tools/art/cp367_canon_guard.py` và `tests/art/test_cp367_canon_guard.py`.
+- [ ] **CP368 tiếp theo:** nâng chất lượng art tay/vai/tóc/vải CP366 theo CANON, kiểm khớp/underpaint qua dịch/rotation và vẽ tiếp các layer full-body; đòi hỏi preview nhận xét của người dùng trước khi rig thật.
+- [ ] Spine/rig, art đã duyệt, APK vẫn **BLOCKED**. Chi tiết: [CP367 handoff](LAM_THIEN_CP367_CANON_ONLY_QA.md).
