@@ -271,3 +271,11 @@
 - [x] Tạo gói **22 ảnh tham khảo native-resolution (source byte/pixel preserved)** cho outfit ×4, integrity ×4, pose ×4, view ×4, face ×1 và emotion ×5. SHA nguồn approved chính xác, 22 hash PASS và 17 crop CANON direct pixel PASS, ZIP CRC PASS. [CP338 handoff](LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md) · [manifest](LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json). Sao lưu Library Development.
 - [ ] **Chưa thay art thực:** không xóa tua trong CANON gốc, không gọi crop thành sprite. Chỉ khi vẽ source native đúng V2 mới tùy chọn giảm những đầu tua phụ, kiểm diện mạo ở Front/3/4/back và bốn damage states.
 - [ ] Artist tạo face/head/garment layer thật, QA so V2 rồi nghiệm thu riêng; CP335 release gate vẫn BLOCK, Spine/APK chưa xong. CP337 hai ảnh drift REJECTED.
+
+
+## CP339 — nguồn chính thức Ảnh 2/3 + chỉnh thân áo có giới hạn (2026-10-29)
+
+- [x] Người dùng làm rõ: **ảnh 2 là chuẩn model/body/wardrobe**, **ảnh 3 là chuẩn 5 biểu cảm**. **Ảnh 1 chỉ làm tham chiếu về kiểu áo phần ngực và tỷ lệ vòng một** của bản chỉnh dự kiến; không kế thừa nguyên model ảnh 1.
+- [x] Lưu checksum 3 ảnh upload và thứ tự ưu tiên, tài liệu [CP339](LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md). Giữ riêng nguồn gốc, không tự ghi đè asset đã duyệt.
+- [ ] Tạo và đối chiếu **preview chỉnh có giới hạn** từ ảnh 2 + 3, dùng chi tiết áo/vùng ngực ảnh 1; cần giữ mặt, tóc, phụ kiện, form người và trang phục ngoài vùng chỉnh. Chỉ sau người dùng xem/chốt preview mới phát hành art chỉnh.
+- [ ] Vẽ source phân lớp thật (không chỉ poster), kiểm consistency Front/3⁄4, damage 100/70/50/30 và avatar biểu cảm; sau đó CP335 art release gate → Spine/Android APK.
