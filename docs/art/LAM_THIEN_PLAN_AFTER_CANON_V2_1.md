@@ -44,3 +44,13 @@
 - [x] **13/13 local binary tests PASS**, ZIP CRC PASS; [CP341 handoff](LAM_THIEN_CP341_MATTE_HANDOFF.md), [manifest](LAM_THIEN_CP341_MATTE_MANIFEST.json), gói ZIP SHA `08d8aa08bc4b00163e092d056f1e067a5652b0f80b9462e5308277dbe8baacb1` tại Library Development.
 - [ ] **CP342 cần thực hiện:** cleanup thủ công white halo + shadow dưới chân và vạt, tạo **art native Front semantically layered** với underpaint thực và vùng vải/tóc ẩn khi bone chuyển động. Preview bắt buộc so silhouette/body/bodice với CANON V2.1 để tránh sai mẫu.
 - [ ] Mới sau Front artist-approved: tách 5 nét biểu cảm độc lập, 4 mức hư hại vừa phải, góc nhìn khác; rig/Spine và Android APK vẫn chưa DONE. CP335 release gate tiếp tục BLOCK.
+
+
+## CP342 — xử lý bóng sàn trong alpha Front (2026-10-29)
+
+- [x] Dùng CANON V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; RGB bảo toàn tuyệt đối. Chỉnh alpha chỉ vùng 39 dòng cuối; vùng thân/bodice trên **không thay**.
+- [x] Giảm dải bóng nền xanh-xám dưới giày/vạt: 2.364 pixel alpha khác, vùng sàn giảm 209.000 alpha-unit, giày giữa giữ nguyên. Xuất PNG, mask, delta và ORA 4 layer so sánh, không phải skeleton/semantic art.
+- [x] **13/13 binary tests PASS** (file PNG/ORA thật); ZIP 15 file SHA `76d8fd962688dde6356d4853b5e522b5ce78567a1e08ae3739668851ec5ebf66`, sao lưu Library Development. [Handoff](LAM_THIEN_CP342_SHADOW_CLEANUP_HANDOFF.md).
+- [ ] **CP343 P1 ART THẬT:** vẽ lại **Front native high-res đúng CANON V2.1** thành body, tóc trước/sau, face/skin underpaint, tay, bodice, tay áo, phụ kiện và vạt lụa có alpha sạch/vùng che khuất. Preview 1 pose quay/di chuyển có draw-order và không lộ lỗ dưới lớp.
+- [ ] Chỉ sau art Front mới tạo 5 expression attachments, 4 damage overlays giữ giới hạn 30% từ CANON, góc/tư thế còn lại, user asset acceptance, Spine và APK.
+- [ ] Cổng CP335 Android vẫn `blocked_pending_art`, `sprite_paths={}`. Không coi PNG flat 215×449 là asset hoàn thiện.
