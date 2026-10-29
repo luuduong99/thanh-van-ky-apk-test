@@ -137,3 +137,13 @@
 - [ ] **P1-03 vẫn CHƯA XONG:** cần vẽ/tách **mắt/mày/miệng thật theo CANON V2** với underpaint/alpha đúng, dùng quy chuẩn biểu cảm làm đối chiếu, thử hội thoại/Spine thật. Không đăng ký patch CP325 như `sprite_paths`.
 - [ ] **P0-02/P0-03 giữ trạng thái chưa hoàn thành:** cần full-body Front/Back đủ độ phân giải, artwork 15 lớp thật đúng V2, điểm neo và QA.
 - **Điểm tiếp tục:** CP326 dựng face sprites V2 độc lập và kiểm composite 5 trạng thái. Không cần chốt lại thiết kế concept đã được duyệt; asset mới cần QA riêng.
+
+
+## CP326 — lớp nét mặt độc lập từ CANON V2 (2026-10-29)
+
+- [x] Trích nguồn face V2 thật (bbox `[1160,0,1390,114]`, **native chỉ 230×114 px**, SHA canon giữ nguyên); tạo nền inpaint **thử nghiệm**, không coi là underpaint đã duyệt.
+- [x] Vẽ mới **35 thành phần alpha** (7 vùng × 5 biểu cảm) bằng nét vector tự dựng, không cắt da/tóc từ sheet biểu cảm như CP325; đóng gói **5 OpenRaster độc lập** + contact preview, manifest SHA, script tạo lại và QA.
+- [x] Local QA `tools/cp326/test_cp326_face_local.py`: **6/6 PASS**. Kiểm ORA CRC/lớp/alpha/compositing bằng `tools/cp326/validate_cp326_face.py`; `--strict` FAIL đúng dự kiến. ZIP và công cụ lưu Library Development `/Thanh Van Ky/Development/CP326_Vector_Face_Prototype/`.
+- [ ] **Art P1-03 CHƯA ĐẠT:** nét mắt/môi hiện khác phong cách hình biểu cảm đã duyệt, underpaint inpaint còn lỗi, nguồn quá nhỏ và chưa có full-body layer canonical. **Cấm** đưa bản CP326 demo vào `sprite_paths` hoặc APK.
+- [ ] **CP327 tiếp theo:** phục hồi nguồn layer art V2 độ phân giải sản xuất hoặc redraw sát V2, hoàn thiện face master và 5 bộ attachment thật, QA ảnh cỡ thoại 132/64px, ghép pose/wardrobe/damage rồi chạy Spine thực.
+- **Bàn giao:** [CP326 handoff](LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md), [manifest](LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json). Không chốt lại mẫu 5 nét mặt đã duyệt; không thay hình thể V2/tỷ lệ +17%.
