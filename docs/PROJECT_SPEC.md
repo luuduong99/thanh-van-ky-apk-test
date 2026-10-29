@@ -1211,3 +1211,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **29/29 local QA PASS** trên ảnh nguồn, SHA, giới hạn ROI, vùng giày còn lại, ghép 10 lớp, ORA CRC/mergedimage và kiểm lỗi khớp tay vẫn tồn tại. ZIP 20 file CRC PASS, SHA256 `f7cd164a509f6cb93b48c0fb6987dd9b008d58f4e11d625f5a4c1c30173f1497`; lưu Library `/Thanh Van Ky/Development/CP348_Shoe_Toe_Ten_Layer_Recovery_QA/`. Có preview toàn thân + zoom giày. [CP348 handoff](art/LAM_THIEN_CP348_SHOE_REPAIR_10_LAYER_HANDOFF.md).
 - **Cảnh báo:** đây là thử nghiệm QA trên crop **215×449**, vẫn có thể còn halo/đường cắt ở mép; **chưa vẽ native high-res**, chưa vẽ underpaint phần vai/tay, chưa có Spine/Android FPS nghiệm thu. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không đưa CP348 vào APK phát hành.
 - **CP349 next:** cần vẽ thật Front độ phân giải cao với vùng ẩn khớp tay–vai/thân áo/tóc; kiểm 2 frame cử động và cả hai mũi guốc; sau đó mới rig/Android.
+
+
+---
+
+## 56. CP349 — Thử nghiệm lớp nền bù vùng vai trái (2026-10-29)
+
+- Dùng **CP348 10 raster region 215×449** đã khôi phục mũi guốc, có SHA nguồn đã khóa. Tạo layer nền bù thử nghiệm sau tay áo trái gồm **950 opaque px** tại vùng `x=54..70, y=122..187` bằng phép lấy mẫu/kéo màu từ ảnh thật. Không phải nét vẽ artist/semantic underpaint.
+- Composite đứng yên với nền bù giữ **RGBA pixel-exact** so với CP348. Khi dịch tay trái `(-10,+5)`, vùng mất coverage giảm từ **914 px xuống 263 px**, tức lấy lại 651 px (~71,2%). Các con số là thay đổi alpha chứ không chứng minh giải phẫu/cử động đạt chuẩn.
+- **Visual QA FAIL:** xuất hiện dải màu kéo dọc và mép không tự nhiên ở chỗ nối vai–áo–thân. Bản thử nghiệm không được dùng như sprite/game animation. GIF chỉ ghi lại vấn đề để kiểm.
+- Đã lưu bundle 7 file `TVK_CP349_Shoulder_Underpaint_Pilot_NOT_RIG.zip` SHA256 `18815b317d3cda7a7a87d25d3afa45812110081072445d8b67096687bd12fa4a` vào Library `/Thanh Van Ky/Development/CP349_Shoulder_Underpaint_Compositing_Pilot/`; kèm ảnh so sánh, GIF, mã chạy lại ở [CP349 tool](../tools/art/cp349_shoulder_backing_pilot.py) và [báo cáo](art/LAM_THIEN_CP349_SHOULDER_BACKING_PILOT.md).
+- **CP350 next:** cần vẽ thật Front native resolution với da/vải/tóc ẩn phía sau vai và cắt semantic arm/sleeve; tạo 2 frame idle/nhấc tay so với CANON V2.1; kiểm tra luôn cả hai mũi guốc xanh. Không thể chỉ dựa vào mask lấy màu để vượt visual gate.
+- CANON V2.1, tỷ lệ +17%, mặt, thiết kế áo và hư hại 100/70/50/30 vẫn bất biến. `production_release.status=blocked_pending_art`, `sprite_paths={}`, Spine/APK chưa nghiệm thu.
