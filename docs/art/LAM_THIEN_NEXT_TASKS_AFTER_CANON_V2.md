@@ -263,3 +263,11 @@
 - [ ] **ƯU TIÊN TIẾP:** khóa 100% CANON V2 **body + costume** (tỷ lệ +17% đã tích hợp), dựng chi tiết face/head theo đúng V2 *trong phạm vi không đổi trang phục*, đối chiếu trước khi tiếp tục Front/3/4, biểu cảm và rig.
 - [ ] Bản preview kế tiếp **phải nhìn thấy đủ đường nét body/cổ áo/tay áo/phụ kiện để so sánh**, không chỉ crop khuôn mặt. Gate FAIL khi neckline, silhouette, phân bố vàng, hoa tóc, body proportion hoặc fabric khác mẫu chốt; approval manual chứ không phải tự đánh giá text.
 - [ ] `production_release.status=blocked_pending_art`, `sprite_paths={}`, CP337/Spine/APK vẫn **NOT DONE**.
+
+
+## CP338 — khóa ảnh chuẩn, chỉ được tinh giản tua rua thừa (2026-10-29)
+
+- [x] **Quy chuẩn mới:** nếu cần đơn giản art/Spine, cho phép bớt một ít tua rua/dây trang trí nhỏ **không mang tính nhận diện hoặc kết cấu**. Không đổi body V2 +17%, neckline/cutout, độ che phủ, tay/vạt áo chính, phối màu, hoa tóc, phụ kiện vàng đặc trưng.
+- [x] Tạo gói **22 ảnh tham khảo native-resolution (source byte/pixel preserved)** cho outfit ×4, integrity ×4, pose ×4, view ×4, face ×1 và emotion ×5. SHA nguồn approved chính xác, 22 hash PASS và 17 crop CANON direct pixel PASS, ZIP CRC PASS. [CP338 handoff](LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md) · [manifest](LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json). Sao lưu Library Development.
+- [ ] **Chưa thay art thực:** không xóa tua trong CANON gốc, không gọi crop thành sprite. Chỉ khi vẽ source native đúng V2 mới tùy chọn giảm những đầu tua phụ, kiểm diện mạo ở Front/3/4/back và bốn damage states.
+- [ ] Artist tạo face/head/garment layer thật, QA so V2 rồi nghiệm thu riêng; CP335 release gate vẫn BLOCK, Spine/APK chưa xong. CP337 hai ảnh drift REJECTED.
