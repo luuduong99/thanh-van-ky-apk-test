@@ -59,5 +59,20 @@
     "manifesto": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_MANIFEST.json",
     "handoff": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md",
     "implementation_plan": "docs/art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md"
+  },
+  "cp340_art_intake": {
+    "status": "one_source_based_flat_alpha_experiment_technical_only",
+    "source_exact_crops_count": 14,
+    "front_alpha_native_size_px": [
+      215,
+      449
+    ],
+    "transparent_front_reference_created": true,
+    "experimental_editable_ora_2_raster_layers": true,
+    "true_artist_semantic_facial_body_garment_layers_complete": false,
+    "source_rgb_pixels_preserved": true,
+    "local_binary_validation_passed": 9,
+    "package_sha256": "51cafc14800032712eeed7f0d1ff47edf6f486659ac38c28279298a1be0cb535",
+    "handoff": "docs/art/LAM_THIEN_CP340_SOURCE_EXACT_FRONT_ALPHA_HANDOFF.md"
   }
 }
