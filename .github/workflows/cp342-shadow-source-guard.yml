@@ -1,0 +1,26 @@
+name: CP342 V2.1 shadow alpha source guard
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP342_SHADOW_CLEANUP_MANIFEST.json'
+      - 'tests/art/test_cp342_metadata_contract.py'
+      - '.github/workflows/cp342-shadow-source-guard.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP342_SHADOW_CLEANUP_MANIFEST.json'
+      - 'tests/art/test_cp342_metadata_contract.py'
+
+jobs:
+  cp342-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Guard approved CANON V2.1 and nonproduction alpha shadow cleanup
+        run: python3 -m unittest discover -s tests/art -p 'test_cp342_metadata_contract.py' -v
+      # Actual source PNG/mattes/ORA kept in Library; full binary audit 13/13
+      # is performed locally and does not represent visual artist approval.
