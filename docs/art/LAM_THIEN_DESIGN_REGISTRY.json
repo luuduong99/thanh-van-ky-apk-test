@@ -36,7 +36,18 @@
     },
     "optional_trim_only": "minor redundant nonstructural tassels",
     "damage_note": "30% must remain restrained; dirt, scuffs and tears as pictured, not more severe",
-    "note": "ACTIVE SINGLE SOURCE OF TRUTH. Supersedes V2 and CP339 user-selected older images as final design reference. Does not approve separate sprites or rig."
+    "note": "ACTIVE SINGLE SOURCE OF TRUTH. Supersedes V2 and CP339 user-selected older images as final design reference. Does not approve separate sprites or rig.",
+    "required_traits": [
+      "silver_lavender_hair_and_white_flower",
+      "recognizable_approved_face_and_amber_eyes",
+      "body_proportions_plus_17_percent_already_integrated",
+      "white_blue_gold_costume_bodice_neckline_and_covering_unchanged",
+      "consistent_silhouette_and_front_side_back_three_quarter_views",
+      "both_blue_shoe_toes_visible",
+      "five_individually_approved_expressions",
+      "garment_damage_100_70_50_30_from_final_sheet"
+    ],
+    "visual_reference_location": "Library:/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/LAM_THIEN_CANON_V2_1_FINAL_20261029.png"
   },
   "latest_pending_preview": null,
   "deprecated_visual_sources": [
@@ -46,7 +57,7 @@
     "CP319_LamThien_Clean_Primary_Back_Review.png"
   ],
   "implementation": {
-    "design_reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "design_reference_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
     "sprite_layers_complete": false,
     "spine_rig_complete": false,
     "physics_approved": false,
