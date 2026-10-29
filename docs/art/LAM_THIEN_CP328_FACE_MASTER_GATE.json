@@ -105,5 +105,6 @@
   "five_expression_independent_face_sprites_ready": false,
   "spine_animation_verified": false,
   "android_apk_verified": false,
-  "next_checkpoint": "CP329 true face redraw on V2 + real alpha attachments / art review before rig"
+  "next_checkpoint": "CP329 true face redraw on V2 + real alpha attachments / art review before rig",
+  "registered_android_asset_paths": 0
 }
