@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / "docs" / "art"
 CANON_ID = "LT_CANON_BODY_REF_2026-10-28_V2"
+ACTIVE_CANON_ID = "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29"
+ACTIVE_CANON_SHA = "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
 EXPRESSION_ID = "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED"
 EXPRESSION_SHA = "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7"
 CANON_SHA = "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711"
@@ -45,9 +47,12 @@ def validate(approved, registry, model, global_standard):
     if source.get("source_kind") != "flat_approved_expression_reference_not_layered_asset":
         errors.append("An approved concept is not a production sprite")
     base = next((x for x in registry.get("archived_approved_designs", []) if x.get("id") == "LT_CANON_BODY_REF_2026-10-28_V2"), {})
+    active = registry.get("latest_user_approved_design", {})
+    if (active.get("id") != ACTIVE_CANON_ID or active.get("visual_reference_sha256") != ACTIVE_CANON_SHA):
+        errors.append("The latest approved character model V2.1 must remain the active body canon")
     profile = registry.get("approved_expression_profile", {})
     if base.get("id") != CANON_ID or base.get("visual_reference_sha256") != CANON_SHA:
-        errors.append("The original approved character model V2 must remain canonical")
+        errors.append("The historical character model V2 archive must be preserved")
     if (profile.get("id") != EXPRESSION_ID or
         profile.get("source_sha256") != EXPRESSION_SHA or
         profile.get("expression_ids") != list(EMOTIONS)):
