@@ -797,3 +797,21 @@ Lập preview và tiêu chuẩn phân biệt năm nét mặt để người dùn
 
 ### Lịch sử 2026-10-29
 Người dùng xác nhận preview 5 biểu cảm đã đạt yêu cầu; chuyển từ review sang Approved, lưu checksum + bản sao ảnh, chuẩn hóa quy tắc riêng từng nhân vật, không sửa body canon hoặc tự nhận đã rig.
+
+
+---
+
+## 34. CP324 — kết nối 5 biểu cảm Lâm Thiển đã chốt vào Android (2026-10-29)
+
+**ĐÃ THỰC HIỆN CODE, CHƯA NGHIỆM THU ART/ANDROID APK:**
+
+- **KHÔNG THAY CANON:** body/face/costume vẫn `LT_CANON_BODY_REF_2026-10-28_V2` (+17% đã có). Ảnh năm biểu cảm `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` là chuẩn **cách thể hiện cảm xúc**, chưa phải ảnh face tách lớp.
+- Bổ sung `app/src/main/assets/character_expression_profiles.json` ghi đúng năm ID đã duyệt `shy, angry, pain, embarrassed, alluring` của Lâm Thiển, `sprite_paths={}` vì chưa có sprite. Tô Nguyệt Ly vẫn `individual_preview_required`, không dùng mặt của Lâm Thiển.
+- Bổ sung `CharacterExpressionCatalog.kt` giải quyết sprite theo bộ khóa **characterId × expression × wardrobe × integrity × pose**, chỉ chấp nhận file `characters/{characterId}/...` có thật. Nếu thiếu thì trả null/hiển thị thiếu ảnh, **không fallback sang biểu cảm hoặc trang phục khác**.
+- Bổ sung bộ chọn năm biểu cảm trong `CharacterInteractionActivity.kt`, cùng nút trở về `normal` (nút reset, **không phải loại cảm xúc mới**). **Đã sửa lỗi đổi pose tự đặt lại expression normal/relaxed; mở wardrobe không xóa biểu cảm đang lưu.** `expression` vẫn độc lập với `wardrobe/integrity/pose/action`.
+- Đã cắt nguyên pixel từ ảnh đã duyệt thành 5 ảnh chân dung và 5 ảnh cận mắt/miệng (**REFERENCE ONLY**), ZIP SHA256 `d12dfa89ac0ae002095effd4d2e789d31bbcb09c23a1f4b857da29e4b906ca1a`, backup Library Approved References tại `/Thanh Van Ky/Approved References/Lam_Thien_Expressions_20261029/CP324_Reference_Handoff/`. Không nhận crop làm PNG alpha/rig thật.
+- **Kiểm thử:** Kotlin resolver chạy local với mock Android JSON/State **11/11 PASS**; thêm Python contract tests và GitHub Actions workflow `cp324-expression-runtime.yml`, **CI trên GitHub và APK chưa xác minh**. Chưa thay P0-02/P0-03 và P1-03 từ pending thành done.
+- **TÀI LIỆU:** [CP324 handoff](art/LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md), [manifest crop](art/LAM_THIEN_CP324_APPROVED_EXPRESSION_CROPS_MANIFEST.json), [hồ sơ 5 biểu cảm APPROVED](art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md).
+
+### Lịch sử 2026-10-29
+Tiến hành tích hợp metadata, chọn và lưu expression trong Android; sửa pose reset, kiểm strict missing-art; giữ ranh giới art/rig/APK chưa hoàn thành.
