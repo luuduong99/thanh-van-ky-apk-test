@@ -1,0 +1,26 @@
+name: CP325 approved expression region contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP325_FACE_REGION_PROXY_MANIFEST.json'
+      - 'tests/art/test_cp325_face_proxy_contract.py'
+      - '.github/workflows/cp325-face-proxy-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP325_FACE_REGION_PROXY_MANIFEST.json'
+      - 'tests/art/test_cp325_face_proxy_contract.py'
+
+jobs:
+  reference-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure CP325 patches are never mislabeled as game art
+        run: python3 -m unittest discover -s tests/art -p 'test_cp325_face_proxy_contract.py' -v
+      # Pixel-level ORA QA is performed locally on Library-backed binaries.
+      # Passing this job does not mean production art, Spine or APK is ready.
