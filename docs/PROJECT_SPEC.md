@@ -1162,3 +1162,16 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **CP343 next:** dừng tạo thêm vòng pixel-mask không giải quyết được bản vẽ gốc; làm **Front native high-resolution phân lớp artist-quality** đúng V2.1 với underpaint phần bị che để chuyển động. Kiểm tư thế/đường viền/bodice rồi mới mở năm nét mặt, bốn damage và các góc khác. Nghiệm thu sprite riêng trước Spine/Android.
 
 **CP342 chỉ đóng một lỗi alpha kỹ thuật, không đóng P1 art/Spine/APK.**
+
+
+---
+
+## 52. CP343 — 10 vùng Front pixel-exact, kiểm nghiệm underpaint FAIL (2026-10-29)
+
+- **CANON V2.1 vẫn khóa** (941×1672, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`): giữ body +17% đã chốt, kiểu thân áo/ngực, tóc bạc, hoa/phụ kiện, màu trắng–xanh–vàng, năm biểu cảm và mức hư hại 100/70/50/30 (30% vừa phải). **Không vẽ lại/chỉnh RGB thiết kế.**
+- Từ ảnh Front foreground CP342 **215×449**, đã tách **10 nhóm PNG alpha có pixel thật, mask chỉnh được và OpenRaster 10 lớp**, gồm tóc/vải hai bên, chân trái/phải, dải vải eo, hai tay và tay áo, thân áo/cổ, đầu/phụ kiện và vùng đường nối khó phân chia. **Các mask là polygon phân vùng gần đúng, không phải anatomy đã vẽ đủ/riggable.**
+- **Ghép ở vị trí nghỉ pixel-exact**: toàn bộ alpha và RGB tại các pixel có alpha đều đúng nguồn CP342; **12/12 test binary local PASS** trên các PNG/mask/ORA. Preview màu và nguồn đặt cạnh nhau. OpenRaster có layer raster thật, nhưng các bộ phận vẫn bị thiếu vùng ẩn và còn đường cắt thẳng.
+- **Stress test thực:** dịch nhẹ hai nhóm tay ±10px/+5px → lộ **1.798 pixel bị trống** và 1.098 pixel nhô ra ngoài. Gate **FAIL_no_hidden_underpaint**. Đây là bằng chứng chưa đủ art để tạo motion, không phải một animation đã nghiệm thu.
+- **Gói:** `TVK_LamThien_CP343_Source_Exact_Region_Layers_NOT_SPINE_READY.zip` (34 file, CRC PASS, SHA256 `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519`), sao lưu `/Thanh Van Ky/Development/CP343_Canon_V2_1_Front_Region_Layers/`. [CP343 handoff](art/LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md) · [manifest](art/LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json).
+- **CP344 next có mục tiêu cụ thể:** họa sĩ chỉnh một khớp tay–vai/trang phục Front và vẽ **vùng da/vải/tóc thực bị che phía sau**, làm 2 frame nghỉ→nhấc tay nhẹ, QA không hở vùng nào; sau đó mới tay còn lại và redraw native độ phân giải cao. Chưa sản xuất năm expression attachments, bốn overlay damage hay các góc còn lại.
+- CP335 Android vẫn `production_release=blocked_pending_art`, `sprite_paths={}`. **P1 semantic movable art, Spine, APK vẫn CHƯA NGHIỆM THU.**
