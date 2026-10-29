@@ -12,6 +12,7 @@ sys.path.insert(0,str(HERE))
 import cp370_two_hand_authored_poses as cp370
 
 CANON=HERE/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png'
+@unittest.skipUnless(CANON.exists(), "Exact CANON artwork is Library-only: asset integration checks must run locally")
 class CP370Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -83,5 +84,14 @@ class CP370Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'CANON SHA'):
             cp370.build(bad,self.out/'badresult')
         self.assertFalse((self.out/'badresult').exists())
+
+class CP370StaticContract(unittest.TestCase):
+    def test_archived_reference_sha_and_pose_path_differences(self):
+        self.assertEqual(cp370.SHA, "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a")
+        self.assertEqual(cp370.SIZE, (1302, 2748))
+        self.assertEqual(set(cp370.RAISED), set(cp370.KEYFRAME_NAMES))
+        for part in cp370.KEYFRAME_NAMES:
+            ET.fromstring(cp370.svg(part, 'raised'))
+            self.assertNotEqual(cp370.svg(part, 'idle'), cp370.svg(part, 'raised'))
 
 if __name__=='__main__':unittest.main(verbosity=2)
