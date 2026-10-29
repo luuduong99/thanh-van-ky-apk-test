@@ -1007,3 +1007,22 @@ Workflow `CP333 refined semantic face contract` run `40820930195`, job `12327297
 
 ### Lịch sử 2026-10-29
 Tạo preview mỹ thuật chất lượng cao hơn CP333, nhưng tách biệt tình trạng art concept với production rig; ưu tiên sửa tương đồng CANON V2 thay vì thêm pixel patches.
+
+
+---
+
+## 45. CP335 — khóa art biểu cảm chưa duyệt trước khi dùng trong Android (2026-10-29)
+
+**ĐÃ THỰC HIỆN BUG FIX/TEST TRÊN CODE, KHÔNG PHẢI ĐÃ HOÀN THÀNH ART LÂM THIỂN.**
+
+- **CANON BẤT BIẾN:** ngoại hình V2 `LT_CANON_BODY_REF_2026-10-28_V2`, SHA `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`; bộ 5 sắc thái `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED`, SHA `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Body và màu mắt theo V2, nét cảm xúc theo sheet đã duyệt, tỷ lệ +17% đã nằm trong V2, damage 100/70/50/30 độc lập.
+- **CP335 flat candidate:** PNG mới 1536×1024, SHA `7935e04f5fa04c3bd9d772577ad7ddbc806a9e5723629d8b963bb0611d7315d1`, có năm nét mặt nhưng **chưa được người dùng duyệt thành art sản xuất**, phụ kiện/neckline khác V2, thiếu một face master và layer alpha thật. Bảng QA so chuẩn và thumbnail 132/64px đã sao lưu Library Development. Chữ “Production Ready/Spine” bên trong ảnh không phải bằng chứng kỹ thuật.
+- **ĐÃ SỬA LỖI ANDROID:** trước đó chỉ cần `sprite_paths` trỏ tới file tồn tại và emotion direction được duyệt là `CharacterExpressionCatalog.resolveSprite` có thể hiển thị; chưa đòi nghiệm thu riêng **sprite art**. Sau CP335 phải có `production_release.status=approved_for_runtime`, QA artist+runtime, **user asset approval riêng**, đúng nguồn ID/SHA, manifest và hash của từng PNG. Nếu thiếu, không trả ảnh và không fallback mức nguyên vẹn/outfit/pose.
+- **HAI LOẠI APPROVAL KHÁC NHAU:** 5 biểu cảm **APPROVED REFERENCE**, nhưng mặt/layer/sprite **NOT ART ACCEPTED**. `character_expression_profiles.json` giữ `sprite_paths={}`, `production_release.status=blocked_pending_art` cho Lâm Thiển; Tô Nguyệt Ly chưa được auto-approve.
+- **KIỂM THỬ:** `17/17` kịch bản Kotlin compiled local PASS (stub, không phải build Android), `14/14` Python unit test trên ảnh PNG tổng hợp thực PASS. Công cụ `tools/verify_expression_art_release.py` kiểm SHA256 file, alpha RGBA, kích thước native, manifest và chặn đường dẫn thiếu approval. GitHub Actions `CP335 facial art release gate` run `40823727298` **SUCCESS**; CI không có asset CP335 production/Spine/APK.
+- **BACKUP:** `TVK_LamThien_CP335_Art_Release_Gate_NOT_APPROVED.zip`, SHA256 `d656146585681ce1a5b05d322fdab3a12eccb2c5f21b2afd6cc9e9d773dcf2df`, Library Development `/Thanh Van Ky/Development/CP335_Art_Release_Gate/`.
+- **CP336 TIẾP:** redraw thực một face master Front/3⁄4 đúng CANON V2, clean underpaint, semantic eye/brow/lid/mouth/blush alpha, năm sắc thái dùng cùng base, QA mỹ thuật ở 256/132/64, nghiệm thu sprite thành phẩm → mở release manifest mới → rig/Spine, build APK, test thiết bị. **Không lặp checkpoint từ poster flat hay đổi thiết kế đã chốt.**
+- [Hồ sơ CP335](art/LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md), [manifest nguồn](art/LAM_THIEN_CP335_VISUAL_GATE_MANIFEST.json).
+
+### Lịch sử 2026-10-29
+Thêm cổng bảo vệ production art thực ở runtime và CI, tách riêng duyệt hướng biểu cảm với duyệt sprite thành phẩm. Giữ P0-02/P0-03/P1-03/P2 chưa nghiệm thu.
