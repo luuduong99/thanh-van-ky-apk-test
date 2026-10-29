@@ -33,3 +33,9 @@ Requires Python, NumPy and Pillow. The tool fails on wrong source hash and unexp
 4. Only then implement rig/smooth interpolation, five expressions, damage stages, Android APK FPS measurement.
 
 `production_release.status=blocked_pending_art`, `sprite_paths={}`; no art/Spine/APK acceptance.
+
+## Archived QA package for continuing CP347
+- User Library: `/Thanh Van Ky/Development/CP346_Real_Source_Shoulder_QA/`.
+- ZIP: `TVK_LamThien_CP346_Real_Asset_Joint_QA_NOT_RIG.zip` — SHA256 `04ad01e18aa924327b817b0ae7fb539a77eadf162a4eb64b5e98f6429af27729`, 17 files, archive CRC PASS.
+- Preview: `CP346_REAL_ASSET_JOINT_QA.png`, side-by-side source / left / right / both translation with missing/new alpha highlights.
+- Package includes full QA preview generator, re-run CLI, 5 actual-source local tests, masks, JSON metrics, and SHA manifest. Art layer paint is **still absent**; a passed QA test is not a passed rig.
