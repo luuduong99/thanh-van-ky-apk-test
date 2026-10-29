@@ -32,3 +32,12 @@ A second, distinct fallback risk was found in `CharacterInteractionActivity.kt`:
 - `tests/art/test_cp362_runtime_canon_v21.py` now also checks both portrait branches and this release-build guard. This is source/metadata-level regression; **physical device screenshots and measured FPS remain untested**.
 
 This ensures the active V2.1 body reference is enforced at *both* sprite-release metadata and actual portrait display paths. It does not create any approved artwork.
+
+
+## Verified CI and APK artifact
+
+- [TVK Art QA run 40893899956](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893899956) **completed/success** at `c7a0a31080ad91a0cd6ea679f080a54377ac67b3`; tests were updated for the new `hasApprovedLamThienSprite` variable and V2/V2.1 historical distinction.
+- [Android APK build run 40893908748](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893908748) **completed/success** at code commit `911cd9f22921cce07f24b95b0bfea2db704464c4`.
+- GitHub artifact ID `12905118427`, name `thanh-van-ky-debug-apk`: downloaded artifact ZIP CRC PASS and extracted `TVK_CP362_Debug.apk` CRC PASS, 27 entries, **8,791,461 bytes**, SHA256 `2ee780ed142fb60d1f2cea720fdebd5ec9a033980290a12f6ea21f0f5115dce0`.
+- Inspected actual packaged `assets/character_expression_profiles.json`: active V2.1 ID/SHA correct, release stays `blocked_pending_art` and sprite paths empty. Compiled DEX contains V2.1 SHA, `ẢNH TEST / LEGACY`, and safe portrait path.
+- User Library: `/Thanh Van Ky/Development/CP362_Runtime_CANON_V2_1_Migration/` with verified APK and release notes. No physical device installation or measured 60 FPS.
