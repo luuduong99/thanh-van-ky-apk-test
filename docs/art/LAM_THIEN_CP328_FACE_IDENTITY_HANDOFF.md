@@ -24,7 +24,7 @@
 
 ## Artifact & backup
 
-- `TVK_LamThien_CP328_Canon_Face_Color_Lock_Package.zip` — SHA256 `3cbbe39054a02ca04b25e4ef40398bb9b8ecbd5a74923c9632c71206e228078f`, ZIP CRC PASS; gồm chương trình, test, manifest, ảnh QA và crop nguồn đã bảo vệ.
+- `TVK_LamThien_CP328_Canon_Face_Color_Lock_Package.zip` — SHA256 `4fe87b2ce4610da81919215ed3395d01f0a4a699fe472d6ba965c433755a360e`, ZIP CRC PASS; gồm chương trình, test, manifest, ảnh QA và crop nguồn đã bảo vệ.
 - ChatGPT Library: `/Thanh Van Ky/Development/CP328_Canon_Face_Color_Lock/`. Không đưa các bản art chưa duyệt vào Approved References.
 - [Hợp đồng dữ liệu CP328](LAM_THIEN_CP328_FACE_MASTER_GATE.json), [test CI](../../tests/art/test_cp328_color_contract.py), [workflow](../../.github/workflows/cp328-face-color-lock.yml).
 - GitHub CI **chưa có kết quả tại thời điểm viết**; cần kiểm tra workflow trực tiếp sau commit. CI metadata/synthetic không đánh giá được các ORA/SPINE nhị phân.
@@ -50,3 +50,7 @@
 5. Duyệt bản **sprite art thành phẩm** (không cần duyệt lại canon hay định nghĩa cảm xúc); rồi mới import Spine, kiểm draw order/clipping/animation, kết nối Android và build APK thử.
 
 **Không sử dụng CP326/CP327 atlas demo làm game art chỉ vì unit test thành công.**
+
+## CI fix 2026-10-29
+
+GitHub Actions CP328 lần đầu FAILED do trường `registered_android_asset_paths` bị thiếu trong manifest (test yêu cầu tường minh bằng 0). Đã bổ sung `registered_android_asset_paths: 0` vào `LAM_THIEN_CP328_FACE_MASTER_GATE.json`, cập nhật ZIP Library và checksum mới ở trên, chạy lại CI. Đây là lỗi metadata kiểm thử, **không phải lỗi màu mắt** hay sự thay đổi CANON V2.
