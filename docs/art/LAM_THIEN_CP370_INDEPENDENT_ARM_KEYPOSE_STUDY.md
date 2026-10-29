@@ -32,3 +32,4 @@
 3. Chỉ sau preview được người dùng duyệt mới tạo rig/Spine và nối game, chạy build APK, đo FPS trên thiết bị.
 
 File mã: `cp370_two_hand_authored_poses.py`; test: `test_cp370_two_hand_authored_poses.py`; dữ liệu kỹ thuật: `OUTPUT/CP370_REPORT.json`.
+- **ZIP hoàn thiện sau sửa CI import:** SHA256 `6845f2543befe36c7dabb19d2e097e0821b71485ca7d7835b6f7e8dd2bb18e9e`, 43 entries, ZIP CRC PASS; bản cập nhật lưu Library cùng thư mục CP370.
