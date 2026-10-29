@@ -1,0 +1,92 @@
+{
+  "checkpoint": "CP341",
+  "canonical_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "canonical_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "canonical_pixel_size": [
+    941,
+    1672
+  ],
+  "front_source_bbox_xyxy": [
+    13,
+    177,
+    228,
+    626
+  ],
+  "front_native_px": [
+    215,
+    449
+  ],
+  "mode": "source_locked_rgb_plus_refined_alpha",
+  "flat_source_only": true,
+  "not_artist_semantic_layers": true,
+  "front_rgb_exact_original": true,
+  "old_cutout_opaque_px": 35564,
+  "refined_cutout_opaque_px": 55547,
+  "opaque_px_gain": 19983,
+  "region_checks": {
+    "left_hair_sleeve": {
+      "original_cp340_opaque_px": 1137,
+      "cp341_opaque_px": 5260,
+      "delta_opaque_px": 4123
+    },
+    "right_hair_sleeve": {
+      "original_cp340_opaque_px": 946,
+      "cp341_opaque_px": 4230,
+      "delta_opaque_px": 3284
+    },
+    "lower_left_drape": {
+      "original_cp340_opaque_px": 668,
+      "cp341_opaque_px": 5228,
+      "delta_opaque_px": 4560
+    },
+    "lower_right_drape": {
+      "original_cp340_opaque_px": 0,
+      "cp341_opaque_px": 3831,
+      "delta_opaque_px": 3831
+    }
+  },
+  "output_files": {
+    "source": {
+      "path": "source/FRONT_CANON_V2_1_EXACT_NATIVE_CROP.png",
+      "sha256": "7211201013a1f18681cff822baae12144800bddc901fa9507b032676ebfa8bdc"
+    },
+    "previous": {
+      "path": "source/FRONT_CP340_PREVIOUS_NOT_PRODUCTION.png",
+      "sha256": "055cd90afbdbd1b9dded95956b8ecd69e340b36d0e8f86086248894e8fe0024d"
+    },
+    "refined": {
+      "path": "source/FRONT_CP341_REFINED_SINGLE_FOREGROUND_NOT_RIG.png",
+      "sha256": "ef87fa2152c397c3e86002bdcc50b23a3c2cfc808f91e271c9b2d58834578103"
+    },
+    "alpha_mask": {
+      "path": "source/FRONT_CP341_EDITABLE_ALPHA_MASK.png",
+      "sha256": "5311510eb9dc135ecfe664f5ee1bf9ea25ffca89d9c28a4921d6b23cf8d9129e"
+    },
+    "ora": {
+      "path": "ora/CP341_FRONT_MATTE_REVIEW_NOT_RIG.ora",
+      "sha256": "c845add712b189419b6af7452d856bfd72d06472951ab9bd766da0a7a32c717a"
+    },
+    "preview": {
+      "path": "preview/CP341_BEFORE_AFTER_ALPHA_QA.png",
+      "sha256": "b49ebe8c81f6d9442ae3b28aa0970e27f0a40a49e1e1ec8b10967d9923ec062a"
+    }
+  },
+  "production_gate": {
+    "canon_v21_locked": true,
+    "flat_background_removal_only": true,
+    "artist_clean_edges_approved": false,
+    "separate_character_parts_completed": false,
+    "face_underpaint_completed": false,
+    "spine_verified": false,
+    "apk_verified": false,
+    "android_production_release": "blocked_pending_art",
+    "sprite_paths_registered": 0
+  },
+  "limitations": [
+    "Recovering bright hair and semitransparent cloth from a white-background thumbnail cannot recover hidden pixels",
+    "Source had off-white and compression/antialias baked pixels which create edge halos",
+    "Floor shadow around toe and tail ends may remain: manual retouch required",
+    "No new high-resolution artwork, bone-ready separation or movement-safe underpaint"
+  ],
+  "status": "IMPROVED_FLAT_ALPHA_ONLY_NOT_ARTIST_APPROVED_NOT_RIG"
+}
