@@ -910,3 +910,21 @@ Kiểm tra thực tế GitHub Actions trên commit `4cab946f91efdaf5c08988df85f7
 
 ### Lịch sử 2026-10-29
 Hoàn thành gói ORA và regression tests để bàn giao redraw; vẫn xác nhận production art và Android APK chưa nghiệm thu.
+
+
+---
+
+## 40. CP330 — 5 khuôn mặt bản thử có 35 layer alpha ảnh thật (2026-10-29)
+
+**CP330 QA KỸ THUẬT HOÀN THÀNH, CHƯA HOÀN THÀNH FACE MASTER SẢN XUẤT:**
+
+- **CANON không đổi:** `LT_CANON_BODY_REF_2026-10-28_V2` (SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`, tỷ lệ +17% đã có, mắt hổ phách). 5 biểu cảm đã chốt `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` (SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`). Mức hư hại 100/70/50/30 không đổi.
+- Từ **một bảng minh họa AI MỚI chưa duyệt** đã xuất 5 chân dung ứng viên native **251–260×370 px**, tách **5 ORA × 7 layer alpha vùng nét mặt = 35 layer có pixel thật**, với `face_base_cutout` khuyết đúng vị trí và **underpaint OpenCV tự động**. Ghép bình thường **khớp pixel với bản nháp mới**; thử dịch mắt/miệng không tạo lỗ alpha.
+- **KHÔNG NHẬN LÀ production art:** năm chân dung vẫn khác hình mặt canon và chưa cùng một face master; các patch là pixel vùng ảnh, có thể dính da/tóc; underpaint thuật toán chưa được artist duyệt; độ phân giải native không đủ cho sprite master. Những chữ *Final Art/Spine Ready* trên tranh sinh tự động **không chứng minh art được phân lớp/rig**.
+- **Test local:** 9/9 PASS, SHA/CRC/7 lớp mỗi biểu cảm/alpha cutout/composite; `--strict` cố ý **FAIL**. Không khai báo vào `sprite_paths`, không coi P0-02/P0-03/P1-03 hoặc APK đã DONE.
+- **ZIP Library Development** `/Thanh Van Ky/Development/CP330_Face_Painted_Region_Trial/TVK_LamThien_CP330_Face_Art_Decomposition_NOT_APPROVED.zip`, SHA256 `a1e1f4ec14d89263ff6797a445cc93c4e7140a1e08f1930bfee27d2560842172`. GitHub có builder, ORA validator, JSON source, metadata tests và workflow CI `cp330-face-art-trial.yml`.
+- **CP331 NEXT:** vẽ **một master mặt high-res đúng V2** + underpaint được hoàn thiện thủ công; 35 attachment độc lập được vẽ lại cho 5 biểu cảm; preview ở 256/132/64, kiểm pose Front/3⁄4 và damage state, nghiệm thu mỹ thuật sprite; sau đó mới Spine và APK.
+- **BÀN GIAO:** [LAM_THIEN_CP330_FACE_TRIAL_HANDOFF.md](art/LAM_THIEN_CP330_FACE_TRIAL_HANDOFF.md).
+
+### Lịch sử 2026-10-29
+Từ ORA CP329 trống chuyển sang thí nghiệm CP330 có các lớp mặt thật từ bản nháp riêng, không nâng nhầm lên canon hoặc rig.
