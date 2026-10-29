@@ -35,3 +35,16 @@
 
 ### Updated next production step
 Stop additional free-form full-portrait image generations. Create a **canonical body/costume lock and reference-overlaid head redraw** following V2. Verify actual artwork geometry and clothing match first; only then construct 3/4 face and five semantic expressions on the same approved identity. The next preview must show enough of the **actual garment and body silhouette** to assess canonical agreement; no automatic approval.
+
+
+## Allowed visual tolerance confirmed by user (2026-10-29)
+
+**IMPORTANT CLARIFICATION:** The user does not require byte-for-byte image identity across different angles. **Small, non-identity-changing variations are acceptable**, but major changes in body shape/clothing are not.
+
+| Gate | Examples | Result |
+| --- | --- | --- |
+| LOCKED | V2 +17% body proportions (already applied), silhouette, main face/eye identity (amber), signature silver hairstyle, major flowers/jewels, costume cut/coverage, neckline, and white–blue–gold palette | No arbitrary design changes |
+| REVISE | Changed figure/waist/bust balance, different dress or coverage, conspicuous jewelry/flower changes, identity-drifting face or costume | FAIL visual QA |
+| MINOR ALLOWANCE | Individual hair strands, physically plausible fabric folds, lighting/shadow, subtle ornamental texture, necessary foreshortening for a true 3/4 angle | May PASS WITH MINOR NOTES if identity and overall V2 design are preserved |
+
+**Review workflow:** compare full relevant silhouette, costume, accessories and face against the *original approved V2* side by side; classify each difference. Record `PASS`, `PASS_WITH_MINOR_NOTES` or `REVISE` and require visual acceptance for produced art before release. Small differences must not accumulate into a new design. Never invent a numeric tolerance threshold. CP337 rejected pair stays REJECTED; this allowance is not retroactive approval.
