@@ -86,3 +86,14 @@
 - [x] **6/6 local tests PASS**, có QA vùng chồng lớp vai khi xoay 0/-8/-15/+8°; các vùng có pixel chồng nhưng **chưa chứng minh rig không hở hình**. ZIP CRC PASS, 25 files SHA256 `2a8ab1c8a5b22eac5a265ebfe07bcde592de501c9b98014aaa6c957f618009b8`, lưu Library `/Thanh Van Ky/Development/CP368_Refined_Sleeve_Study/`. [CP368 report](LAM_THIEN_CP368_REFINED_LEFT_SLEEVE_DRAFT.md).
 - [ ] **ART VISUAL QA NOT_PASSED**: nét vẽ còn khác ảnh chuẩn, chưa native painted full body hoặc keyframe tay nâng do họa sĩ vẽ; chưa được phê duyệt để nhập game. Spine/APK vẫn BLOCK.
 - [ ] **CP369 ưu tiên:** làm chi tiết nếp lụa/vải khuất và hair/ornament đúng CANON, phát triển các semantic layer full body, làm idle/raised-arm vẽ riêng và xin nghiệm thu hình trước khi tích hợp gameplay.
+
+
+
+## CP369 — Fixed-shoulder gold, moving wrist và hidden-underpaint (2026-10-29)
+- [x] Nguồn duy nhất là CANON V2.1 đã được chốt, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672 RGBA); chỉ dùng crop chính xác từ nguồn này để đối chiếu, art mới ghi rõ UNAPPROVED DRAFT.
+- [x] Sửa lỗi logic CP368: tách vàng vai **cố định** khỏi vàng cổ tay **di chuyển cùng tay**; tạo 7 lớp SVG/PNG alpha độc lập + ORA 8 lớp (7 art và CANON guide ẩn). Thêm path vẽ da/vải lót bị khuất tại vai.
+- [x] Local motion ở ROI source x=54..83, y=124..170: -8° có 3.192 pixel mới lộ / 0 thiếu lót; -15° có 5.905 / 0; +8° có 789 / 0. Test âm bỏ da/vải lót phải FAIL. **Chỉ là kiểm tra alpha cục bộ; không chứng minh toàn sprite hoặc rig không hở.**
+- [x] 8/8 kiểm thử local PASS (SHA source, SVG, ORA CRC, một lớp guide ẩn, vai cố định/cổ tay chuyển động, phủ alpha ở khớp, test âm, release gate). Gói CP369 ZIP 29 file SHA256 `84a5b29e6618c0b4901707f045e44b9020febc768181b758748355c513917dfb`, ORA SHA256 `cf0b06461ae0c1aace0d3c5bc92691a066b0f2446df7bd617a9de4f4cabf54be`; lưu Library `/Thanh Van Ky/Development/CP369_Static_Shoulder_Moving_Wrist_Underpaint/`.
+- [ ] **Visual QA NOT_PASSED**: nguồn vẽ còn quá đơn giản so với CANON, chuyển động vẫn là xoay bitmap kỹ thuật, chưa có 2 keyframe vẽ thật, chưa đủ full-body semantic layers. Spine/APK vẫn BLOCK.
+- [ ] **CP370 tiếp tục:** vẽ/nâng chất lượng tay/vai và lụa so với CANON, triển khai các lớp thật của tay phải, thân, mặt và hai guốc xanh; sau đó vẽ riêng idle/raised-arm keyframes rồi xin duyệt art.
+- [CP369 handoff](LAM_THIEN_CP369_STATIC_SHOULDER_MOVING_WRIST.md), code `tools/art/cp369_split_gold_and_underpaint.py`, QA `tests/art/test_cp369_split_gold_and_underpaint.py`.
