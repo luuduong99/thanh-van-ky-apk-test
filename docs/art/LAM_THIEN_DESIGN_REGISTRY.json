@@ -397,33 +397,32 @@
     "next_plan": "docs/art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md"
   },
   "latest_implementation_checkpoint": {
-    "checkpoint": "CP341",
+    "checkpoint": "CP342",
     "date": "2026-10-29",
-    "status": "source_exact_front_matte_details_recovered_not_artist_grade",
-    "current_canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
-    "exact_canon_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
-    "front_native_px": [
+    "status": "flat_front_alpha_floor_shadow_reduced_not_artist_semantic_art",
+    "canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+    "canon_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "native_front_px": [
       215,
       449
     ],
-    "pixels_RGB_unchanged": true,
-    "previous_opaque_alpha_px": 35564,
-    "refined_opaque_alpha_px": 55547,
-    "alpha_over_128_gain": 19983,
-    "created_real_RBGA_front_alpha": true,
-    "created_editable_grayscale_mask": true,
-    "created_ora_comparison_layers": 3,
-    "artist_quality_matte_approved": false,
-    "semantic_rig_layers_ready": false,
-    "face_underpaint_complete": false,
-    "local_binary_tests_passed": 13,
+    "rgb_source_pixels_changed": 0,
+    "top_410_rows_alpha_changes": 0,
+    "bottom_alpha_modified_pixels": 2364,
+    "alpha_threshold_128_removed_pixels": 1506,
+    "floor_alpha_sum_reduced": 209000,
+    "center_shoe_alpha_changed": 0,
+    "artist_grade_rig_layers_ready": false,
+    "clean_underpaint_complete": false,
+    "facial_parts_complete": false,
     "spine_verified": false,
     "apk_verified": false,
-    "sprite_paths_registered": 0,
     "production_release": "blocked_pending_art",
-    "package_sha256": "08d8aa08bc4b00163e092d056f1e067a5652b0f80b9462e5308277dbe8baacb1",
-    "library": "/Thanh Van Ky/Development/CP341_Canon_V2_1_Matte_Recovery/",
-    "handoff": "docs/art/LAM_THIEN_CP341_MATTE_HANDOFF.md",
-    "next": "CP342 manual halo/shadow cleanup and authentic high-res Front semantic art with underpaint; no design drift"
+    "sprite_paths_registered": 0,
+    "binary_local_tests_passed": 13,
+    "library_backup": "/Thanh Van Ky/Development/CP342_Canon_V2_1_Alpha_Shadow_Cleanup/",
+    "zip_sha256": "76d8fd962688dde6356d4853b5e522b5ce78567a1e08ae3739668851ec5ebf66",
+    "handoff": "docs/art/LAM_THIEN_CP342_SHADOW_CLEANUP_HANDOFF.md",
+    "next": "CP343 painted native Front body/face/hair/bodice/arms/sleeves with underpaint and explicit visual acceptance prior to Spine/APK"
   }
 }
