@@ -242,38 +242,43 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP332",
+    "checkpoint": "CP333",
     "date": "2026-10-29",
-    "status": "new_semantic_vector_facial_layers_rnd_not_approved",
+    "status": "refined_vector_semantic_art_RND_NOT_APPROVED",
     "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "same_face_master_across_five": true,
+    "base_skin_has_no_baked_mouth_eyes": true,
+    "base_layers": 10,
+    "expression_rgba_layers": 65,
+    "ora_count": 6,
+    "source_edit_delta": [
+      "hair_fine_shines",
+      "gold_ornament_filaments",
+      "iris_amber_radial_marks",
+      "individual_lash_lines",
+      "mouth_secondary_contour",
+      "brow_hair_strokes"
+    ],
+    "local_ora_binary_tests_passed": 13,
+    "local_source_contract_tests_passed": 9,
     "native_vector_canvas": [
       1024,
       1024
     ],
-    "clean_base_has_no_baked_features": true,
-    "ora_files": 6,
-    "shared_base_art_layers": 10,
-    "facial_semantic_rgba_layers": 65,
-    "expression_ids": [
-      "shy",
-      "angry",
-      "pain",
-      "embarrassed",
-      "alluring"
+    "source_canon_face_native": [
+      230,
+      114
     ],
-    "model_identity_visual_match_to_V2": "not_artist_approved_stylized_vector_study",
-    "clean_underpaint_technical": true,
-    "clean_underpaint_artist_approved": false,
-    "local_real_ora_unit_tests_passed": 10,
-    "production_strict_gate": "blocked_expected",
-    "approved_for_game_art": false,
+    "face_canon_visual_match_approved": false,
+    "front_three_quarter_art_ready": false,
+    "artist_underpaint_and_occlusion_approved": false,
     "spine_rig_verified": false,
     "apk_verified": false,
     "sprite_paths_registered": 0,
-    "package_sha256": "a70a383076592c986bd887bd4477c71b6c60f9bf13a3e711b9c20b1376dbeb01",
-    "library_path": "/Thanh Van Ky/Development/CP332_Semantic_Face_Study/",
-    "handoff": "docs/art/LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md",
-    "next": "CP333 visual artist redraw/polish exact canon face on existing semantic layers, test before Spine/Android"
+    "package_sha256": "1f8aa806758332194e258f941530b18b54e00991c877c3397a274d7c134517ad",
+    "library_backup_path": "/Thanh Van Ky/Development/CP333_Refined_Vector_Study/",
+    "handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md",
+    "next": "CP334 prioritize fidelity redraw to CANON V2 on semantic layers, QA 5 emotions Front/3-4, then artist acceptance"
   }
 }
