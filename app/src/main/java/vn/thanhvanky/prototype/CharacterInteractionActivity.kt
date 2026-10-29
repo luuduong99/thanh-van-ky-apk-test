@@ -347,7 +347,7 @@ class CharacterInteractionActivity : Activity() {
             } else {
                 portraits.addView(txt(
                     "Chọn một nét mặt để kiểm tra trạng thái; art phân lớp/Spine " +
-                        "vẫn chờ triển khai theo CANON V2.",
+                        "vẫn chờ triển khai theo CANON V2.1.",
                     11f, muted
                 ))
             }
