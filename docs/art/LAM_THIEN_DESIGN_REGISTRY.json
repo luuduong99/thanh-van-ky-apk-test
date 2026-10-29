@@ -242,35 +242,28 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP329",
+    "checkpoint": "CP330",
     "date": "2026-10-29",
-    "status": "six_editable_ora_artist_intake_only_not_art_approved",
+    "status": "five_independent_flat_source_face_decomposition_ORA_trial_NOT_APPROVED",
     "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
-    "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "source_native_face_size_px": [
-      230,
-      114
-    ],
-    "guide_canvas_px": [
-      2048,
-      2048
-    ],
-    "guide_is_only_enlarged_native_canon": true,
-    "editable_oras": 6,
-    "art_layers_total": 46,
-    "art_layers_painted": 0,
-    "local_ora_tests_passed": 8,
-    "github_cp329_contract_run": 40812464457,
-    "github_cp329_contract_conclusion": "success",
-    "package_sha256": "e6b8e952b2a7028ac2314cf95d5fb0c94d008b9c0baf6c2064dc2b7130c91b9d",
-    "library_path": "/Thanh Van Ky/Development/CP329_Face_Master_Intake/",
-    "handoff": "docs/art/LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md",
-    "production_face_master_ready": false,
-    "underpaint_artist_approved": false,
-    "expression_sprite_art_ready": false,
+    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "source_image_sha256": "ebffd161e2d400a33a7b337d870c950c9de7cf967b842a5d9c515f1447df4089",
+    "source_is_new_unapproved_generation": true,
+    "editable_ora_files": 5,
+    "alpha_facial_region_layers_nonempty": 35,
+    "base_face_cutouts": true,
+    "automatic_underpaint": true,
+    "shared_canonical_face_master": false,
+    "art_at_native_production_resolution": false,
+    "source_composite_pixel_exact": true,
+    "local_tests_passed": 9,
+    "strict_production_gate_passed": false,
     "spine_ready": false,
     "apk_ready": false,
-    "rig_registration_allowed": false,
-    "next_step": "CP330 redraw true highres V2 face master + clean underpaint + 35 independent expression attachments"
+    "sprite_paths_registered": 0,
+    "package_sha256": "a1e1f4ec14d89263ff6797a445cc93c4e7140a1e08f1930bfee27d2560842172",
+    "library_backup_path": "/Thanh Van Ky/Development/CP330_Face_Painted_Region_Trial/",
+    "handoff": "docs/art/LAM_THIEN_CP330_FACE_TRIAL_HANDOFF.md",
+    "next_step": "CP331: one truly native high-resolution face master painted to V2, clean underpaint, 35 artist-drawn face parts and sprite art acceptance"
   }
 }
