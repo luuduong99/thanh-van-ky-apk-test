@@ -38,6 +38,13 @@ class CharacterInteractionActivity : Activity() {
             JSONObject(it.readText()).getJSONArray("characters")
         }
     }
+    // Approved 5-expression metadata is separate from the character's body model.
+    // Unapproved characters receive no borrowed Lam Thien face states.
+    private val expressionProfiles by lazy {
+        assets.open("character_expression_profiles.json").bufferedReader().use {
+            JSONObject(it.readText())
+        }
+    }
     private var selectedId = "to_nguyet_ly"
     private var currentPose = "front"
     private var messageView: TextView? = null
@@ -182,7 +189,21 @@ class CharacterInteractionActivity : Activity() {
         // fully clothed, undamaged artwork when the requested combination is missing.
         val appearance = CharacterAppearanceState.read(this, selectedId).copy(pose = currentPose)
         val artwork = CharacterAppearanceState.resolveArt(heroine, appearance, ::hasAsset)
-        val heroineImage = artwork.path.orEmpty()
+        val approvedExpressions = CharacterExpressionCatalog.approvedOptions(
+            expressionProfiles, selectedId
+        )
+        val selectedApprovedExpression = approvedExpressions.firstOrNull {
+            it.id == appearance.expression
+        }
+        val requiresExpressionArt = selectedApprovedExpression != null &&
+            CharacterExpressionCatalog.faceVisible(currentPose)
+        val expressionArt = if (requiresExpressionArt) CharacterExpressionCatalog.resolveSprite(
+            expressionProfiles, selectedId, appearance, ::hasAsset
+        ) else null
+        // Never display the old neutral pose image as if it showed an approved
+        // expression whose costume/integrity/pose-specific sprite is still missing.
+        val heroineImage = if (requiresExpressionArt) expressionArt.orEmpty()
+            else artwork.path.orEmpty()
         val heroineCrop = artwork.crop
         val outfitId = appearance.wardrobe
         var outfitLabel = outfitId
@@ -233,13 +254,8 @@ class CharacterInteractionActivity : Activity() {
             val poseButton = btn(option.optString("label")) {
                 currentPose = poseId
                 CharacterAppearanceState.setPose(this, selectedId, poseId)
-                // Expression and action adapt to the new context, but clothing
-                // state and garment integrity are NOT changed by pose selection.
-                val roomPose = poseId.startsWith("bed_") ||
-                    poseId == "chair_sit" || poseId == "wall_lean"
-                CharacterAppearanceState.setExpression(
-                    this, selectedId, if (roomPose) "relaxed" else "normal"
-                )
+                // Do not reset expression, wardrobe or garment integrity
+                // when changing pose; expression has a character-scoped state.
                 CharacterAppearanceState.setAction(this, selectedId, "pose_change")
                 render()
             }
@@ -258,10 +274,49 @@ class CharacterInteractionActivity : Activity() {
             12f, gold
         ))
         portraits.addView(txt(
-            "Biểu cảm (state): " + appearance.expression + " · Hành động: " +
-                appearance.action + " · Chưa có sprite biểu cảm/hoạt ảnh riêng",
+            "Biểu cảm (state): " + (selectedApprovedExpression?.label ?: appearance.expression) +
+                " · Hành động: " + appearance.action,
             11f, muted
         ))
+        if (approvedExpressions.isNotEmpty()) {
+            portraits.addView(txt("5 BIỂU CẢM ĐÃ DUYỆT · CHỌN TRẠNG THÁI", 12f, gold, true))
+            val expressionScroll = android.widget.HorizontalScrollView(this).apply {
+                isHorizontalScrollBarEnabled = false
+            }
+            val expressionRow = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+            }
+            for (option in approvedExpressions) {
+                val chooseExpression = btn(option.label) {
+                    CharacterAppearanceState.setExpression(this, selectedId, option.id)
+                    // This changes expression ONLY, not wardrobe/HP/pose/action.
+                    render()
+                }
+                val chosen = option.id == appearance.expression
+                chooseExpression.setBackgroundDrawable(rounded(if (chosen) gold else bgColor))
+                chooseExpression.setTextColor(if (chosen) bgColor else cream)
+                expressionRow.addView(chooseExpression,
+                    LinearLayout.LayoutParams(dp(138), dp(44)).apply {
+                        rightMargin = dp(8)
+                    })
+            }
+            expressionScroll.addView(expressionRow)
+            portraits.addView(expressionScroll)
+            if (requiresExpressionArt && expressionArt == null) {
+                portraits.addView(txt(
+                    "Đã lưu biểu cảm «" + selectedApprovedExpression!!.label +
+                        "», nhưng chưa có sprite đúng trang phục / độ nguyên vẹn / " +
+                        "tư thế. Không hiển thị nhầm ảnh trung tính.",
+                    11f, muted
+                ))
+            } else {
+                portraits.addView(txt(
+                    "Chọn một nét mặt để kiểm tra trạng thái; art phân lớp/Spine " +
+                        "vẫn chờ triển khai theo CANON V2.",
+                    11f, muted
+                ))
+            }
+        }
         if (artwork.issue != null) {
             portraits.addView(txt(
                 artwork.issue + ". Trạng thái đã lưu được giữ nguyên khi đổi tư thế, " +
@@ -479,7 +534,9 @@ class CharacterInteractionActivity : Activity() {
             "dialogue" -> "smile"
             else -> "normal"
         }
-        CharacterAppearanceState.setExpression(this, characterId, expression)
+        // Opening the wardrobe must not reset a manually selected expression.
+        if (sceneKind != "wardrobe")
+            CharacterAppearanceState.setExpression(this, characterId, expression)
         CharacterAppearanceState.setAction(this, characterId, "scene_" + sceneKind)
         val points = prefs.getInt("affinity_" + characterId, 0) + scene.optInt("affinityGain", 0)
         prefs.edit().putInt("affinity_" + characterId, points).apply()
