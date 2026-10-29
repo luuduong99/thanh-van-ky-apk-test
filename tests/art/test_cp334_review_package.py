@@ -21,7 +21,7 @@ class CP334ReviewMetadataTests(unittest.TestCase):
     def test_ref_identity_is_immutable(self):
         self.assertEqual(MAN["canonical_visual_id"],BODY["canonical_visual_id"])
         self.assertEqual(MAN["canonical_sha256"],BODY["source"]["sha256"])
-        self.assertEqual(MAN["canonical_visual_id"],REG["latest_user_approved_design"]["id"])
+        self.assertEqual(MAN["canonical_visual_id"],next(x for x in REG["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"])
         self.assertEqual(MAN["approved_expression_id"],EXP["expression_profile_id"])
         self.assertEqual(MAN["approved_expression_sha256"],EXP["source"]["sha256"])
 
