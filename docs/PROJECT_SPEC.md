@@ -764,3 +764,18 @@ Cập nhật bản thử alpha có ảnh thật, lưu audit và phân biệt ngh
 
 ### Lịch sử cập nhật 2026-10-29
 Bổ sung bằng chứng QA file thật để chặn template trống bị nhận là sprite; giữ nguyên thiết kế đã duyệt và ranh giới công việc còn thiếu.
+
+
+---
+
+## 32. Lâm Thiển — phân biệt rõ 5 biểu cảm (2026-10-29, CHỜ DUYỆT PREVIEW)
+
+Theo đề nghị của người dùng, cần điều chỉnh **cả 5 biểu cảm**: `shy` (Ngại ngùng), `angry` (Tức giận), `pain` (Đau đớn), `embarrassed` (Xấu hổ), `alluring` (Quyến rũ), không chỉ hai biểu cảm đầu/cuối. Khóa quy tắc phân biệt qua ánh mắt/lông mày/miệng/độ ửng má/hướng đầu: `shy` tránh ánh nhìn nhẹ, `embarrassed` né mạnh và đỏ mặt rõ; `angry` mắt sắc/mày ép, `pain` mắt co/mày nhíu cong; `alluring` giao tiếp mắt chủ động, cười mỉm tinh tế.
+
+- **ĐÃ TẠO:** preview 1536×1024 PNG RGB và đặc tả 5 biểu cảm. File preview được sao lưu tại ChatGPT Library Development: `/Thanh Van Ky/Development/Lam_Thien_Expression_5_20261029/LAM_THIEN_5_EXPRESSIONS_PREVIEW_PENDING_20261029.png` (SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`).
+- **CHỜ DUYỆT:** ảnh preview mới và độ nhấn cụ thể; không tự coi ảnh này là model canon hoặc sprite production. **CANON BODY/FACE V2** `LT_CANON_BODY_REF_2026-10-28_V2` và mẫu hư hại 100/70/50/30 đã chốt giữ nguyên.
+- **SAU KHI DUYỆT:** dựng lại các biểu cảm đúng V2 trên mặt thật, tách mắt/lông mày/miệng/ửng má/giọt lệ tùy cần, rig/animation/QA ở UI hội thoại và góc Front/3-4, đồng bộ `expression` mà không reset wardrobe/integrity/pose.
+- **TÀI LIỆU:** [Đặc tả biểu cảm 5 loại](art/LAM_THIEN_FIVE_EXPRESSIONS_REVIEW_2026_10_29.md), [metadata JSON](art/LAM_THIEN_FIVE_EXPRESSIONS_REVIEW_2026_10_29.json). Chưa có file tách lớp/rig/APK đã nghiệm thu cho biểu cảm mới.
+
+### Lịch sử 2026-10-29
+Lập preview và tiêu chuẩn phân biệt năm nét mặt để người dùng duyệt trước khi cập nhật asset chính thức.
