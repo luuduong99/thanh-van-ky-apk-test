@@ -892,3 +892,21 @@ Kiểm tra thực tế GitHub Actions trên commit `4cab946f91efdaf5c08988df85f7
 
 ### Lịch sử 2026-10-29
 Đã đo từ CANON V2 và bổ sung regression test chống sai màu mắt; khóa nguồn thiết kế, **không đánh dấu P0/P1/P2 đã xong**.
+
+
+---
+
+## 39. CP329 — khung tách khuôn mặt đúng CANON V2 (2026-10-29)
+
+**ĐÃ CÓ FILE THẬT ĐỂ TIẾP TỤC VẼ, KHÔNG PHẢI ART SẢN XUẤT ĐÃ XONG:**
+
+- **CANON V2 BẤT BIẾN:** `LT_CANON_BODY_REF_2026-10-28_V2` SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711` (mặt/mắt hổ phách/tóc/phụ kiện/trang phục/tỷ lệ +17% đã có). **5 BIỂU CẢM BẤT BIẾN:** `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Damage `100/70/50/30` giữ nguyên.
+- Tạo *artist intake studio* gồm `CP329_FACE_MASTER_EMPTY.ora` (11 layer art để vẽ), **5 ORA biểu cảm × 7 layer** (các lớp mắt/mày/miệng/má), một ảnh nguồn thật 230×114 và bảng đối chiếu với đúng 5 nét đã duyệt. Canvas 2048×2048 là **canvas làm việc; guide ảnh gốc được phóng ×8 chỉ để căn chỉnh, không phải HD mới**.
+- **Kết quả QA:** 6/6 OpenRaster hợp lệ, 8/8 bài test file thật local PASS; **0/46 layer art có nội dung mới**, `--strict` FAIL đúng kỳ vọng. Không xem việc tạo khung ORA là P0-02/P0-03/P1-03 hoàn thành.
+- **GitHub:** `tools/cp329/create_cp329_intake.py`, `tools/cp329/validate_cp329_intake.py`, `tests/art/test_cp329_face_contract.py`, CI workflow `cp329-face-art-intake.yml` và `LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json`. CI CP329 trên commit tạo workflow, run `40812464457` đã **SUCCESS** (metadata/synthetic), không kiểm binary ORA trong Library. CI CP328 đã sửa lỗi manifest và xác nhận SUCCESS.
+- **LƯU FILE:** ZIP `TVK_LamThien_CP329_Face_Master_Intake_NOT_GAME_READY.zip` SHA256 `e6b8e952b2a7028ac2314cf95d5fb0c94d008b9c0baf6c2064dc2b7130c91b9d`, sao lưu ChatGPT Library Development `/Thanh Van Ky/Development/CP329_Face_Master_Intake/`. Không đưa ảnh phóng to hoặc poster nháp mắt xanh vào production.
+- **CP330 TIẾP TỤC:** vẽ lại face master có chất lượng native đủ pixel + clean underpaint, 35 attachment nét mặt thật theo biểu cảm duyệt, kiểm CP328 màu mắt, cỡ thoại 256/132/64, Front/3⁄4, sprite art QA riêng → Spine/runtime → APK. Không hỏi chốt lại những mẫu người dùng đã duyệt.
+- **BÀN GIAO:** [LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md](art/LAM_THIEN_CP329_FACE_MASTER_HANDOFF.md), [CP329 manifest](art/LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json).
+
+### Lịch sử 2026-10-29
+Hoàn thành gói ORA và regression tests để bàn giao redraw; vẫn xác nhận production art và Android APK chưa nghiệm thu.
