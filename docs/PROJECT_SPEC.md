@@ -832,3 +832,8 @@ Tiến hành tích hợp metadata, chọn và lưu expression trong Android; s�
 
 ### Lịch sử 2026-10-29
 Có thêm ORA alpha tham chiếu *thực* và QA; không đánh tráo trạng thái bản reference thành sản phẩm art/canon/rig.
+
+
+### Bổ sung CP325 — GitHub CI đã xác minh (2026-10-29)
+
+Kiểm tra thực tế GitHub Actions trên commit `4cab946f91efdaf5c08988df85f76bb2d0b88929`: CP325 metadata contract run `40804686901` **SUCCESS**, CP324 runtime contract run `40804686882` **SUCCESS**, approved-expression consistency run `40804686885` **SUCCESS**. Đây là các kiểm tra code/metadata, **không phải Gradle APK**, không kiểm trực tiếp file ORA Library và không thay P0/P1 thành DONE. Kiểm tra ORA 5/5 PASS là kết quả local riêng. Xem [CP325 handoff](art/LAM_THIEN_CP325_FACE_ART_HANDOFF.md).
