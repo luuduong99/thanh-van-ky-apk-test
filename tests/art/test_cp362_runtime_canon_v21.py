@@ -40,6 +40,14 @@ class Cp362RuntimeCanonTests(unittest.TestCase):
         self.assertFalse(self.lam["production_release"]["artist_qa_passed"])
         self.assertFalse(self.lam["production_release"]["runtime_qa_passed"])
 
+    def test_release_build_does_not_fallback_to_legacy_flat_portrait(self):
+        activity = (ROOT / "app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt").read_text(encoding="utf-8")
+        self.assertIn("ApplicationInfo.FLAG_DEBUGGABLE", activity)
+        self.assertIn('selectedId == "lin_qian" && !hasApprovedLamThienSprite && !debugArtPreview', activity)
+        self.assertIn('val safeHeroineImage', activity)
+        self.assertEqual(activity.count('portrait(heroine.optString("name"), safeHeroineImage,'), 2)
+        self.assertNotIn('portrait(heroine.optString("name"), heroineImage,', activity)
+
     def test_expression_approval_remains_independent(self):
         self.assertEqual(len(self.lam["approved_expressions"]),5)
         self.assertEqual(self.lam["approved_profile_id"], "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED")
