@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP329",
+  "status": "artist_intake_scaffold_not_production_art",
+  "approved_canon_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "approved_canon_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "face_bbox_in_canon_xyxy": [
+    1160,
+    0,
+    1390,
+    114
+  ],
+  "native_face_size_px": [
+    230,
+    114
+  ],
+  "working_canvas_px": [
+    2048,
+    2048
+  ],
+  "scaled_guide_size_px": [
+    1840,
+    912
+  ],
+  "scaled_guide_origin_px": [
+    104,
+    568
+  ],
+  "guide_scale_factor": 8,
+  "warning": "Reference guide is nearest-neighbor 8x, NOT high-resolution source art. Hidden in ORA.",
+  "iris_guides": {
+    "eye_image_left": {
+      "native_bbox_xyxy": [
+        69,
+        57,
+        105,
+        88
+      ],
+      "work_bbox_xyxy": [
+        656,
+        1024,
+        944,
+        1272
+      ],
+      "measured_iris_only": false
+    },
+    "eye_image_right": {
+      "native_bbox_xyxy": [
+        130,
+        30,
+        176,
+        61
+      ],
+      "work_bbox_xyxy": [
+        1144,
+        808,
+        1512,
+        1056
+      ],
+      "measured_iris_only": false
+    }
+  },
+  "base_layers": [
+    "hair_back",
+    "face_base",
+    "neck",
+    "ear",
+    "skin_underpaint",
+    "eye_socket_left",
+    "eye_socket_right",
+    "nose",
+    "jaw_transition",
+    "hair_front",
+    "ornaments"
+  ],
+  "facial_layers_per_expression": [
+    "brow_image_left",
+    "brow_image_right",
+    "eye_image_left",
+    "eye_image_right",
+    "mouth",
+    "blush_image_left",
+    "blush_image_right"
+  ],
+  "expressions": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "created_empty_oras": 6,
+  "created_painted_face_layers": 0,
+  "visual_preview_approval": "previously_approved_reference_only",
+  "production_face_master_ready": false,
+  "underpaint_artist_approved": false,
+  "independent_facial_art_ready": false,
+  "spine_rig_verified": false,
+  "android_apk_verified": false,
+  "needs_artist_redraw_native_quality": true,
+  "files_sha256": {
+    "ora/CP329_FACE_MASTER_EMPTY.ora": "45bbdd5c2061b3dc4a3e49387abe97865cd9e55d9ba9d4e4c6b3aa37295a7ff1",
+    "ora/CP329_alluring_EXPRESSION_EMPTY.ora": "d253c619b67a5c106c81b9aaa9c7b30211dd5734b4c8c807d2ef183ae234798f",
+    "ora/CP329_angry_EXPRESSION_EMPTY.ora": "14c9e42054519d9b57b613f25d9746550a9b5c3139a51ce5c682fe4ed24dd499",
+    "ora/CP329_embarrassed_EXPRESSION_EMPTY.ora": "1b51fd185353dd511665b7558d312fcf2a663c8a0263048570b581d9d8194f9f",
+    "ora/CP329_pain_EXPRESSION_EMPTY.ora": "75a621d1a8bd753e695b9f536d06bcb985561c8646fcb86ac0855bef4ab7849a",
+    "ora/CP329_shy_EXPRESSION_EMPTY.ora": "b381a1c669ec30dbb7ac3d6776547c6dd169f9c468994a284de6e83c63082855",
+    "preview/CP329_ART_SOURCE_LOCK_AND_REVIEW.png": "7e28dc691366d7834e7d4846364bdbcdf783be795f23e524bf89f24c7676dbe3",
+    "reference/CANON_V2_FACE_NATIVE_230x114.png": "cb30967728d897d6a5cb914bca83c984f194d8b7e21cd9bee3b1b8513907f26e",
+    "tools/create_cp329_intake.py": "cc65368bfb12b08d41818599fe350617b025ad00349d3e851c65a1a69e53c770"
+  }
+}
