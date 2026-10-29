@@ -54,3 +54,12 @@
 - [ ] **CP343 P1 ART THẬT:** vẽ lại **Front native high-res đúng CANON V2.1** thành body, tóc trước/sau, face/skin underpaint, tay, bodice, tay áo, phụ kiện và vạt lụa có alpha sạch/vùng che khuất. Preview 1 pose quay/di chuyển có draw-order và không lộ lỗ dưới lớp.
 - [ ] Chỉ sau art Front mới tạo 5 expression attachments, 4 damage overlays giữ giới hạn 30% từ CANON, góc/tư thế còn lại, user asset acceptance, Spine và APK.
 - [ ] Cổng CP335 Android vẫn `blocked_pending_art`, `sprite_paths={}`. Không coi PNG flat 215×449 là asset hoàn thiện.
+
+
+## CP343 — phân vùng ảnh thật theo Front, kiểm chuyển động (2026-10-29)
+
+- [x] Tách **10 PNG vùng/source-pixel**, 10 mask grayscale riêng, tạo **ORA 10 lớp**, giữ đúng RGB và alpha của CP342 khi ghép ở tư thế ban đầu. **12/12 binary tests PASS**, source đúng CANON V2.1.
+- [x] **Kiểm tra di chuyển hai tay** ±10px/+5px: **1.798 pixel bị hở** do không có da/vải vẽ bên dưới; 1.098 pixel nhô ra. Kết luận **FAIL no hidden underpaint**, chưa thể rig thật.
+- [x] Bảng QA source-composite-mask, bản đồ màu lớp và preview hở khớp; lưu [CP343 handoff](LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md), [manifest](LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json). ZIP 34 files SHA `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519` đã sao lưu Library Development.
+- [ ] **CP344 ưu tiên:** vẽ lại một vùng tay trái–vai/thân áo **có vùng ẩn thật**, chỉnh alpha đường biên thủ công và xem thử 2 frame với dịch/rotation nhỏ; không để lỗ/mất váy/đổi bodice. Sau QA tay trái mới làm tay phải/tóc.
+- [ ] Chưa native painted high-res art, chưa có layer mặt thật, năm expression sprites, damage overlay hay Android/Spine. **Release tiếp tục BLOCK**.
