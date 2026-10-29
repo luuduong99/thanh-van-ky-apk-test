@@ -1340,3 +1340,10 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Một ảnh infographic tạo thử ở CP358 **sai nhận diện tóc và chứa tuyên bố hoàn tất art không được kiểm chứng**, đã **loại bỏ**, không lưu làm asset game và không đưa vào nguồn chuẩn. CANON bất biến SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, tỷ lệ +17%, tóc bạc, mặt, bodice trắng–xanh–vàng, hai mũi guốc xanh, 5 biểu cảm và damage 100/70/50/30 không thay đổi.
 - `production_release.status=blocked_pending_art`, `sprite_paths={}`. [CP358 handoff](art/LAM_THIEN_CP358_ANDROID_MOTION_DIAGNOSTICS_AND_ART_GATE.md).
 - **CP359 tiếp theo:** tạo **sáu bộ phận vẽ native thật** ở khớp tay–vai trái (sleeve, arm skin, hidden shoulder skin, main bodice, hidden bodice và hair back). Xuất idle + arm_raise **cùng góc/cùng canvas/cùng pivot** và nghiệm thu trực quan trước khi chuyển sang rig/Spine và đo FPS APK.
+
+
+### CP358 verified APK artifact — 2026-10-29
+
+- GitHub Actions **Art QA** [run 40885894376](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40885894376) **completed/success**, và **Build Android APK** [run 40885894352](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40885894352) **completed/success**, commit `0bf214017c577e7a9be977cbea6a9282283ea214`. Đây là các kiểm thử tự động trên mã nguồn, **không phải** kiểm thử FPS hay art thực tế trên máy.
+- Đã lấy đúng artifact build từ Actions ID `12903065909` (ZIP SHA256 `e56ae711c5ce8e0ec2d4460f8627730e030e1c0b46934111d9a18191e82109dd`), giải nén APK debug `TVK_CP358_Debug.apk` **8.790.897 byte**, SHA256 `c172ee04c3882ffa6254902fe3a3fc86d3e22285bd884db6c3c0ffd7897f2869`; cả ZIP artifact và APK CRC PASS. Trong DEX đã kiểm có `TVKMotion`, `canvas_draw_fps` và `ẢNH TEST / LEGACY`. **Chưa chạy/cài trên thiết bị**.
+- Đã lưu APK debug và hướng dẫn thử tại Library `/Thanh Van Ky/Development/CP358_Debug_Motion_Cadence_And_Art_Gate/`. Release art Lâm Thiển vẫn `blocked_pending_art`, `sprite_paths={}`.
