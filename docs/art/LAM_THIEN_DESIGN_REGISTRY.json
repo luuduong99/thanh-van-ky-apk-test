@@ -240,5 +240,33 @@
     "facial_art_approved_for_rig": false,
     "spine_verified": false,
     "apk_built_and_verified": false
+  },
+  "latest_technical_face_art_checkpoint": {
+    "id": "CP326",
+    "date": "2026-10-29",
+    "status": "independent_vector_face_alpha_prototype_unapproved",
+    "source_canon": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "art_source_native_resolution": [
+      230,
+      114
+    ],
+    "canvas_render_resolution": [
+      920,
+      456
+    ],
+    "alpha_layers_created": 35,
+    "openraster_files_created": 5,
+    "inpaint_underpaint_status": "placeholder_not_artist_approved",
+    "visual_match_to_canon": "pending_redraw",
+    "visual_match_to_approved_expressions": "pending_redraw",
+    "sprite_registration_allowed": false,
+    "rig_ready": false,
+    "apk_ready": false,
+    "zip_sha256": "377086143ce7a85449e9ade18d1de02f64431ba15e8c8024b2ce5bc86f37f4f6",
+    "library_backup_path": "/Thanh Van Ky/Development/CP326_Vector_Face_Prototype/TVK_LamThien_CP326_Vector_Face_Prototype_NOT_GAME_READY.zip",
+    "manifest": "docs/art/LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json",
+    "handoff": "docs/art/LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md",
+    "next": "CP327: redraw high-resolution V2 facebase/underpaint and approved expression attachments then art QA/Spine"
   }
 }
