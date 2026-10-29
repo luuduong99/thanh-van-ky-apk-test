@@ -85,7 +85,11 @@
     "cp335_kotlin_compiled_tests_passed": true,
     "cp335_approved_visual_reference_unchanged": true,
     "cp335_new_concept_artist_approved": false,
-    "cp335_face_sprite_art_ready": false
+    "cp335_face_sprite_art_ready": false,
+    "cp336_canon_two_angle_reference_crops_qa_done": true,
+    "cp336_two_angle_alpha_art_validator_done": true,
+    "cp336_real_artist_native_front_and_three_quarter_ready": false,
+    "cp336_real_facial_semantic_sprites_approved": false
   },
   "plan": "docs/art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md",
   "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
@@ -99,5 +103,6 @@
   "cp332_handoff": "docs/art/LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md",
   "cp333_handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md",
   "cp334_handoff": "docs/art/LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md",
-  "cp335_handoff": "docs/art/LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md"
+  "cp335_handoff": "docs/art/LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md",
+  "cp336_handoff": "docs/art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md"
 }
