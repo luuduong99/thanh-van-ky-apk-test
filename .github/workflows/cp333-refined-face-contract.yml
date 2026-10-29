@@ -1,0 +1,31 @@
+name: CP333 refined semantic face contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/cp333/*.py'
+      - 'tools/cp332/build_cp332.py'
+      - 'docs/art/LAM_THIEN_CP333_ART_HANDOFF_MANIFEST.json'
+      - 'tests/art/test_cp333_source_contract.py'
+      - '.github/workflows/cp333-refined-face-contract.yml'
+  pull_request:
+    paths:
+      - 'tools/cp333/*.py'
+      - 'docs/art/LAM_THIEN_CP333_ART_HANDOFF_MANIFEST.json'
+      - 'tests/art/test_cp333_source_contract.py'
+
+jobs:
+  cp333-source-contract:
+    name: Approved reference lock and independent SVG geometry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install vector render and color QA dependencies
+        run: python3 -m pip install Pillow CairoSVG numpy opencv-python-headless
+      - name: Guard canonical V2 and 5 approved facial expressions
+        run: python3 -m unittest discover -s tests/art -p 'test_cp333_source_contract.py' -v
+      # Tests source geometry and approval status, NOT six binary ORAs
+      # saved in ChatGPT Library. No Spine or Android APK build is done here.
