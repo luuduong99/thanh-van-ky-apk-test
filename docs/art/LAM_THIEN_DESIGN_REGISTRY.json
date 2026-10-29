@@ -242,41 +242,29 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP336",
+    "checkpoint": "CP337",
     "date": "2026-10-29",
-    "status": "approved_reference_crop_and_dual_angle_layer_validation_ready_art_missing",
+    "status": "generated_front_three_quarter_rejected_by_user_for_body_and_costume_drift",
     "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "source_crop_front_native": [
-      145,
-      151
-    ],
-    "source_crop_three_quarter_native": [
-      143,
-      151
-    ],
-    "source_crop_closeup_native": [
-      230,
-      114
-    ],
-    "front_reference_actually_tilted": true,
-    "two_angles_production_differentiated": false,
-    "original_native_layered_source_found": false,
-    "artist_native_highres_face_masters_created": 0,
-    "artist_drawn_expression_alpha_layers_created": 0,
-    "minimum_layer_gate_slots": 138,
-    "synthetic_qa_pngs_generated": 138,
-    "local_synthetic_layer_test_passed": 12,
-    "local_source_pixel_crops_test_passed": 4,
-    "github_ci_run_id": 40829848852,
-    "github_ci_conclusion": "success",
+    "generated_front_task_id": "880ac92b-bf38-48ae-bd33-e7fde597efd8",
+    "generated_three_quarter_task_id": "263c4531-2b33-4f2a-9ef5-5f5029a5b450",
+    "generated_front_image_exists": true,
+    "generated_three_quarter_image_exists": true,
+    "both_candidate_visuals_approved": false,
+    "user_qa_failure_reason": "Body proportions and clothing differ significantly from approved CANON V2; user expressed concern about fidelity.",
+    "candidate_reuse_for_3d_or_spine": false,
+    "candidate_use_in_game": false,
+    "canonical_body_and_costume_locked": true,
+    "canonical_plus_17_percent_already_applied": true,
+    "production_front_master_ready": false,
+    "production_three_quarter_master_ready": false,
+    "artist_drawn_semantic_expression_layers_complete": false,
     "spine_verified": false,
     "apk_verified": false,
     "approved_sprite_paths_registered": 0,
     "runtime_art_release_status": "blocked_pending_art",
-    "package_sha256": "29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5",
-    "library_backup": "/Thanh Van Ky/Development/CP336_Face_Master_Source_And_QA/",
-    "handoff": "docs/art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md",
-    "next": "CP337 native Front and 3/4 painted face masters matching V2, clean underpaint, real semantic expression attachments and final art approval"
+    "handoff": "docs/art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md",
+    "next": "Stop unconstrained portrait generation. Preserve exact V2 full-body/costume, make body-and-wardrobe-fidelity visual gate, redraw head using original V2 then only make matched 3/4 and five expressions."
   }
 }
