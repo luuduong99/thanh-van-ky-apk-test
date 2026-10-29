@@ -749,3 +749,18 @@ Cập nhật bản thử alpha có ảnh thật, lưu audit và phân biệt ngh
 
 ### Bổ sung CP322 — kiểm chứng test và nguồn art (2026-10-28)
 Đã lưu bản dự thảo khác CANON V2 tại **Library Development** (không đẩy vào Approved References); hoàn tất kiểm tra 5 PNG alpha/IDAT/CRC và 4 unit test local PASS. CI workflow `.github/workflows/cp322-art-alpha-validation.yml` đã được tạo nhưng **chưa có bằng chứng kết quả GitHub Actions**. Source draft SHA256 `f171a06f9d67cb510cd46067a30d12763850620970e3d724c93d5c8a681c2d60`, ZIP SHA256 `bf73215eaa09baa27d024c0aeaf864137a90d1d06d3291bc5e2975790062a437`. Hình ảnh này **KHÔNG ĐƯỢC DUYỆT, KHÔNG THAY CANON V2**, P0-02/P0-03 chưa đóng.
+
+
+---
+
+## 31. CP323 — OpenRaster pixel-level QA (2026-10-29)
+
+**ĐÃ LÀM THỰC:** Tạo công cụ `tools/validate_lam_thien_cp323_layers.py`, 5 bài kiểm thử PNG/ORA thực và workflow `.github/workflows/cp323-openraster-art-gate.yml`. Test local 5/5 PASS. Giải mã PNG alpha thực và kiểm tra hai ORA Front/Back từ CP321: cấu trúc hợp lệ nhưng **0/15 lớp art có pixel ở cả hai**, chế độ `--strict` chặn sản xuất như kỳ vọng. Gói kết quả và ảnh kiểm tra sao lưu vào ChatGPT Library Development.
+
+- **CANON GIỮ NGUYÊN:** `LT_CANON_BODY_REF_2026-10-28_V2`, PNG SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`, +17% đã nằm trong V2. Các ảnh tạo mới chưa khớp V2 **không được duyệt và không thay thế** mẫu chính thức. Bốn mức độ nguyên vẹn 100/70/50/30 đã duyệt vẫn giữ nguyên.
+- **CHƯA HOÀN TẤT:** chưa có ảnh Front/Back toàn thân độ phân giải sản xuất theo V2, chưa đo 7 landmarks trên ảnh fullbody, chưa có bộ art 15 lớp thật / rig Spine / physics hoặc APK mới nghiệm thu. P0-02, P0-03, P1, P2 giữ trạng thái đang chờ.
+- **NEXT:** dựng Front/Back full-body đúng V2 và gửi preview → đo anchor → nhập artwork từng layer/kiểm underpaint, alpha và draw order → nghiệm thu mỹ thuật **riêng** với gate kỹ thuật → rig → gameplay/APK.
+- **HỒ SƠ:** [LAM_THIEN_CP323_HANDOFF.md](art/LAM_THIEN_CP323_HANDOFF.md), `tools/validate_lam_thien_cp323_layers.py`, `tests/art/test_lam_thien_cp323_layers.py`. Kết quả GitHub Actions chưa được xác minh; test local không có nghĩa CI đã PASS.
+
+### Lịch sử cập nhật 2026-10-29
+Bổ sung bằng chứng QA file thật để chặn template trống bị nhận là sprite; giữ nguyên thiết kế đã duyệt và ranh giới công việc còn thiếu.
