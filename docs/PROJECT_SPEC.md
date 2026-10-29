@@ -1134,3 +1134,17 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 **Kết luận P0:** ảnh V2.1 đủ để kiểm nhận diện/màu/chính sách nhưng góc `3/4 Front` ở bảng trông khá chính diện; cần artist xác định góc nhìn thật khi redraw, tuyệt đối không đổi khuôn mặt, vóc dáng, phần áo ngực, hoa và các vật liệu/tỷ lệ đã chốt. Cả 4 mốc 100/70/50/30 giữ nguyên từ source, không làm bụi/xước/rách quá mức ở 30%.
 
 **NEXT P1:** artist tạo **một Front native art đầy đủ** theo đúng V2.1 trên các layer *body, hair_back/front, face/skin_underpaint, eyes/mouth, main bodice, sleeve, ribbons/flowers/accessories* thật. Sau khi QA Front trên đúng silhouette mới làm 5 expressions và damage overlay, các góc còn lại. `production_release=blocked_pending_art`, `sprite_paths={}`; Spine/APK chưa nghiệm thu.
+
+
+---
+
+## 50. CP341 — Phục hồi mép tóc và vải alpha từ CANON V2.1 (2026-10-29)
+
+- **CANON chính thức không đổi:** `LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29`, file user-approved SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, 941×1672 RGBA. Tỷ lệ +17%, thân áo, ngoại hình, năm biểu cảm và damage 100/70/50/30 đều lấy đúng ảnh đã chốt.
+- **Tiến bộ ảnh có thật:** từ một crop Front native 215×449 CP340 bị mất nhiều tóc và dải vải sáng, CP341 tạo alpha mới từ mask lõi + ước lượng màu nền gốc. Tăng **19.983 pixel có alpha >128** (35.564 → 55.547 pixel) trong khi **RGB từng pixel giữ nguyên** CANON; cải thiện tóc dài, 2 tay áo và vạt vải ngoài hai bên. Có **PNG RGBA**, file **alpha mask grayscale**, **ORA 3 raster layer** để so CP341, CP340 và bản crop nguồn; không tự gọi chúng là 3 lớp ngữ nghĩa hay rig.
+- **QA local thực:** **13/13 tests PASS**, kiểm SHA nguồn/crop, từng RGB pixel, alpha, vùng phục hồi, ZIP ORA/CRC/layer/mergedimage và cờ ngăn release. Có preview `CP341_BEFORE_AFTER_ALPHA_QA.png`. ZIP **12 file**, SHA256 `08d8aa08bc4b00163e092d056f1e067a5652b0f80b9462e5308277dbe8baacb1`, lưu Library Development `/Thanh Van Ky/Development/CP341_Canon_V2_1_Matte_Recovery/`.
+- **Chưa nghiệm thu:** white halos, shadow ở chân/vạt, vùng vải bán trong suốt và các cạnh cắt chưa được sửa thủ công; nguồn chỉ 215×449 nên không phải high-res. Chưa có `face_underpaint`, phần tóc/tay/áo/đồ trang sức tách thật, không có Spine/APK. **CP335 `production_release=blocked_pending_art`, `sprite_paths={}` tiếp tục khóa.**
+- **CP342 ưu tiên:** sửa alpha thủ công + shadow, rồi **vẽ thật** một Front native high-res theo V2.1, tách bộ phận có vùng ẩn để cử động, QA một pose đầu tiên; mới mở sang 5 biểu cảm, 4 damage, góc còn lại. Không tự thay trang phục, tỷ lệ +17% hoặc khuôn mặt.
+- Hồ sơ [CP341 handoff](art/LAM_THIEN_CP341_MATTE_HANDOFF.md) · [manifest](art/LAM_THIEN_CP341_MATTE_MANIFEST.json).
+
+**Đánh giá P1:** cải tiến matte kỹ thuật đã xong, **art riggable chưa xong**.
