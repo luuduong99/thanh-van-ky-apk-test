@@ -97,3 +97,13 @@
 - [ ] **Visual QA NOT_PASSED**: nguồn vẽ còn quá đơn giản so với CANON, chuyển động vẫn là xoay bitmap kỹ thuật, chưa có 2 keyframe vẽ thật, chưa đủ full-body semantic layers. Spine/APK vẫn BLOCK.
 - [ ] **CP370 tiếp tục:** vẽ/nâng chất lượng tay/vai và lụa so với CANON, triển khai các lớp thật của tay phải, thân, mặt và hai guốc xanh; sau đó vẽ riêng idle/raised-arm keyframes rồi xin duyệt art.
 - [CP369 handoff](LAM_THIEN_CP369_STATIC_SHOULDER_MOVING_WRIST.md), code `tools/art/cp369_split_gold_and_underpaint.py`, QA `tests/art/test_cp369_split_gold_and_underpaint.py`.
+
+
+## CP370 — Two independently drawn SVG arm key poses (2026-10-29)
+- [x] Chỉ sử dụng Lâm Thiển **CANON V2.1** nguyên bản, SHA256 \`f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a\` (941×1672 RGBA); preview có crop đúng nguồn + 2 DRAFT có nhãn, không dùng ảnh nhân vật khác.
+- [x] **Vẽ riêng đường SVG** cho 3 phần moving ở key pose tay nâng (tay/bàn tay, lụa có nếp rủ mới, vòng vàng cổ tay); 4 phần khác vẫn cố định gồm tóc sau, bodice khuất, da vai khuất, phụ kiện vai. Khác CP369: không chỉ xoay bitmap của pose idle.
+- [x] Xuất **2 bộ art / 2 ORA**, mỗi tư thế 7 art SVG/PNG độc lập + ORA 8 lớp (1 CANON guide ẩn), cùng canvas 1302×2748. Chỉ là canvas vector 6× crop 217×458; không được suy ra nguồn tranh đã HD.
+- [x] Local **9/9 PASS** (8 có ảnh nguồn thật + 1 static contract). Trên GitHub CI không có CANON/ORA private thì bài kiểm tra cần asset skip; không được gọi đó là kiểm thử art đã đạt. Vai vàng fixed pixel-exact, vòng vàng cổ tay thay vị trí; ROI vai có 2.996 pixel lộ và 0 pixel thiếu lót theo alpha trong vùng nhỏ; không chứng minh mọi khớp an toàn.
+- [x] ZIP 43 entries, CRC PASS, SHA256 \`a13130ebe6636205641fbcf9b5463ac590d43d930c55c92bb9d0d4b35fbca300\` lưu Library \`/Thanh Van Ky/Development/CP370_Independent_Arm_KeyPose_Study/\`. [CP370 handoff](LAM_THIEN_CP370_INDEPENDENT_ARM_KEYPOSE_STUDY.md), script \`tools/art/cp370_two_hand_authored_poses.py\`, test \`tests/art/test_cp370_two_hand_authored_poses.py\`.
+- [ ] **Visual QA NOT_PASSED**: bàn tay/nếp lụa còn sơ lược so CANON; chưa full-body native painted, không có in-betweens, rig, Spine, FPS hay APK. **Production release BLOCKED**.
+- [ ] **CP371 tiếp tục:** vẽ lại chi tiết tay/lụa 2 pose, bảo vệ nhận diện CANON; xây các semantic layers còn thiếu (mặt/tóc trước/thân/tay phải/2 guốc xanh), gửi preview để duyệt rồi mới rig và build APK.
