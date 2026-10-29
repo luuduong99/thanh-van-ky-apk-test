@@ -4,13 +4,18 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 from PIL import Image
 
-ROOT=Path(__file__).resolve().parent
-spec=importlib.util.spec_from_file_location('cp368', ROOT/'cp368_refine_sleeve.py')
+LOCAL=Path(__file__).resolve().parent
+REPO_ROOT=Path(__file__).resolve().parents[2]
+SCRIPT=(REPO_ROOT/'tools'/'art'/'cp368_refine_sleeve.py')
+if not SCRIPT.exists(): SCRIPT=LOCAL/'cp368_refine_sleeve.py'
+spec=importlib.util.spec_from_file_location('cp368', SCRIPT)
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-CANON=ROOT/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png'
-OUT=ROOT/'CP368_OUT'
+CANON=LOCAL/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png'
+OUT=LOCAL/'CP368_OUT'
+HAS_ARTIFACTS=CANON.exists() and OUT.exists()
 
 class CP368Tests(unittest.TestCase):
+    @unittest.skipUnless(HAS_ARTIFACTS,'CANON and generated ORA are private Library assets')
     def test_original_exact_user_canon(self):
         self.assertEqual(hashlib.sha256(CANON.read_bytes()).hexdigest(),m.CANON_SHA)
         with Image.open(CANON) as im:self.assertEqual((im.size,im.mode),((941,1672),'RGBA'))
@@ -25,6 +30,7 @@ class CP368Tests(unittest.TestCase):
                 self.assertNotIn('<image',source)
                 self.assertEqual(tree.attrib['viewBox'],'0 0 217 458')
 
+    @unittest.skipUnless(HAS_ARTIFACTS,'ORA generated only in private art handoff')
     def test_ora_layers_and_hidden_canon_reference(self):
         with zipfile.ZipFile(OUT/'CP368_REFINED_SIX_LAYER_SLEEVE_DRAFT_NOT_SPINE.ora') as z:
             self.assertIsNone(z.testzip())
@@ -46,6 +52,7 @@ class CP368Tests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'CANON_SHA_MISMATCH'):
                 m.make(wrong,Path(d)/'out')
 
+    @unittest.skipUnless(HAS_ARTIFACTS,'motion study available only in private art handoff')
     def test_underpaint_rotations_are_technical_only(self):
         import json
         r=json.loads((OUT/'CP368_REPORT.json').read_text())
@@ -56,6 +63,7 @@ class CP368Tests(unittest.TestCase):
         self.assertEqual(r['visual_qa'],'NOT_PASSED')
         self.assertTrue(all(v['overlap_nonzero'] for v in r['technical_motion_overlap'].values()))
 
+    @unittest.skipUnless(HAS_ARTIFACTS,'preview source only in private art handoff')
     def test_preview_source_only_and_pngs(self):
         self.assertEqual(len(list(OUT.glob('0[1-6]_*.svg'))),6)
         self.assertEqual(len(list(OUT.glob('0[1-6]_*.png'))),6)
