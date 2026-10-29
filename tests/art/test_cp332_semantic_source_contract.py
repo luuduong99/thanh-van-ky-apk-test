@@ -24,7 +24,7 @@ class CP332SemanticFaceTests(unittest.TestCase):
         self.assertEqual(MAN["canonical_source_sha256"],MODEL["source"]["sha256"])
         self.assertEqual(MAN["approved_expression_profile_id"],EXP["expression_profile_id"])
         self.assertEqual(MAN["approved_expression_source_sha256"],EXP["source"]["sha256"])
-        self.assertEqual(REG["latest_user_approved_design"]["id"],MODEL["canonical_visual_id"])
+        self.assertEqual(next(x for x in REG["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"],MODEL["canonical_visual_id"])
 
     def test_five_emotions_thirteen_parts_each(self):
         ids=["shy","angry","pain","embarrassed","alluring"]
