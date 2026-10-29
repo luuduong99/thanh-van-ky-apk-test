@@ -1407,3 +1407,11 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Đã sửa kiểm thử nguồn cũ CP335/CP358 tương thích cách tách **V2 lịch sử** và **CANON V2.1 active runtime**. GitHub Art QA [run 40893899956](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893899956) **SUCCESS**. Build Android [run 40893908748](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40893908748) **SUCCESS** trên commit code `911cd9f22921cce07f24b95b0bfea2db704464c4`.
 - Đã tải đúng artifact APK debug `12905118427`, kiểm ZIP/CRC **PASS**, file `TVK_CP362_Debug.apk` **8.791.461 byte**, SHA256 `2ee780ed142fb60d1f2cea720fdebd5ec9a033980290a12f6ea21f0f5115dce0`. Trong assets APK ID/SHA V2.1 đúng, production release art vẫn blocked; DEX có cảnh báo legacy. Đã lưu tại Library `/Thanh Van Ky/Development/CP362_Runtime_CANON_V2_1_Migration/` cùng hướng dẫn CP362.
 - **Đây không phải bản nghệ thuật cuối:** chưa có art native full highres, chưa nghiệm thu animation thực hoặc FPS trên Android. CP363 phải tập trung vẽ nội dung thực và gửi preview kiểm Visual QA.
+
+
+### CP362 final revised release guard and debug APK (2026-10-29)
+
+- Bổ sung chặn trường hợp **phê duyệt một phần sprite**: bản release Lâm Thiển phải dùng `expressionArt` đã được resolver kiểm tra đúng expression/wardrobe/integrity/pose, không được dùng ảnh `resolveArt` V2 cũ cho trạng thái neutral hoặc pose còn thiếu. Debug vẫn cho phép preview legacy có nhãn cảnh báo. Giữ thiết kế CANON V2.1 và khóa toàn bộ art chưa duyệt.
+- Chạy lại sau khi sửa regression CP335/CP358: [Art QA 40894537812](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40894537812) **SUCCESS** và [Build Android 40894537829](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40894537829) **SUCCESS** trên mã `45369552696610a62322846f54ac7586aa9495e4`.
+- Bản APK debug CP362 **cuối cùng** từ artifact `12906906193`, **8.791.463 byte**, SHA256 `09c0ed2599b8ccd1aeed348a748100deb80ad65d6c06da62556774127596f26a` (CRC PASS). Lưu đè bản CP362 draft tại `/Thanh Van Ky/Development/CP362_Runtime_CANON_V2_1_Migration/TVK_CP362_Debug.apk` và thêm `TVK_CP362_FINAL_RELEASE_NOTES.md`.
+- **CP363 vẫn cần art thật:** tách/vẽ full high-res tay áo, da, thân, tóc, occluded continuation, xuất hai frame cùng góc và Visual QA trước rig; chưa có FPS thiết bị.
