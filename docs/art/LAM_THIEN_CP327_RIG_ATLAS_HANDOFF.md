@@ -52,3 +52,7 @@
 4. **Chỉ sau nghiệm thu art** mới xuất atlas Spine 4.1 / Unity hoặc renderer Android đích, gắn vào nhân vật, kiểm pose × wardrobe × integrity; build APK và test thiết bị.
 
 **Không cần hỏi duyệt lại CANON V2 hay bộ 5 biểu cảm. Preview mỹ thuật CP327 không phải đề nghị tự đổi canon.**
+
+## Bổ sung CI đã xác minh (2026-10-29)
+
+GitHub Actions `CP327 face rig atlas safety contract` đã **SUCCESS**: run ID `40808418700`, job `123232756108` (`atlas-contract`) trên commit `4c55a53f0f2b3b830f963f8e214e04c078e0a0b3`. Đây là kiểm thử metadata và logic packing trên CI; phép so byte RGBA của **35/35 layer ORA nguồn** là kết quả QA local trong gói ZIP, chưa chạy trên GitHub runner vì ORA nhị phân lưu Library. Kết quả CI **không** xác nhận hoàn thành art/Spine/APK.
