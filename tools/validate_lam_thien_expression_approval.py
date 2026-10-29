@@ -44,7 +44,7 @@ def validate(approved, registry, model, global_standard):
         errors.append("Approved expression art must point to its archived approved reference")
     if source.get("source_kind") != "flat_approved_expression_reference_not_layered_asset":
         errors.append("An approved concept is not a production sprite")
-    base = registry.get("latest_user_approved_design", {})
+    base = next((x for x in registry.get("archived_approved_designs", []) if x.get("id") == "LT_CANON_BODY_REF_2026-10-28_V2"), {})
     profile = registry.get("approved_expression_profile", {})
     if base.get("id") != CANON_ID or base.get("visual_reference_sha256") != CANON_SHA:
         errors.append("The original approved character model V2 must remain canonical")
