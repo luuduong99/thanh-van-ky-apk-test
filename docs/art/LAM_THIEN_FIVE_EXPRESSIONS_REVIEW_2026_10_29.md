@@ -1,3 +1,7 @@
+> **ĐÃ ĐƯỢC DUYỆT NGÀY 2026-10-29 — TÀI LIỆU REVIEW ĐƯỢC LƯU LÀM LỊCH SỬ.** Không dùng trạng thái “chờ duyệt” bên dưới để xác định tiến độ hiện hành. Nguồn chính thức: [LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md), [metadata đã duyệt](LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json). Preview được giữ nguyên SHA `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7` và đã lưu trong **Approved References**. CANON BODY V2 giữ nguyên.
+
+---
+
 # Thanh Vân Ký — Lâm Thiển: chuẩn hóa 5 biểu cảm (review 2026-10-29)
 
 **Trạng thái:** ĐẶC TẢ ĐỀ XUẤT + ẢNH PREVIEW ĐÃ TẠO / **CHỜ NGƯỜI DÙNG DUYỆT**. Chưa phải sprite face đã tách lớp, animation Spine hay APK.
