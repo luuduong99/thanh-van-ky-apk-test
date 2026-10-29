@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP338",
+  "date": "2026-10-29",
+  "status": "reference_crops_verified_optional_fringes_trim_policy_no_new_art_approved",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "source_dimensions": [
+    1672,
+    941
+  ],
+  "source_approved_emotion_dimensions": [
+    1536,
+    1024
+  ],
+  "body_percent_adjustment_already_in_canon": 17,
+  "garment_integrity_states": [
+    100,
+    70,
+    50,
+    30
+  ],
+  "native_reference_png_count": 22,
+  "references": [
+    {
+      "id": "outfit_default",
+      "category": "wardrobe",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        10,
+        117,
+        162,
+        390
+      ],
+      "native_px": [
+        152,
+        273
+      ],
+      "filename": "reference/outfit_default.png",
+      "sha256": "415832804dba11216c34451a87440e6ad340effe3a05c5724225ffe8acd8009f",
+      "label": "Mặc đầy đủ — thiết kế mặc định",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "outfit_outer_removed",
+      "category": "wardrobe",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        168,
+        117,
+        310,
+        390
+      ],
+      "native_px": [
+        142,
+        273
+      ],
+      "filename": "reference/outfit_outer_removed.png",
+      "sha256": "fe349f39cdb4be5a10ba1d9ecf9b34618db43614073c52b97179da65d3eb0142",
+      "label": "Cởi lớp ngoài — reference",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "outfit_alternate",
+      "category": "wardrobe",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        319,
+        117,
+        458,
+        390
+      ],
+      "native_px": [
+        139,
+        273
+      ],
+      "filename": "reference/outfit_alternate.png",
+      "sha256": "d237176bdc771cc89233748929677b95296332e75b9bd485420c763521856b2d",
+      "label": "Trang phục biến thể — reference",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "outfit_custom",
+      "category": "wardrobe",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        464,
+        117,
+        590,
+        390
+      ],
+      "native_px": [
+        126,
+        273
+      ],
+      "filename": "reference/outfit_custom.png",
+      "sha256": "a6af02c4f2313a5b999143d208c7af29fb47294de3dab9d3ba2c3d8f3a5cbbeb",
+      "label": "Trang phục tùy chỉnh — reference",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "damage_100",
+      "category": "damage",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        609,
+        152,
+        738,
+        371
+      ],
+      "native_px": [
+        129,
+        219
+      ],
+      "filename": "reference/damage_100.png",
+      "sha256": "fb6c37ed9082a23acccaf67bffb29dd99830abb60db2f8e1b888dfa603c5a924",
+      "label": "100% — nguyên vẹn",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "damage_70",
+      "category": "damage",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        753,
+        152,
+        883,
+        371
+      ],
+      "native_px": [
+        130,
+        219
+      ],
+      "filename": "reference/damage_70.png",
+      "sha256": "6fbbd0b9f2e15e9db2a4481d828d5b56451106e9ff2a3ecaa5aa2e307f31e144",
+      "label": "70% — hư hại nhẹ",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "damage_50",
+      "category": "damage",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        890,
+        152,
+        1023,
+        371
+      ],
+      "native_px": [
+        133,
+        219
+      ],
+      "filename": "reference/damage_50.png",
+      "sha256": "eafa1f101d2abd7de0593cf3b073d1c8c7eae25a45fd90b5893d97e8a3886f1b",
+      "label": "50% — hư hại vừa",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "damage_30",
+      "category": "damage",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1031,
+        152,
+        1164,
+        371
+      ],
+      "native_px": [
+        133,
+        219
+      ],
+      "filename": "reference/damage_30.png",
+      "sha256": "116aba0b4208a690413bb4f7f1b6a9ad3dc3fe84cd6e4ad12656162cc6be7300",
+      "label": "30% — hư hại nặng",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "pose_front",
+      "category": "pose",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        12,
+        475,
+        139,
+        691
+      ],
+      "native_px": [
+        127,
+        216
+      ],
+      "filename": "reference/pose_front.png",
+      "sha256": "982df3c7d33e4c868ef1c4f21fdebd8c9bf48c68a3db7cfa4586e40562df3d8b",
+      "label": "Tư thế front",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "pose_back",
+      "category": "pose",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        147,
+        475,
+        275,
+        691
+      ],
+      "native_px": [
+        128,
+        216
+      ],
+      "filename": "reference/pose_back.png",
+      "sha256": "8c02577aa1441925bf99441094103198d089b217d977911f4f4ca9d5894e4e40",
+      "label": "Tư thế back",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "pose_threequarter",
+      "category": "pose",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        283,
+        475,
+        410,
+        691
+      ],
+      "native_px": [
+        127,
+        216
+      ],
+      "filename": "reference/pose_threequarter.png",
+      "sha256": "0fe06042a878cb295d04f0b0ddda89a3171e4668f04598fbdb00865dc3da62d9",
+      "label": "Tư thế 3/4",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "pose_sitting",
+      "category": "pose",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        725,
+        475,
+        873,
+        691
+      ],
+      "native_px": [
+        148,
+        216
+      ],
+      "filename": "reference/pose_sitting.png",
+      "sha256": "45fc15ec7f04d7bd86c6a1062361fc5f724141ce92d915981ea565a30b5f70b3",
+      "label": "Tư thế ngồi",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "view_front",
+      "category": "view",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1193,
+        517,
+        1299,
+        716
+      ],
+      "native_px": [
+        106,
+        199
+      ],
+      "filename": "reference/view_front.png",
+      "sha256": "32196297ec8c35e9391581365653b8d8e3ff5c62f4ec8856ea0a9f7e1228285f",
+      "label": "Góc Front (tham khảo)",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "view_back",
+      "category": "view",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1309,
+        517,
+        1416,
+        716
+      ],
+      "native_px": [
+        107,
+        199
+      ],
+      "filename": "reference/view_back.png",
+      "sha256": "35ba6c173d17939fa45d343313c4dd46203677337d228ec51ee9cd277a9d6c84",
+      "label": "Góc Back (tham khảo)",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "view_side",
+      "category": "view",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1423,
+        517,
+        1525,
+        716
+      ],
+      "native_px": [
+        102,
+        199
+      ],
+      "filename": "reference/view_side.png",
+      "sha256": "3134e01d79f6eb1541e3d662ac8bbab8d96f49ed93618945663290cc91009ba1",
+      "label": "Góc Side (tham khảo)",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "view_threequarter",
+      "category": "view",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1538,
+        517,
+        1638,
+        716
+      ],
+      "native_px": [
+        100,
+        199
+      ],
+      "filename": "reference/view_threequarter.png",
+      "sha256": "5e01afa21d2ea0446818f8ded5c54bc13ba0bfe1eefdbbcf89314dec2c8006a8",
+      "label": "Góc 3/4 (tham khảo)",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "face_closeup",
+      "category": "face",
+      "source": "canon_v2",
+      "bbox_xyxy": [
+        1160,
+        0,
+        1390,
+        114
+      ],
+      "native_px": [
+        230,
+        114
+      ],
+      "filename": "reference/face_closeup.png",
+      "sha256": "dd73370bda45b20c06eb5f3836d1b7d0ba68c7d68ed13e4acb747553eb9b5ea3",
+      "label": "Mặt CANON V2 — native 230×114",
+      "visual_role": "reference_only_not_rgba_parts"
+    },
+    {
+      "id": "expression_shy",
+      "category": "emotion",
+      "source": "approved_five_expression_sheet",
+      "native_px": [
+        297,
+        385
+      ],
+      "filename": "reference/approved_expression_shy.png",
+      "sha256": "da063f4d2780c01ec72c2bca98e3fce3df2af56ac21072cc1fe09541a909cb9e",
+      "label": "Ngại ngùng",
+      "visual_role": "approved_emotion_reference_not_semantic_sprite"
+    },
+    {
+      "id": "expression_angry",
+      "category": "emotion",
+      "source": "approved_five_expression_sheet",
+      "native_px": [
+        303,
+        385
+      ],
+      "filename": "reference/approved_expression_angry.png",
+      "sha256": "73279a14b88571a935c9910e67bf08b32429ba77a66f33cc94429ddebc590d20",
+      "label": "Tức giận",
+      "visual_role": "approved_emotion_reference_not_semantic_sprite"
+    },
+    {
+      "id": "expression_pain",
+      "category": "emotion",
+      "source": "approved_five_expression_sheet",
+      "native_px": [
+        291,
+        385
+      ],
+      "filename": "reference/approved_expression_pain.png",
+      "sha256": "20d1cf59f8a40ba1074494d262b34af28a242f2bcc644b3b07ff45bfe104a490",
+      "label": "Đau đớn",
+      "visual_role": "approved_emotion_reference_not_semantic_sprite"
+    },
+    {
+      "id": "expression_embarrassed",
+      "category": "emotion",
+      "source": "approved_five_expression_sheet",
+      "native_px": [
+        292,
+        385
+      ],
+      "filename": "reference/approved_expression_embarrassed.png",
+      "sha256": "5023912dcdb95a39169b26918bf3c48d4863b0981c5bb99bcecca155304c44a3",
+      "label": "Xấu hổ",
+      "visual_role": "approved_emotion_reference_not_semantic_sprite"
+    },
+    {
+      "id": "expression_alluring",
+      "category": "emotion",
+      "source": "approved_five_expression_sheet",
+      "native_px": [
+        285,
+        385
+      ],
+      "filename": "reference/approved_expression_alluring.png",
+      "sha256": "549481c6b559a325fb50a16f355b26310e9a42cd4a39387c4157a6f6b3cdd7d0",
+      "label": "Quyến rũ",
+      "visual_role": "approved_emotion_reference_not_semantic_sprite"
+    }
+  ],
+  "costume_detail_simplification": {
+    "status": "allowed_conditionally_no_modification_committed",
+    "user_instruction": "Có thể bỏ bớt các tua rua thừa thãi nếu việc sản xuất/rig khó khăn, nhưng thiết kế Lâm Thiển vẫn phải giống CANON V2.",
+    "trim_allowed_only_if_minor": [
+      "short decorative dangling tassels that do not define silhouette",
+      "duplicated tiny free-hanging fringe tips",
+      "secondary fine ornamental strings that are not load-bearing or distinctive"
+    ],
+    "do_not_trim": [
+      "primary outfit silhouette and coverage",
+      "main neckline, structural waist/bust garment lines and closure",
+      "main drape and broad flutter sleeves",
+      "recognizable long pale-blue ribbons and hairstyle",
+      "signature white flower hair ornament",
+      "key gold jewelry and main fastening ties",
+      "head/body proportions +17% already in V2",
+      "damage states 100/70/50/30"
+    ],
+    "rules": [
+      "Never change cloth coverage, neckline, pattern identity, waist or body proportions",
+      "Trim loose ornamental ends, never their functional anchors or the recognizable main ribbon",
+      "Keep minor changes consistent across front/3-4/back/poses/damage without creating new costume",
+      "Preview and manually review V2 side by side for every modified costume",
+      "Accept only if visual identity preserved; no invented numeric threshold"
+    ],
+    "qa_decisions": [
+      "PASS",
+      "PASS_WITH_MINOR_NOTES",
+      "REVISE"
+    ]
+  },
+  "not_production_art": true,
+  "production_face_master_ready": false,
+  "semantic_face_sprites_ready": false,
+  "spine_verified": false,
+  "apk_verified": false,
+  "sprite_paths_registered": 0
+}
