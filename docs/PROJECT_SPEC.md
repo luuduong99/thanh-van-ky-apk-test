@@ -1247,3 +1247,16 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - ORA SHA256 `511c495302057daad9f8538a84cc74fe60ca90f84ef400b7ffbcbd38d230ab79`, gói 5 file `TVK_CP351_CANON_Guided_21_Layer_Artist_Handoff_NOT_ART.zip` SHA256 `49e0f43927e4490194edb14ce80753ddf5db309a1eb251bedb09dcca5717a2ef`, lưu Library `/Thanh Van Ky/Development/CP351_Shoulder_QA_Guided_ORA/`. Có ảnh so sánh, script builder và manifest. [CP351 handoff](art/LAM_THIEN_CP351_SHOULDER_GUIDED_SCAFFOLD.md) · [preflight](../tools/art/check_cp351_guided_ora.py).
 - **Không được đánh dấu hoàn thành art:** 15 lớp vẽ vẫn trống; chưa vẽ hidden skin/bodice/hair thật, chưa có frame chuyển động đẹp/rig/Android nghiệm thu; bản nguồn guide là crop **215×449 phóng to 6 lần**, không phải art high-res. Giữ tỷ lệ +17%, bodice, mặt, tóc bạc, hoa trắng, hai mũi guốc xanh, năm biểu cảm, bốn mức damage như CANON V2.1.
 - **CP352 tiếp theo:** họa sĩ vẽ trực tiếp 3–4 layer độc lập dưới vai/tay trái trên ORA, tạo hai frame idle/nhấc tay; kiểm visual không smear và no-alpha-hole trước khi vẽ vai phải, biểu cảm và damage. `production_release.status=blocked_pending_art`, `sprite_paths={}` không đổi.
+
+
+---
+
+## 59. CP352 — Thử tô bù ba lớp khớp tay–vai, chưa đạt Visual QA (2026-10-29)
+
+- Đọc trực tiếp **CP351 ORA 21 lớp** từ tài sản thực, CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, CP348 10 lớp đã sửa mũi guốc. **Không chỉnh nguồn CANON**.
+- Thay vì thêm guide trống, CP352 đã **tạo pixel mới thực sự trên ba layer vẽ riêng** ở canvas 1290×2694: `06__LEFT_SHOULDER_HIDDEN_SKIN__PAINT`, `08__LEFT_SHOULDER_HIDDEN_BODICE__PAINT`, `12__HAIR_BACK__PAINT`. Đây là thử nghiệm vẽ đường cong và gradient theo các chất liệu cơ bản, **chưa phải native artist-grade redraw**; 12 lớp họa sĩ khác vẫn trống.
+- Sửa thứ tự layer để đặt ảnh flat reference trên các lớp underpaint; khi đứng yên ảnh vẫn **khớp chính xác CP348 ở pixel nguồn** và `mergedimage.png` của ORA khớp CP351. Hai mũi guốc xanh không thay đổi; ORA 21 lớp, 3 lớp có nội dung/12 lớp trống, CRC ZIP và SHA nguồn PASS.
+- Đã xuất frame đứng yên và giả lập dịch tay trái `(-10,+5)`: số pixel mất phủ alpha **914 → 366**. Đây chỉ là chẩn đoán pixel, **không có chuyển động rig Spine**. CP349 từng đạt 263 px nhưng cũng bị FAIL thẩm mỹ; không được gọi CP352 là tốt hơn CP349.
+- **Visual QA = FAIL** vì lộ mảng da/xanh kéo dọc, không giống vật liệu/cấu trúc ẩn thật. Không đưa CP352 vào game, không tự bật production. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- ORA `CP352_SHOULDER_3_PAINT_LAYERS_REST_LOCKED_NOT_RIG.ora` SHA256 `5616029023f0a9e5c6e719eefed806e9fc629190a8d6d4a554b341ef1b87238a`; gói có ảnh đối chiếu và mã thử `TVK_CP352_SHOULDER_THREE_PAINT_LAYERS_EXPERIMENT_NOT_RIG.zip` SHA256 `a5755fbd5adee753cea17725418e39d5af47ec4abb44c5b003a940baa6325b31`. Lưu Library `/Thanh Van Ky/Development/CP352_Shoulder_Three_Layer_Paint_Study_FAIL_QA/`. [Báo cáo CP352](art/LAM_THIEN_CP352_SHOULDER_THREE_PAINT_STUDY.md).
+- **CP353 next:** thay toàn bộ mảng vẽ thử cứng bằng bản redraw native có vùng da/vải/tóc ẩn chân thực, tách tay/tay áo khỏi cụm tóc, kiểm hai tư thế và hai mũi guốc. Giữ +17%, mặt, trang phục, biểu cảm và damage 100/70/50/30 theo CANON V2.1. Chỉ Visual QA PASS sau khi có redraw thật mới đi sang rig/APK.
