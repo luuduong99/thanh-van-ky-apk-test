@@ -223,5 +223,22 @@
     "status": "approved_shared_process_not_shared_face_art",
     "file": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
     "policy": "Adapt intensity and cues to each character's own approved face, personality and context; review each character separately; no copying Lam Thien body or face"
+  },
+  "runtime_expression_integration": {
+    "checkpoint": "CP324",
+    "implemented_on": "2026-10-29",
+    "status": "state_selector_and_safe_sprite_resolver_implemented_not_art_integrated",
+    "profile_source": "app/src/main/assets/character_expression_profiles.json",
+    "approved_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "selector_source": "app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt",
+    "resolver_source": "app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt",
+    "test_source": "tests/art/test_cp324_expression_runtime.py",
+    "handoff": "docs/art/LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md",
+    "approved_expression_count": 5,
+    "neutral_reset_is_not_sixth_approved_expression": true,
+    "sprite_paths_registered": 0,
+    "facial_art_approved_for_rig": false,
+    "spine_verified": false,
+    "apk_built_and_verified": false
   }
 }
