@@ -31,3 +31,9 @@ Do not update `app/src/main/assets/character_expression_profiles.json` `sprite_p
 ## CP357 precise next action
 
 Produce the genuine native painted left-arm/shoulder asset rather than another low-resolution mask/mesh trial. On separate semantic layers paint **left sleeve, upper arm and hidden skin, main bodice and hidden cloth, back hair** using the user-approved CANON V2.1. Create actual idle + raised-arm native-resolution composite exports. Run `python tools/art/cp356_native_art_preflight.py --ora <file.ora> --canon <canon.png> --idle <idle.png> --arm-raise <raised.png>`; then have art visually reviewed. Only afterward rig and test APK.
+
+## CP356 CI reconciliation — 2026-10-29
+
+The **six new CP356 tests all passed** in the earlier failed global Art QA workflow. That workflow's failure was due to two pre-existing CairoSVG imports without installed dependency and three legacy V2-era registry/validator assertions incompatible with the already-approved V2.1 active reference. We added the CairoSVG Python dependency in `.github/workflows/art-qa.yml`, synchronized `docs/art/LAM_THIEN_DESIGN_REGISTRY.json` active fields to immutable V2.1 (historical V2 preserved in archive), and made `tools/validate_lam_thien_expression_approval.py` verify the active V2.1 hash while continuing to protect the old V2 archive. These were **metadata/tooling repairs only**, not new art approval.
+
+Latest [Art QA workflow run](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40881142488) **completed SUCCESS** on `0ad726bda97954ebd0959d93d3cac5304112fe4d`. The CP356 actual-asset preflight remains **BLOCKED** for 0/6 painted shoulder layers and no approved pose pair; CI green does not mean character sprite ready.
