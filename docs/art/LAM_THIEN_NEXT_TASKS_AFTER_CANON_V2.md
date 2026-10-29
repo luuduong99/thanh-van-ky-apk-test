@@ -116,3 +116,14 @@
 - [ ] **Rig và QA:** chuyển `expression` qua Front/3⁄4 và giao diện hội thoại cỡ nhỏ; kiểm 5 nét phân biệt rõ; không reset wardrobe/integrity/pose; test animation/Spine trên asset thật.
 - [ ] **Nhân vật khác**: tạo bộ preview riêng năm cảm xúc dựa trên canon/tính cách của từng nhân vật (đầu tiên có thể là Tô Nguyệt Ly), phải duyệt riêng; không chép art Lâm Thiển.
 - **Phân biệt:** P1-03 mới **được duyệt về hướng art 5 biểu cảm**, chưa phải `DONE` kỹ thuật, không làm thay đổi P0-02/P0-03 chưa hoàn thành hoặc P1/P2 khác.
+
+
+## CP324 — 5 biểu cảm: Android state & QA (2026-10-29)
+
+- [x] Thêm `character_expression_profiles.json` và `CharacterExpressionCatalog.kt` dùng đúng năm mã biểu cảm **đã duyệt** của Lâm Thiển, không auto approve/copy art sang Tô Nguyệt Ly.
+- [x] Thêm 5 nút chọn biểu cảm + nút reset `normal` trong `CharacterInteractionActivity.kt`. Sửa hành vi **đổi pose/mở wardrobe tự đặt lại biểu cảm**; giữ state độc lập theo `characterId`.
+- [x] `resolveSprite` kiểm đúng `expression × wardrobe × integrity × pose`, trả thiếu ảnh nếu sprite chưa có, không dùng nhầm ảnh nền/ảnh 100%.
+- [x] Tạo 10 crop nguyên pixel từ preview 5 biểu cảm đã chốt, ZIP có SHA và manifest, lưu tại Library Approved References; ảnh chỉ tham khảo.
+- [x] Kiểm resolver trong môi trường Kotlin mock: 11/11 PASS. Đã commit Python tests/CI workflow, **chưa có bằng chứng Github Actions PASS hay APK mới**.
+- [ ] **P1-03 sprite/rig/animation** chưa hoàn thành: cần vẽ face layers thật dựa CANON V2, QC ảnh nhỏ, Front/3⁄4 và integration/Spine. P0-02/P0-03 cũng chưa qua cổng art.
+- **Tiếp tục:** [CP324 handoff](LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md) → dựng face sprites V2 → QA dưới góc nhìn hội thoại và lưu game → Spine/APK. Không hỏi duyệt lại 5 nét mặt.
