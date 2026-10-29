@@ -15,7 +15,7 @@
 - Dựng **3 SVG đường Bézier độc lập cho tư thế nâng tay**: cánh tay/bàn tay; tay áo lụa có nếp rủ mới theo trọng lực; vòng vàng cổ tay ở tọa độ mới. Các đường vẽ raised không phải ảnh bitmap xoay từ tư thế idle.
 - Tạo **hai bộ source hình độc lập**, mỗi bộ 7 SVG + 7 PNG RGBA full-canvas; hai tệp `.ora` mỗi tệp có 7 lớp art visible và 1 lớp ảnh nguồn CANON hidden (8 lớp tổng).
 - Kèm hai PNG ghép nền trong suốt và preview gồm đúng CANON Lâm Thiển gốc so với hai tư thế **UNAPPROVED**.
-- **8/8 kiểm thử local PASS**: nguồn SHA không bị đổi, từ chối ảnh sai trước khi tạo output, raised SVG path khác idle, 7 alpha layers hiện có, hai ORA CRC hợp lệ, vai vàng cố định, cổ tay di chuyển và kiểm tra lót khớp vùng nhỏ, cổng APK vẫn chặn.
+- **9/9 kiểm thử local PASS** (8 phép kiểm có nguồn CANON thật + 1 contract test không cần ảnh; trên CI thiếu ảnh riêng tư thì 8 phép kiểm asset sẽ skip): nguồn SHA không bị đổi, từ chối ảnh sai trước khi tạo output, raised SVG path khác idle, 7 alpha layers hiện có, hai ORA CRC hợp lệ, vai vàng cố định, cổ tay di chuyển và kiểm tra lót khớp vùng nhỏ, cổng APK vẫn chặn.
 - Tại ROI khớp vai crop `(56,121,85,170)`, khi chuyển idle → raised có **2.996 pixel** mới lộ và **0 pixel thiếu underpaint** *theo ngưỡng alpha và vùng khảo sát hẹp*. Không được diễn giải thành đảm bảo toàn nhân vật không có lỗi khớp.
 
 ## Đánh giá và giới hạn
