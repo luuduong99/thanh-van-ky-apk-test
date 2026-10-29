@@ -1091,3 +1091,16 @@ Quy chuẩn này áp dụng cho các nhân vật tiếp theo với **CANON riên
 
 ### Lịch sử 2026-10-29 — CP338
 Đã bổ sung ngoại lệ được người dùng cho phép tinh giản phụ kiện tua rua không quan trọng; giữ thiết kế chính thức V2 và mọi biểu cảm/độ hư hại; ưu tiên art trung thực thay vì giữ các đầu tua phức tạp mà không giúp nhân vật.
+
+
+### CP339 — 3 ảnh tham chiếu cuối và đề xuất tinh chỉnh thân áo (2026-10-29)
+
+Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán đúng vai trò**:
+
+- **Ảnh 2 (SHA256 `3cd8977383ba2fd2563a8f3c07aa85e5a7af4572d37c0fdb80d0e52cba0a3501`): mẫu chính định hướng body/ngoại hình/trang phục, góc, tư thế, damage**. Khi khác nhau, nó ưu tiên về nhận diện toàn nhân vật.
+- **Ảnh 3 (SHA256 `186ec1fef284d702229af9e10c6d27a7f3e27b664b22f204863a3f20469d6a50`): chuẩn năm biểu cảm**, chỉ dùng nét mặt/cảm xúc, không tự thay cấu trúc body/kiểu áo/màu mắt.
+- **Ảnh 1 (SHA256 `5bd69fff139c4908d122786655babbf08301e345388f1fe6fa6d6b42e21e3d99`): tham chiếu có giới hạn cho kiểu thân áo phần ngực và tỷ lệ vòng một** khi chỉnh ảnh 2 và 3. Không dùng để thay toàn bộ model/trang phục hoặc cách biểu cảm.
+
+**Ý định chỉnh sửa cần preview trước khi chốt art mới:** giữ form người và nhận diện ảnh 2, phối trang phục/góc/tóc/phụ kiện đặc trưng; chỉ tinh chỉnh **dáng phần ngực và cấu trúc áo khu vực đó** gần ảnh 1, hài hòa trên Front/3⁄4 và các biểu cảm ảnh 3. Không phát sinh khỏa thân, không tự đổi thiết kế ngoài vùng yêu cầu; giữ +17% đã chốt và các damage 100/70/50/30. Được giảm tua rua phụ theo CP338, không đổi phụ kiện nhận diện.
+
+**Không thay thế nguồn gốc bằng ảnh sinh mới chưa được xem/duyệt; không xem dòng “Production Ready / Spine” in trong ảnh 3 là bằng chứng có layer.** Giữ `production_release=blocked_pending_art`, `sprite_paths={}` và Spine/APK chưa hoàn thành. Chi tiết vai trò nguồn, mã ảnh và bộ kiểm tra: [CP339 handoff](art/LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md).
