@@ -5,7 +5,7 @@ The nonproduction source art is NOT certified by a passing technical audit.
 """
 import argparse, hashlib, io, json, sys, zipfile
 from pathlib import Path
-from PIL import Image, ImageChops
+from PIL import Image
 import xml.etree.ElementTree as ET
 
 EXPECTED=('shy','angry','pain','embarrassed','alluring')
@@ -67,7 +67,7 @@ def validate(atlas_dir,ora_dir=None,strict=False):
                 bbox=original.getchannel('A').getbbox()
                 if list(bbox)!=rec.get('original_bbox_xyxy'):
                     issues.append('Source trim mismatch '+key);continue
-                if ImageChops.difference(patch,original.crop(bbox)).getbbox() is not None:
+                if patch.tobytes() != original.crop(bbox).tobytes():
                     issues.append('Atlas pixels do not match ORA '+key)
     for i,a in enumerate(rectangles):
         for b in rectangles[i+1:]:
