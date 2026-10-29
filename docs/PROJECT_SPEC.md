@@ -1235,3 +1235,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Bất biến CANON V2.1 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; giữ tỷ lệ +17%, trang phục ngực, mặt, tóc bạc, phụ kiện, hai mũi guốc xanh, biểu cảm, damage 100/70/50/30 đã duyệt.
 - **CP350 chỉ hoàn thành chuẩn bị cấu trúc file**, chưa hề hoàn thành art native high-res, vùng bị che, pose mới, rig Spine hay APK. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không được dùng source phóng to làm sprite sắc nét trong game.
 - **CP351 tiếp theo:** vẽ thật vùng vai/tay trái trên lớp riêng + hidden skin/bodice/hair; so một pose nghỉ và một pose nhấc tay với CANON V2.1, Visual QA PASS trước khi nhân sang vai phải, biểu cảm và damage.
+
+
+---
+
+## 58. CP351 — ORA 21 lớp có guide vùng hở tay–vai (2026-10-29)
+
+- **Bối cảnh:** CP349 dùng màu lấy mẫu đã giảm vùng trống khi dịch tay trái từ 914 xuống 263 pixel nhưng có dải màu giả/đường nối cứng nên **Visual QA FAIL**. Thử nội suy Navier–Stokes bổ sung cho cùng stencil vẫn còn **263 pixel** và chưa thể coi là art thật. Không đưa một trong hai phương án này vào game.
+- Đọc lại **gói scaffold CP350 đã có** (1290×2694, 17 lớp, 15 lớp tô native đang TRỐNG) cùng CANON V2.1 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, CP348 được khóa. **Không chỉnh CANON** và không xóa lớp cũ.
+- Đã tạo file **OpenRaster 21 lớp thực** `CP351_CANON_V2_1_JOINT_QA_GUIDED_21_LAYER_NOT_ART.ora`, bằng cách bổ sung 4 layer QA alpha **mặc định ẩn**: bản đồ vùng hở **914 px** màu đỏ, vùng còn hở **263 px** màu vàng, vùng QA hai mũi guốc xanh, pivot vai trái tạm tính. Khóa 15 lớp artist còn trống, giữ `mergedimage.png` **bitwise giống CP350**, OpenRaster ZIP CRC/stack/alpha QA PASS.
+- ORA SHA256 `511c495302057daad9f8538a84cc74fe60ca90f84ef400b7ffbcbd38d230ab79`, gói 5 file `TVK_CP351_CANON_Guided_21_Layer_Artist_Handoff_NOT_ART.zip` SHA256 `49e0f43927e4490194edb14ce80753ddf5db309a1eb251bedb09dcca5717a2ef`, lưu Library `/Thanh Van Ky/Development/CP351_Shoulder_QA_Guided_ORA/`. Có ảnh so sánh, script builder và manifest. [CP351 handoff](art/LAM_THIEN_CP351_SHOULDER_GUIDED_SCAFFOLD.md) · [preflight](../tools/art/check_cp351_guided_ora.py).
+- **Không được đánh dấu hoàn thành art:** 15 lớp vẽ vẫn trống; chưa vẽ hidden skin/bodice/hair thật, chưa có frame chuyển động đẹp/rig/Android nghiệm thu; bản nguồn guide là crop **215×449 phóng to 6 lần**, không phải art high-res. Giữ tỷ lệ +17%, bodice, mặt, tóc bạc, hoa trắng, hai mũi guốc xanh, năm biểu cảm, bốn mức damage như CANON V2.1.
+- **CP352 tiếp theo:** họa sĩ vẽ trực tiếp 3–4 layer độc lập dưới vai/tay trái trên ORA, tạo hai frame idle/nhấc tay; kiểm visual không smear và no-alpha-hole trước khi vẽ vai phải, biểu cảm và damage. `production_release.status=blocked_pending_art`, `sprite_paths={}` không đổi.
