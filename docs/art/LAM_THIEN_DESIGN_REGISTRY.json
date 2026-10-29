@@ -242,43 +242,30 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP333",
+    "checkpoint": "CP334",
     "date": "2026-10-29",
-    "status": "refined_vector_semantic_art_RND_NOT_APPROVED",
+    "status": "high_fidelity_flat_candidate_portraits_visual_review_pending",
     "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "same_face_master_across_five": true,
-    "base_skin_has_no_baked_mouth_eyes": true,
-    "base_layers": 10,
-    "expression_rgba_layers": 65,
-    "ora_count": 6,
-    "source_edit_delta": [
-      "hair_fine_shines",
-      "gold_ornament_filaments",
-      "iris_amber_radial_marks",
-      "individual_lash_lines",
-      "mouth_secondary_contour",
-      "brow_hair_strokes"
-    ],
-    "local_ora_binary_tests_passed": 13,
-    "local_source_contract_tests_passed": 9,
-    "native_vector_canvas": [
-      1024,
+    "generated_flat_candidate_sha256": "1286237fd958990ffaf69f3b57c6997b00fbcd756d93887c351bb6ee84dda9ee",
+    "generated_flat_candidate_canvas_px": [
+      1536,
       1024
     ],
-    "source_canon_face_native": [
-      230,
-      114
-    ],
-    "face_canon_visual_match_approved": false,
-    "front_three_quarter_art_ready": false,
-    "artist_underpaint_and_occlusion_approved": false,
+    "face_candidate_portraits": 5,
+    "review_workspace_ora_layers": 7,
+    "master_face_truly_shared": false,
+    "clean_independent_facial_attachments": false,
+    "artist_face_match_to_canon_approved": false,
+    "front_three_quarter_production_ready": false,
+    "clean_underpaint_verified": false,
     "spine_rig_verified": false,
     "apk_verified": false,
-    "sprite_paths_registered": 0,
-    "package_sha256": "1f8aa806758332194e258f941530b18b54e00991c877c3397a274d7c134517ad",
-    "library_backup_path": "/Thanh Van Ky/Development/CP333_Refined_Vector_Study/",
-    "handoff": "docs/art/LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md",
-    "next": "CP334 prioritize fidelity redraw to CANON V2 on semantic layers, QA 5 emotions Front/3-4, then artist acceptance"
+    "registered_sprite_paths": 0,
+    "local_binary_tests_passed": 8,
+    "package_sha256": "8602b28f6df43952b6f70adcdffd4c0945bd0463ba6144c449a0a5b192a5dc8b",
+    "library_backup": "/Thanh Van Ky/Development/CP334_Art_Direction_Review/",
+    "handoff": "docs/art/LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md",
+    "next": "CP335 perform authentic painted face master redraw matching V2; Front+3/4, eyes/brows/mouth clean alpha underpaint and art acceptance before Spine/APK"
   }
 }
