@@ -18,7 +18,7 @@ internal object CharacterExpressionCatalog {
         for (i in 0 until characters.length()) {
             val item = characters.optJSONObject(i) ?: continue
             if (item.optString("id") == characterId &&
-                item.optString("approval_status") == "approved_reference_sprite_pending") {
+                item.optString("approval_status") == "explicit_user_approved_expression_preview") {
                 return item
             }
         }
