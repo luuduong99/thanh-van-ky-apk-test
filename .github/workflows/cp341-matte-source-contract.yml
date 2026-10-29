@@ -1,0 +1,24 @@
+name: CP341 canonical V2.1 alpha recovery metadata
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP341_MATTE_MANIFEST.json'
+      - 'tests/art/test_cp341_source_contract.py'
+      - '.github/workflows/cp341-matte-source-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP341_MATTE_MANIFEST.json'
+      - 'tests/art/test_cp341_source_contract.py'
+jobs:
+  source-and-release-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Protect current V2.1 canon and reject unreleased single-image alpha art
+        run: python3 -m unittest discover -s tests/art -p 'test_cp341_source_contract.py' -v
+      # No binary PNG/ORA in repo CI. The 13/13 real file tests run locally
+      # on ZIP available in ChatGPT Library. CI is NOT art/Spine/APK signoff.
