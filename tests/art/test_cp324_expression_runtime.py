@@ -30,7 +30,7 @@ class CP324ExpressionRuntimeTests(unittest.TestCase):
         lam = chars["lin_qian"]
         self.assertEqual([e["id"] for e in lam["approved_expressions"]], EXPECTED)
         self.assertEqual([e["id"] for e in self.approved["approved_expressions"]], EXPECTED)
-        self.assertEqual(lam["approval_status"], "approved_reference_sprite_pending")
+        self.assertEqual(lam["approval_status"], "explicit_user_approved_expression_preview")
         self.assertEqual(lam["approved_profile_id"], self.approved["expression_profile_id"])
 
     def test_body_and_expression_reference_ids_cannot_be_confused(self):
