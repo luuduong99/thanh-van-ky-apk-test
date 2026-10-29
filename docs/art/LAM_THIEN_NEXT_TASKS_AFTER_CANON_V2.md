@@ -197,3 +197,13 @@
 - [ ] **Vấn đề CP332 thực sự:** master hiện chỉ là tranh mới chưa duyệt, native 258×364, có nét mắt/mày/miệng **baked**; các patch dính nền; underpaint thuật toán chưa hoàn thiện. **Không dùng làm sprite**, Spine/Android APK chưa nghiệm thu.
 - [ ] **CP332:** dựng lại một face master *art HD native thật* theo CANON BODY V2, clean underpaint, 35 layer semantic cho năm cảm xúc, test avatar/dialogue 256/132/64px và Front/3⁄4, gửi preview nghiệm thu **asset mới**; sau art QA mới tích hợp và test APK.
 - **Giữ nguyên:** V2, +17%, 5 sắc thái và damage 100/70/50/30; không hỏi chốt lại các tiêu chuẩn này.
+
+
+## CP332 — semantic face layers mới vẽ độc lập, artist approval pending (2026-10-29)
+
+- [x] Tạo 6 ORA binary có thể chỉnh sửa: 1 sạch **master base 10 layer** và 5 biểu cảm cùng base giữ nguyên hash. **65 layer nét mặt RGBA alpha** riêng (13/biểu cảm: mắt trắng, iris, mi, mí, mày, má, môi), không có ảnh crop skin/hair từ poster, underpaint mặt không chứa feature baked.
+- [x] SVG source bản vector native 1024, PNG alpha, composite preview, bảng đối chiếu CANON V2 và năm biểu cảm APPROVED; **10/10 unit tests local PASS**, audit ZIP/alpha/recompose 6 ORA PASS; strict sản xuất **FAIL đúng kỳ vọng**.
+- [x] Sao lưu gói `TVK_LamThien_CP332_Semantic_Face_Study_NOT_APPROVED.zip` SHA `a70a383076592c986bd887bd4477c71b6c60f9bf13a3e711b9c20b1376dbeb01` vào Library Development. GitHub có [handoff](LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md), [manifest](LAM_THIEN_CP332_SEMANTIC_STUDY_MANIFEST.json), source + CI metadata.
+- [ ] **CP332 art production CHƯA ĐẠT:** khuôn mặt mới chỉ là minh họa vector đơn giản, không đủ giống CANON V2. Chưa có art Front/3⁄4 đủ chuẩn, hair deformations, Spine skeleton/animation, APK hoặc biến thể wardrobe/damage thật. Không nhập vào `sprite_paths`.
+- [ ] **CP333 ưu tiên:** nâng chất lượng họa sĩ trên đúng 10 + 13 layer semantic, đảm bảo danh tính V2 + mắt hổ phách, hair/face/choker/hoa, kiểm độ rõ cả 5 biểu cảm ở 256/132/64px, đủ góc/underpaint, gửi duyệt **art thành phẩm** rồi mới nối Spine và build APK.
+- **Quyết định vẫn đã chốt**: V2, +17% trong V2, năm biểu cảm, bốn mức hư hại 100/70/50/30. Không hỏi lại hoặc thay ngầm.
