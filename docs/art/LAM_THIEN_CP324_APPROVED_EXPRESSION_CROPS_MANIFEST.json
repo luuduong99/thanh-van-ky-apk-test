@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP324",
+  "source_type": "flat_approved_expression_sheet",
+  "source_filename": "a_clean_anime_character_expression_reference_sheet.png",
+  "source_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "source_size_px": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGB",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "approval_status": "approved_reference_crops_only",
+  "requires_new_canonic_face_sprite_art": true,
+  "sprite_art_present": false,
+  "spine_rig_present": false,
+  "items": [
+    {
+      "file": "01_shy_portrait_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "shy",
+      "name_vi": "Ngại ngùng",
+      "kind": "portrait",
+      "source_bbox_xyxy": [
+        11,
+        131,
+        308,
+        516
+      ],
+      "native_size_px": [
+        297,
+        385
+      ],
+      "sha256": "da063f4d2780c01ec72c2bca98e3fce3df2af56ac21072cc1fe09541a909cb9e",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "01_shy_eye_mouth_details_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "shy",
+      "name_vi": "Ngại ngùng",
+      "kind": "eye_mouth_details",
+      "source_bbox_xyxy": [
+        11,
+        576,
+        308,
+        690
+      ],
+      "native_size_px": [
+        297,
+        114
+      ],
+      "sha256": "fbf24d84fa0c8957404020a4ffe899cedc8ae2686c251aa4837cce0eb6160d71",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "02_angry_portrait_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "angry",
+      "name_vi": "Tức giận",
+      "kind": "portrait",
+      "source_bbox_xyxy": [
+        319,
+        131,
+        622,
+        516
+      ],
+      "native_size_px": [
+        303,
+        385
+      ],
+      "sha256": "73279a14b88571a935c9910e67bf08b32429ba77a66f33cc94429ddebc590d20",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "02_angry_eye_mouth_details_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "angry",
+      "name_vi": "Tức giận",
+      "kind": "eye_mouth_details",
+      "source_bbox_xyxy": [
+        319,
+        576,
+        622,
+        690
+      ],
+      "native_size_px": [
+        303,
+        114
+      ],
+      "sha256": "d8f19adf5380e1d1017b37d5a1cc422831656c5b69c69133afbd5490cd6fb210",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "03_pain_portrait_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "pain",
+      "name_vi": "Đau đớn",
+      "kind": "portrait",
+      "source_bbox_xyxy": [
+        633,
+        131,
+        924,
+        516
+      ],
+      "native_size_px": [
+        291,
+        385
+      ],
+      "sha256": "20d1cf59f8a40ba1074494d262b34af28a242f2bcc644b3b07ff45bfe104a490",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "03_pain_eye_mouth_details_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "pain",
+      "name_vi": "Đau đớn",
+      "kind": "eye_mouth_details",
+      "source_bbox_xyxy": [
+        633,
+        576,
+        924,
+        690
+      ],
+      "native_size_px": [
+        291,
+        114
+      ],
+      "sha256": "bd3d58a4a6b7a0cc9c2e6839dce7d53497952128008839a0348318a77d21d858",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "04_embarrassed_portrait_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "embarrassed",
+      "name_vi": "Xấu hổ",
+      "kind": "portrait",
+      "source_bbox_xyxy": [
+        936,
+        131,
+        1228,
+        516
+      ],
+      "native_size_px": [
+        292,
+        385
+      ],
+      "sha256": "5023912dcdb95a39169b26918bf3c48d4863b0981c5bb99bcecca155304c44a3",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "04_embarrassed_eye_mouth_details_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "embarrassed",
+      "name_vi": "Xấu hổ",
+      "kind": "eye_mouth_details",
+      "source_bbox_xyxy": [
+        936,
+        576,
+        1228,
+        690
+      ],
+      "native_size_px": [
+        292,
+        114
+      ],
+      "sha256": "d11fd4b6355f9f5a31f8c76069179e4aef8658e05dd14eebd74191e06cabe3f9",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "05_alluring_portrait_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "alluring",
+      "name_vi": "Quyến rũ",
+      "kind": "portrait",
+      "source_bbox_xyxy": [
+        1240,
+        131,
+        1525,
+        516
+      ],
+      "native_size_px": [
+        285,
+        385
+      ],
+      "sha256": "549481c6b559a325fb50a16f355b26310e9a42cd4a39387c4157a6f6b3cdd7d0",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    },
+    {
+      "file": "05_alluring_eye_mouth_details_APPROVED_REFERENCE_ONLY.png",
+      "emotion_id": "alluring",
+      "name_vi": "Quyến rũ",
+      "kind": "eye_mouth_details",
+      "source_bbox_xyxy": [
+        1240,
+        576,
+        1525,
+        690
+      ],
+      "native_size_px": [
+        285,
+        114
+      ],
+      "sha256": "12ab816bbe58bd0d9d66da7e075790cb25caa05f532bbcf73465d2b6d6bf29ba",
+      "status": "APPROVED_REFERENCE_ONLY_NOT_LAYERED_ART"
+    }
+  ]
+}
