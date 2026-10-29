@@ -38,3 +38,12 @@ Use logcat draw cadence to detect long intervals; compare to actual device frame
 - UI label: `app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt`.
 - Approval resolver: `app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt`.
 - Tests: `tests/art/test_cp358_android_art_safety.py`.
+
+
+## CP358 verified APK artifact — 2026-10-29
+
+- [TVK Art QA run 40885894376](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40885894376): **completed/success** at commit `0bf214017c577e7a9be977cbea6a9282283ea214`.
+- [Android build run 40885894352](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/40885894352): **completed/success** at same code/test commit.
+- Actual downloaded GitHub artifact ID `12903065909` ZIP SHA256 `e56ae711c5ce8e0ec2d4460f8627730e030e1c0b46934111d9a18191e82109dd`, artifact CRC pass. Extracted APK `TVK_CP358_Debug.apk`: **8,790,897 bytes**, SHA256 `c172ee04c3882ffa6254902fe3a3fc86d3e22285bd884db6c3c0ffd7897f2869`, APK ZIP CRC pass, 27 entries. Validated compiled `classes3.dex` contains `TVKMotion`, `canvas_draw_fps`, and `ẢNH TEST / LEGACY` strings.
+- Stored APK and `TVK_CP358_Debug_Readme.md` in Library folder `/Thanh Van Ky/Development/CP358_Debug_Motion_Cadence_And_Art_Gate/`.
+- **This debug APK has NOT been run on physical hardware and has no measured presentation FPS**. The visual CANON V2.1 painted sprite gate remains `blocked_pending_art` and paths empty.
