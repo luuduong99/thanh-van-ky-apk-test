@@ -158,3 +158,12 @@
 - [ ] **Mỹ thuật P1-03 CHƯA ĐẠT:** chưa có full-resolution **CANON V2 face master**, underpaint được duyệt, mắt/mày/miệng layer chất lượng anime cuối; atlas prototype **không được** dùng làm Spine production/Android asset.
 - [ ] **CP328 (ưu tiên):** khôi phục/vẽ lại source V2 face thật ở độ phân giải sản xuất, chi tiết mắt hổ phách/tóc/phụ kiện đúng, 5 biểu cảm được duyệt → chỉnh face alpha/underpaint → QA nhỏ trong game → Spine/APK.
 - Mẫu V2 và 5 cảm xúc, tỷ lệ +17% và mức damage 100/70/50/30 **giữ nguyên**; P0-02/P0-03/P1-03/P2 còn chờ nghiệm thu.
+
+
+## CP328 — QA khóa màu mắt CANON V2 (2026-10-29)
+
+- [x] Kiểm SHA nguồn mặt V2; xác định crop native `230×114`, hai vùng mắt hổ phách với 124/105 pixel amber-matching, **0** blue-matching; đây là phép kiểm heuristic có thể lấy mẫu cả da, không phải màu mống mắt tuyệt đối.
+- [x] Tạo `tools/cp328/cp328_face_color_gate.py`, test source + ảnh ứng viên theo ROI do artist định nghĩa. **9/9 local tests PASS** gồm mô phỏng mắt xanh bị chặn; bảng kiểm tra so canon và 5 nét được duyệt.
+- [x] Lưu [CP328 handoff](LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md), [gate manifest](LAM_THIEN_CP328_FACE_MASTER_GATE.json), ZIP tại ChatGPT Library Development; source tests & CI workflow ghi trên GitHub. **Không đổi nguồn V2 / biểu cảm / damage**.
+- [ ] **CP329:** làm face master art thật native high-res, mắt hổ phách, tóc/phụ kiện/bố cục V2, underpaint do họa sĩ hoàn thiện; tạo 5 nét trên cùng khuôn mặt và sprite alpha tách lớp; QA ở khung thoại/góc Front và 3⁄4.
+- [ ] **Rig/Spine/APK** chờ art nghiệm thu. Các concept CP328 nháp, dù có text “production-ready” do model vẽ, **không được dùng làm asset**. P0-02/P0-03/P1-03/P2 vẫn mở.
