@@ -1056,3 +1056,10 @@ Tách đúng nguồn Front/3⁄4 và phát hiện góc/nội dung pixel chưa đ
 - **Tiêu chuẩn CP337:** Front nhìn trực diện thật và 3/4 khác góc thật, giống mặt V2, mắt hổ phách, tóc bạc, hoa trắng và vàng vừa phải; phải vẽ lại 2 face masters editable native thật, underpaint, layer semantic cho 5 emotion, QA thumbnail + biến dạng trước khi phát hành sprite.
 - `production_release.status=blocked_pending_art`, `sprite_paths={}` vẫn nguyên. **Chưa DONE:** face art, mesh/Spine, APK. Chữ “Production Ready” trong tranh kỹ thuật không có giá trị nghiệm thu.
 - Điểm nối: [CP337 work order](art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md).
+
+
+### CP337 — thất bại nghiệm thu nhận diện/body/trang phục (phản hồi người dùng 2026-10-29)
+
+Hai ảnh **Front** (Runway task `880ac92b-bf38-48ae-bd33-e7fde597efd8`) và **3/4** (task `263c4531-2b33-4f2a-9ef5-5f5029a5b450`) đã được tạo ảnh phẳng nhưng **KHÔNG ĐẠT visual QA**: người dùng xác nhận lệch rõ **body và trang phục** so với mẫu chính thức. **Đánh dấu cả hai REJECTED/DEVELOPMENT ONLY**, không dùng làm model, không thêm `sprite_paths`, không rig/Spine/APK.
+
+**Bài học quy trình bắt buộc:** prompting góc mặt mới bằng AI có thể tự thay body, tỉ lệ, áo, neckline, trang sức; lấy một bản sai làm tham chiếu cho bản tiếp theo sẽ nhân lỗi. Không có bảo đảm khớp tuyệt đối chỉ từ prompt. Bắt buộc lấy **CANON V2 làm nguồn body/costume bất biến**, chỉ chỉnh/vẽ vùng head cần thiết, kiểm đối chiếu đủ body/costume trong preview trước khi làm 5 biểu cảm/Spine. Tỷ lệ +17% trong V2, trang phục trắng–xanh–vàng, các trạng thái damage 100/70/50/30 và 5 biểu cảm vẫn giữ nguyên. **CP337 chưa nghiệm thu**.
