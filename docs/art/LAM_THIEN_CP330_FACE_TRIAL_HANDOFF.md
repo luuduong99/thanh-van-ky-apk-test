@@ -36,3 +36,7 @@
 5. Có thể tiếp tục triển khai các phần gameplay không phụ thuộc art, nhưng **không lắp ảnh nháp CP330 vào game**.
 
 **Trạng thái:** CP330 tech trial DONE; P0-02/P0-03/P1-03 nghệ thuật/Spine/P2 APK **NOT DONE**.
+
+## Xác minh CI thực tế (2026-10-29)
+
+GitHub Actions **CP330 facial painted-region technical contract**, run **40814927635**, job `review-art-contract` (id `123253657596`), trả **SUCCESS** trên commit `4084a39e343874d49e98dcb502aced263d6dc9cf`. CI kiểm đúng 5 mã, nguồn SHA, bố cục mask trên ảnh tổng hợp và trạng thái không được duyệt; **CI không chứa file ORA nhị phân**. ORA thật được kiểm riêng local (9/9 PASS), chỉ chứng minh kỹ thuật, KHÔNG xác nhận mỹ thuật/Spine/APK.
