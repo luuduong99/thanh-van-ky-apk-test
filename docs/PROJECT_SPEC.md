@@ -1199,3 +1199,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Đã lưu ảnh so sánh **CANON / bản lỗi / bản khôi phục** và gói reproducible patch tại Library `/Thanh Van Ky/Development/CP347_Shoe_Toe_Alpha_Recovery_QA/`. Chi tiết: [CP347 handoff](art/LAM_THIEN_CP347_SHOE_TOE_ALPHA_REGRESSION.md).
 - **Chưa phát hành sprite:** bản sửa chỉ là thử nghiệm trên crop độ phân giải thấp; còn phải QA mép/halo và native high-res art, sửa underpaint vai tay, Spine và đo FPS Android. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - Bước kế tiếp phải có **gate hai mũi guốc xanh hiển thị rõ** trên Front, góc nhìn tương ứng và các frame cử động; không tự thay hình thể +17%, trang phục, mặt và mức damage 100/70/50/30 đã chốt.
+
+
+---
+
+## 55. CP348 — Khôi phục mũi guốc trên bộ 10 lớp (2026-10-29)
+
+- **Nguồn đã khóa không đổi:** CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, CP343 source ZIP SHA256 `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519`. Giữ tỷ lệ +17%, nhận diện, trang phục trắng–xanh–vàng, năm biểu cảm, damage 100/70/50/30.
+- **Đã sửa QA có thật:** tinh chỉnh polygon alpha mũi guốc bên trái ảnh, vùng `x=[84,116), y=[432,449)`, khôi phục xanh và hạn chế viền xanh-xám của CP347. Có **349 pixel alpha thay đổi** so với CP342 và 243 pixel mới vượt alpha 128; **toàn bộ RGB giữ nguyên**, guốc bên kia không thay.
+- **Đã chuyển bản sửa vào 10 PNG region có thể chỉnh và tạo ORA 10 lớp thật** `CP348_TEN_REGION_TOE_FIXED_NOT_RIG.ora`. Ghép ảnh đứng yên giữ chính xác alpha và RGB của pixel hiện hữu. Gán các pixel mới tạm vào vùng giày trái, **không phải semantic rig-ready**.
+- **29/29 local QA PASS** trên ảnh nguồn, SHA, giới hạn ROI, vùng giày còn lại, ghép 10 lớp, ORA CRC/mergedimage và kiểm lỗi khớp tay vẫn tồn tại. ZIP 20 file CRC PASS, SHA256 `f7cd164a509f6cb93b48c0fb6987dd9b008d58f4e11d625f5a4c1c30173f1497`; lưu Library `/Thanh Van Ky/Development/CP348_Shoe_Toe_Ten_Layer_Recovery_QA/`. Có preview toàn thân + zoom giày. [CP348 handoff](art/LAM_THIEN_CP348_SHOE_REPAIR_10_LAYER_HANDOFF.md).
+- **Cảnh báo:** đây là thử nghiệm QA trên crop **215×449**, vẫn có thể còn halo/đường cắt ở mép; **chưa vẽ native high-res**, chưa vẽ underpaint phần vai/tay, chưa có Spine/Android FPS nghiệm thu. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không đưa CP348 vào APK phát hành.
+- **CP349 next:** cần vẽ thật Front độ phân giải cao với vùng ẩn khớp tay–vai/thân áo/tóc; kiểm 2 frame cử động và cả hai mũi guốc; sau đó mới rig/Android.
