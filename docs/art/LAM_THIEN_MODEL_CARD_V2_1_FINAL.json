@@ -1,0 +1,63 @@
+{
+  "schema_version": "2.1",
+  "character_id": "lin_qian",
+  "character_name": "Lâm Thiển",
+  "active_canonical_visual_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "approved_on": "2026-10-29",
+  "approval_status": "approved_reference_flat_character_sheet",
+  "source": {
+    "filename": "LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+    "width": 941,
+    "height": 1672,
+    "mode": "RGBA",
+    "sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+    "fidelity": "exact_user_uploaded_bytes_unchanged"
+  },
+  "supersedes_visual_references": [
+    "LT_CANON_BODY_REF_2026-10-28_V2",
+    "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "CP339_User_Three_Reference_Roles",
+    "CP337_generated_drafts"
+  ],
+  "locked": {
+    "body_plus_17_percent_already_present": true,
+    "costume_silhouette_and_bodice": "match_final_2026_10_29_image",
+    "expression_ids": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "damage_stages": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "damage_30_not_exaggerated": true,
+    "optional_fringe_trim_only": "nonessential_redundant_tassels_if_design_unaffected",
+    "face_hair_jewelry_color": "match_final_image"
+  },
+  "note_on_concept": "Single user-approved full visual reference; annotated labels for Spine/rig/layers do not prove those files exist.",
+  "production_status": {
+    "layered_ora_psd_native_ready": false,
+    "five_expression_sprite_attachments_approved": false,
+    "wardrobe_damage_overlay_assets_complete": false,
+    "rig_or_spine_completed": false,
+    "android_sprite_paths_released": false,
+    "apk_built_and_tested": false
+  },
+  "runtime_compatibility": {
+    "previous_runtime_profiles_still_reference_archived_hashes": true,
+    "production_release": "blocked_pending_art",
+    "migration_required_when_real_sprites_ready": true,
+    "never_use_archived_visuals_for_new_redraw": true
+  },
+  "references": {
+    "manifesto": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_MANIFEST.json",
+    "handoff": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md",
+    "implementation_plan": "docs/art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md"
+  }
+}
