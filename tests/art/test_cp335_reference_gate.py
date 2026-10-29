@@ -37,7 +37,11 @@ class CP335ReferenceContract(unittest.TestCase):
         self.assertIsNone(lam["production_release"]["user_asset_approval_id"])
         self.assertEqual(lam["sprite_paths"],{})
         self.assertEqual(lam["expression_preview_sha256"],APPROVED["source"]["sha256"])
-        self.assertEqual(lam["canonical_body_sha256"],MODEL["source"]["sha256"])
+        # CP335's V2 expression-reference archive stays immutable, but new
+        # runtime sprite release must follow the subsequently approved V2.1.
+        self.assertEqual(lam["canonical_body_visual_id"], REG["latest_user_approved_design"]["id"])
+        self.assertEqual(lam["canonical_body_sha256"],REG["latest_user_approved_design"]["visual_reference_sha256"])
+        self.assertEqual(lam["archived_body_release_metadata"]["sha256"],MODEL["source"]["sha256"])
 
     def test_other_character_is_not_auto_approved(self):
         ly=next(c for c in ASSET["characters"] if c["id"]=="to_nguyet_ly")
