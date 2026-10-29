@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP326",
+  "date": "2026-10-29",
+  "status": "new_vector_facial_parts_on_canon_v2_inpaint_prototype_not_approved_for_game",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_five_expression_sheet_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "source_bbox_xyxy": [
+    1160,
+    0,
+    1390,
+    114
+  ],
+  "native_source_size_px": [
+    230,
+    114
+  ],
+  "rendered_canvas_px": [
+    920,
+    456
+  ],
+  "enlargement_factor": 4,
+  "caveats": [
+    "Canon face crop is only 230x114 at native resolution",
+    "Underpaint is algorithmic inpainting, not artist-approved hidden anatomy",
+    "Eyes/brows/mouth are independently drawn SVG vector strokes but not approved for appearance accuracy",
+    "Do NOT register these layers as game sprites or set P1-03 production done"
+  ],
+  "art_mode": "independent_alpha_vector_render_with_source_canon_guide",
+  "independent_pixel_layer_count_expected": 35,
+  "expression_ids": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "items": [
+    {
+      "id": "shy",
+      "name_vi": "Ngại ngùng",
+      "ora_file": "CP326_01_shy_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "ora_sha256": "a9192e1b6b3eb71f5bb8b2944431e340a18cffbb18aa2c0ebeb645ab528a02e6",
+      "canvas_px": [
+        920,
+        456
+      ],
+      "source_image_native_px": [
+        230,
+        114
+      ],
+      "alpha_independent_layers": 7,
+      "parts": {
+        "blush_image_left": {
+          "alpha_nonzero_pixels": 14055,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "blush_image_right": {
+          "alpha_nonzero_pixels": 13495,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_left": {
+          "alpha_nonzero_pixels": 4280,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_right": {
+          "alpha_nonzero_pixels": 4674,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_left": {
+          "alpha_nonzero_pixels": 1086,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_right": {
+          "alpha_nonzero_pixels": 969,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "mouth": {
+          "alpha_nonzero_pixels": 1324,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        }
+      },
+      "underpaint_status": "algorithmic_placeholder",
+      "guide_status": "original_canon_source_hidden",
+      "preview_file": "01_shy_CANON_V2_FACE_COMPOSITE_TECH_DEMO.png"
+    },
+    {
+      "id": "angry",
+      "name_vi": "Tức giận",
+      "ora_file": "CP326_02_angry_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "ora_sha256": "e367adcfd0e05c7e193327f5896ca6b77828af0eeaaf18720a5fdfddf56b1018",
+      "canvas_px": [
+        920,
+        456
+      ],
+      "source_image_native_px": [
+        230,
+        114
+      ],
+      "alpha_independent_layers": 7,
+      "parts": {
+        "blush_image_left": {
+          "alpha_nonzero_pixels": 8441,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "blush_image_right": {
+          "alpha_nonzero_pixels": 8113,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_left": {
+          "alpha_nonzero_pixels": 4225,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_right": {
+          "alpha_nonzero_pixels": 4462,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_left": {
+          "alpha_nonzero_pixels": 1044,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_right": {
+          "alpha_nonzero_pixels": 999,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "mouth": {
+          "alpha_nonzero_pixels": 965,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        }
+      },
+      "underpaint_status": "algorithmic_placeholder",
+      "guide_status": "original_canon_source_hidden",
+      "preview_file": "02_angry_CANON_V2_FACE_COMPOSITE_TECH_DEMO.png"
+    },
+    {
+      "id": "pain",
+      "name_vi": "Đau đớn",
+      "ora_file": "CP326_03_pain_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "ora_sha256": "4cf6eb0ffa8ebe2f6dca7d93455f3b6e8b76b5dd5529f6b5bf7032646dc91365",
+      "canvas_px": [
+        920,
+        456
+      ],
+      "source_image_native_px": [
+        230,
+        114
+      ],
+      "alpha_independent_layers": 7,
+      "parts": {
+        "blush_image_left": {
+          "alpha_nonzero_pixels": 11127,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "blush_image_right": {
+          "alpha_nonzero_pixels": 10653,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_left": {
+          "alpha_nonzero_pixels": 1796,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_right": {
+          "alpha_nonzero_pixels": 1807,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_left": {
+          "alpha_nonzero_pixels": 1105,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_right": {
+          "alpha_nonzero_pixels": 981,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "mouth": {
+          "alpha_nonzero_pixels": 2635,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        }
+      },
+      "underpaint_status": "algorithmic_placeholder",
+      "guide_status": "original_canon_source_hidden",
+      "preview_file": "03_pain_CANON_V2_FACE_COMPOSITE_TECH_DEMO.png"
+    },
+    {
+      "id": "embarrassed",
+      "name_vi": "Xấu hổ",
+      "ora_file": "CP326_04_embarrassed_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "ora_sha256": "8723aa12dc9958f6a14462efba15d2ef137d8ac60db7cde2848009f20da40b7c",
+      "canvas_px": [
+        920,
+        456
+      ],
+      "source_image_native_px": [
+        230,
+        114
+      ],
+      "alpha_independent_layers": 7,
+      "parts": {
+        "blush_image_left": {
+          "alpha_nonzero_pixels": 15847,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "blush_image_right": {
+          "alpha_nonzero_pixels": 15247,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_left": {
+          "alpha_nonzero_pixels": 1479,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_right": {
+          "alpha_nonzero_pixels": 1484,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_left": {
+          "alpha_nonzero_pixels": 1059,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_right": {
+          "alpha_nonzero_pixels": 984,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "mouth": {
+          "alpha_nonzero_pixels": 580,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        }
+      },
+      "underpaint_status": "algorithmic_placeholder",
+      "guide_status": "original_canon_source_hidden",
+      "preview_file": "04_embarrassed_CANON_V2_FACE_COMPOSITE_TECH_DEMO.png"
+    },
+    {
+      "id": "alluring",
+      "name_vi": "Quyến rũ",
+      "ora_file": "CP326_05_alluring_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "ora_sha256": "3169b50beeaa6f45bf78c48de36fd3fe53f3aa24aac94a5267b4d63fbff9593e",
+      "canvas_px": [
+        920,
+        456
+      ],
+      "source_image_native_px": [
+        230,
+        114
+      ],
+      "alpha_independent_layers": 7,
+      "parts": {
+        "blush_image_left": {
+          "alpha_nonzero_pixels": 11361,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "blush_image_right": {
+          "alpha_nonzero_pixels": 10921,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_left": {
+          "alpha_nonzero_pixels": 3679,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "eye_image_right": {
+          "alpha_nonzero_pixels": 4060,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_left": {
+          "alpha_nonzero_pixels": 941,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "brow_image_right": {
+          "alpha_nonzero_pixels": 913,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        },
+        "mouth": {
+          "alpha_nonzero_pixels": 1335,
+          "rgba_mode": "RGBA",
+          "native_source_pixels_used": false
+        }
+      },
+      "underpaint_status": "algorithmic_placeholder",
+      "guide_status": "original_canon_source_hidden",
+      "preview_file": "05_alluring_CANON_V2_FACE_COMPOSITE_TECH_DEMO.png"
+    }
+  ],
+  "production_ready": false,
+  "spine_ready": false,
+  "apk_ready": false,
+  "asset_registration_allowed": false,
+  "created_files": 5
+}
