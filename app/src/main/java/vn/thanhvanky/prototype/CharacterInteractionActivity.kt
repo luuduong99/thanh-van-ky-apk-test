@@ -286,6 +286,21 @@ class CharacterInteractionActivity : Activity() {
             val expressionRow = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
             }
+            // The existing neutral state is a reset control, NOT a sixth newly
+            // approved emotional artwork. It lets testers return from the five
+            // locked expressions without modifying any other appearance state.
+            val neutralButton = btn("Bình thường") {
+                CharacterAppearanceState.setExpression(this, selectedId, "normal")
+                render()
+            }
+            neutralButton.setBackgroundDrawable(rounded(
+                if (appearance.expression == "normal") gold else bgColor
+            ))
+            neutralButton.setTextColor(if (appearance.expression == "normal") bgColor else cream)
+            expressionRow.addView(neutralButton,
+                LinearLayout.LayoutParams(dp(138), dp(44)).apply {
+                    rightMargin = dp(8)
+                })
             for (option in approvedExpressions) {
                 val chooseExpression = btn(option.label) {
                     CharacterAppearanceState.setExpression(this, selectedId, option.id)
