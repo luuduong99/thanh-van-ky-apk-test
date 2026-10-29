@@ -1,0 +1,136 @@
+{
+  "checkpoint": "CP334",
+  "date": "2026-10-29",
+  "status": "VISUAL_CONCEPT_REVIEW_PENDING_ART_ACCEPTANCE",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "cp333_technical_art_reference": "TVK_LamThien_CP333_Refined_Vector_Study_NOT_APPROVED.zip",
+  "cp334_generated_flat_sheet_sha256": "1286237fd958990ffaf69f3b57c6997b00fbcd756d93887c351bb6ee84dda9ee",
+  "cp334_generated_sheet_dimensions": [
+    1536,
+    1024
+  ],
+  "warning": "Generated image says Production Ready but is one flat RGB infographic. It is NOT actual face layers, Spine, atlas, or APK.",
+  "expression_ids": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "expression_labels_vi": [
+    "Ngại ngùng",
+    "Tức giận",
+    "Đau đớn",
+    "Xấu hổ",
+    "Quyến rũ"
+  ],
+  "candidate_pieces": [
+    {
+      "expression_id": "shy",
+      "source_box_xyxy": [
+        12,
+        90,
+        268,
+        454
+      ],
+      "path": "candidates/CP334_SHY_CANDIDATE_FLAT.png",
+      "size_px": [
+        256,
+        364
+      ],
+      "sha256": "b0e38ccdc76dc3d5d3dcf08c10bf5efec63b0623ea916df934da6841e1f06863"
+    },
+    {
+      "expression_id": "angry",
+      "source_box_xyxy": [
+        278,
+        90,
+        530,
+        454
+      ],
+      "path": "candidates/CP334_ANGRY_CANDIDATE_FLAT.png",
+      "size_px": [
+        252,
+        364
+      ],
+      "sha256": "2b02c92af09f7e013c96f575aea14bdf6d421a37977904612d3189034e4c4e24"
+    },
+    {
+      "expression_id": "pain",
+      "source_box_xyxy": [
+        540,
+        90,
+        793,
+        454
+      ],
+      "path": "candidates/CP334_PAIN_CANDIDATE_FLAT.png",
+      "size_px": [
+        253,
+        364
+      ],
+      "sha256": "6a267f84c5f2207b83d267b9578e09808c601236af9d7941d401fbb3f0443aef"
+    },
+    {
+      "expression_id": "embarrassed",
+      "source_box_xyxy": [
+        805,
+        90,
+        1059,
+        454
+      ],
+      "path": "candidates/CP334_EMBARRASSED_CANDIDATE_FLAT.png",
+      "size_px": [
+        254,
+        364
+      ],
+      "sha256": "9bf30520004aaa6bfa9a526dcbc994a290c2f4c8b60427af055236fffab48803"
+    },
+    {
+      "expression_id": "alluring",
+      "source_box_xyxy": [
+        1070,
+        90,
+        1323,
+        454
+      ],
+      "path": "candidates/CP334_ALLURING_CANDIDATE_FLAT.png",
+      "size_px": [
+        253,
+        364
+      ],
+      "sha256": "ca5efb6dece69bcf59990088bcd9c3ac663a507571ef5cbf1f3ab9a6e51f0eb8"
+    }
+  ],
+  "observations": {
+    "good": [
+      "eyes look warm amber in major candidate panels",
+      "silver hair and overall anime rendering refined relative to CP333 vector prototype",
+      "five facial expressions visually differentiated at portrait scale"
+    ],
+    "mismatch": [
+      "denser gilded headdress/jewelry than V2",
+      "costume trim and neckline differ from V2",
+      "head/eye geometry and pose still require review against the soft original V2 face",
+      "approved emotion sheet is NOT a new canonical body or iris color source",
+      "some portraits differ in head angle and hand placement: not a shared rig face"
+    ]
+  },
+  "qa_gates": {
+    "canon_body_unchanged": true,
+    "five_emotion_directions_unchanged": true,
+    "new_portrait_style_artist_approved": false,
+    "single_native_face_master_across_five": false,
+    "clean_independent_facial_attachments": false,
+    "clean_underpaint_verified": false,
+    "front_three_quarter_production_art": false,
+    "spine_rig_verified": false,
+    "apk_built_tested": false,
+    "android_sprite_paths_registered": 0
+  },
+  "reference_workspace_ora": "CP334_VISUAL_REVIEW_WORKSPACE_NOT_RIG.ora",
+  "visual_review_workspace_is_not_sprite_rig": true,
+  "next": "Create real high fidelity V2-accurate semantic master Front and 3/4 with clean underpaint, 5 expression attachments, then visual QA/artist approval before Spine/APK."
+}
