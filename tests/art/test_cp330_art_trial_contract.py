@@ -49,7 +49,7 @@ class CP330TechnicalContractTests(unittest.TestCase):
         self.assertFalse(PACKAGE["clean_artist_underpaint"])
         self.assertEqual(PACKAGE["sprite_paths_registered"],0)
         self.assertEqual(REGISTRY["approved_expression_profile"]["id"],MAN["approved_expression_profile"])
-        self.assertEqual(REGISTRY["latest_user_approved_design"]["id"],MAN["canonical_visual_id"])
+        self.assertEqual(next(x for x in REGISTRY["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"],MAN["canonical_visual_id"])
 
     def test_source_reference_does_not_claim_original_high_resolution(self):
         self.assertFalse(PACKAGE["art_native_resolution_adequate"])
