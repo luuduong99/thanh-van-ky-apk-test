@@ -1,3 +1,5 @@
+> **CANON-ONLY / QUY TẮC HIỂN THỊ ẢNH NHÂN VẬT (ĐÃ CHỐT 2026-10-29):** Mỗi lần gửi ảnh nhân vật phải dùng đúng file CANON mới nhất đã được người dùng duyệt của CHÍNH nhân vật đó, hoặc crop đúng từ nguồn CANON. Tuyệt đối không đưa ảnh tìm trên mạng, ảnh nhân vật khác, ảnh đời cũ, proxy hoặc hình minh họa tương tự để thay thế. Preview art mới phải ghi rõ DRAFT/CHƯA DUYỆT và đặt cạnh ảnh CANON đúng nguồn; nếu thiếu file chuẩn thì nêu rõ, không tự thay thế. Quy tắc áp dụng cho mọi nhân vật và mọi thread.
+
 > **NGUỒN MỸ THUẬT LÂM THIỂN HIỆN HÀNH — CANON V2.1 ĐÃ CHỐT (2026-10-29)**: Chỉ dùng **file nguyên bản** `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` (941×1672, 9:16, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`). Tài liệu [CANON V2.1](art/LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md) · [Model Card](art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json) · [Plan](art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md). **V2/CP337/CP338/CP339 là lịch sử, không được sử dụng làm mẫu chính.** Chỉ ảnh tham chiếu đã duyệt; layer/Spine/APK chưa hoàn thành.
 
 # THANH VÂN KÝ — TÀI LIỆU MÔ TẢ DỰ ÁN
@@ -1463,3 +1465,14 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - File ZIP **23 mục** `TVK_CP366_Six_Authored_Sleeve_Layers_NOT_GAME_READY.zip` SHA256 `4952e29a86759b2bab38d62416c74ee66c594b4ff67449b8c9f5adfd1f528295`, ORA SHA256 `7bddf869a1d0ad73cd705c3f073958db7d51d6b713f9560eac66b4e4ebf7ac90`, CRC PASS. Đã lưu Library `/Thanh Van Ky/Development/CP366_Six_Vector_Sleeve_Art_Study/`. Mã nguồn `tools/art/cp366_build_vector_sleeve.py`, test `tests/art/test_cp366_native_sleeve_study.py`, [báo cáo CP366](art/LAM_THIEN_CP366_LEFT_SLEEVE_SIX_VECTOR_ART_STUDY.md).
 - **Không thay CANON**: tỷ lệ +17% đã bao gồm, tóc bạc tím/hoa trắng, khuôn mặt, bộ trắng–xanh–vàng, cả hai mũi guốc xanh, năm biểu cảm và bốn mức hư hại 100/70/50/30. Bản mới chỉ có một phần tay/trang phục; **chưa vẽ toàn thân hoặc cặp keyframe painter thật**, chưa rig/Spine/FPS thiết bị. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`, không import CP366 vào APK.
 - **CP367 tiếp theo:** tinh chỉnh 6 SVG art thực tế (đường viền vàng, nếp áo, lớp tóc/vải sau), đối chiếu trực quan với CANON; đồng thời tiếp tục vẽ các mảng full-body semantic còn thiếu (mặt, thân, chân, tay phải). Xuất cặp art idle/nâng tay **vẽ thật cùng góc/canvas/pivot** trước khi nghiệm thu rig và APK.
+
+
+---
+
+## 74. CP367 — CANON-only source/toe audit và khóa hình ảnh (2026-10-29)
+
+- **Ảnh chuẩn Lâm Thiển:** chính file người dùng gửi lại, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Chỉ file này (hoặc crop pixel-exact từ file này) được hiển thị như CANON, không dùng nhân vật minh họa khác.
+- **Bài kiểm thử CP367 mới:** audit Front 217×458 của source, hai vùng mũi guốc xanh tương ứng 163/163 và 146/146 blue pixels trong ảnh gốc. Kiểm thử alpha mất một bên và ảnh cắt sai khung đều bị nhận ra. **6/6 local PASS**; chỉ xác nhận reference/source QA, không xác nhận art in-game.
+- **Handoff:** [CP367 CANON-only QA](art/LAM_THIEN_CP367_CANON_ONLY_QA.md). Bộ QA cục bộ có script, test, JSON và một hình proof chỉ dùng CANON thật. Nếu cần đưa ảnh preview từ nơi khác lên GitHub, vẫn phải xác minh SHA và tuân thủ quy tắc CANON-only.
+- **Chưa xong:** CP366 có 6 lớp vẽ vector nghiên cứu vùng tay áo nhưng chất lượng chưa duyệt. Full body native, nét vẽ ẩn vai, keyframe tay, Spine/rig, Android chưa hoàn thành. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- **CP368 tiếp:** tinh chỉnh chất lượng 6 mảng vẽ CP366 theo CANON, tiếp tục vẽ semantic full-body và kiểm alpha/mép, preview CANON đối chiếu hai tư thế vẽ thật rồi mới nghiệm thu và build APK.
