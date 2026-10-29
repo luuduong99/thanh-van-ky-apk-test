@@ -1223,3 +1223,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Đã lưu bundle 7 file `TVK_CP349_Shoulder_Underpaint_Pilot_NOT_RIG.zip` SHA256 `18815b317d3cda7a7a87d25d3afa45812110081072445d8b67096687bd12fa4a` vào Library `/Thanh Van Ky/Development/CP349_Shoulder_Underpaint_Compositing_Pilot/`; kèm ảnh so sánh, GIF, mã chạy lại ở [CP349 tool](../tools/art/cp349_shoulder_backing_pilot.py) và [báo cáo](art/LAM_THIEN_CP349_SHOULDER_BACKING_PILOT.md).
 - **CP350 next:** cần vẽ thật Front native resolution với da/vải/tóc ẩn phía sau vai và cắt semantic arm/sleeve; tạo 2 frame idle/nhấc tay so với CANON V2.1; kiểm tra luôn cả hai mũi guốc xanh. Không thể chỉ dựa vào mask lấy màu để vượt visual gate.
 - CANON V2.1, tỷ lệ +17%, mặt, thiết kế áo và hư hại 100/70/50/30 vẫn bất biến. `production_release.status=blocked_pending_art`, `sprite_paths={}`, Spine/APK chưa nghiệm thu.
+
+
+---
+
+## 57. CP350 — Khung art chỉnh sửa OpenRaster cho khớp tay–vai (2026-10-29)
+
+- Sau CP349 thử nghiệm underpaint lấy màu nhưng **Visual QA FAIL** (dải màu kéo dọc), đã tạo **file ORA chỉnh sửa được thực tế** cho việc vẽ lại native art. Canvas `1290×2694`, có **15 lớp vẽ phân công chức năng còn TRỐNG** (face/eyes, tóc trước/sau, hoa, áo, vai, da tay, underpaint, váy/ribbon, hai chân và đôi mũi guốc xanh), cùng **2 guide**. Tổng 17 raster layer với file đúng chuẩn OpenRaster; kiểm tra ZIP CRC, stack.xml, mergedimage và kích thước PASS.
+- Layer tham chiếu dùng ảnh CP348 **215×449 được phóng 6 lần bằng nearest-neighbor, opacity giảm**, **không phải** artwork độ phân giải cao. Vùng khoanh vai trái ảnh `x=54..71, y=122..188`, pivot `(70,132)` chỉ là ước lượng QA, không phải skeleton đã chốt.
+- Gói 5 file `TVK_CP350_Native_Painting_Scaffold_NOT_ART_NOT_RIG.zip` SHA256 `13327791e4254b451543022f83abad66aaee05c23ef2066d930319dadb24c941`; gồm ORA, preview, manifest, README, builder Python. Lưu Library `/Thanh Van Ky/Development/CP350_Editable_Front_Painting_Scaffold/`. [CP350 handoff](art/LAM_THIEN_CP350_NATIVE_PAINTING_SCAFFOLD.md), [script preflight](../tools/art/check_cp350_painting_scaffold.py).
+- Bất biến CANON V2.1 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; giữ tỷ lệ +17%, trang phục ngực, mặt, tóc bạc, phụ kiện, hai mũi guốc xanh, biểu cảm, damage 100/70/50/30 đã duyệt.
+- **CP350 chỉ hoàn thành chuẩn bị cấu trúc file**, chưa hề hoàn thành art native high-res, vùng bị che, pose mới, rig Spine hay APK. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không được dùng source phóng to làm sprite sắc nét trong game.
+- **CP351 tiếp theo:** vẽ thật vùng vai/tay trái trên lớp riêng + hidden skin/bodice/hair; so một pose nghỉ và một pose nhấc tay với CANON V2.1, Visual QA PASS trước khi nhân sang vai phải, biểu cảm và damage.
