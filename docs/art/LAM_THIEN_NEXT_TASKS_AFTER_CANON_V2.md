@@ -1,3 +1,5 @@
+> **CHUYỂN SANG KẾ HOẠCH MỚI:** Lâm Thiển CANON V2.1 (SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`) đã được người dùng chốt 2026-10-29. File này là **lịch sử kế hoạch V2/CP339**, không phải plan tác vụ hiện hành. ĐỌC [PLAN CANON V2.1](LAM_THIEN_PLAN_AFTER_CANON_V2_1.md) và [ảnh chuẩn](LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md) trước khi tiếp tục.
+
 # Thanh Vân Ký — triển khai Lâm Thiển theo CANON V2 (2026-10-28)
 
 **Nguồn duy nhất cho tạo hình:** [mẫu V2 đã duyệt](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk) — ID `LT_CANON_BODY_REF_2026-10-28_V2` — SHA `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`.  
