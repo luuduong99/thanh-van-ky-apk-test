@@ -51,3 +51,10 @@
 - [Đặc tả review lịch sử (đã được duyệt, không còn pending)](LAM_THIEN_FIVE_EXPRESSIONS_REVIEW_2026_10_29.md).
 - `LAM_THIEN_DESIGN_REGISTRY.json` quản lý approved expression profile **độc lập** với approved body design.
 - Thuộc **P1-03 / face-expression art/rig**; ưu tiên tiếp tục P0 full-body/layer trước, không tự đánh dấu P1-03 hoàn tất.
+
+
+## Tiến độ thực hiện CP324 (2026-10-29)
+
+Phần **kết nối runtime state/UX** đã được triển khai thử trong Android: bộ chọn `shy / angry / pain / embarrassed / alluring`, nút reset `normal`, lưu theo nhân vật, không reset expression khi đổi pose/mở wardrobe; thiếu sprite giữ trạng thái nhưng không dùng nhầm ảnh nền. Danh sách asset ở `app/src/main/assets/character_expression_profiles.json` **chưa có sprite_paths** vì art face alpha thật chưa được tạo. Có 10 crop từ preview đã chốt làm handoff **REFERENCE ONLY**; không coi crop là sprite.
+
+Xem [LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md](LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md). **Không có thay đổi quyết định duyệt 5 nét mặt hoặc CANON V2; animation/Spine/APK vẫn chờ.**
