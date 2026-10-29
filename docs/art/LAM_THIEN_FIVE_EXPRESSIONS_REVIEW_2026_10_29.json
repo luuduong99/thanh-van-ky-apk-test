@@ -3,7 +3,7 @@
   "character_id": "lin_qian",
   "date": "2026-10-29",
   "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
-  "status": "pending_user_preview_approval",
+  "status": "archived_review_superseded_by_approved_2026_10_29",
   "visual_preview": {
     "filename": "LAM_THIEN_5_EXPRESSIONS_PREVIEW_PENDING_20261029.png",
     "sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
@@ -81,5 +81,8 @@
   "sprite_art_ready": false,
   "rig_animated": false,
   "apk_integrated": false,
-  "approval_note": "Specification and image preview pending user approval; do not replace CANON V2 or existing registered art."
+  "approval_note": "Specification and image preview pending user approval; do not replace CANON V2 or existing registered art.",
+  "superseded_by": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json",
+  "approved_expression_reference_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "note": "DO NOT use prior pending status for current design. The same image was explicitly approved 2026-10-29 and moved to Approved References; see approved JSON."
 }
