@@ -1121,3 +1121,16 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Bắt đầu lại việc triển khai theo [kế hoạch CANON V2.1](art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md): kiểm màu/góc nhìn → làm art native layer thật → damage/expression QA → rig/Spine → build/test APK. Mọi art phải giữ nguyên nhận diện theo file SHA mới.
 
 **Điểm tiếp tục sau checkpoint:** P0 đã lưu & khóa nguồn; P1 art phân lớp chưa hoàn thành; P2 rig/gameplay chưa nghiệm thu; P3 APK chưa có build được kiểm chứng.
+
+
+---
+
+## 49. CP340 — triển khai CANON V2.1 từ nguồn pixel thật (2026-10-29)
+
+**ĐÃ LÀM:** nguồn CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` được đọc lại đúng hash; tách **14 ảnh native nguyên pixel** (5 góc nhìn, 5 biểu cảm, 4 mức damage) và một **Foreground Front RGB không đổi + alpha thật** được thử với OpenCV GrabCut ở kích thước gốc **215×449 px**. Có `ORA` 2 layer: một Front alpha visible, một flat crop gốc hidden; có preview QA source/alpha và bộ test **9/9 local PASS** trên ảnh/ORA thực.
+
+**PHÂN BIỆT:** đây là `flat image with an experimental alpha matte` **không phải** tóc, mắt, cơ thể, trang phục tách semantic; nguồn nhỏ, mép vải/tóc còn xấu, mắt/môi in sẵn, không có underpaint. Không suy từ 2 layer ORA ra art production/Spine. File ZIP **26 entries** SHA256 `51cafc14800032712eeed7f0d1ff47edf6f486659ac38c28279298a1be0cb535`, Library Development `/Thanh Van Ky/Development/CP340_Canon_V2_1_Front_Alpha_Trial/`. GitHub có [CP340 handoff](art/LAM_THIEN_CP340_SOURCE_EXACT_FRONT_ALPHA_HANDOFF.md), [manifest](art/LAM_THIEN_CP340_ALPHA_TRIAL_MANIFEST.json), script tái tạo và CI metadata.
+
+**Kết luận P0:** ảnh V2.1 đủ để kiểm nhận diện/màu/chính sách nhưng góc `3/4 Front` ở bảng trông khá chính diện; cần artist xác định góc nhìn thật khi redraw, tuyệt đối không đổi khuôn mặt, vóc dáng, phần áo ngực, hoa và các vật liệu/tỷ lệ đã chốt. Cả 4 mốc 100/70/50/30 giữ nguyên từ source, không làm bụi/xước/rách quá mức ở 30%.
+
+**NEXT P1:** artist tạo **một Front native art đầy đủ** theo đúng V2.1 trên các layer *body, hair_back/front, face/skin_underpaint, eyes/mouth, main bodice, sleeve, ribbons/flowers/accessories* thật. Sau khi QA Front trên đúng silhouette mới làm 5 expressions và damage overlay, các góc còn lại. `production_release=blocked_pending_art`, `sprite_paths={}`; Spine/APK chưa nghiệm thu.
