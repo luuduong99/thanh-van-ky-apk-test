@@ -1,0 +1,32 @@
+name: Lam Thien V2.1 approved canon source lock
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CANON_V2_1_FINAL_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json'
+      - 'docs/art/LAM_THIEN_DESIGN_REGISTRY.json'
+      - 'docs/art/LAM_THIEN_MODEL_CARD_V2.json'
+      - 'docs/PROJECT_SPEC.md'
+      - 'tests/art/test_lam_thien_v2_1_active_canon.py'
+      - '.github/workflows/lam-thien-v2-1-canon-lock.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CANON_V2_1_FINAL_MANIFEST.json'
+      - 'docs/art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json'
+      - 'docs/art/LAM_THIEN_DESIGN_REGISTRY.json'
+      - 'tests/art/test_lam_thien_v2_1_active_canon.py'
+
+jobs:
+  protect-final-canon:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Protect latest approved V2.1 source and block unapproved sprite release
+        run: python3 -m unittest discover -s tests/art -p 'test_lam_thien_v2_1_active_canon.py' -v
+      # Binary reference PNG resides in ChatGPT Library with verified SHA.
+      # This test checks repo metadata, not image pixels, Spine, or APK.
