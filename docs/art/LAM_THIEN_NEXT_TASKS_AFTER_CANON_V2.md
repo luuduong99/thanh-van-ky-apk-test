@@ -226,3 +226,13 @@
 - [x] QA binary **8/8 local tests PASS**, ZIP CRC sạch, 5 crop trùng byte nguồn, ORA review hợp lệ. Lưu tại Library Development với ZIP SHA256 `8602b28f6df43952b6f70adcdffd4c0945bd0463ba6144c449a0a5b192a5dc8b`. [CP334 handoff](LAM_THIEN_CP334_ART_DIRECTION_HANDOFF.md).
 - [ ] **Art chưa đạt**: candidate mắt hổ phách/chi tiết tóc tốt hơn CP333, nhưng hình dáng và phụ kiện khác V2; model vẫn là flat concept chưa có underpaint/layer semantic; không Spine/Android APK.
 - [ ] **CP335:** ưu tiên **redraw thực trên chung face master Front + 3/4** từ V2, clean underpaint, iris/lashes/eyelids/brows/mouth/blush tách riêng và QA nhỏ; gửi preview asset rồi mới làm rig/Spine/APK. **Không tạo thêm atlas/crop để đánh dấu sai tiến độ.**
+
+
+## CP335 — Khóa sử dụng sprite chưa được duyệt (2026-10-29)
+
+- [x] Xác minh thiết kế V2 và 5 cảm xúc đã chốt; tạo bảng QA so bản concept CP335 (flat, chưa duyệt) với canon, thử 132px/64px.
+- [x] **Sửa runtime thật:** `CharacterExpressionCatalog.resolveSprite` yêu cầu `production_release`, nguồn V2/biểu cảm đúng SHA, QA artist+runtime, nghiệm thu **asset mới** từ người dùng, manifest SHA và hash từng file. Thiếu các điều kiện thì không trả ảnh, không fallback.
+- [x] Thêm `tools/verify_expression_art_release.py`, **17/17 Kotlin local scenarios** và **14/14 Python tests PASS** (gồm SHA file PNG/alpha/path) và workflow `cp335-expression-production-gate.yml` trên GitHub. **Run `40823727298` SUCCESS.**
+- [x] Lưu [CP335 handoff](LAM_THIEN_CP335_ART_RELEASE_HANDOFF.md), [manifest concept](LAM_THIEN_CP335_VISUAL_GATE_MANIFEST.json), ZIP SHA256 `d656146585681ce1a5b05d322fdab3a12eccb2c5f21b2afd6cc9e9d773dcf2df` tại Library Development.
+- [ ] **ART CHƯA CÓ:** CP335 generated sheet vẫn PNG phẳng, không có shared master Front/3⁄4, clean semantic layer, artist approval hoặc real asset registration. `production_release` tiếp tục BLOCKED.
+- [ ] **CP336 ưu tiên:** dựng thật một head master đúng CANON V2, sạch underpaint, hai góc Front/3⁄4, 5 nét alpha độc lập và cùng nhân dạng; duyệt art rồi mới đưa vào sprite manifest/Spine/Android APK. **Không hỏi lại CANON V2, tỷ lệ +17% hay 5 nét đã chốt.**
