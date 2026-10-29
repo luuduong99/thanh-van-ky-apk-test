@@ -254,3 +254,12 @@
 - [x] Tạo work order [CP337](LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md), bảo vệ hai nguồn approved và ghi tiêu chuẩn đủ 2 góc để nghiệm thu.
 - [ ] Chân dung FRONT được yêu cầu tạo riêng qua task `880ac92b-bf38-48ae-bd33-e7fde597efd8` đang **PENDING** tại checkpoint; chưa có ảnh kết quả được kiểm. **Không gọi là completed sprite**.
 - [ ] 3/4 asset và clean native layered artwork cần sản xuất; 13 semantic parts × 5 expressions mỗi góc vẫn chưa có production art. CP335 release gate BLOCKED, Spine/APK NOT DONE.
+
+
+## CP337 — user visual QA FAIL / chuyển hướng bảo toàn body V2 (2026-10-29)
+
+- [x] Hai generation jobs hoàn thành: Front `880ac92b-bf38-48ae-bd33-e7fde597efd8`, 3/4 `263c4531-2b33-4f2a-9ef5-5f5029a5b450`. **CẢ HAI KHÔNG ĐẠT** đối chiếu body/trang phục theo phản hồi người dùng. Không coi successful generation là approved art.
+- [x] Ghi nhận lỗi *design drift*: pose/góc mới từ prompt không giữ chính xác body và outfit; dùng generated Front làm nguồn 3/4 nhân sai lệch.
+- [ ] **ƯU TIÊN TIẾP:** khóa 100% CANON V2 **body + costume** (tỷ lệ +17% đã tích hợp), dựng chi tiết face/head theo đúng V2 *trong phạm vi không đổi trang phục*, đối chiếu trước khi tiếp tục Front/3/4, biểu cảm và rig.
+- [ ] Bản preview kế tiếp **phải nhìn thấy đủ đường nét body/cổ áo/tay áo/phụ kiện để so sánh**, không chỉ crop khuôn mặt. Gate FAIL khi neckline, silhouette, phân bố vàng, hoa tóc, body proportion hoặc fabric khác mẫu chốt; approval manual chứ không phải tự đánh giá text.
+- [ ] `production_release.status=blocked_pending_art`, `sprite_paths={}`, CP337/Spine/APK vẫn **NOT DONE**.
