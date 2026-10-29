@@ -270,7 +270,7 @@
     "clean_underpaint_artist_approved": false,
     "spine_ready": false,
     "apk_ready": false,
-    "package_sha256": "3cbbe39054a02ca04b25e4ef40398bb9b8ecbd5a74923c9632c71206e228078f",
+    "package_sha256": "4fe87b2ce4610da81919215ed3395d01f0a4a699fe472d6ba965c433755a360e",
     "library_backup": "/Thanh Van Ky/Development/CP328_Canon_Face_Color_Lock/",
     "handoff": "docs/art/LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md",
     "next": "CP329 high-res production face redraw / 5 real alpha expression attachments"
