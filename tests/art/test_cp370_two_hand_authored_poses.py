@@ -8,7 +8,8 @@ from PIL import Image, ImageChops
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
-sys.path.insert(0,str(HERE))
+SCRIPT_ROOT=HERE if (HERE/'cp370_two_hand_authored_poses.py').exists() else HERE.parents[1]/'tools'/'art'
+sys.path.insert(0,str(SCRIPT_ROOT))
 import cp370_two_hand_authored_poses as cp370
 
 CANON=HERE/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png'
