@@ -1476,3 +1476,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Handoff:** [CP367 CANON-only QA](art/LAM_THIEN_CP367_CANON_ONLY_QA.md). Bộ QA cục bộ có script, test, JSON và một hình proof chỉ dùng CANON thật. Nếu cần đưa ảnh preview từ nơi khác lên GitHub, vẫn phải xác minh SHA và tuân thủ quy tắc CANON-only.
 - **Chưa xong:** CP366 có 6 lớp vẽ vector nghiên cứu vùng tay áo nhưng chất lượng chưa duyệt. Full body native, nét vẽ ẩn vai, keyframe tay, Spine/rig, Android chưa hoàn thành. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - **CP368 tiếp:** tinh chỉnh chất lượng 6 mảng vẽ CP366 theo CANON, tiếp tục vẽ semantic full-body và kiểm alpha/mép, preview CANON đối chiếu hai tư thế vẽ thật rồi mới nghiệm thu và build APK.
+
+
+---
+
+## 75. CP368 — Art tay áo trái nguồn CANON V2.1, 6 lớp SVG thử nghiệm (2026-10-29)
+
+- **Ảnh gốc bất biến:** đúng Lâm Thiển CANON V2.1 người dùng duyệt, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Mọi preview liên quan đều đối chiếu từ file nguồn nhân vật này; CP368 mới là **UNAPPROVED DRAFT**, tuyệt đối không dùng để thay ảnh chuẩn.
+- **Art thực đã phát triển:** chỉnh 6 mảng SVG/PNG độc lập từ CP366 gồm tóc bạc tím sau, phần thân áo và da vai khuất, tay/bàn tay, lụa tay áo, trang sức vàng. ORA 7 lớp gồm 6 lớp thử nghiệm hiển thị, 1 CANON guide ẩn. Lụa và viền vàng đã được làm mềm, nhiều nét hơn nhưng vẫn chưa đủ chi tiết như tranh CANON.
+- **Kiểm thử thực:** 6/6 local PASS; hình ảnh nguồn SHA khớp, SVG parse, ORA CRC/layer alpha, reject sai hash, preview nguồn. Thử biến đổi kỹ thuật 0/-8/-15/+8° có overlapping alpha tại vai nhưng không khẳng định joint an toàn hay chuyển động mượt/game-ready.
+- **Tài nguyên có thể tiếp tục:** [CP368 handoff](art/LAM_THIEN_CP368_REFINED_LEFT_SLEEVE_DRAFT.md), `tools/art/cp368_refine_sleeve.py`, `tests/art/test_cp368_refine_sleeve.py`, ZIP 25 files `TVK_CP368_LamThien_RefinedSleeve_NOT_APPROVED.zip` SHA256 `2a8ab1c8a5b22eac5a265ebfe07bcde592de501c9b98014aaa6c957f618009b8` trong Library `/Thanh Van Ky/Development/CP368_Refined_Sleeve_Study/`.
+- **Trạng thái:** **Visual QA NOT_PASSED**; chưa vẽ hoàn thiện full-body/face/giày, chưa hai keyframe thật, Spine/physics, APK; `production_release.status=blocked_pending_art` và `sprite_paths={}` tiếp tục bị khóa. Không coi ORA hay PNG thử nghiệm này là asset đã duyệt.
+- **CP369 tiếp theo:** tiếp tục refinements của 6 mảng thật theo CANON, mở rộng body/tóc/mặt/chiếc giày xanh thành layer native có underpaint, dùng 2 pose vẽ riêng để QA trước khi rig/game.
