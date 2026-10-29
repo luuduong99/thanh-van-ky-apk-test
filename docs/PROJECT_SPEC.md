@@ -1063,3 +1063,16 @@ Tách đúng nguồn Front/3⁄4 và phát hiện góc/nội dung pixel chưa đ
 Hai ảnh **Front** (Runway task `880ac92b-bf38-48ae-bd33-e7fde597efd8`) và **3/4** (task `263c4531-2b33-4f2a-9ef5-5f5029a5b450`) đã được tạo ảnh phẳng nhưng **KHÔNG ĐẠT visual QA**: người dùng xác nhận lệch rõ **body và trang phục** so với mẫu chính thức. **Đánh dấu cả hai REJECTED/DEVELOPMENT ONLY**, không dùng làm model, không thêm `sprite_paths`, không rig/Spine/APK.
 
 **Bài học quy trình bắt buộc:** prompting góc mặt mới bằng AI có thể tự thay body, tỉ lệ, áo, neckline, trang sức; lấy một bản sai làm tham chiếu cho bản tiếp theo sẽ nhân lỗi. Không có bảo đảm khớp tuyệt đối chỉ từ prompt. Bắt buộc lấy **CANON V2 làm nguồn body/costume bất biến**, chỉ chỉnh/vẽ vùng head cần thiết, kiểm đối chiếu đủ body/costume trong preview trước khi làm 5 biểu cảm/Spine. Tỷ lệ +17% trong V2, trang phục trắng–xanh–vàng, các trạng thái damage 100/70/50/30 và 5 biểu cảm vẫn giữ nguyên. **CP337 chưa nghiệm thu**.
+
+
+### CP337 — Quy chuẩn nghiệm thu sai lệch hình ảnh (xác nhận người dùng 2026-10-29)
+
+**Không yêu cầu trùng pixel tuyệt đối**, nhưng bản vẽ mới phải giữ **nhận diện và thiết kế tổng thể như CANON V2**. Phân loại trước khi đưa vào pipeline sản xuất:
+
+- **P0 — Khóa đặc trưng (bắt buộc):** tỷ lệ cơ thể và mốc +17% đã có trong V2; vóc dáng/silhouette và tỷ lệ đầu–thân; đặc trưng khuôn mặt; màu mắt hổ phách; tóc bạc và kiểu tóc chính; kiểu cắt và cấu trúc trang phục, vị trí che phủ, viền/cổ áo, dải màu trắng–xanh–vàng; phụ kiện nhận diện và hoa cài nổi bật. **Không tự thay đổi**.
+- **P1 — Sai lệch lớn / phải sửa:** thay khác vóc dáng, neckline/cutout, kiểu áo, mức che phủ, phối màu chính, hoa hoặc phụ kiện nổi bật; thay đổi khuôn mặt khiến nhìn như người khác; lặp sai lệch qua các góc nhìn. **Visual QA FAIL**, không cho vào game.
+- **P2 — Chi tiết nhỏ có thể chấp nhận sau đối chiếu:** vài sợi tóc, nếp gấp vải và độ rủ tự nhiên, ánh sáng/đổ bóng, sắc độ hoặc hoa văn phụ rất nhỏ; biến đổi phối cảnh hợp lý khi quay góc 3/4. Chỉ chấp nhận nếu **tổng thể vẫn đúng CANON V2 và không tích lũy thành khác thiết kế**. Không tự đặt ngưỡng % tùy tiện.
+- **Quy trình:** hiển thị **CANON V2 bên cạnh preview ở đủ phạm vi thân/trang phục liên quan**, đánh dấu sai khác và quyết định `PASS / PASS WITH MINOR NOTES / REVISE`. Với một thay đổi nhỏ còn phân vân hoặc làm thay đổi cảm giác tổng thể, gửi người dùng xem trước. **Phê duyệt concept V2 không đồng nghĩa phê duyệt file art mới**.
+- **Bất biến:** 5 biểu cảm đã chốt, tủ trang phục và damage `100/70/50/30` vẫn theo tài liệu chính thức. CP337 và Spine/APK chưa hoàn thành.
+
+Quy chuẩn này áp dụng cho các nhân vật tiếp theo với **CANON riêng của từng nhân vật**, không dùng body/mặt Lâm Thiển làm mẫu thay thế.
