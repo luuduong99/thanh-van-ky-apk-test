@@ -207,3 +207,13 @@
 - [ ] **CP332 art production CHƯA ĐẠT:** khuôn mặt mới chỉ là minh họa vector đơn giản, không đủ giống CANON V2. Chưa có art Front/3⁄4 đủ chuẩn, hair deformations, Spine skeleton/animation, APK hoặc biến thể wardrobe/damage thật. Không nhập vào `sprite_paths`.
 - [ ] **CP333 ưu tiên:** nâng chất lượng họa sĩ trên đúng 10 + 13 layer semantic, đảm bảo danh tính V2 + mắt hổ phách, hair/face/choker/hoa, kiểm độ rõ cả 5 biểu cảm ở 256/132/64px, đủ góc/underpaint, gửi duyệt **art thành phẩm** rồi mới nối Spine và build APK.
 - **Quyết định vẫn đã chốt**: V2, +17% trong V2, năm biểu cảm, bốn mức hư hại 100/70/50/30. Không hỏi lại hoặc thay ngầm.
+
+
+## CP333 — tinh chỉnh source SVG semantic (2026-10-29)
+
+- [x] Chỉnh vector hair highlights, filigree hoa vàng, amber iris, lông mi, chân mày và môi **thực trên SVG**, không crop poster. Đã xuất **6 ORA**, 10 layer base chung và **65 attachment RGBA** (13×5); base da sạch không baked nét mặt.
+- [x] **13/13 local ORA tests PASS**, 9/9 source contract local PASS, ZIP CRC PASS, strict art gate FAIL đúng kỳ vọng; nguồn CANON V2 và năm cảm xúc giữ nguyên SHA. Có before/after review + bảng kiểm 256/132/64px.
+- [x] [CP333 handoff](LAM_THIEN_CP333_FACE_POLISH_HANDOFF.md), [manifest](LAM_THIEN_CP333_ART_HANDOFF_MANIFEST.json), source/validator/tests/workflow GitHub; gói ZIP SHA256 `1f8aa806758332194e258f941530b18b54e00991c877c3397a274d7c134517ad` đã sao lưu Library Development.
+- [ ] **MỸ THUẬT CÒN MỞ:** vector CP333 vẫn chưa giống đủ CANON V2, thiếu Front/3⁄4, underpaint tóc cho mesh/deform, Spine và APK. Không tự điền `sprite_paths`; poster infographic có chữ “production ready” không xác nhận điều này.
+- [ ] **CP334 ưu tiên:** redraw chất lượng cao **trên semantic layer đã có**, kiểm nhận diện/góc/5 nét mặt và QA ở 256/132/64px; sau nghiệm thu mỹ thuật mới rig/animation và build APK.
+- **Không chốt lại:** body V2, tỷ lệ +17% đã có, 5 nét biểu cảm, 4 mốc hư hại 100/70/50/30.
