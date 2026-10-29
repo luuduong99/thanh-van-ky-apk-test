@@ -242,27 +242,37 @@
     "apk_built_and_verified": false
   },
   "latest_technical_face_art_checkpoint": {
-    "checkpoint": "CP327",
+    "checkpoint": "CP328",
     "date": "2026-10-29",
-    "status": "tech_atlas_byte_exact_not_approved_character_art",
+    "status": "canon_face_color_lock_verified_production_art_pending",
     "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
     "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
-    "source_art": "CP326 vector face prototype (NOT APPROVED)",
-    "palette_gate": "new drafts rejected due eye-color/face/ornament drift from CANON V2",
-    "atlas_dimensions": [
-      2048,
-      2048
+    "native_face_crop_px": [
+      230,
+      114
     ],
-    "atlas_regions": 35,
-    "atlas_sha256": "2ef4e619e6d496598db835093e1be5f72ca8b7385ee3bfdc84f24188d7ea9739",
-    "package_sha256": "69be3de41b2e33dd15dd67899b27bb2b7a4ef86813afe3e91443f7b51e1b14db",
-    "atlas_format": "PNG+JSON engine-neutral NOT Spine atlas",
-    "strict_gate": "blocked_pending_art_approval",
-    "image_art_approval": false,
+    "eye_color_reference": "warm_amber_gold_in_CANON_V2",
+    "eye_color_audit_roi_counts": {
+      "left": {
+        "amber": 124,
+        "blue": 0
+      },
+      "right": {
+        "amber": 105,
+        "blue": 0
+      }
+    },
+    "method_limit": "HSV heuristic on eye ROIs including skin and eyelashes; NOT artist approval",
+    "source_sha_checked": true,
+    "local_tests_passed": 9,
+    "generated_new_face_art_approved": false,
+    "production_highres_face_master_ready": false,
+    "clean_underpaint_artist_approved": false,
     "spine_ready": false,
     "apk_ready": false,
-    "library_backup_path": "/Thanh Van Ky/Development/CP327_Rig_Atlas_Preflight/",
-    "handoff": "docs/art/LAM_THIEN_CP327_RIG_ATLAS_HANDOFF.md",
-    "next_step": "CP328: production face master redraw matching CANON V2 amber eyes and approved expression direction"
+    "package_sha256": "3cbbe39054a02ca04b25e4ef40398bb9b8ecbd5a74923c9632c71206e228078f",
+    "library_backup": "/Thanh Van Ky/Development/CP328_Canon_Face_Color_Lock/",
+    "handoff": "docs/art/LAM_THIEN_CP328_FACE_IDENTITY_HANDOFF.md",
+    "next": "CP329 high-res production face redraw / 5 real alpha expression attachments"
   }
 }
