@@ -33,7 +33,7 @@ The ROI is a manually selected shoulder/upper-body area x=[42..84],y=[119..191] 
 ## Real QA status and files
 - The technical checks in the builder: **12/12 PASS** (CANON and CP348 SHA locks, four nonempty new authored paints, clipping, pixel-exact rest, consistent mockup canvases, ORA zip integrity / 14 layers, and explicit release block).
 - **Manual visual review: FAIL / NOT ACCEPTED**. `CP361_SHOULDER_NEW_ART_STUDY_PREVIEW.png` reveals stiff blue/silk fill and unnatural edges around the body/arm at larger rotation; the full 215×449 source's existing silhouette cut lines remain. The work does not reconstruct complete anatomy, shoulder/sleeve details or back-hair geometry.
-- ORA SHA256 `e58b8e34c1c07b6859064cad87fa92c45a90613d6bd66fc2b8e439deff284e9ce` (check actual file if changing sources).
+- ORA SHA256 `090e543facc42f8eb69683b151db9ab067efaea7340ec0cc7ed0bf6f70d8724f`.
 - Deliverable `TVK_CP361_Shoulder_Vector_Art_Study_NOT_SPINE.zip` **17 files**, CRC PASS, SHA256 `224d694c7a01f5e66b6c12c3a68c6b82f9115103bbaafa78a7909c5732c935c8`.
 - Library: `/Thanh Van Ky/Development/CP361_Four_Vector_Underlays_ArtStudy_VISUAL_FAIL/`.
 - Source code: [CP361 builder](../../tools/art/cp361_four_shoulder_underlay_study.py), tested with locked original input files, receives `--canon`, `--cp348-zip`, `--out`; [CP361 code safety tests](../../tests/art/test_cp361_vector_study_safety.py).
