@@ -49,3 +49,10 @@ CP330 có năm face nền khác nhau, nên tóc/phụ kiện/đường hàm có 
 5. Chỉ sau art QA mới điền asset paths, rig Spine, build và test APK.
 
 **Không đánh dấu P0-02, P0-03, P1-03 hoặc P2 đã hoàn thành chỉ vì CP331 có 35 mảnh alpha và 9 bài test PASS.**
+
+
+## Xác minh GitHub Actions thực tế (2026-10-29)
+
+- Workflow `CP331 shared-face identity technical contract`: **SUCCESS**, run `40817371764`, job `shared-face-metadata` ID `123261502899` trên commit `0bab1c9f8dd8d78af6843de111c7b8f7db17097d`.
+- GitHub CI chỉ kiểm **metadata/điều kiện không được đưa ảnh chưa duyệt vào production**. Khả năng mở/ghép 5 ORA nhị phân, so CRC và pixel ngoài vùng mặt được kiểm **local 9/9 PASS** trên gói Library; GitHub runner không có ORA này.
+- Kết quả **không phải** nghiệm thu art, Spine, Android Gradle hay APK.
