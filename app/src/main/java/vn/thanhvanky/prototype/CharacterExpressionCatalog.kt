@@ -45,6 +45,13 @@ internal object CharacterExpressionCatalog {
         return result
     }
 
+    /** Used by debug UI to distinguish old placeholder art from released CANON sprites. */
+    fun hasRuntimeArtApproval(catalogue: JSONObject, characterId: String): Boolean {
+        val approved = approvedCharacter(catalogue, characterId) ?: return false
+        return approvedSpriteRelease(approved) != null &&
+            (approved.optJSONObject("sprite_paths")?.length() ?: 0) > 0
+    }
+
     fun isApproved(catalogue: JSONObject, characterId: String, expression: String): Boolean =
         approvedOptions(catalogue, characterId).any { it.id == expression }
 
