@@ -947,3 +947,21 @@ Từ ORA CP329 trống chuyển sang thí nghiệm CP330 có các lớp mặt th
 
 ### Lịch sử 2026-10-29
 Giảm sai lệch nhận dạng giữa năm bản face nháp bằng thử nghiệm dùng chung một nền; không thay bản đã chốt và không đánh dấu các patch là sprite game.
+
+
+---
+
+## 42. CP332 — master vector sạch và 65 layer biểu cảm ngữ nghĩa (2026-10-29)
+
+**ĐÃ CÓ ART VECTOR PHÂN LỚP THẬT ĐỂ THỬ KỸ THUẬT, CHƯA ĐẠT MỸ THUẬT CANON HOẶC SPINE/APK.**
+
+- **Hai nguồn đã duyệt không đổi:** CANON `LT_CANON_BODY_REF_2026-10-28_V2` SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`; mẫu 5 biểu cảm `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED` SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`. Tỷ lệ +17% đã có trong V2, mắt hổ phách, tóc/phụ kiện/trang phục và damage `100/70/50/30` bất biến.
+- **Tiến bộ so với CP331:** CP331 có một raster master chứa mắt/miệng baked và dùng ảnh crop có lẫn da/tóc. CP332 vẽ **SVG vector mới ở canvas 1024×1024**: 1 OpenRaster face master với **10 lớp nền** gồm **da underpaint sạch (không có mắt/mày/miệng cũ)**, và **5 ORA biểu cảm** dùng **10 lớp nền cùng byte/hash** nhưng thêm **13 lớp RGBA ngữ nghĩa riêng mỗi trạng thái**, **65 attachment alpha thật**: sclera, iris hổ phách, lông mi, mí, chân mày, má, môi.
+- **Kết quả kiểm:** 6 ORA binary mở được/ZIP CRC/stack đúng, lớp alpha có pixel, recomposite từ layer trùng mergedimage, skin đầy đủ dưới mắt/môi, 5 expression khác nhau; **10/10 bài test local PASS**. `--strict` cố ý **BLOCK** vì chưa có duyệt art.
+- **LƯU:** `TVK_LamThien_CP332_Semantic_Face_Study_NOT_APPROVED.zip`, SHA256 `a70a383076592c986bd887bd4477c71b6c60f9bf13a3e711b9c20b1376dbeb01`, 173 tệp/CRC PASS, Library Development `/Thanh Van Ky/Development/CP332_Semantic_Face_Study/`. GitHub `tools/cp332/build_cp332.py`, `tools/cp332/validate_cp332.py`, `tests/art/test_cp332_semantic_source_contract.py`, workflow `cp332-semantic-face-contract.yml` chỉ kiểm source/metadata; ORA binary được QA local riêng.
+- **KHÔNG TỰ NHẬN art production:** bản vector CP332 có nét khá đơn giản, không đủ giống anime face CANON V2, cần tinh chỉnh lại tỷ lệ/anatomy và nghệ thuật; canvas 1024 vector chỉ là kỹ thuật, không phải chứng minh art đúng canon, không đủ Front/3⁄4/Side hoặc animation. **Không đăng ký `sprite_paths`**, không đánh dấu P0-02/P0-03/P1-03/P2 DONE.
+- **CP333 tiếp theo:** họa sĩ redraw/phát triển lớp nét mặt **trên cùng cấu trúc semantic** để khớp V2, hoàn thiện skin/hair underpaint, test 256/132/64px, Front/3⁄4 và biến dạng, gửi preview nghiệm thu asset mới → mới Spine/Android/APK.
+- **Tài liệu:** [CP332 handoff](art/LAM_THIEN_CP332_SEMANTIC_FACE_HANDOFF.md), [manifest](art/LAM_THIEN_CP332_SEMANTIC_STUDY_MANIFEST.json).
+
+### Lịch sử cập nhật 2026-10-29
+Đã nâng từ patch R&D CP331 sang SVG art thật tách theo bộ phận CP332, vẫn trung thực trạng thái NOT APPROVED để các bước sau không sử dụng nhầm.
