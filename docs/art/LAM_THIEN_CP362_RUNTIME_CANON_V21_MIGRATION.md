@@ -1,0 +1,22 @@
+# CP362 — Lâm Thiển runtime CANON V2.1 migration and fail-closed sprite gate
+
+Date: 2026-10-29. **Actual runtime metadata/code correctness fix completed; native painter art NOT completed.**
+
+## What inspection found
+- Source-of-truth `docs/art/LAM_THIEN_DESIGN_REGISTRY.json` correctly names latest user-approved `LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29`, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672, flat reference, not a rig).
+- However `app/src/main/assets/character_expression_profiles.json` still used previous **V2** ID `LT_CANON_BODY_REF_2026-10-28_V2` and SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711` in `canonical_body_visual_id`/`canonical_body_sha256` **and also in `production_release`**. It contained a nested V2.1 reference but consciously retained those legacy release-gate fields. That archival choice creates a future release footgun: an accepted image could be checked against the *wrong* body source if metadata changed without a separate gate.
+- The five approved expression **style/direction** references independently remain approved, even though their historical `canonical_body_visual_id` in the expression design document is V2. We do not mutate that historical source; face art must be redrawn to the active V2.1 identity before game use.
+
+## Concrete source changes
+1. `app/src/main/assets/character_expression_profiles.json`: migrate both runtime body fields and both production release body fields to **active V2.1 ID/SHA**. Preserve the old pair only in `archived_body_release_metadata`. Update misleading character notes. `production_release.status` remains `blocked_pending_art`; `sprite_paths={}`, `artist_qa_passed=false`, `runtime_qa_passed=false`.
+2. `CharacterExpressionCatalog.kt`: `approvedSpriteRelease` refuses Lâm Thiển art unless nested active-reference, character runtime body, and production release body **all match exactly the locked V2.1 ID and SHA**. This is a defensive contract check. It does not approve artwork and does not change any other character's body reference.
+3. Update `tests/art/test_cp324_expression_runtime.py`: assert runtime references against **latest active V2.1 registry** instead of the old archived V2 model card, while keeping historical expression direction independent.
+4. Add `tests/art/test_cp362_runtime_canon_v21.py` with five tests covering active canon, release contract, historical metadata, blocked art, separate facial direction.
+
+## Art status and original CP362 goal
+The CP361 real editable ORA and original CANON were reopened. The four new shapes cover small hidden shoulder studies, but the rest of the 1290×2694 canvas still scales the **215×449 raster**, not an independently painted high-res figure. Visual art remained FAIL in CP361. No fully authored, same-camera idle/arm-raise source, six complete painter-authored parts, Spine rig or physical Android performance recording was obtained in this turn. **The native high-resolution painter-art milestone is NOT DONE.** We deliberately didn't use a new freely generated lookalike as an approved Lâm Thiển source: character facial identity, silver-lavender hair, white/blue/gold costume, body proportion +17% already integrated, both blue shoe toes, five expressions and damage levels 100/70/50/30 remain locked.
+
+## Acceptance gate
+- Runtime contract correct != actual production sprites exist. `production_release.status=blocked_pending_art` and `sprite_paths={}` remain untouched.
+- For CP363: author an artist-quality high-resolution independent front figure including hidden layers beneath shoulders, upper arm/sleeve, bodice and rear hair; export **same-camera/same-canvas/same-pivot idle and deliberate arm-raise frames**; compare against active V2.1 portrait and two shoe toes; manual visual approval required before importing rig/Spine and testing on Android.
+- CI results, once obtained, must be appended separately; do not mark as pass before observing workflow conclusions.
