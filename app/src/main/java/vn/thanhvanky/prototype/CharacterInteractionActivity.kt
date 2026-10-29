@@ -204,6 +204,16 @@ class CharacterInteractionActivity : Activity() {
         // expression whose costume/integrity/pose-specific sprite is still missing.
         val heroineImage = if (requiresExpressionArt) expressionArt.orEmpty()
             else artwork.path.orEmpty()
+        // A debug prototype may display legacy placeholder art for development.
+        // A release build must NEVER show it as Lâm Thiển's approved CANON V2.1.
+        val hasApprovedLamThienSprite = CharacterExpressionCatalog.hasRuntimeArtApproval(
+            expressionProfiles, selectedId
+        )
+        val debugArtPreview = (applicationInfo.flags and
+            android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        val safeHeroineImage =
+            if (selectedId == "lin_qian" && !hasApprovedLamThienSprite && !debugArtPreview) ""
+            else heroineImage
         val heroineCrop = artwork.crop
         val outfitId = appearance.wardrobe
         var outfitLabel = outfitId
@@ -223,7 +233,7 @@ class CharacterInteractionActivity : Activity() {
             val bedFrame = FrameLayout(this).apply {
                 setBackgroundDrawable(rounded(Color.rgb(39, 56, 69)))
             }
-            bedFrame.addView(portrait(heroine.optString("name"), heroineImage,
+            bedFrame.addView(portrait(heroine.optString("name"), safeHeroineImage,
                 heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
                 FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(310)))
             bedFrame.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
@@ -237,19 +247,20 @@ class CharacterInteractionActivity : Activity() {
             val row = LinearLayout(this)
             row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
                 LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
-            row.addView(portrait(heroine.optString("name"), heroineImage,
+            row.addView(portrait(heroine.optString("name"), safeHeroineImage,
                 heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
                 LinearLayout.LayoutParams(0, dp(345), 1f))
             portraits.addView(row)
         }
 
-        if (selectedId == "lin_qian" &&
-            !CharacterExpressionCatalog.hasRuntimeArtApproval(expressionProfiles, selectedId)) {
-            portraits.addView(txt(
+        if (selectedId == "lin_qian" && !hasApprovedLamThienSprite) {
+            val notice = if (debugArtPreview)
                 "ẢNH TEST / LEGACY — Lâm Thiển chưa có sprite CANON V2.1 được nghiệm thu. " +
-                    "Chuyển động đang thấy chỉ là bitmap-mesh demo, không phải Spine/rig chính thức.",
-                11f, Color.rgb(255, 214, 142), true
-            ))
+                    "Chuyển động đang thấy chỉ là bitmap-mesh demo, không phải Spine/rig chính thức."
+            else
+                "Sprite Lâm Thiển CANON V2.1 chưa được nghiệm thu và chưa được hiển thị. " +
+                    "Hãy sử dụng bản thử nghiệm để xem asset tạm."
+            portraits.addView(txt(notice, 11f, Color.rgb(255, 214, 142), true))
         }
 
         val poseScroller = android.widget.HorizontalScrollView(this).apply {
