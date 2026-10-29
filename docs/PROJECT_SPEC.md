@@ -837,3 +837,22 @@ Có thêm ORA alpha tham chiếu *thực* và QA; không đánh tráo trạng th
 ### Bổ sung CP325 — GitHub CI đã xác minh (2026-10-29)
 
 Kiểm tra thực tế GitHub Actions trên commit `4cab946f91efdaf5c08988df85f76bb2d0b88929`: CP325 metadata contract run `40804686901` **SUCCESS**, CP324 runtime contract run `40804686882` **SUCCESS**, approved-expression consistency run `40804686885` **SUCCESS**. Đây là các kiểm tra code/metadata, **không phải Gradle APK**, không kiểm trực tiếp file ORA Library và không thay P0/P1 thành DONE. Kiểm tra ORA 5/5 PASS là kết quả local riêng. Xem [CP325 handoff](art/LAM_THIEN_CP325_FACE_ART_HANDOFF.md).
+
+
+---
+
+## 36. CP326 — 5 biểu cảm dùng chung một nền mặt CANON V2, layer alpha vẽ độc lập (2026-10-29)
+
+**ĐÃ TẠO ART THỬ/ĐÃ QA KỸ THUẬT; CHƯA ĐƯỢC DUYỆT LÀ SPRITE GAME:**
+
+- Trích nguồn face từ đúng `LT_CANON_BODY_REF_2026-10-28_V2`, SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`, bbox `[1160,0,1390,114]`. **Native 230×114 px**; làm việc trên canvas 920×456 chỉ là phóng 4×, KHÔNG gọi là ảnh HD.
+- Dựng 5 bộ biểu cảm `shy, angry, pain, embarrassed, alluring` từ đúng bộ được duyệt (`LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED`) bằng **35 layer RGBA độc lập vẽ mới** (mắt/mày/miệng/má); 5 file ORA, mỗi file kèm base underpaint **inpaint tự động tạm thời** và guide canon gốc ẩn. Khác pixel patch CP325 ở chỗ các layer không chứa da/tóc cắt từ poster.
+- **Kiểm thử LOCAL:** 6/6 unittest PASS; 5 ORA đều có alpha, khớp ảnh composite, CRC/stack hợp lệ; `--strict` FAIL đúng dự kiến do prototype chưa được duyệt.
+- **CHƯA ĐẠT ART:** nét vẽ độc lập hiện chưa khớp mức tinh tế của mẫu được duyệt; nền inpaint là bản tạm; full-body/face nguồn đủ phân giải và ORA 15 layer của CANON V2 vẫn thiếu. **Không** dùng làm `sprite_paths`, không rig, không APK.
+- **LƯU TRỮ:** ZIP `TVK_LamThien_CP326_Vector_Face_Prototype_NOT_GAME_READY.zip`, SHA256 `c9108a665611cd09755be3e1a5ced6a7fc6d655efdb497c394b48907388dc0c9`, Library Development `/Thanh Van Ky/Development/CP326_Vector_Face_Prototype/`. Mã tái tạo `tools/cp326/create_cp326_face_vectors.py`, QA `tools/cp326/validate_cp326_face.py`, JSON `LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json`.
+- **P0/P1-03/P2 CHƯA ĐÓNG:** đã duyệt CANON V2 và 5 biểu cảm nhưng chưa có production face art, Spine runtime hoặc APK mới được kiểm thử. Không gọi 35 layer demo là asset hoàn tất.
+- **ĐIỂM TIẾP TỤC CP327:** nguồn V2 layer/fullbody thực hoặc vẽ lại đúng canon ở độ phân giải đủ → underpaint thật/face attachments → QA cỡ thoại và các góc → rig/Spine → APK.
+- **TÀI LIỆU:** [LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md](art/LAM_THIEN_CP326_FACE_VECTOR_HANDOFF.md).
+
+### Lịch sử 2026-10-29
+Đã chuyển từ pixel-patch CP325 sang *layer vector riêng* CP326 và ghi rõ mức trung thực của hình ảnh; chuẩn canon/5 cảm xúc bất biến.
