@@ -266,5 +266,27 @@
     "runtime_art_release_status": "blocked_pending_art",
     "handoff": "docs/art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md",
     "next": "Stop unconstrained portrait generation. Preserve exact V2 full-body/costume, make body-and-wardrobe-fidelity visual gate, redraw head using original V2 then only make matched 3/4 and five expressions."
+  },
+  "latest_reference_preparation_checkpoint": {
+    "checkpoint": "CP338",
+    "date": "2026-10-29",
+    "status": "canon_locked_native_reference_crops_delivered_optional_minor_tassels_trim_allowed",
+    "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "user_authorized_minor_fringe_simplification": true,
+    "trim_only": "surplus small free-hanging nonstructural tassel/fringe tips; optional if art/rig complexity",
+    "design_locked": "body silhouette +17%; face/amber eyes; primary garment cut/coverage/neckline; white-blue-gold; hair flowers; signature ribbons and jewelry",
+    "actual_canon_image_modified": false,
+    "native_source_crop_references_created": 22,
+    "native_canon_pixel_exact_crops": 17,
+    "approved_expression_reference_crops": 5,
+    "package_sha256": "a17de705436b5ad814507a8dc23135021d2ebd8ceb4d91027df8643df93d6757",
+    "library_path": "/Thanh Van Ky/Development/CP338_Canon_Costume_Trim/",
+    "manifest": "docs/art/LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json",
+    "handoff": "docs/art/LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md",
+    "production_art_approved": false,
+    "spine_rig_verified": false,
+    "apk_verified": false,
+    "next": "draw native layered face and clothing to original CANON V2; optionally trim only nonessential fringe with user-visible side-by-side QA"
   }
 }
