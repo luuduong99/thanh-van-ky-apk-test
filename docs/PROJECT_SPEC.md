@@ -1026,3 +1026,22 @@ Tạo preview mỹ thuật chất lượng cao hơn CP333, nhưng tách biệt t
 
 ### Lịch sử 2026-10-29
 Thêm cổng bảo vệ production art thực ở runtime và CI, tách riêng duyệt hướng biểu cảm với duyệt sprite thành phẩm. Giữ P0-02/P0-03/P1-03/P2 chưa nghiệm thu.
+
+
+---
+
+## 46. CP336 — kiểm 2 nguồn góc mặt CANON và QA 5 biểu cảm phân lớp (2026-10-29)
+
+**ĐÃ XONG KIỂM NGUỒN/QA FRAMEWORK, CHƯA TẠO ART FACE MASTER SẢN XUẤT:**
+
+- Ngoại hình **CANON BODY V2** `LT_CANON_BODY_REF_2026-10-28_V2`, SHA256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`, và **năm sắc thái đã duyệt** `LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED`, SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`, **giữ nguyên**. Ngoại hình V2 (mắt hổ phách, tóc bạc, phụ kiện tiết chế) ưu tiên hơn màu mắt/trang phục của sheet biểu cảm; tỷ lệ +17% đã có. Damage 100/70/50/30 độc lập với expression/pose/wardrobe.
+- **Kiểm nguồn thực tế:** CANON V2 là poster flat 1672×941. Face crops native: Front-labeled [14,116,159,267] **145×151**, 3/4-labeled [321,116,464,267] **143×151**, closeup [1160,0,1390,114] **230×114**. Front hiện vẫn hơi nghiêng, hai góc gần giống nhau. Đây là **reference pixel thật**, KHÔNG phải 2 master art đủ phân giải. Google Drive folder Canon V2 hiện có PNG/flat ZIP/README/MODEL_CARD, không tìm được ORA/PSD/KRA trong nguồn có quyền truy cập.
+- **CP336 mới:** bảng tham chiếu nguồn chính thức và 8 crop lossless; triển khai `tools/cp336/validate_head_layers.py` kiểm 2 góc `front/three_quarter` × 5 biểu cảm × 13 PNG alpha semantic/góc cộng 4 master/góc (138 file nếu xuất đầy đủ). Kiểm SHA, RGBA, canvas/ROI, alpha, underpaint, màu iris amber (heuristic), path traversal. **Không tạo 138 art thật**: số đó mới là PNG fixture tổng hợp.
+- **16/16 local test PASS** gồm 12 kiểm thử PNG fixture 138 file và 4 kiểm pixel SHA/nguồn approved thật. `--strict` có chủ đích **FAIL** với fixture thiếu ảnh native ≥1024 và artist/user approval. GitHub Actions `CP336 two-angle facial layer contract` run **40829848852 SUCCESS**; CP335 release gate run **40829848868 SUCCESS**. CI chỉ kiểm nguồn code/metadata và fixture synthetic, không có source ảnh gốc/Spine/APK.
+- Ảnh mới CP336 (dạng poster ghi “Production Ready v2.3”) **không phải source layered**, **chưa được user duyệt**, tuyệt đối không đưa vào game. `app/src/main/assets/character_expression_profiles.json` vẫn `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- Gói ZIP `TVK_LamThien_CP336_Source_Master_Gate_NOT_SPINE_READY.zip` SHA256 `29d4f59402243a300357f6ab7e46440956e39bb1f7609cce988f8670daf8bde5` (161 entries, ZIP CRC PASS), Library Development `/Thanh Van Ky/Development/CP336_Face_Master_Source_And_QA/`. [CP336 handoff](art/LAM_THIEN_CP336_FACE_MASTER_HANDOFF.md), [manifest](art/LAM_THIEN_CP336_SOURCE_MASTER_MANIFEST.json).
+- **CP337 ưu tiên:** artist vẽ thực native face master Front **nhìn thẳng** và 3/4 đủ khác góc, clean underpaint, tóc/hoa/mi/mày/miệng và bộ 5 cảm xúc alpha semantic trên cùng master mỗi góc. QA ảnh 256/132/64, blink/occlusion và duyệt **ART THÀNH PHẨM riêng**, rồi mới mở CP335 release gate, Spine/Android APK.
+- P0-02/P0-03/P1-03/P2 **CHƯA NGHIỆM THU**. Không chốt lại các lựa chọn V2 hoặc 5 cảm xúc.
+
+### Lịch sử 2026-10-29
+Tách đúng nguồn Front/3⁄4 và phát hiện góc/nội dung pixel chưa đủ rig; có cổng QA đo được trước khi nhận art thật thay vì lặp thêm poster/crop rồi tự gọi “Production Ready”.
