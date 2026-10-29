@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "character": "Lâm Thiển",
-  "updated_on": "2026-10-28",
+  "updated_on": "2026-10-29",
   "policy": "Always implement latest user-approved design. A draft preview does not automatically replace approval.",
   "latest_user_approved_design": {
     "id": "LT_CANON_BODY_REF_2026-10-28_V2",
@@ -190,5 +190,38 @@
     "wardrobe_last_stage_internal_id_proposed": "private_fantasy",
     "no_fallback_to_default_art_when_variant_pose_missing": true,
     "reference_document": "docs/art/LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md"
+  },
+  "approved_expression_profile": {
+    "id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "approved_on": "2026-10-29",
+    "approval_type": "explicit_user_approved_preview",
+    "status": "approved_facial_expression_reference_only",
+    "character_id": "lin_qian",
+    "source_filename": "TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "source_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "source_mode": "RGB",
+    "source_library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Expressions_20261029/TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "expression_ids": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "documentation_path": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md",
+    "metadata_path": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json",
+    "facial_layers_complete": false,
+    "spine_animations_complete": false,
+    "apk_verified": false,
+    "precedence": "body_identity_and_costume_follow_latest_user_approved_design; this source governs expression style only"
+  },
+  "global_expression_standard": {
+    "status": "approved_shared_process_not_shared_face_art",
+    "file": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+    "policy": "Adapt intensity and cues to each character's own approved face, personality and context; review each character separately; no copying Lam Thien body or face"
   }
 }
