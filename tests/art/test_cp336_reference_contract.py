@@ -15,7 +15,7 @@ class CP336SourceContract(unittest.TestCase):
     def test_canon_and_emotions_still_approved_source(self):
         self.assertEqual(REF["canonical_visual_id"],MODEL["canonical_visual_id"])
         self.assertEqual(REF["canonical_sha256"],MODEL["source"]["sha256"])
-        self.assertEqual(REF["canonical_visual_id"],REG["latest_user_approved_design"]["id"])
+        self.assertEqual(REF["canonical_visual_id"],next(x for x in REG["archived_approved_designs"] if x["id"]=="LT_CANON_BODY_REF_2026-10-28_V2")["id"])
         self.assertEqual(REF["approved_expression_profile"],EXPR["expression_profile_id"])
         self.assertEqual(REF["approved_expression_sha256"],EXPR["source"]["sha256"])
 
