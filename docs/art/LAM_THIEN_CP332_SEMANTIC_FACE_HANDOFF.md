@@ -53,3 +53,10 @@ CP331 có cùng một raster master nhưng nền vẫn **baked sẵn mắt/mày/
 5. **Chỉ sau khi asset được duyệt** mới export atlas Spine phù hợp và thêm `sprite_paths`, kiểm rig/animation trong engine Android, build APK và test thiết bị thật.
 
 **Kết luận:** CP332 cải thiện đáng kể **phân lớp ngữ nghĩa thật** so với CP331, nhưng **chưa hoàn thiện nhân vật Lâm Thiển để đưa vào game**.
+
+
+## GitHub Actions đã xác minh (2026-10-29)
+
+- Workflow `CP332 semantic facial-layer source contract` run **`40819544556`**, job **`123268528135` / `source-geometry-contract`**, kết quả **SUCCESS**.
+- CI kiểm trực tiếp *source SVG/Python và render alpha synthetic*, 5 mã cảm xúc, metadata nguồn đã duyệt và chặn trạng thái art chưa duyệt. **CI runner không có sáu ORA binary trong Library**; kết quả 10/10 local thực trên ORA và kiểm ZIP CRC/recomposition vẫn là bằng chứng riêng.
+- **Không** suy từ workflow xanh ra việc giống CANON V2 về mỹ thuật, rig/Spine hoặc APK đã chạy.
