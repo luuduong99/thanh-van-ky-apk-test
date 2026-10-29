@@ -1427,3 +1427,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - Đã lưu APK, preview và ghi chú tại Library `/Thanh Van Ky/Development/CP363_Sharp_Portrait_Decoding/`. [CP363 handoff](art/LAM_THIEN_CP363_ANDROID_SHARP_PORTRAIT_DECODER.md).
 - **Giới hạn:** build thành công không chứng minh frame rate thực tế, cũng không có native independently-painted art/Spine/arm-raise Visual QA. Không sửa thiết kế CANON V2.1 tỷ lệ +17%, tóc bạc, hoa trắng, trang phục trắng–xanh–vàng, mặt và hai mũi guốc xanh, 5 biểu cảm, damage 100/70/50/30. Không đưa source QA vào phát hành.
 - **CP364 next:** tập trung vẽ lại **Front native high-res phân lớp độc lập** gồm tay, tay áo, thân áo, da ẩn, lụa/tóc sau; tạo 2 frame `idle` và `arm_raise` **cùng góc/cùng canvas/pivot**, duyệt Visual QA; sau đó mới rig và kiểm thử trên điện thoại.
+
+
+---
+
+## 71. CP364 — Khóa màu tóc và hai mũi guốc bằng QA từ CANON thật (2026-10-29)
+
+- **Đã đọc và khóa lại đúng ảnh chuẩn Lâm Thiển CANON V2.1** ở Library (941×1672, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`). Tạo **Front crop pixel-exact** 217×458 từ rectangle `(13,172,230,630)` cùng bảng chi tiết tóc bạc tím, mặt và hai mũi guốc xanh. Crop phóng để xem **không phải art native high-res mới**, không phải sprite riggable.
+- **Đã loại preview art CP364 không đúng CANON:** một ảnh minh họa tạo thử làm tóc chuyển nâu đậm, đổi trang phục/nhận diện và có nhãn báo PASS, file art/tài nguyên chưa được kiểm chứng. Không đưa ảnh sai này vào GitHub, Library hoặc APK; **không tuyên bố đã có hai pose Front nghệ thuật**.
+- **Đã tạo công cụ mới** `tools/art/cp364_canon_fidelity_gate.py`: yêu cầu SHA CANON chính xác, kiểm bố cục Front cùng góc, màu tóc bạc tím tại ROI đỉnh đầu, và riêng từng mũi guốc xanh không chồng ROI. Trên chính Front crop thật: tóc sáng đúng nguồn (`0.8722` phần ROI), mũi guốc xanh bên trái `163` pixel (ngưỡng bảo vệ 35), bên phải `146` pixel (ngưỡng 24). Công cụ mô phỏng tóc nâu đậm, xóa mũi guốc trái/phải đều trả cảnh báo. **6/6 unit test local PASS** với ảnh tổng hợp, kết quả `REFERENCE_COLOR_GUARDS_CLEAR` **không phải** Visual QA pass hay cho phép release.
+- Gói `TVK_CP364_CANON_V21_Reference_Color_Gate_NOT_ART.zip` **8 file**, SHA256 `4828cfc2c49bc5d98abd02fc4265fe03371d1b9a767c283794fa31d80c310e56`, CRC PASS. Chứa script, test, report JSON, crop nguồn pixel-exact, bảng tham chiếu, manifest và README. Lưu Library `/Thanh Van Ky/Development/CP364_CANON_V21_Fidelity_Gate/`. [Báo cáo CP364](art/LAM_THIEN_CP364_CANON_V21_FIDELITY_GATE.md).
+- Không thay CANON +17% đã chốt, mặt, tóc bạc, hoa trắng, đồ trắng–xanh–vàng, 2 mũi guốc xanh, 5 biểu cảm và damage 100/70/50/30; không tự cấp quyền đưa sprite vào Android. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- **CP365 next:** phải tạo **native art high-res nhiều lớp được vẽ độc lập** cho vai/tay trái (tay áo, da tay, da khuất, bodice chính, bodice khuất, tóc sau), xuất idle và arm_raise cùng góc/khung/pivot từ bản vẽ thật, so CANON V2.1; chỉ sau khi duyệt trực quan mới làm rig/Spine và FPS trên điện thoại. Công cụ QA màu tóc và giày chỉ để chặn drift/alpha, không giải quyết thiếu underpaint.
