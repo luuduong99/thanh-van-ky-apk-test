@@ -41,3 +41,14 @@
 5. Chỉ sau khi qua QA art: điền đường dẫn chính xác vào resolver `expression × wardrobe × integrity × pose`, rig/Spine thật, animation kiểm trên runtime, Android build và APK test.
 
 **Kết luận CP325:** 5 bộ ORA tham chiếu/cấu trúc tách vùng đã làm và được kiểm thử; tiến độ sản xuất sprite độc lập cho CANON V2 vẫn **CHƯA HOÀN THÀNH**.
+
+
+## Bổ sung xác minh GitHub Actions (2026-10-29)
+
+Đã kiểm tra trực tiếp workflow runs và job steps từ GitHub đối với commit `4cab946f91efdaf5c08988df85f76bb2d0b88929`:
+
+- **CP325 approved expression region contract:** run `40804686901`, job `123220694185` (`reference-metadata`) **SUCCESS**; bước “Ensure CP325 patches are never mislabeled as game art” **SUCCESS**.
+- **CP324 character expression runtime contract:** run `40804686882`, job `123220694606` (`approved-expression-runtime`) **SUCCESS**; bước kiểm 5 state và no-fallback **SUCCESS**.
+- **Approved character expressions consistency:** run `40804686885`, job `123220694407` **SUCCESS**.
+- Đây là chứng cứ CI chạy **trên GitHub**, không phải chỉ local. Tuy nhiên CP325 CI chỉ đọc hợp đồng metadata, **KHÔNG chứa hoặc kiểm được các ORA trong Library**; kết quả ORA 5/5 là QA local riêng. Không suy ra Android Gradle `assembleDebug`, hoạt ảnh Spine, artwork đúng canon hoặc APK đã pass.
+- Những câu 'CI chưa xác minh' ở phần lịch sử trước được thay bằng kết quả xác minh mới của ba workflow nêu trên; các workflow khác cần đối chiếu run của chính mình.
