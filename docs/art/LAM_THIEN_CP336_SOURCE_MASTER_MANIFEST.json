@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP336",
+  "date": "2026-10-29",
+  "status": "source_crop_and_gate_preflight_complete_production_art_missing",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "canonical_original_size_px": [
+    1672,
+    941
+  ],
+  "approved_expression_sheet_size_px": [
+    1536,
+    1024
+  ],
+  "source_angle_crops": [
+    {
+      "id": "front",
+      "label": "FRONT / GÓC HƠI NGHIÊNG",
+      "source_box_xyxy": [
+        14,
+        116,
+        159,
+        267
+      ],
+      "native_size_px": [
+        145,
+        151
+      ],
+      "sha256": "2af6ff8b829610dc0a67f16d2a31b8d7bf193595bbeb8b82fe193874675927ba",
+      "file": "reference/V2_front_NATIVE_145x151.png"
+    },
+    {
+      "id": "three_quarter",
+      "label": "GÓC 3/4 / REFERENCE",
+      "source_box_xyxy": [
+        321,
+        116,
+        464,
+        267
+      ],
+      "native_size_px": [
+        143,
+        151
+      ],
+      "sha256": "35665adb1df0728cade0885918b85b894536eb73d576d3b99bdd711aa2b2d71c",
+      "file": "reference/V2_three_quarter_NATIVE_143x151.png"
+    },
+    {
+      "id": "closeup",
+      "label": "CẬN MẶT V2",
+      "source_box_xyxy": [
+        1160,
+        0,
+        1390,
+        114
+      ],
+      "native_size_px": [
+        230,
+        114
+      ],
+      "sha256": "cb30967728d897d6a5cb914bca83c984f194d8b7e21cd9bee3b1b8513907f26e",
+      "file": "reference/V2_closeup_NATIVE_230x114.png"
+    }
+  ],
+  "emotion_crops": [
+    {
+      "id": "shy",
+      "name": "Ngại ngùng",
+      "sha256": "da063f4d2780c01ec72c2bca98e3fce3df2af56ac21072cc1fe09541a909cb9e",
+      "native_size_px": [
+        297,
+        385
+      ],
+      "file": "reference/approved_shy_portrait_native.png"
+    },
+    {
+      "id": "angry",
+      "name": "Tức giận",
+      "sha256": "73279a14b88571a935c9910e67bf08b32429ba77a66f33cc94429ddebc590d20",
+      "native_size_px": [
+        303,
+        385
+      ],
+      "file": "reference/approved_angry_portrait_native.png"
+    },
+    {
+      "id": "pain",
+      "name": "Đau đớn",
+      "sha256": "20d1cf59f8a40ba1074494d262b34af28a242f2bcc644b3b07ff45bfe104a490",
+      "native_size_px": [
+        291,
+        385
+      ],
+      "file": "reference/approved_pain_portrait_native.png"
+    },
+    {
+      "id": "embarrassed",
+      "name": "Xấu hổ",
+      "sha256": "5023912dcdb95a39169b26918bf3c48d4863b0981c5bb99bcecca155304c44a3",
+      "native_size_px": [
+        292,
+        385
+      ],
+      "file": "reference/approved_embarrassed_portrait_native.png"
+    },
+    {
+      "id": "alluring",
+      "name": "Quyến rũ",
+      "sha256": "549481c6b559a325fb50a16f355b26310e9a42cd4a39387c4157a6f6b3cdd7d0",
+      "native_size_px": [
+        285,
+        385
+      ],
+      "file": "reference/approved_alluring_portrait_native.png"
+    }
+  ],
+  "native_high_res_front_face_master_ready": false,
+  "native_high_res_three_quarter_face_master_ready": false,
+  "clean_underpaint_completed": false,
+  "five_expressions_semantic_layers_completed": false,
+  "spine_verified": false,
+  "apk_verified": false,
+  "user_asset_approval_id": null,
+  "sprite_paths_registered": 0,
+  "source_recovery": "Drive canonical folder contains PNG and flat ZIP only; no accessible native ORA/PSD/KRA found",
+  "note": "Crops are lossless extracts from canon; rendering larger in the board does not increase native detail.",
+  "source_angle_crops_note": "The front-labeled source face is tilted and the front/3-4 source crops are very similar; separate genuine front/3-4 production redraw is required.",
+  "minimum_expected_face_master_native_px": [
+    1024,
+    1024
+  ],
+  "real_production_png_layers_created": 0,
+  "synthetic_qa_png_count": 138,
+  "local_synthetic_png_tests_passed": 12,
+  "real_ora_psd_source_recovered": false,
+  "new_flat_cp336_candidate_approved": false,
+  "renderer_layered_animation_integrated": false
+}
