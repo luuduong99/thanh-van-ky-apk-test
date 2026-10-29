@@ -211,8 +211,11 @@ class CharacterInteractionActivity : Activity() {
         )
         val debugArtPreview = (applicationInfo.flags and
             android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        // Production Lâm Thiển must use a *state-specific approved expression*
+        // sprite only. A partially approved character is NOT permission to show
+        // legacy neutral/pose art for combinations without a reviewed sprite.
         val safeHeroineImage =
-            if (selectedId == "lin_qian" && !hasApprovedLamThienSprite && !debugArtPreview) ""
+            if (selectedId == "lin_qian" && !debugArtPreview) expressionArt.orEmpty()
             else heroineImage
         val heroineCrop = artwork.crop
         val outfitId = appearance.wardrobe
