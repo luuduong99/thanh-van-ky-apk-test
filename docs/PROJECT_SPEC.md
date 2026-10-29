@@ -815,3 +815,20 @@ Người dùng xác nhận preview 5 biểu cảm đã đạt yêu cầu; chuy�
 
 ### Lịch sử 2026-10-29
 Tiến hành tích hợp metadata, chọn và lưu expression trong Android; sửa pose reset, kiểm strict missing-art; giữ ranh giới art/rig/APK chưa hoàn thành.
+
+
+---
+
+## 35. CP325 — 5 ORA vùng mặt biểu cảm; chưa là sprite game (2026-10-29)
+
+- **THỰC HIỆN:** dùng đúng ảnh năm biểu cảm Lâm Thiển được duyệt (`LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED`, SHA256 `ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7`), tạo **5 file ORA**, mỗi file 7 lớp pixel patch alpha RGBA và 1 ảnh hướng dẫn ẩn (**35 vùng alpha thật**). Tạo annotation sheet, bảng so biểu cảm kích thước 132px/64px, manifest + SHA/CRC.
+- **CHỈ LÀ REFERENCE:** đây là các phần vùng ảnh nhỏ cắt/matte từ poster phẳng, **chứa da/tóc nền lẫn trong patch**, không phải mắt/mày/miệng tách độc lập/underpaint, không phải art được vẽ lại từ CANON V2 và **không được coi là rig/Spine-ready**. Kích thước ảnh native 285–303×385; không khai báo vào `sprite_paths`.
+- **KẾT QUẢ QA:** local test 5/5 PASS cho hợp lệ ORA/CRC/alpha/nguồn pixel, chế độ `--strict` FAIL đúng kỳ vọng (chưa có art thật). `tools/cp325/validate_cp325_face_proxies.py`, `tests/art/test_cp325_face_proxy_contract.py`, workflow `.github/workflows/cp325-face-proxy-contract.yml` (GitHub Actions chưa xác minh). Gói ZIP SHA256 `8cc9bac61fb843c84444cae57668318f9d5c40a3538d7e8262ae585493aacf3e`.
+- **LƯU TRỮ:** gói `TVK_LamThien_CP325_Face_Region_Prototypes_NOT_SPINE_READY.zip` và ảnh kiểm tra đã sao lưu ChatGPT Library tại `/Thanh Van Ky/Development/CP325_Face_Region_Prototypes/`.
+- **CANON BẤT BIẾN:** body/mặt/trang phục theo `LT_CANON_BODY_REF_2026-10-28_V2` (tỷ lệ +17% đã có); năm biểu cảm `shy/angry/pain/embarrassed/alluring` đã chốt, không hỏi duyệt lại concept; giữ damage 100/70/50/30. Với nhân vật khác chỉ dùng **quy chuẩn phân biệt cảm xúc**, không copy face/body.
+- **CHƯA HOÀN TẤT:** P0-02/P0-03, P1-03 sprite/rig thật, Android APK build, CI chưa nghiệm thu.
+- **BƯỚC TIẾP THEO CP326:** trên mặt thật CANON V2 vẽ layer mắt/mày/miệng/má độc lập với underpaint/alpha; QA 132px/64px và pose/wardrobe/integrity, rồi mới khai báo asset/Spine và build/test APK.
+- **BÀN GIAO:** [LAM_THIEN_CP325_FACE_ART_HANDOFF.md](art/LAM_THIEN_CP325_FACE_ART_HANDOFF.md) và [manifest](art/LAM_THIEN_CP325_FACE_REGION_PROXY_MANIFEST.json).
+
+### Lịch sử 2026-10-29
+Có thêm ORA alpha tham chiếu *thực* và QA; không đánh tráo trạng thái bản reference thành sản phẩm art/canon/rig.
