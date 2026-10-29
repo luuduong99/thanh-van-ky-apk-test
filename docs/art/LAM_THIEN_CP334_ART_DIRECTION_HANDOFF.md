@@ -36,3 +36,8 @@
 5. Sau khi qua art visual approval + binary alpha QA mới đăng ký sprite trong Android và thực hiện rig/Spine, chạy APK test. P0-02/P0-03/P1-03/P2 còn mở.
 
 **Mục tiêu tiếp theo là asset art được vẽ lại thực sự, không lập thêm checkpoint kỹ thuật chỉ gồm flat crops từ poster.**
+
+
+## Kết quả GitHub Actions đã xác minh (2026-10-29)
+
+Workflow `CP334 concept art review safety gate` run `40822248187`, job `123277150932` (`reference-lock`) **SUCCESS**. Workflow chỉ kiểm **source SHA/metadata, số 5 cảm xúc, trạng thái art chưa được duyệt**; không tải PNG/ORA từ Library vào runner, không kiểm thực tế mỹ thuật hoặc build APK. **8/8 bài test local** trên ZIP thực là kiểm tra riêng. Không coi hai kết quả này là bằng chứng hoàn thành asset/Spine.
