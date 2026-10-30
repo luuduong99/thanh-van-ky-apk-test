@@ -271,6 +271,10 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(btn("CP410 | Body + chớp mắt đồng bộ (DEBUG)") {
                 startActivity(android.content.Intent(this, TVKCombinedIdlePreviewActivity::class.java))
             })
+            // CP413 reuses the verified CANON picker; it never loads a fake head sprite.
+            portraits.addView(btn("CP413 | Kiểm tra đường ghép đầu (DEBUG)") {
+                startActivity(android.content.Intent(this, TVKCombinedIdlePreviewActivity::class.java))
+            })
         }
 
         if (selectedId == "lin_qian" && !hasApprovedLamThienSprite) {
