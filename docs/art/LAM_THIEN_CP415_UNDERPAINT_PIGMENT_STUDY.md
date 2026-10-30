@@ -17,7 +17,7 @@
 2. Các nét bổ sung được giới hạn **bên trong rough mask của đầu**, nên ở tư thế trung tính 0° đầu nguồn che toàn bộ phần mới; ảnh ghép **pixel-identical** với CANON gốc.
 3. Đã tạo 5 góc kiểm tra `−4°, −2°, 0°, +2°, +4°`; bảng so sánh CP412 (chỉ inpaint) với CP415 (inpaint + 3 paint overlays). Lần thử đầu có **halo tím quanh đỉnh tóc khi xoay**, đã loại bỏ bằng cách giới hạn lớp tóc ở vùng cổ/tóc dưới; đây là bài học QA trực quan quan trọng.
 4. Có ORA **7 lớp**: ba lớp màu **ẩn**, lớp đầu source-mask thử nghiệm **ẩn**, backing hỗn hợp inpaint + paint **ẩn**, lớp mí nhắm cùng pose **trống và ẩn**, 1 lớp CANON chính diện **hiển thị**. `mergedimage` giữ nguyên từng pixel ở crop đứng.
-5. Mã tạo lại và unittest sử dụng nguồn private thực: **12/12 local tests PASS**, gồm exact SHA, source tamper rejection, 3 layer nonempty, painting không ra ngoài head matte, no crown halo, 5-angle render, ORA CRC + merged pixel exact, block premature art approval.
+5. Mã tạo lại và unittest sử dụng nguồn private thực: **12/12 local tests PASS**; [GitHub Actions CP415](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41075745315) **SUCCESS 4 PASS / 8 SKIP** (thiếu private CANON ở CI), gồm exact SHA, source tamper rejection, 3 layer nonempty, painting không ra ngoài head matte, no crown halo, 5-angle render, ORA CRC + merged pixel exact, block premature art approval.
 
 ## Giới hạn và cổng nghiệm thu
 
