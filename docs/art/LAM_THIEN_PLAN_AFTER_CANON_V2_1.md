@@ -331,3 +331,13 @@
 - [ ] **Visual QA NOT_PASSED**: chưa có skin/eyelid closed-eye painter-grade thật; chưa khung trung gian, rig/Spine hay Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP392:** ưu tiên bản da/mí/mi nhắm vẽ thực đủ chất lượng CANON, nhận nghiệm thu ảnh preview trước khi tiếp tục chuyển động. Không cố dùng những lớp kỹ thuật còn thô để hiển thị trong game.
 
+---
+
+## CP392 — Source-retained eyelash occlusion variants (2026-10-30)
+
+- [x] Exact CANON V2.1 source SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197; CP391 history SHA locked. CANON-only previews and exact-byte original in bundle.
+- [x] **2 variants** gentle and near_closed; **4 independent source-sampled cheek occlusion patches** LEFT/RIGHT for both; original CANON eyelashes kept instead of completely drawn over. 8-layer ORA, only CANON visible, all drafts hidden. Not new painter-grade closed-eye art.
+- [x] Source differences: gentle 814px, near_closed 1087px, variants differ 748px; **0 outside eye ROI**. **11/11 local PASS**, simulated CI **4 PASS / 7 SKIP**, ZIP/ORA CRC PASS. ZIP 17 entries SHA256 `e90e0f7d3606bba73378422342469b449111ce6ca3e83f5c8f058ea6b2477da7` backed up at Library `/Thanh Van Ky/Development/CP392_Source_Retained_Blink_Study/`. [CP392 handoff](LAM_THIEN_CP392_SOURCE_RETAINED_BLINK_STUDY.md).
+- [ ] **VISUAL QA NOT_PASSED**: near-closed still has old lash/iris vestiges, incomplete hidden eyelid geometry. No true blink animation, art/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP393:** manually paint fully closed-eyelid master incl. skin, fold, lashes with source fidelity; request user preview approval before any intermediate frames or game integration.
+
