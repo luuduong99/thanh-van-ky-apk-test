@@ -1,0 +1,37 @@
+name: CP395 Lâm Thiển left-eye CANON source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp394_source_lash_underpaint.py'
+      - 'tools/art/cp395_left_eye_contour_refinement.py'
+      - 'tests/art/test_cp395_left_eye_contour_refinement.py'
+      - '.github/workflows/cp395_left_eye_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp394_source_lash_underpaint.py'
+      - 'tools/art/cp395_left_eye_contour_refinement.py'
+      - 'tests/art/test_cp395_left_eye_contour_refinement.py'
+      - '.github/workflows/cp395_left_eye_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public-only QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: CP395 source contract (private CANON tests deliberately skip)
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp395_left_eye_contour_refinement.py' -v
+      - name: Keep visual/release approval blocked
+        run: |
+          echo 'Without private image sources: 4 static PASS, 7 private-dependent SKIP.'
+          echo 'CP395 is a slight local eye-line study, not painter-grade or Android-ready.'
+          echo 'visual_qa=NOT_PASSED; release=blocked_pending_art.'
