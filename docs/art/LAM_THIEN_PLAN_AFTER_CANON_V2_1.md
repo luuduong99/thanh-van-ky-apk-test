@@ -205,3 +205,13 @@
 - [ ] **VISUAL QA NOT PASSED:** bản vector blocking còn thô/khác CANON, chưa redraw họa sĩ, chưa underpaint khớp/Spine, chưa 5 expression/4 damage hoặc Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP380 tiếp:** ưu tiên vẽ thật đủ chi tiết mặt–tóc–áo và toàn thân trên master, tách anatomy dưới các lớp, kiểm mép, hai guốc xanh, xin duyệt mới tính tới rig và APK.
 
+---
+
+## CP380 — Eight editable hair/face/bodice detail SVG overlays (2026-10-30)
+
+- [x] Khóa CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, nguyên file gốc 941×1672 RGBA; toàn bộ hình so sánh chỉ dùng CANON và draft của Lâm Thiển.
+- [x] Bảo toàn toàn bộ **21 PNG/SVG nguồn CP379 byte-exact**; bổ sung 8 SVG Bézier sửa tóc/mắt/hoa/trang sức/nếp áo/tà lụa, tổng 29 art layers + 1 hidden reference ORA. Bản mới vẫn là study, không phải artist-painted full-body art.
+- [x] **12/12 local tests PASS**, public CI-mode **4 PASS / 8 SKIP**, ORA ZIP CRC PASS; khác biệt 152.505 pixel RGBA trên vector canvas (không phải measure fidelity). ZIP 72 file SHA256 `60de03b274402b30e3290be0fb7285872d5e123062dfad476105399bf8a7941d` lưu Library `/Thanh Van Ky/Development/CP380_FullBody_Detail_Study/`. [CP380 handoff](LAM_THIEN_CP380_FULLBODY_DETAIL_DRAFT.md).
+- [ ] **VISUAL QA NOT PASSED**: mặt, tóc, đồ trang sức, vải chưa đạt CANON. Không native production source HD, không painted underpaint/Spine/Android APK, giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP381:** artist-grade full-body painter redraw thật, ưu tiên face/hair/bodice likeness từ CANON, semantic layers và hidden underpaint đúng giải phẫu; preview xác nhận rồi mới làm facial expressions, wardrobe damage, rig và APK.
+
