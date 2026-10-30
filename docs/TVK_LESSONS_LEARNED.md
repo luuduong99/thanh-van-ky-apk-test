@@ -130,3 +130,5 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Dữ liệu pixel có nghĩa giới hạn:** các khung 0/1/2/3/4 khác ảnh mở lần lượt 0/104/119/144/144 px, nhưng khung 3/4 khác nhau 46px. Không đánh giá vẻ tự nhiên, sắc nét hay FPS bằng số pixel.
 - **Quy trình tái sử dụng:** ưu tiên cho người dùng duyệt 1× và zoom frame-by-frame trong app trước khi làm thêm paint; nếu art gốc không đủ resolution, cần source/painting mới đúng nhận diện chứ không tiếp tục sửa inpaint/mask. `visual_approval=PENDING_USER`, `spine_ready=false`, `android_device_verified=false`.
 - **Tài liệu:** [CP418 Android Inspector](art/LAM_THIEN_CP418_ANDROID_FRAME_INSPECTOR.md).
+
+- **Xác minh build CP418:** [Android debug workflow](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41082343613) SUCCESS; APK 8.825.318 bytes SHA256 `29dcf40f65d05bb489331ef3b329eb026a854042f619448a0c479487fe3b59d9`, DEX có CP418, private CANON không nhúng trong APK. Chưa có kết quả kiểm thử thiết bị vật lý; không nâng `android_device_verified`.
