@@ -42,6 +42,9 @@ class TVKCombinedIdlePreviewActivity : Activity() {
     private lateinit var status: TextView
     private lateinit var play: Button
     private lateinit var blinkChoose: Button
+    private lateinit var auditButton: Button
+    private var auditOverlay: TVKFrontPoseRigAuditOverlay? = null
+    private var auditVisible = false
     private val names = arrayOf("Thở", "Đầu", "Tay", "Tóc", "Lụa")
     private var running = true
     private fun dp(n: Int) = (n * resources.displayMetrics.density + .5f).toInt()
@@ -86,7 +89,7 @@ class TVKCombinedIdlePreviewActivity : Activity() {
         val controls = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER }
         play = button("Tạm dừng") {
             running = !running
-            clock.setPlaying(running)
+            clock.setPlaying(running && !auditVisible)
             preview?.invalidate()
             blinkPreview?.invalidate()
             play.text = if (running) "Tạm dừng" else "Tiếp tục"
@@ -101,6 +104,30 @@ class TVKCombinedIdlePreviewActivity : Activity() {
             controls.addView(b, LinearLayout.LayoutParams(0, dp(46), 1f))
         }
         root.addView(controls)
+        auditButton = button("CP411 | Soi mốc đầu / mắt / cổ (DEBUG)") {
+            if (preview == null) return@button
+            auditVisible = !auditVisible
+            if (auditVisible) {
+                // Overlay only on the UNWARPED CANON source: freeze and reset the shared clock.
+                running = false
+                clock.reset()
+                clock.setPlaying(false)
+                play.text = "Tiếp tục"
+                play.isEnabled = false
+                preview?.invalidate()
+                blinkPreview?.invalidate()
+                auditOverlay?.visibility = View.VISIBLE
+                status.text = "CP411 | Đầu vàng, mắt xanh, cổ hồng. Mặt nạ thô, không phải rig đã duyệt."
+                auditButton.text = "CP411 | Đóng chỉ dẫn"
+            } else {
+                auditOverlay?.visibility = View.GONE
+                play.isEnabled = true
+                auditButton.text = "CP411 | Soi mốc đầu / mắt / cổ (DEBUG)"
+                status.text = "Đã đóng overlay CP411. Đây là mô phỏng CP410, chưa có rig thật."
+            }
+        }
+        auditButton.isEnabled = false
+        root.addView(auditButton, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(42)))
         root.addView(text("Hai nguồn cùng thời gian; KHÔNG ghép mắt vào body; KHÔNG là asset game đã duyệt."))
         setContentView(root)
     }
@@ -148,6 +175,10 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 // These coordinates are on the CANON concept sheet, not production rig layers.
                 val crop = Bitmap.createBitmap(source, FRONT[0], FRONT[1], FRONT[2] - FRONT[0], FRONT[3] - FRONT[1])
                 frame.removeAllViews()
+                auditVisible = false
+                auditOverlay = null
+                if (::auditButton.isInitialized) { auditButton.isEnabled = false; auditButton.text = "CP411 | Soi mốc đầu / mắt / cổ (DEBUG)" }
+                if (::play.isInitialized) play.isEnabled = true
                 blinkContainer.removeAllViews()
                 blinkPreview = null
                 blinkPanel.visibility = View.GONE
@@ -157,6 +188,12 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                     frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT))
                 }
+                auditOverlay = TVKFrontPoseRigAuditOverlay(this).also {
+                    it.visibility = View.GONE
+                    frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT))
+                }
+                auditButton.isEnabled = true
                 blinkChoose.isEnabled = true
                 status.text = "CANON ✓ | 5 kênh cơ thể chạy. Có thể chọn atlas CP409 để xem mắt ở panel riêng."
             } else {
@@ -181,6 +218,10 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 preview = null
                 blinkPreview = null
                 blinkChoose.isEnabled = false
+                auditVisible = false
+                auditOverlay = null
+                auditButton.isEnabled = false
+                play.isEnabled = true
                 frame.removeAllViews()
                 blinkContainer.removeAllViews()
                 blinkPanel.visibility = View.GONE
