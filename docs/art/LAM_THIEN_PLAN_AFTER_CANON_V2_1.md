@@ -137,3 +137,15 @@
 - [x] ZIP 54 files SHA256 `72f25fff04c64d5345ba8047de9aceb0c3713d8c3f45580341210b028f937662`, Library `/Thanh Van Ky/Development/CP373_FullBody_Canon_SourceGuide/`. [CP373 report](LAM_THIEN_CP373_FULL_BODY_SOURCE_GUIDE.md); công cụ `tools/art/cp373_fullbody_source_guide.py`, test `tests/art/test_cp373_fullbody_source_guide.py`.
 - [ ] **VISUAL QA NOT PASSED / PRODUCTION BLOCKED:** source chỉ có 217×458 pixel, chưa phải 2D art vẽ thật đủ chi tiết, alpha còn dính bóng sàn và thiếu underpaint. Spine/Android APK chưa hoàn thành. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP374:** artist redraw Front native HD theo đúng CANON thành tóc/mặt/cơ thể, thân áo, hai tay, váy/vạt, chân và hai mũi guốc xanh, bổ sung hidden underpaint; kiểm alpha/pose và xin duyệt trước khi rig/Spine.
+
+---
+
+## CP374 — Partial source-matte floor-shadow removal (2026-10-30)
+
+- [x] CANON-only V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; nguồn Front thật 217×458, ảnh gốc 941×1672 RGBA. Giữ nguyên hình đã chốt, **không dùng image-search/nhân vật khác**.
+- [x] Từ CP373, thử gỡ alpha **1.030 pixel** ứng viên bóng sàn trong ROI thận trọng dưới chân. RGB không đổi, alpha vùng chân/giày bảo vệ giữ nguyên; mũi guốc xanh trái 163/163, phải 146/146. Không tuyên bố bóng sàn đã sạch hoàn toàn.
+- [x] Xuất 19 source-region PNG/mask và ORA **21 lớp** (19 visible, 2 hidden để hoàn tác/đối chiếu CANON), ảnh so sánh CANON/CP373/CP374, mask phần loại, JSON và script reproducible.
+- [x] **10/10 local tests PASS** trên private CANON và CP373; simulated public CI **2 pass / 8 skip**, CRC PASS. ZIP 72 items SHA256 `824215ec6a2ae08321b8e895cc0c42dc68cae408f32b72473139b90df2ec8d41`, Library `/Thanh Van Ky/Development/CP374_Floor_Shadow_Partial_Cleanup/`. [CP374 handoff](LAM_THIEN_CP374_FLOOR_CANDIDATE_CLEANUP.md).
+- [ ] **Visual QA NOT_PASSED**: còn viền lụa/bóng sàn, 204px underpaint missing theo CP373, chưa independent high-res art, 5 expression/integrity overlays, Spine/Android APK. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP375:** vẽ bản native hi-res Front thực theo CANON với các semantic layers/body underpaint; không biến mask crop/phóng to thành “vẽ HD”. Làm hai pose thật và xin duyệt trước khi rig.
+
