@@ -183,3 +183,14 @@
 - [ ] **Visual QA NOT PASSED**: ngón tay/lụa còn thô, không khớp hoàn toàn CANON, chưa full-body/rig/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP378:** chi tiết hóa tay/khớp/viền/vải bằng native painter art theo đúng CANON, kiểm nhiều keypose thực; chuyển sang toàn thân semantic layers + alpha underpaint trước khi nghiệm thu/rig.
 
+---
+
+## CP378 — Five independently drawn vector hand/silk pose geometry frames (2026-10-30)
+
+- [x] Giữ nguồn **CANON V2.1 exact** SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; preview chỉ từ ảnh Lâm Thiển thật và các bản vẽ thử Lâm Thiển ghi rõ NOT APPROVED.
+- [x] 5 tư thế bàn tay/lụa với các landmark vector t=0,.25,.5,.75,1; 7 static CP376 underpaint layer + 3 SVG riêng cho mỗi pose. 5 ORA **11 lớp/file** gồm 10 visible + exact CANON guide ẩn. Không dùng raster crossfade hai bàn tay.
+- [x] **12/12 local tests PASS**, simulated public CI **4 PASS / 8 SKIP**. Bước dịch tâm bàn tay trên canvas 6× lần lượt 12.076 / 12.120 / 12.220 / 12.333 px. Đây là QA hình học chứ không phải FPS/chuyển động game.
+- [x] ZIP 70 entries SHA256 `22b47e5c498ec45a4c7495f641817436e3d1e547560e0f5879fb76584992ac84`, Library `/Thanh Van Ky/Development/CP378_Five_Pose_Vector_Motion_Study/`. [Handoff CP378](LAM_THIEN_CP378_FIVE_POSE_VECTOR_STUDY.md), tool/test/code và workflow GitHub.
+- [ ] **Visual QA NOT PASSED**: vector vẫn thô, chưa art native high-res full-body/rig; giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP379 next:** tạo master Front toàn thân được vẽ **thực**, không chỉ cắt/phóng ảnh CANON nhỏ; semantic layers, underpaint, alpha sạch, hai mũi guốc; đối chiếu chất lượng rồi xin duyệt trước Spine/Android.
+
