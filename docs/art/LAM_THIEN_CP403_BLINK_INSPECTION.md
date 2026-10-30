@@ -36,3 +36,10 @@ python tools/art/cp403_review_qa.py --canon "$TVK_CP403_CANON" --atlas "$TVK_CP4
 ```
 
 **Do not add any CP402/CP403 DRAFT bitmap to `app/src/main/assets` or mark sprite files production-approved.**
+## Verified CI and debug APK (2026-10-30)
+
+- **CP403 public source QA:** [GitHub Actions run 41037874465](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41037874465) **SUCCESS**; log confirms **19 discovered tests, 10 PASS, 9 SKIP**, because the private exact-CANON/atlas data is absent from GitHub. Local test with correct private images: **19/19 PASS**.
+- **Android debug build:** [GitHub Actions run 41037874573](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41037874573) **SUCCESS**, artifact ID `12969390649`. Extracted `app-debug.apk`: **8,799,794 bytes**, SHA-256 `86957a6953b357041025cf126bb37f8882a4544a68622d9c8f44110ab105ef0c`.
+- Artifact inspected: DEX contains `TVKBlinkAtlasPreviewActivity` and the debug viewing paths, but there is **no CP402/CP403 atlas or private CANON source packaged into APK assets**. The atlas must be selected through Android's file picker. Existing prototype/legacy character images remain separate from the official approved CANON; do not construe this as Lâm Thiển's production portrait being integrated.
+- User-facing bundle `TVK_CP403_Debug_APK_And_Atlas_Review.zip`, APK and single atlas available in Library `/Thanh Van Ky/Development/CP403_Blink_Inspection_20261030/`. Install the debug APK, open Lâm Thiển's interaction menu, select CP402/CP403 blink DRAFT review, use the picker to choose the SHA-locked atlas, then inspect against source with pause, step and pixel/mịn. No need to unpack the whole developer source ZIP to perform this.
+- **Do not say 'blink completed'**: the eye art remains DRAFT, not painter-approved, and the app was compiled but **not tested on physical device**. Neither sprite release nor actual production blink integration is authorized.
