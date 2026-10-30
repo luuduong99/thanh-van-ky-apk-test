@@ -132,3 +132,12 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Tài liệu:** [CP418 Android Inspector](art/LAM_THIEN_CP418_ANDROID_FRAME_INSPECTOR.md).
 
 - **Xác minh build CP418:** [Android debug workflow](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41082343613) SUCCESS; APK 8.825.318 bytes SHA256 `29dcf40f65d05bb489331ef3b329eb026a854042f619448a0c479487fe3b59d9`, DEX có CP418, private CANON không nhúng trong APK. Chưa có kết quả kiểm thử thiết bị vật lý; không nâng `android_device_verified`.
+
+## 2026-10-30 — CP419 — Một pose + một timeline thay vì hai preview tách rời
+
+- **Lỗi kiến trúc trước đây:** CP410 body idle + mắt riêng là hai tư thế khác nhau trên CANON; CP417/418 có blink đúng pose nhưng body đứng yên. Không nên chồng mặt CP409 từ crop biểu cảm lên fullbody.
+- **Cải tiến thực:** tái sử dụng từng frame wholebody 208×443 từ atlas CP417; một `elapsedSeconds()` tính đồng thời 5 kênh mesh CP410 và frame mắt CP417. Android `drawBitmapMesh` nhận **đúng bitmap frame cùng pose**; không nhập ảnh nhân vật khác, không dùng kiến trúc rig giả.
+- **Kiểm chứng:** SHA gốc/atlas khóa cứng; frame0 khớp CANON đứng; mọi frame khác chỉ thay đổi trong eye ROI. [Public CI CP419](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41084788314) **7 PASS/3 private SKIP**. Preview GIF xuất từ source chính xác nhưng qua OpenCV CPU *xấp xỉ* Android warp; chưa có FPS/thiết bị Android thật.
+- **Tiết kiệm công:** tái dùng crop CP417, bộ xác minh atlas CP418, chu kỳ idle CP410; không tạo lại character source và không dùng biến thể AI khác CANON.
+- **Giới hạn cốt lõi không bị che giấu:** lưới mesh ảnh phẳng không tách lớp tóc/cổ/gáy, không phải hệ xương/Spine, không tạo HD hay khôi phục các pixel thiếu. Tài liệu high-res source/ORA artist master chưa được tìm thấy trong nguồn hiện có. Art/animation release tiếp tục bị khóa.
+- **Mốc tiếp theo CP420:** yêu cầu artist paint high-res đúng nhận diện và góc đứng, full head/hair/neck underpaint + eye closed master; chỉ khi người dùng duyệt mới ghép rig production. Chi tiết [CP419 handoff](art/LAM_THIEN_CP419_SAME_POSE_SYNC_DEBUG.md).
