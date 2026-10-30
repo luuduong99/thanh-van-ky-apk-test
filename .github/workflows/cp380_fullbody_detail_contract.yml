@@ -1,0 +1,33 @@
+name: CP380 Lâm Thiển full-body detail draft static contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp379_fullbody_vector_blocking.py'
+      - 'tools/art/cp380_detail_pass.py'
+      - 'tests/art/test_cp380_detail_pass.py'
+      - '.github/workflows/cp380_fullbody_detail_contract.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp379_fullbody_vector_blocking.py'
+      - 'tools/art/cp380_detail_pass.py'
+      - 'tests/art/test_cp380_detail_pass.py'
+      - '.github/workflows/cp380_fullbody_detail_contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r tools/art/requirements_cp379.txt
+      - name: CP380 source-locked public checks (CANON-dependent tests skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp380_detail_pass.py' -v
+      - name: Do not approve art from CI alone
+        run: echo 'Public source: 4 static PASS, 8 private art tests SKIP. Visual QA NOT_PASSED; release BLOCKED.'
