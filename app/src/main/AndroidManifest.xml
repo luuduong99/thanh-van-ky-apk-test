@@ -6,6 +6,9 @@
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:supportsRtl="true">
         <activity
+            android:name=".TVKCombinedIdlePreviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".TVKBlinkAtlasPreviewActivity"
             android:exported="false" />
         <activity
