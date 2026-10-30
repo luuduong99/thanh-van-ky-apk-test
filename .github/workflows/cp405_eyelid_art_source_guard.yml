@@ -1,0 +1,35 @@
+name: CP405 Lâm Thiển editable eyelid art source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp405_eyelid_paint.py'
+      - 'tests/art/test_cp405_eyelid_paint.py'
+      - '.github/workflows/cp405_eyelid_art_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp405_eyelid_paint.py'
+      - 'tests/art/test_cp405_eyelid_paint.py'
+      - '.github/workflows/cp405_eyelid_art_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  technical-not-art-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source validation dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Public QA — private CANON is intentionally NOT in GitHub
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp405_eyelid_paint.py' -v
+      - name: Keep visual gate blocked
+        run: |
+          echo 'Expected public CI 6 PASS / 14 SKIP, local exact source 20 PASS.'
+          echo 'CP405 new art candidate still NOT_APPROVED, CP402 review baseline retained.'
+          echo 'No production sprite paths, no runtime blink integration or physical device QA.'
