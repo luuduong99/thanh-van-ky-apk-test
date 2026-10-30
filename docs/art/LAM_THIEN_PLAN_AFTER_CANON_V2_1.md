@@ -160,3 +160,15 @@
 - [ ] **Visual QA NOT PASSED / release blocked**: art chỉ là một phần cẳng tay, chưa full-body native painting hay anatomy hợp lý khi di chuyển; 90 px hở, lụa sáng/matte/bóng sàn còn lỗi; chưa Spine/APK.
 - [ ] **CP376:** vẽ lại *toàn bộ vai/tay trái/tay áo*, hoàn thiện underpaint và hai keyframes đúng CANON, rồi phát triển full-body semantic art / expression / clothing integrity trước kiểm thử Android.
 
+---
+
+## CP376 — Wrist cuff and rear-ribbon alpha diagnostic art (2026-10-30)
+
+- [x] Giữ duy nhất Lâm Thiển CANON V2.1 `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; không dùng hình nhân vật không liên quan.
+- [x] Bổ sung **3 SVG vẽ mới**, tổng 7 art PNG/layers, ORA 8 lớp (7 art đang hiển thị + 1 CANON guide ẩn); vẫn chỉ là mảng cổ tay/lụa thử nghiệm.
+- [x] Phân nhóm 90 pixel còn lại ở CP375 theo quan sát trực quan CANON: 35 vòng cổ tay, 40 mép lụa, 15 đầu ngón tay. Kết quả hướng (-6,+3): **90→18 pixel** sau CP376; còn 3 mép lụa và 15 đầu ngón tay. KHÔNG tự xóa điểm ngón tay vì thay silhouette không nhất thiết là alpha hole.
+- [x] Thử thêm (-4,+2): 68→21; (+3,-2): 121→98; (-8,+5): 113→26. **11/11 local tests PASS**, public-mode 4 PASS/7 SKIP. Art chuyển động và quality gate **CHƯA ĐẠT**.
+- [x] ZIP 32 tệp SHA256 `e110ed56c1d40c41450363d1d4cc40c60067f801c68ccfc510870ce666f775b8`, Library `/Thanh Van Ky/Development/CP376_Wrist_Ribbon_Underpaint_Draft/`. [CP376 handoff](LAM_THIEN_CP376_WRIST_RIBBON_UNDERPAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED / production blocked:** cổ tay/ribbon vẫn là vector sơ lược, chưa làm full-body art thật hay hai keyframe toàn diện, chưa Spine/APK.
+- [ ] **CP377:** vẽ riêng hình đầu ngón, cổ tay, mép lụa cho keyframe; QA chuyển động nhiều hướng với CANON, rồi tiếp tục hoàn thành Front semantic body/face/hair/legs/shoes trước nghiệm thu và build.
+
