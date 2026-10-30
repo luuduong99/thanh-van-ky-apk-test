@@ -227,3 +227,13 @@
 - [ ] **Visual QA NOT_PASSED / BLOCKED:** chưa có painted art mặt/tóc/thân áo thật, không Spine/APK, `sprite_paths={}`, `production_release.status=blocked_pending_art`.
 - [ ] **CP382:** vẽ lại master khuôn mặt đúng chuẩn từ 5 mẫu CANON, đặt cạnh ảnh chuẩn để duyệt; sau đó đến tóc/áo, tiếp tục hidden parts, 5 expressions, 4 clothing damage và rig/game.
 
+---
+
+## CP382 — Five exact CANON portraits source-guided ORA studies (2026-10-30)
+
+- [x] 5 crop biểu cảm **đúng byte pixel** từ ảnh Lâm Thiển CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Dùng nguồn CANON-only; người dùng không phải xét lại nhận diện.
+- [x] **5 ORA** × 13 lớp: 9 vùng source-guide ảnh gốc visible, 3 lớp SVG/PNG nét chân mày/mắt/miệng thử **ẩn**, 1 exact CANON guide ẩn. 45 part PNG và 15 SVG/PNG line-study. Mọi ORA ghép lại pixel-exact với crop CANON ở trạng thái đứng yên; polygon thô không phải native semantic rig/underpaint.
+- [x] **11/11 local tests PASS**; wrong SHA và 1-pixel modified expression bị reject trước output; ORA CRC PASS; workflow Github public chỉ 3 static PASS/8 private SKIP. ZIP **100 tệp** SHA256 `b1f874f4a130145b4f8d624499fe762df12b65b1f7f1a3c9d29407947f7205fd`, Library `/Thanh Van Ky/Development/CP382_Five_Expression_Source_Guides/`; [CP382 handoff](LAM_THIEN_CP382_FIVE_FACE_EXPRESSION_SOURCE_GUIDES.md).
+- [ ] **ART VẪN CHƯA VẼ LẠI ĐẠT CANON.** Tất cả mask là vùng source cắt thô, chưa tách anatomy/đồng bộ 5 expression; 15 nét SVG được vẽ mới nhưng chưa được duyệt và cố ý ẩn. Không có 5 portrait transparent dùng trong game, Spine/APK. Giữ `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP383:** chọn một biểu cảm làm master và vẽ lại **thật** khuôn mặt đủ chi tiết theo CANON, gửi preview so trực tiếp để xác nhận; sau đó mới các nét mặt tiếp, tóc/áo, underpaint toàn thân, chuyển động rig/Android APK.
+
