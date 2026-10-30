@@ -52,6 +52,17 @@ class PublicSourceContract(unittest.TestCase):
             self.assertIn('TVKFrontPoseRigAuditOverlay',b)
             self.assertIn('ApplicationInfo.FLAG_DEBUGGABLE',b)
             self.assertIn('require(actual == hash)',b)
+    def test_audit_guide_freezes_and_displays_unwarped_bitmap(self):
+        motion=REPO/'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdleMotionView.kt' if IN_REPO else LOCAL/'android/TVKCombinedIdleMotionView.kt'
+        if not motion.exists():
+            self.skipTest('Full Android source checked in on GitHub; absent in local art-only package')
+        content=motion.read_text(encoding='utf8')
+        self.assertIn('if (auditNeutralSource)',content)
+        self.assertIn('canvas.drawBitmap(canonCrop, null, box, paint)',content)
+        self.assertLess(content.index('if (auditNeutralSource)'),content.index('val t = timeline.elapsedSeconds()'))
+        activity=ACTIVITY.read_text(encoding='utf8')
+        self.assertIn('setAuditNeutralSource(true)',activity)
+        self.assertIn('setAuditNeutralSource(false)',activity)
     def test_rig_does_not_falsely_claim_true_layers(self):
         t=SCRIPT.read_text(encoding='utf8')
         self.assertIn('NOT production-ready artwork',t)
