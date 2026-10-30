@@ -1,0 +1,36 @@
+name: CP381 CANON-only facial fidelity workspace static guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp381_face_fidelity_review.py'
+      - 'tools/art/requirements_cp381.txt'
+      - 'tests/art/test_cp381_face_fidelity_review.py'
+      - '.github/workflows/cp381_canon_face_review_contract.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp381_face_fidelity_review.py'
+      - 'tools/art/requirements_cp381.txt'
+      - 'tests/art/test_cp381_face_fidelity_review.py'
+      - '.github/workflows/cp381_canon_face_review_contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reference QA requirements
+        run: python -m pip install -r tools/art/requirements_cp381.txt
+      - name: Source-only CP381 contracts (CANON-dependent tests intentionally skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp381_face_fidelity_review.py' -v
+      - name: Release stays blocked
+        run: |
+          echo 'CP381 public layout: 3 PASS, 6 private asset tests SKIP.'
+          echo 'Painting layers are EMPTY and visual QA is NOT_PASSED. Do not ship art or APK.'
