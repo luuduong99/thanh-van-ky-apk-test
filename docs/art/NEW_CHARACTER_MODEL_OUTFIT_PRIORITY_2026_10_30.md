@@ -42,3 +42,18 @@
 - Bảng thêm front/back + chi tiết để so sánh kiểu **A khoét sâu** với **B cổ quây ngang thấp** (phương án quây B vẫn **DRAFT/chưa nghiệm thu**).
 - Dù là bản bổ sung, ảnh vẫn chứa nhiều vạt lụa phụ; cần tiếp tục giảm số tà/vải bay khi thiết kế bản dùng cho rig. Không tuyên bố đã có rig hoặc sprite hoàn chỉnh.
 - Gói đầy đủ `TVK_Priority_Model_Outfit_References_20261030.zip` đã lưu trong chính thư mục Library, bao gồm **2 ảnh người dùng ưu tiên + 2 ảnh DRAFT mới + manifest + ghi chú**.
+
+## Ưu tiên mới nhất — NGƯỜI DÙNG GỬI LẠI HAI ẢNH GỐC (30/10/2026)
+
+**Đã xác nhận lưu làm reference trang phục:** **B = áo quây ngang thấp** (mép ngang/hơi cong, không xẻ chữ V sâu). **A = cổ khoét sâu** được giữ nguyên để đối chiếu. Điều này là quyết định về **mẫu trang phục tham khảo ưu tiên cho nhân vật mới**, KHÔNG phải phê duyệt CANON một nhân vật cụ thể, cũng KHÔNG thay Lâm Thiển CANON V2.1.
+
+| Nguồn chính thức (byte-exact, user reupload) | Kích thước | SHA-256 |
+| --- | --- | --- |
+| `TVK_USER_REUPLOADED_BANDEAU_AB_SHEET_20261030.png` | 1024×1536 | `b0d243f361727c2780040e35c28a53b5010ca6bf733993361e019e620e7187fa` |
+| `TVK_USER_REUPLOADED_BANDEAU_AB_FULLVIEW_20261030.png` | 1536×1024 | `88cfcf4efc5526082995b815ba8bf1745e01dee2b9d358f6939081c3d64182f7` |
+
+- **Thư mục bản chính xác:** `/Thanh Van Ky/Character_References/Priority_Model_Outfits_2026_10_30/`; hai ảnh không được thay bằng lần sinh lại hoặc ảnh mạng. Bản phác A/B cũ trong thư mục chỉ là lịch sử, không có ưu tiên cao hơn 2 ảnh upload này.
+- **Phong cách:** lụa trắng/xanh mềm và nhẹ; tối giản dây vàng, tua rua, trang sức và các dải vải bay trùng lặp; dành tối đa 1–2 tà chính cho bản dễ rig.
+- **Bố cục:** đối chiếu A và B, góc trước/sau, biểu cảm và chất liệu là nguồn hướng dẫn; khi vẽ nhân vật cụ thể phải theo CANON riêng của nhân vật đó.
+- **Dữ liệu có cấu trúc:** [reference registry](NEW_CHARACTER_BANDEAU_REFERENCE_REGISTRY_2026_10_30.json). Gói nguyên bản + manifest: `TVK_Bandeau_B_User_Reuploaded_References_20261030.zip` ở Library trên.
+- **Trạng thái:** style/outfit reference được chọn, sprite tách lớp, rig, animation, APK chưa làm. Không áp B cho tất cả nhân vật mặc định.
