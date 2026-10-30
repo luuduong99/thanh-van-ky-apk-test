@@ -30,3 +30,10 @@
 3. Only after art sign-off create approved sprite manifest with per-file hashes and wire it to the real Lâm Thiển interaction view; run on actual Android device.
 
 **Never confuse an algorithmically-generated blink proof, technical CI PASS, or debug preview with finished Lâm Thiển artwork in game.**
+## Verified GitHub build (2026-10-30)
+
+- [CP402 source preflight](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41035609945): **SUCCESS**; GitHub CI verified **9 PASS / 10 SKIP** without the private CANON bitmap (expected and not art acceptance).
+- [Android debug APK build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41035603978): **SUCCESS** at commit `95e27a85e96119dc02b89c312a5099cf43a60788`; archive artifact ID `12968380860` contains `app-debug.apk`. This proves compilation only; no physical-device rendering benchmark was performed.
+- Debug-only review workflow: download/import `CP402_ATLAS_ROOT_DRAFT_15.png` to the Android phone; install the compiled debug APK; open Lâm Thiển interaction screen -> `CP402 | Xem thử chớp mắt (DRAFT)` -> select the atlas using Android file picker. Exact PNG SHA-256 and 2520×197 size are required. Wrong files are rejected. The app contains no CP402 atlas as a built-in production asset.
+- Both the real debug APK and its GitHub artifact ZIP were backed up in Library at `/Thanh Van Ky/Development/CP402_SourceRoot_Blink_DebugReview_20261030/`.
+- **Status remains:** user visual approval for eyelid/eyelash master = PENDING; Android physical-device testing = NOT VERIFIED; production sprite and full Lâm Thiển runtime blink = BLOCKED.
