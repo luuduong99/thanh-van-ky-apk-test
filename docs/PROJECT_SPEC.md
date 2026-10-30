@@ -1735,3 +1735,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Cổng phát hành:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `rig_ready=false`, `apk_ready=false`. Chưa có APK/Spine, không import kết quả tự động vào game.
 - **CP388:** chuyển sang **vẽ mí nhắm, lông mi, bóng mí và da ẩn thật theo CANON**; giữ nhận diện tĩnh pixel-exact, so native + 4×; gửi preview để người dùng duyệt trước khi vẽ các khung chuyển động và 4 biểu cảm còn lại.
 
+---
+
+## 95. CP388 — Lâm Thiển: vẽ 6 lớp linework mí riêng, CANON tĩnh vẫn pixel-exact (2026-10-30)
+
+- **CANON-only bất biến:** Lâm Thiển V2.1 user-approved 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Crop Ngại ngùng `(25,684,193,881)` 168×197. Không dùng ảnh Tô Nguyệt Ly / ảnh khác làm hình Lâm Thiển. Luôn hiển thị đúng CANON nếu chưa có asset được phê duyệt.
+- **Công việc art CP388 có thật:** Vẽ **6 đường cong Bézier SVG tách biệt**, xuất 6 PNG alpha để chỉnh sửa: mi trên, mi dưới và nếp mí cho cả hai mắt. Ảnh QA là CANON chính thức cạnh bản overlay đường vẽ DRAFT trên **chính khuôn mặt đó**, **không phải mắt nhắm hoàn thiện**.
+- **OpenRaster 8 lớp:** 1 CANON tĩnh visible; **6 lớp nét mới hidden**; 1 lớp `MANUAL PAINT UNDERLAY` hidden và **CỐ Ý TRỐNG**. `mergedimage` khớp 100% pixel với CANON mở mắt. Không tạo bản da vá tự động kém thẩm mỹ. Canvas vẫn ở 168×197 nguồn thật; phóng 4× chỉ dành QA, **không phải nâng HD**.
+- **Kiểm thử:** **8/8 local PASS** trên CANON thật (SHA guard trước khi ghi, nét mới đúng ROI mắt, ORA CRC/8 lớp/chỉ một lớp visible, mergedimage chuẩn, source byte-exact, trạng thái blocked). Mô phỏng runner GitHub không có ảnh CANON private là **3 PASS/5 SKIP**. Workflow `.github/workflows/cp388_eyelid_art_source_guard.yml` đã thêm; chưa xem CI thành công thì không đánh dấu.
+- **Tài liệu/source:** [CP388 handoff](art/LAM_THIEN_CP388_CANON_EYELID_LINEWORK_HANDOFF.md), `tools/art/cp388_manual_eyelid_guides.py`, `tests/art/test_cp388_manual_eyelid_guides.py`. ZIP **23 tệp** `TVK_CP388_LamThien_Eyelid_Linework_Canon_Source_NOT_APPROVED.zip` SHA256 `15a871c6badffd548677cbd295774ae078f6f7b0e9070276b45ae7184cda4f0d`, Library `/Thanh Van Ky/Development/CP388_Manual_Eyelid_Linework_Draft/`.
+- **Không đạt visual acceptance:** 6 lớp chỉ là đường mí/mi định vị mới, mắt vẫn mở trên nguồn; **da khuất chưa được vẽ**, không có sprite mắt nhắm chất lượng họa sĩ, không có blink frames mới. `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import vào Android.
+- **CP389:** vẽ lớp da khuất và mí đóng theo chất lượng CANON, giữ bóng mắt/mi tự nhiên, hairline/phụ kiện; gửi preview mặt gốc cạnh mắt nhắm được vẽ thật **để duyệt**, sau đó mới vẽ các frame trung gian, cập nhật expression/front full-body, Spine và APK.
+
