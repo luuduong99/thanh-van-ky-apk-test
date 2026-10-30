@@ -27,7 +27,10 @@ import kotlin.math.roundToInt
 class TVKBlinkAtlasPreviewActivity : Activity() {
     private val requestAtlas = 403
     // This SHA is pinned to the EXACT private-source CP402 preview PNG, not any older concept.
-    private val pinnedAtlasSha = "645738fa932a354e3142e2474eb35011491b091d06451a08c4443e6650529c97"
+    private val modeCp409 by lazy { intent.getBooleanExtra("cp409_review", false) }
+    private val pinnedAtlasSha: String get() = if (modeCp409)
+        "d9234630eab9e13ec07527e2c7b6fbbacd849117bf2e4983bf35ac4bcf73a07e"
+        else "645738fa932a354e3142e2474eb35011491b091d06451a08c4443e6650529c97"
     private lateinit var label: TextView
     private lateinit var controlsLabel: TextView
     private lateinit var playPause: Button
@@ -48,8 +51,8 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
             textSize = size
             setTextColor(Color.WHITE)
         }
-        layout.addView(heading("Lâm Thiển — CP403 | KIỂM TRA MẮT NHẮM (DRAFT)", 16f))
-        label = heading("Chọn CP402_ATLAS_ROOT_DRAFT_15.png; so sánh CANON mở và mắt thử. " +
+        layout.addView(heading("Lâm Thiển — " + if (modeCp409) "CP409 | MÍ CHUYỂN ĐỘNG (DRAFT)" else "CP403 | KIỂM TRA MẮT NHẮM (DRAFT)", 16f))
+        label = heading((if (modeCp409) "Chọn CP409_15_POSE_NATIVE_SHA_LOCKED_DRAFT.png" else "Chọn CP402_ATLAS_ROOT_DRAFT_15.png") + "; so sánh CANON mở và mắt thử. " +
             "KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT", 12f)
         label.setTextColor(Color.rgb(250, 207, 158))
         layout.addView(label)
@@ -92,7 +95,7 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
             }
         }, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
         layout.addView(actions)
-        art = AtlasCompareView(this) { updateFrameLabel() }
+        art = AtlasCompareView(this, if (modeCp409) "CP409" else "CP402") { updateFrameLabel() }
         layout.addView(art, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
         setContentView(layout)
     }
@@ -132,14 +135,14 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
             val blob = bytes.toByteArray()
             val digest = MessageDigest.getInstance("SHA-256").digest(blob)
                 .joinToString("") { "%02x".format(it.toInt() and 255) }
-            require(digest == pinnedAtlasSha) { "Sai ảnh: SHA-256 không phải atlas CP402 chuẩn" }
+            require(digest == pinnedAtlasSha) { "Sai ảnh: SHA-256 không khớp atlas đã khóa cho chế độ xem này" }
             val image = BitmapFactory.decodeByteArray(blob, 0, blob.size)
             require(image != null && image.width == 2520 && image.height == 197) {
                 "Sai kích thước 15 × 168 × 197"
             }
             art.setAtlas(image)
             playPause.text = "Tạm dừng"
-            label.text = "ĐÚNG ATLAS CP402 — xem CANON mở bên cạnh mắt thử. " +
+            label.text = (if (modeCp409) "ĐÚNG ATLAS CP409" else "ĐÚNG ATLAS CP402") + " — xem CANON mở bên cạnh mắt thử. " +
                 "KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT"
             updateFrameLabel()
         } catch (e: Exception) {
@@ -150,6 +153,7 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
     /** Exact source crop is frame zero. Preview is a separate frame from the SAME verified atlas. */
     private class AtlasCompareView(
         context: android.content.Context,
+        private val draftName: String,
         private val onFrame: () -> Unit
     ) : View(context) {
         private var atlas: Bitmap? = null
@@ -235,10 +239,10 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
             val horizontal = width > height
             if (horizontal) {
                 drawPanel(canvas, image, 0, RectF(0f, 0f, width * .5f, height.toFloat()), "MỞ / CANON")
-                drawPanel(canvas, image, index, RectF(width * .5f, 0f, width.toFloat(), height.toFloat()), "CP402 / DRAFT")
+                drawPanel(canvas, image, index, RectF(width * .5f, 0f, width.toFloat(), height.toFloat()), "$draftName / DRAFT")
             } else {
                 drawPanel(canvas, image, 0, RectF(0f, 0f, width.toFloat(), height * .5f), "MỞ / CANON")
-                drawPanel(canvas, image, index, RectF(0f, height * .5f, width.toFloat(), height.toFloat()), "CP402 / DRAFT")
+                drawPanel(canvas, image, index, RectF(0f, height * .5f, width.toFloat(), height.toFloat()), "$draftName / DRAFT")
             }
             if (isPlaying && isAttachedToWindow && isShown) {
                 postInvalidateOnAnimation()
