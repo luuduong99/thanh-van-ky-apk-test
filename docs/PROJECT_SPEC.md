@@ -1818,3 +1818,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Release gate:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`; chưa có rig/Android APK mới.
 - **CP395:** sửa **hình mắt trái** (màu đồng tử còn lộ / cảm giác hé) và vẽ mí nhắm hoàn toàn painter-quality dựa trên đường mi gốc, với da khuất, vi cấu trúc, bóng mí, đường tóc tự nhiên. Đặt bản native và zoom bên CANON để **người dùng duyệt** rồi mới vẽ các khung in-between và tích hợp.
 
+---
+
+## 102. CP395 — Lâm Thiển: thu hẹp nét mi mắt trái và bảo vệ CANON (2026-10-30)
+
+- **CANON khóa tuyệt đối:** Lâm Thiển V2.1 user-approved, 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, tỷ lệ +17%. Ô Ngại ngùng `(25,684,193,881)` 168×197 native, không dùng ảnh nhân vật/phong cách khác. CP394 input SHA256 `d3774068b0d9464a7c3c640b0f21289a812493765259365a3ee481cc8af326d9`.
+- **Thực hiện CP395:** nhận diện dải mi giữ từ CP394 chứa vài pixel tối của mắt phía dưới khiến **mắt trái còn hé**. Tạo **2 bản kỹ thuật** `TIGHT` (thu hẹp dải mi) và `SOFT` (chuyển nhẹ hơn), mỗi bản **2 lớp PNG alpha** sửa da khuất cục bộ và giữ pixel mi nguồn. Tổng **4 lớp kỹ thuật mới**, chỉ áp dụng mắt trái; mắt phải và mọi bộ phận khác giữ nguyên CP394.
+- **Giới hạn thật:** bản Tight khác CP394 **133 pixel**, Soft **151 pixel**, và **0 pixel sửa ngoài ROI mắt trái `(29,93,71,124)`**; hai biến thể chỉ khác rất ít ở kích thước gốc. Đây **không phải** bản vẽ painter-grade hay bằng chứng chất lượng đã đẹp hơn. CP395 *không được tự công bố mắt nhắm hoàn chỉnh*.
+- **ORA/QA:** ORA **9 lớp** gồm 1 CANON visible, 1 CP394 source-history hidden, 4 patch hidden, 2 composite hidden, 1 ROI guide hidden. Mergedimage khớp pixel-exact CANON. **11/11 local tests PASS** (bao gồm source SHA/previous SHA guard, 4 alpha layers, pixel boundaries, ORA CRC, tamper rejection). Checkout public thiếu private art **4 PASS/7 SKIP**; workflow `.github/workflows/cp395_left_eye_source_guard.yml` chỉ xác nhận source contract, không thay visual QA.
+- **Bàn giao:** [CP395 handoff](art/LAM_THIEN_CP395_LEFT_EYE_REFINEMENT.md), `tools/art/cp395_left_eye_contour_refinement.py`, `tests/art/test_cp395_left_eye_contour_refinement.py`. ZIP **20 tệp** `TVK_CP395_LamThien_Left_Eyelid_Refinement_NOT_APPROVED.zip` SHA256 `824e2508557faec6b446e5cbeef44367213199addc95e17905a3aeac1635b63a` (có source CANON exact, historical CP394, dependency CP394 để rebuild, ORA, 2 preview); Library `/Thanh Van Ky/Development/CP395_Left_Eyelid_Refinement_Draft/`.
+- **Giữ release blocked:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import vào Android game hay build APK.
+- **CP396:** **Dừng tối ưu bằng vài pixel màu da/mi nếu chưa có chất lượng vẽ mới thực sự.** Cần master mắt nhắm được vẽ artist-grade theo CANON, đúng bóng mí, kết cấu da, lash, anatomy và phần ẩn. Preview native và phóng lớn để người dùng xác nhận, sau duyệt mới làm in-betweens/rig/Spine/APK.
+
