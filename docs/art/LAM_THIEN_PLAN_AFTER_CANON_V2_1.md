@@ -351,3 +351,13 @@
 - [ ] **Visual QA NOT_PASSED:** lashes and under-eye color not painter-grade, no native HD new artwork, no real animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP394:** artist-level closed-eye master on exact CANON, visual confirmation required before intermediate blink frames and game integration. Avoid repeated automated cheek sampling as release art.
 
+---
+
+## CP394 — CANON-pixel eyelash retention and localized skin underpaint (2026-10-30)
+
+- [x] Chỉ lấy đúng ảnh Lâm Thiển CANON V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197 native. Không dùng ảnh người mẫu/nhân vật khác.
+- [x] **6 lớp RGBA kỹ thuật** trên hai mắt: donor da cùng source, vùng mi nguồn alpha, bóng crease mềm. ORA **10 lớp** (1 CANON chính thức visible, 9 draft/guide hidden), compositing nguyên nguồn khi mở mắt. Không phải 6 layer native anatomy HD.
+- [x] **11/11 local PASS**; public checkout **4 PASS/7 SKIP**; hai draft đổi 1766px/1481px so CANON và **0 pixel ngoài mắt**. 18 file ZIP SHA `5516199014cbea00942ffdf2570229cc3480b1f74ea807ef1071e6aae2d78115`, Library `/Thanh Van Ky/Development/CP394_Canon_Lash_Underpaint_Draft/`. [Handoff CP394](LAM_THIEN_CP394_CANON_LASH_UNDERPAINT_STUDY.md).
+- [ ] **VISUAL QA NOT_PASSED**: vẫn cảm giác mắt trái hé và da chưa khớp nét họa sĩ; không blink animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP395:** vẽ thủ công master mắt nhắm đầy đủ, xử lý mi trái/các bóng/da dưới mí thật, gửi preview CANON để duyệt; chỉ sau khi được duyệt mới làm khung hoạt ảnh.
+
