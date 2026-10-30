@@ -279,3 +279,13 @@
 - [ ] **VISUAL QA NOT PASSED:** da phẳng/hồng chưa tự nhiên, mi và khóe mắt chưa match source; CP386 có điểm còn tệ hơn CP385. Không thay bản hiển thị game; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP387:** vẽ artist-quality mắt nhắm và da lớp ẩn *thực*, so trực tiếp CANON, xin duyệt visual master rồi mới 5-frame animation, face expressions còn lại, full-body, Spine/Android.
 
+---
+
+## CP387 — Eyelid occlusion QA: automated variants REJECTED (2026-10-30)
+
+- [x] Source SHA locked: Lâm Thiển V2.1 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; đúng portrait Ngại ngùng 168×197, ngoài vùng mắt không đổi.
+- [x] Thử 3 cách da khuất: TELEA, Navier-Stokes, cheek donor. Thay đổi trong mắt **1390/1389/1390** pixel; ngoài mắt **0**. Review thực tế **FAIL** cả 3 (viền, bóng, da và tóc chưa đạt CANON), **không chọn bản nào**.
+- [x] Bảng ảnh CANON-only + ORA **7 lớp**: duy nhất CANON tĩnh visible, tất cả các draft/ROI hidden; mergedimage pixel-exact. `9/9 local tests PASS`; public `3 PASS / 6 SKIP`; ZIP 14 tệp SHA256 `297b3fcbe215c8167cfcf694863aef861b6d314dea7a5c04516b66c5b2671de0` lưu Library `/Thanh Van Ky/Development/CP387_Eyelid_Visual_Regression_Gate/`. [Handoff CP387](LAM_THIEN_CP387_EYELID_ART_ACCEPTANCE_GATE.md).
+- [ ] **Visual QA NOT PASSED / Android BLOCKED:** chưa có mắt nhắm/hair occlusion/skin underpaint thực sự đẹp, chưa rig/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP388:** vẽ trực tiếp mí nhắm/mi/da lớp ẩn có chất lượng họa sĩ từ CANON; preview native và zoom 4× trước xin duyệt. Sau duyệt mới vẽ animation intermediate và mở rộng 5 biểu cảm, toàn thân.
+
