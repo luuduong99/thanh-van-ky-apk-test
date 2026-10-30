@@ -14,7 +14,7 @@
 
 > **ẢNH NGOẠI HÌNH CANON LÂM THIỂN MỚI NHẤT (28/10/2026):** [V2 đã chốt](https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk) · mã `LT_CANON_BODY_REF_2026-10-28_V2` · SHA-256 `41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711`. V2 **thay thế V1 về body/trang phục**, không thay quy tắc toàn game về pose/outfit/damage. [Hồ sơ canon V2](art/LAM_THIEN_CANON_BODY_V2_2026_10_28.md) và [plan thực hiện](art/LAM_THIEN_NEXT_TASKS_AFTER_CANON_V2.md). **Không tự đổi model theo poster cũ.**
 
-**Cập nhật lần cuối:** 2026-10-28  
+**Cập nhật lần cuối:** 2026-10-30  
 **Repository thử nghiệm:** https://github.com/luuduong99/thanh-van-ky-apk-test  
 **Nhánh prototype:** `map-2d-prototype`  
 **PR:** https://github.com/luuduong99/thanh-van-ky-apk-test/pull/1  
@@ -1511,3 +1511,21 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Lưu nguồn:** [CP370 report](art/LAM_THIEN_CP370_INDEPENDENT_ARM_KEYPOSE_STUDY.md), `tools/art/cp370_two_hand_authored_poses.py`, `tests/art/test_cp370_two_hand_authored_poses.py`, ZIP 43 files SHA256 `6845f2543befe36c7dabb19d2e097e0821b71485ca7d7835b6f7e8dd2bb18e9e`, Library `/Thanh Van Ky/Development/CP370_Independent_Arm_KeyPose_Study/`.
 - **Giới hạn:** Đây là art vector nghiên cứu cục bộ vùng tay và chưa đạt chất lượng tranh CANON (**VISUAL QA NOT PASSED**), không phải rig/Spine, chưa in-between frames hoặc vẽ toàn thân/biểu cảm/trang phục đúng chuẩn, chưa có bản APK mới. Giữ `production_release.status=blocked_pending_art` và `sprite_paths={}`, không import bản art chưa duyệt.
 - **CP371:** nâng chi tiết hair/skin/silk/bodice theo CANON, bổ sung full-body semantic art còn thiếu, kiểm mép và vòng guốc xanh, nghiệm thu preview trước khi rig, integration Android và APK.
+
+
+
+---
+
+## 78. CP371 — Lâm Thiển: thêm lớp nếp lụa và viền chỉ riêng cho hai tư thế (2026-10-30)
+
+- **CANON giữ nguyên:** Đúng file ảnh Lâm Thiển V2.1 được chốt, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; ảnh nguồn Front crop (13,172,230,630). Áp dụng quy tắc CANON-only: preview chỉ chứa CANON đúng nhân vật và draft của nhân vật này ghi rõ CHƯA DUYỆT; không dùng ảnh từ mạng/nhân vật khác.
+
+- **Art mới thực sự:** phát triển từ hai key pose CP370, tạo **2 lớp SVG vẽ path độc lập** cho từng pose (nếp lụa highlight và đường viền chỉ xanh–vàng), thêm nét ngón tay, giữ vàng vai/tóc sau/lớp da và vải lót cố định. Mỗi pose có 9 SVG + 9 PNG alpha, 1 ORA **10 lớp** gồm 9 art visible và 1 CANON guide hidden; hai PNG composite riêng. Art raster này vẫn là canvas vẽ vector 1302×2748 dựa trên crop 217×458, không tự coi là full-body master HD.
+
+- **QA local trên file thật:** **11/11 unittest PASS** bao gồm hash gốc, chặn nguồn sai trước output, path khác biệt idle/raised, nội dung lớp mới, CRC và số layer ORA, static art giữ nguyên và trạng thái release. Có thay đổi pixel so CP370: idle **19.833** và raised **35.436** (chỉ chứng minh có thay đổi dữ liệu, không phải đạt fidelity). Tỷ lệ nét mới nằm trong hoặc sát vùng tay áo: idle 100%/100%; raised 96,11%/100% (fold/hem), là QA cục bộ.
+
+- **Nguồn và bàn giao:** [CP371 report](art/LAM_THIEN_CP371_SILK_FOLD_HEM_TWO_POSES.md), `tools/art/cp371_refine_pose_details.py`, `tests/art/test_cp371_refine_pose_details.py`. Gói ZIP **52 files**, SHA256 `b0f1a18c36edc9e69a9a3e232e0b20cc633c647fe7173555a9b673a93831eb2c`, CRC PASS, lưu Library `/Thanh Van Ky/Development/CP371_Silk_Detail_Two_Poses/`.
+
+- **Cổng art:** **VISUAL QA NOT PASSED** do vẽ vector vẫn đơn giản hơn CANON; chưa có body đầy đủ, pose động hoàn chỉnh, Spine/physics hoặc APK Android kiểm thử. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không đăng ký art chưa duyệt vào APK.
+
+- **CP372:** tiếp tục vẽ bàn tay, viền áo, chi tiết tóc và phụ kiện bằng semantic art đúng CANON, sau đó phát triển các lớp toàn thân còn thiếu (mặt, thân, váy, tay phải, cả hai mũi guốc xanh) và underpaint, lấy phê duyệt preview thật trước khi dựng rig và build APK.
