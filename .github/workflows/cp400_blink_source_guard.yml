@@ -1,0 +1,37 @@
+name: CP400 Lâm Thiển source-locked blink preflight
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp400_blink_pipeline.py'
+      - 'tests/art/test_cp400_blink.py'
+      - 'docs/art/LAM_THIEN_CP400_BLINK_ANIMATED_STUDY.md'
+      - '.github/workflows/cp400_blink_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp400_blink_pipeline.py'
+      - 'tests/art/test_cp400_blink.py'
+      - 'docs/art/LAM_THIEN_CP400_BLINK_ANIMATED_STUDY.md'
+      - '.github/workflows/cp400_blink_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: CP400 source-only contract
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp400_blink.py' -v
+      - name: Keep production release blocked
+        run: |
+          echo 'Without private art: 4 static PASS / 10 private-source SKIP expected.'
+          echo 'Local private CANON/CP398 test pass is NOT artist QA or Android APK verification.'
+          echo 'visual_qa=PENDING_USER_APPROVAL, sprite_paths={}, apk_ready=false'
