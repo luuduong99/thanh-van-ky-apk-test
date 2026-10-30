@@ -26,3 +26,10 @@
 ## Next CP420
 
 Prioritize actual high-resolution same-pose face/neck/hair hand-painted master and user visual approval. Do not mislabel new technical animation work as solving the missing art. If no artist master exists, CP420 should focus on obtaining/painting one rather than another mask-only benchmark.
+## Verified CI, APK, offline review pack
+
+- [CP419 public test run 41084788314](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41084788314) **SUCCESS: 10 tests discovered, 7 PASS / 3 SKIP** because GitHub public checkout lacks private CANON and atlas. The three image-dependent checks were independently executed with the exact local inputs and PASS.
+- [Android build run 41084788184](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41084788184) **SUCCESS**, downloaded artifact ID `12990748098`. APK `TVK_CP419_Android_Debug_Preview.apk`: **8,827,665 bytes**, SHA-256 `0ab6e9b95c5aec405e98a9d581d3244f1e8385976103375c5fae1a28561b0b28`.
+- Inspected APK ZIP CRC, DEX includes the CP419 UI flag and mesh function; no CANON/atlas private file in packaged APK assets.
+- Private review package `TVK_CP419_Android_SamePose_Sync_Review_Pack.zip`: **18,921,525 bytes**, SHA256 `debf44c213fa7f1c74334c0fdfb0cfc91fa0a4ca62b80deab96dbf5c2b6581fb`, includes APK, CANON, atlas, simulation GIF, MP4, 6-frame image, manifest and instructions. Stored in Library `/Thanh Van Ky/Development/CP419_SamePose_CombinedIdle_Blink_Debug/`.
+- Still **NOT validated on a physical Android device**; debug body animation, not artist-approved original rig.
