@@ -1590,3 +1590,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Release vẫn BLOCKED:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, chưa full-body native painted, Spine/physics, inbetween, Android APK và FPS. Kết quả 90→18 không đồng nghĩa art mới giống CANON.
 - **CP377:** vẽ đúng tư thế tay trái idle/nâng/di chuyển bằng semantic art và mép lụa bản riêng, kiểm thực tế finger silhouettes và các khớp, đối chiếu CANON mới nhất trước khi nghiệm thu art; sau đó tiếp tục full-body Front semantic art và các biểu cảm/4 damage, cuối cùng mới rig/Spine và APK.
 
+---
+
+## 84. CP377 — Lâm Thiển: hai bản vẽ ngón tay và lụa theo tư thế (2026-10-30)
+
+- **CANON-only đã khóa:** `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Không đổi thiết kế +17%, tóc, mặt, trang phục trắng/xanh/vàng hay hai guốc xanh; ảnh so sánh chỉ gồm CANON cùng draft của đúng Lâm Thiển.
+- **Công việc art thực tế:** giữ nguyên 7 lớp SVG CP376 cổ tay/vải lót, vẽ thêm **4 SVG độc lập** gồm 2 đường ngón tay (idle/raised) và 2 mép lụa với nếp rủ khác nhau theo pose. Có hai file ORA, mỗi pose **9 lớp art PNG visible + 1 CANON guide hidden** (10 layer), canvas vẽ vector 1302×2748 từ hệ tọa độ crop nguồn 217×458. Đây chỉ là phần art tay/lụa, **không phải hai ảnh nhân vật toàn thân hoàn chỉnh**.
+- **QA kỹ thuật:** 10/10 local PASS dùng đúng ảnh nguồn; thử cấu trúc GitHub không có private CANON cho ra 4 PASS / 6 SKIP. Hai composite art khác nhau **36.705 pixel RGBA trên canvas 6×**, minh chứng geometry biến đổi theo pose, không phải độ mượt hay mức giống CANON. ZIP/ORA CRC PASS, 2 mũi guốc CANON trong matte giữ 163/163 và 146/146 pixel xanh.
+- **Giữ chuẩn chẩn đoán CP376:** các pixel chưa có underpaint ở phép dịch tay source `(-6,+3)` = 18, `(-4,+2)` = 21, `(+3,-2)` = 98, `(-8,+5)` = 26. **CP377 không dùng các nét ngón tay di chuyển để giảm giả con số này**; khác biệt silhouette ngón tay là vấn đề cần vẽ pose thực chứ không phải lỗ alpha nhất thiết phải tô nền.
+- **Bàn giao:** [CP377 handoff](art/LAM_THIEN_CP377_HAND_SILK_TWO_POSE_DRAFT.md), `tools/art/cp377_fingertip_and_silk_keypose.py`, `tests/art/test_cp377_fingertip_and_silk_keypose.py`. ZIP 54 tệp `TVK_CP377_LamThien_HandSilk_TwoPose_DRAFT_NOT_APPROVED.zip`, SHA256 `3950db5a0f628795e3da9f8ccda1a5428a64b9cd263362ac0f495f96c3896c7a`, lưu Library `/Thanh Van Ky/Development/CP377_Hand_Silk_Two_Pose_Draft/`.
+- **Release gate:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Hình ngón tay/lụa mới vẫn sơ lược so với CANON; chưa có finger mesh, anatomy/draw-order kiểm định trên nhiều pose, full-body art, biểu cảm và các mức damage.
+- **CP378:** hoàn thiện master art bàn tay/cánh tay trái/tay áo trên đúng CANON (ngón, móng, khớp và nếp lụa), vẽ pose thật và kiểm draw-order/underpaint bằng QA nhiều frame; sau đó triển khai các lớp body/hair/face/legs/shoes còn thiếu. Chỉ mở rig/Spine và APK sau khi asset được duyệt.
+
