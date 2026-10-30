@@ -45,6 +45,10 @@ class TVKCombinedIdlePreviewActivity : Activity() {
     private lateinit var auditButton: Button
     private var auditOverlay: TVKFrontPoseRigAuditOverlay? = null
     private var auditVisible = false
+    private var turnVisible = false
+    private var turnOverlay: TVKCP413HeadTurnDebugView? = null
+    private lateinit var turnButton: Button
+    private lateinit var turnAngles: LinearLayout
     private val names = arrayOf("Thở", "Đầu", "Tay", "Tóc", "Lụa")
     private var running = true
     private fun dp(n: Int) = (n * resources.displayMetrics.density + .5f).toInt()
@@ -130,6 +134,49 @@ class TVKCombinedIdlePreviewActivity : Activity() {
         }
         auditButton.isEnabled = false
         root.addView(auditButton, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(42)))
+        // CP413 exposes absent artist-painted underlayers on the exact fullbody pose.
+        turnButton = button("CP413 | Soi khe ghép khi nghiêng đầu (DEBUG)") {
+            if (turnOverlay == null) return@button
+            turnVisible = !turnVisible
+            if (turnVisible) {
+                running = false
+                clock.reset()
+                clock.setPlaying(false)
+                play.text = "Tiếp tục"
+                play.isEnabled = false
+                preview?.setAuditNeutralSource(true)
+                auditOverlay?.visibility = View.GONE
+                turnOverlay?.setAngle(0)
+                turnOverlay?.visibility = View.VISIBLE
+                turnAngles.visibility = View.VISIBLE
+                turnButton.text = "CP413 | Đóng kiểm tra khe ghép"
+                status.text = "CP413 DEBUG: các vệt trắng khi nghiêng đầu là lớp underpaint CHƯA ĐƯỢC VẼ."
+            } else {
+                turnOverlay?.visibility = View.GONE
+                turnAngles.visibility = View.GONE
+                preview?.setAuditNeutralSource(false)
+                play.isEnabled = true
+                turnButton.text = "CP413 | Soi khe ghép khi nghiêng đầu (DEBUG)"
+                status.text = "Đã đóng CP413. Không có đầu phân lớp hay mắt nhắm đã duyệt."
+            }
+            auditButton.isEnabled = !turnVisible
+        }
+        turnButton.isEnabled = false
+        root.addView(turnButton, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(42)))
+        turnAngles = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            visibility = View.GONE
+        }
+        for (degrees in TVKCP413HeadTurnDebugView.angles) {
+            val label = if (degrees > 0) "+${degrees}°" else "${degrees}°"
+            turnAngles.addView(button(label) {
+                turnOverlay?.setAngle(degrees)
+                val i = TVKCP413HeadTurnDebugView.angles.indexOf(degrees)
+                val pixels = TVKCP413HeadTurnDebugView.exposedAreaPixels[i]
+                status.text = "CP413 | ${label} | vùng thiếu underpaint khoảng ${pixels} px (diagnostic, chưa có art)."
+            }, LinearLayout.LayoutParams(0, dp(38), 1f))
+        }
+        root.addView(turnAngles)
         root.addView(text("Hai nguồn cùng thời gian; KHÔNG ghép mắt vào body; KHÔNG là asset game đã duyệt."))
         setContentView(root)
     }
@@ -179,6 +226,10 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 frame.removeAllViews()
                 auditVisible = false
                 auditOverlay = null
+                turnVisible = false
+                turnOverlay = null
+                turnAngles.visibility = View.GONE
+                turnButton.isEnabled = false
                 if (::auditButton.isInitialized) { auditButton.isEnabled = false; auditButton.text = "CP411 | Soi mốc đầu / mắt / cổ (DEBUG)" }
                 if (::play.isInitialized) play.isEnabled = true
                 blinkContainer.removeAllViews()
@@ -196,7 +247,13 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                     frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT))
                 }
+                turnOverlay = TVKCP413HeadTurnDebugView(this, crop).also {
+                    it.visibility = View.GONE
+                    frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT))
+                }
                 auditButton.isEnabled = true
+                turnButton.isEnabled = true
                 blinkChoose.isEnabled = true
                 status.text = "CANON ✓ | 5 kênh cơ thể chạy. Có thể chọn atlas CP409 để xem mắt ở panel riêng."
             } else {
@@ -223,6 +280,10 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 blinkChoose.isEnabled = false
                 auditVisible = false
                 auditOverlay = null
+                turnVisible = false
+                turnOverlay = null
+                turnButton.isEnabled = false
+                turnAngles.visibility = View.GONE
                 auditButton.isEnabled = false
                 play.isEnabled = true
                 frame.removeAllViews()
@@ -241,7 +302,7 @@ class TVKCombinedIdlePreviewActivity : Activity() {
     override fun onResume() {
         super.onResume()
         if (::frame.isInitialized) {
-            clock.setPlaying(running)
+            clock.setPlaying(running && !auditVisible && !turnVisible)
             preview?.invalidate()
             blinkPreview?.invalidate()
         }
