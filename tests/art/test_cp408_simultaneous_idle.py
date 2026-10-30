@@ -22,9 +22,10 @@ class PublicContract(unittest.TestCase):
     def test_debug_only_source_picker(self):
         self.assertIn('ApplicationInfo.FLAG_DEBUGGABLE',ACTIVITY)
         self.assertIn('Intent.ACTION_OPEN_DOCUMENT',ACTIVITY)
-        self.assertIn('EXPECTED_HASH',ACTIVITY)
+        self.assertIn('CANON_HASH',ACTIVITY)
         self.assertIn('sha',ACTIVITY.lower())
-        self.assertIn('hash!=EXPECTED_HASH',ACTIVITY)
+        self.assertIn('require(actual == hash)',ACTIVITY)
+        self.assertLess(ACTIVITY.index('require(actual == hash)'),ACTIVITY.index('BitmapFactory.decodeByteArray(blob'))
     def test_no_sprite_release_or_fake_eye_art(self):
         script=SCRIPT.read_text(encoding='utf8')
         self.assertIn("'sprite_paths':{}",script)
@@ -32,7 +33,7 @@ class PublicContract(unittest.TestCase):
         self.assertNotIn('def closed_eye_candidate(',script)
         self.assertIn("'eye_blink_channel':'TIMELINE_DEFINED_BUT_NO_APPROVED_ILLUSTRATED_FRAMES'",script)
     def test_motion_has_five_independent_controls(self):
-        self.assertEqual(ANDROID.count('if(enabled['),5)  # channel scalar control in formula
+        self.assertEqual(ANDROID.count('if (enabled['),5)  # channel scalar control in formula
         for label in ['breathing','head','arms','hair','silk']:
             self.assertIn(label,ANDROID)
         self.assertIn('canvas.drawBitmapMesh',ANDROID)
@@ -40,7 +41,7 @@ class PublicContract(unittest.TestCase):
         self.assertIn('BooleanArray(5)',ANDROID)
     def test_activity_not_exported_by_runtime_contract(self):
         self.assertIn('TVKCombinedIdleMotionView',ACTIVITY)
-        self.assertIn('private const val MAX_BYTES=5_000_000',ACTIVITY)
+        self.assertIn('private const val MAX_CANON = 5_000_000',ACTIVITY)
     def test_motion_waves_have_distinct_periods(self):
         for period in ['3.8','6.2','5.3','5.7','4.5']:
             self.assertIn(period,ANDROID)
