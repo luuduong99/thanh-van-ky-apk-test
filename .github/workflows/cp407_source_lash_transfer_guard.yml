@@ -1,0 +1,37 @@
+name: CP407 Lâm Thiển exact CANON lash transfer source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp407_source_lash_transfer.py'
+      - 'tools/art/cp407_make_review.py'
+      - 'tests/art/test_cp407_source_lash_transfer.py'
+      - '.github/workflows/cp407_source_lash_transfer_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp407_source_lash_transfer.py'
+      - 'tools/art/cp407_make_review.py'
+      - 'tests/art/test_cp407_source_lash_transfer.py'
+      - '.github/workflows/cp407_source_lash_transfer_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-tech-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Run CP407 technical checks
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp407_source_lash_transfer.py' -v
+      - name: Protect private source and visual approval
+        run: |
+          echo 'Expected public repo: 5 PASS + 10 SKIP, private CANON absent.'
+          echo 'Only actual artist acceptance can release source-locked eyelid art.'
+          echo 'Production: sprite_paths={}, apk_integrated=false, visual_qa=NOT_APPROVED.'
