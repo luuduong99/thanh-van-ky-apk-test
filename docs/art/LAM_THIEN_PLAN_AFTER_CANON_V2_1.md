@@ -258,3 +258,14 @@
 - [ ] **Visual QA NOT_PASSED**, image vẫn có nền infographic, chỉ native 168×197, chưa được họa sĩ vẽ mắt đóng/skin underpaint đủ đẹp, chưa art animator-ready, `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không có Spine/APK mới.
 - [ ] **CP385:** artist hand paint eyelids/skin underlay theo cùng CANON, dọn nền/occlusion, test blink đúng hình, rồi tiếp tục các biểu cảm khác và full body. Không dùng inpaint tự động thay thế art chính thức.
 
+---
+
+## CP385 — Source-exact portrait and unapproved 5-frame blink test (2026-10-30)
+
+- [x] Lâm Thiển CANON V2.1 exact SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197 lấy đúng nguồn.
+- [x] Polygon ROI kỹ thuật chọn từng mắt, tách mắt trái/phải/miệng nguồn CANON; tạo skin-inpaint DRAFT và hai eyelid-closed strokes DRAFT. ORA 7 lớp với 3 lớp hidden. Static mergedimage và hai khung mở hoàn toàn source-exact.
+- [x] 5-frame blink nghiên cứu source-only, chưa artist authored intermediate (opacity 55% chỉ thử nghiệm). Da CP384 đổi 1660 pixel, CP385 đổi 1722 pixel so CANON; không đánh đồng con số với fidelity. **Visual QA NOT PASSED**.
+- [x] **10/10 local tests PASS**, simulated public **3 PASS / 7 SKIP**, ORA CRC PASS. Gói 26 tệp SHA `2a00604c1ad52c23a9e4b478b2b74b2f5f9c2cc18527b4d7fa18e789eabfa0e7` ở Library `/Thanh Van Ky/Development/CP385_Exact_Face_Blink_Draft/`. [CP385 report](LAM_THIEN_CP385_BLINK_SHAPE_STUDY.md).
+- [ ] Chưa có painter-quality closed eye / underpaint, portrait transparency, full face semantic rig, Spine hoặc APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP386:** Vẽ mắt nhắm và lớp da khuất *thực* đúng CANON; xin duyệt visual, sau đó mới kiểm chuyển động trong engine và hoàn thiện các biểu cảm.
+
