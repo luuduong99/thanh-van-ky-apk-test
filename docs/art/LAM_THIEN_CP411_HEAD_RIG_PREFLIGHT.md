@@ -19,7 +19,7 @@ Nguồn CANON: `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, **941×1672**, SHA256 
 3. Tạo ảnh đầu tách lớp có alpha và **lớp inpaint bên dưới đầu chỉ để kiểm tra che khuất**. Ở trạng thái không di chuyển, ghép hai lớp trả về **100% pixel gốc CANON**. Khi xoay/di chuyển thật có thể thấy vết ghép; hiện **không** được dùng cho rig production.
 4. Xuất `CP411_HEAD_SEPARATION_SOURCE_LOCKED_DRAFT.ora` ba lớp (nguồn CANON hiển thị, hai lớp nghiên cứu ẩn), PNG mặt nạ, ảnh kiểm tra và manifest.
 5. Bổ sung `TVKFrontPoseRigAuditOverlay.kt` cho CP410 debug viewer: chỉ sau khi người dùng chọn PNG CANON có SHA đúng, có thể bật hướng dẫn mốc đầu/mắt/cổ. Overlay luôn **reset + pause** body về tư thế nguồn để các mốc không lệch theo mesh.
-6. **14/14 unit tests PASS cục bộ** với nguồn CANON thật; repo public không có CANON dự kiến **7 PASS + 7 SKIP**. Bài kiểm tra kỹ thuật không xác nhận chất lượng mỹ thuật.
+6. **14 PASS / 1 SKIP cục bộ** với CANON thật (1 SKIP là kiểm tra mã Android chỉ chạy trong GitHub checkout); repo public **8 PASS + 7 SKIP đã được xác minh**. Trước khi bổ sung guard mới, bộ 14 bài gốc đạt 14/14. Bài kiểm tra kỹ thuật không xác nhận chất lượng mỹ thuật.
 
 ## Những phần KHÔNG được đánh dấu đã xong
 
@@ -48,9 +48,11 @@ Nguồn CANON: `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, **941×1672**, SHA256 
 
 ## CI và APK đã xác minh
 
-- [CP411 QA GitHub Actions](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41064409467): **SUCCESS**; 14 tests discovered, **7 PASS, 7 SKIP** do không có ảnh CANON riêng tư trong repo.
-- [Android debug build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41064400729): **SUCCESS**, artifact `12981517138`.
-- APK `TVK_CP411_Android_Debug_Preview.apk`: **8,813,299 bytes**, SHA-256 `a8fb34323fd38f5b0f05f7e87cffbd505055cbd54649fa1b8de264627d1cdf62`.
+- [CP411 QA GitHub Actions](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41064409467): **SUCCESS** sau sửa neutral: [run 41065182789](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41065182789), 15 tests discovered, **8 PASS, 7 SKIP** do không có ảnh CANON riêng tư trong repo.
+- [Android debug build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41065175458): **SUCCESS**, artifact `12980559137`.
+- APK `TVK_CP411_Android_Debug_Preview.apk`: **8,813,357 bytes**, SHA-256 `2e173b75f68583e82e80d8f23c34e53a7c926f9bd0c18bb5ed12761221b1c62f`.
 - Kiểm tra APK: không có tên tệp private `LAM_THIEN_CANON` hay atlas `CP409_15_POSE` nằm trong assets. Ứng dụng đọc các tệp này qua Android file picker và kiểm tra SHA trước khi giải mã.
 - **Chưa kiểm thử trên điện thoại thật**, chỉ xác nhận Android build và kiểm thử mã nguồn/ảnh cục bộ.
 - Tệp thử nhanh `TVK_CP411_Android_APK_CANON_Atlas_Review.zip` chứa APK, đúng PNG CANON, đúng atlas CP409 và hướng dẫn. Mục đích: quan sát overlay mốc đầu/cổ và panel mắt riêng, **không** chứng minh đã rig/ghép mắt chính thức.
+
+**Sửa mốc CP411 cuối lượt:** Khi clock đang ở thời gian 0, các pha lắc tóc/tay vẫn lệch 0; chỉ `reset()+pause` không đủ để vẽ đúng mốc. Đã bổ sung `setAuditNeutralSource(true)` cho `TVKCombinedIdleMotionView`: khi bật guide, vẽ trực tiếp **CANON crop nguyên pixel** bằng `canvas.drawBitmap`, bỏ qua mọi biến dạng mesh. Khi tắt guide, hoạt ảnh CP410 khôi phục. Bài test mới khóa việc này.
