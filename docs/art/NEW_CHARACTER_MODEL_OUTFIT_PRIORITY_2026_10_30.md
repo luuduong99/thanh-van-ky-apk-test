@@ -35,3 +35,10 @@
 - ⬜ Chưa có sprites tách lớp, rig hoặc thực nghiệm animation cho các mẫu này.
 
 **Bản bàn giao:** `TVK_Priority_Model_Outfit_References_20261030.zip`, kèm 3 PNG, `REFERENCE_PRIORITY_NOTE.md`, `manifest.json`. Đây là gói tham khảo; không phải bộ công cụ build game.
+
+## Bản xem chi tiết bổ sung (DRAFT V2)
+
+- `TVK_BANDEAU_STRAIGHT_NECKLINE_A_B_FULLVIEW_DRAFT_V2_20261030.png` — Library cùng thư mục, PNG **1536×1024**, SHA256 `ab7845995d7e98c9e393ec40e8f90e07e586d9ed4780e90c2df9dd5ea02b73f9`.
+- Bảng thêm front/back + chi tiết để so sánh kiểu **A khoét sâu** với **B cổ quây ngang thấp** (phương án quây B vẫn **DRAFT/chưa nghiệm thu**).
+- Dù là bản bổ sung, ảnh vẫn chứa nhiều vạt lụa phụ; cần tiếp tục giảm số tà/vải bay khi thiết kế bản dùng cho rig. Không tuyên bố đã có rig hoặc sprite hoàn chỉnh.
+- Gói đầy đủ `TVK_Priority_Model_Outfit_References_20261030.zip` đã lưu trong chính thư mục Library, bao gồm **2 ảnh người dùng ưu tiên + 2 ảnh DRAFT mới + manifest + ghi chú**.
