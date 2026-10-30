@@ -89,3 +89,13 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Phân biệt:** cắt/mask/số lượng layer chỉ là chuẩn bị dữ liệu. **Artist-painted underpaint, eyelashes/closed eyelid đúng pose, hair strands clean edge** mới là bước mang lại chất lượng production; chưa có thì `visual_approved=false` và `sprite_paths={}`.
 - **Quy tắc tăng tốc:** Sau CP414 **đừng lặp thêm một phiên chỉ cắt mặt nạ**. Ưu tiên công việc vẽ thật và gửi trước/sau tại native/zoom để được người dùng nghiệm thu, rồi mới dùng công cụ kiểm tra CP413 ở ±4°.
 - **Bàn giao:** [CP414 source layer extraction](art/LAM_THIEN_CP414_CANON_SOURCE_LAYER_EXTRACTION.md), ZIP private tại Library `/Thanh Van Ky/Development/CP414_Canon_SourcePixel_LayerDraft/`.
+
+## 2026-10-30 — CP415 — Ngăn halo và phân biệt paint study với art hoàn chỉnh
+
+- **Nguồn:** Lâm Thiển CANON V2.1 nguyên byte, raw SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; crop đứng 208×443, khác ảnh chân dung 168×197.
+- **Đã thực hiện:** 3 layer RGBA có pigment/đường vẽ mới cho tóc sau đầu (969 px), da cổ khuất (545 px), shadow cổ áo (120 px). Tất cả dùng tọa độ trên đúng nguồn và clip vào vùng rough head matte; không hề đổi các pixel CANON nhìn thấy ở neutral.
+- **Sai lầm được bắt bằng hình thay vì test tĩnh:** thử tô phủ tóc đến cả đỉnh đầu làm một **viền tím cực rõ khi nghiêng ±4°** mặc dù ảnh 0° nguyên vẹn và kiểm SHA PASS. Đã thu hẹp pigment vào vùng tóc nối cổ, so sánh bảng 5 góc trước/sau; đây là lý do cần visual QA động.
+- **Chính sách:** backing kỹ thuật còn OpenCV inpaint, matte tóc còn thô. **Không được gọi đây là hand-painted master painter-grade** hoặc `rig_ready`. ORA mới chỉ là nghiên cứu có 3 layer vẽ bằng path + 1 layer mắt nhắm trống, không tự động lên CANON.
+- **QA:** local 12/12 tests PASS có private image, ORA merged nguyên pixel source, tamper rejection, layer alpha nằm trong matte và crown halo guard; kỹ thuật PASS không thay người dùng duyệt mỹ thuật hoặc test Android.
+- **Bước tái sử dụng:** từ CP416 trở đi ưu tiên cải thiện nguồn ở độ phân giải phù hợp, phân tách tóc thật, vẽ kín gáy/cổ và mí mắt cùng pose; kiểm 0°/±2°/±4° trực quan trước khi tích hợp. Không lặp lại vòng cắt mask/đếm test mà không bổ sung asset art rõ rệt.
+- **Bàn giao:** [CP415](art/LAM_THIEN_CP415_UNDERPAINT_PIGMENT_STUDY.md) · Library `/Thanh Van Ky/Development/CP415_Source_Locked_Underpaint_Study/`.
