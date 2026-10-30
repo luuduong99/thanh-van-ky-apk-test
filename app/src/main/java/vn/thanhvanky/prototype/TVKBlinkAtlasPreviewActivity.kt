@@ -23,38 +23,40 @@ import java.security.MessageDigest
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-/** Isolated CP402 artist review screen. Never an approved Lâm Thiển runtime sprite. */
+/** CP403 artist inspection screen. NOT a production CANON sprite or approved eye art. */
 class TVKBlinkAtlasPreviewActivity : Activity() {
-    private val requestAtlas = 402
+    private val requestAtlas = 403
+    // This SHA is pinned to the EXACT private-source CP402 preview PNG, not any older concept.
     private val pinnedAtlasSha = "645738fa932a354e3142e2474eb35011491b091d06451a08c4443e6650529c97"
     private lateinit var label: TextView
-    private lateinit var art: AtlasView
+    private lateinit var controlsLabel: TextView
+    private lateinit var playPause: Button
+    private lateinit var art: AtlasCompareView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // IMPORTANT: non-exported and debug-only. User-loaded draft must not enter production.
+        // Explicit development gate. The manifest also declares exported=false.
         if ((applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) == 0) { finish(); return }
         val layout = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_HORIZONTAL
             setBackgroundColor(Color.rgb(21, 36, 52))
-            setPadding(20, 20, 20, 20)
+            setPadding(12, 12, 12, 12)
         }
-        val heading = TextView(this).apply {
-            text = "Lâm Thiển — CP402 / DRAFT / KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT"
-            textSize = 17f
+        fun heading(text: String, size: Float) = TextView(this).apply {
+            this.text = text
+            textSize = size
             setTextColor(Color.WHITE)
         }
-        label = TextView(this).apply {
-            text = "Chọn chính xác CP402_ATLAS_ROOT_DRAFT_15.png từ bộ ZIP CP402.\nChỉ xem trước trên bản debug; chưa có sprite đã nghiệm thu."
-            textSize = 13f
-            setTextColor(Color.rgb(250, 207, 158))
-        }
-        art = AtlasView(this)
-        layout.addView(heading)
+        layout.addView(heading("Lâm Thiển — CP403 | KIỂM TRA MẮT NHẮM (DRAFT)", 16f))
+        label = heading("Chọn CP402_ATLAS_ROOT_DRAFT_15.png; so sánh CANON mở và mắt thử. " +
+            "KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT", 12f)
+        label.setTextColor(Color.rgb(250, 207, 158))
         layout.addView(label)
-        layout.addView(Button(this).apply {
-            text = "Chọn atlas CP402 (kiểm tra SHA-256)"
+        controlsLabel = heading("Chưa có atlas | 0/14 | Chưa nghiệm thu mỹ thuật", 12f)
+        layout.addView(controlsLabel)
+        val chooser = Button(this).apply {
+            text = "Chọn atlas — SHA-256 bắt buộc"
             setOnClickListener {
                 val i = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                     type = "image/png"
@@ -62,13 +64,55 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
                 }
                 startActivityForResult(i, requestAtlas)
             }
-        })
-        layout.addView(art, LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
+        }
+        layout.addView(chooser)
+        val actions = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        playPause = Button(this).apply {
+            text = "Tạm dừng"
+            setOnClickListener {
+                val playing = art.togglePlaying()
+                this.text = if (playing) "Tạm dừng" else "Tiếp tục"
+                updateFrameLabel()
+            }
+        }
+        actions.addView(playPause, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
+        actions.addView(Button(this).apply {
+            text = "Từng khung"
+            setOnClickListener {
+                art.step()
+                playPause.text = "Tiếp tục"
+                updateFrameLabel()
+            }
+        }, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
+        actions.addView(Button(this).apply {
+            text = "Pixel / Mịn"
+            setOnClickListener {
+                art.toggleFiltering()
+                updateFrameLabel()
+            }
+        }, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
+        layout.addView(actions)
+        art = AtlasCompareView(this) { updateFrameLabel() }
+        layout.addView(art, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
         setContentView(layout)
     }
 
-    @Deprecated("For this private debug file-picker-only activity")
+    private fun updateFrameLabel() {
+        if (!::art.isInitialized) return
+        controlsLabel.text = "Khung ${art.currentPoseIndex()}/14 | " +
+            (if (art.isPlaying) "đang chạy" else "đã dừng") + " | " +
+            (if (art.isSharp) "pixel gốc" else "lọc mịn") + " | Chưa duyệt"
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (::art.isInitialized) {
+            art.pause()
+            if (::playPause.isInitialized) playPause.text = "Tiếp tục"
+        }
+    }
+
+    @Deprecated("File-picker callback for isolated debug review activity")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode != requestAtlas || resultCode != RESULT_OK) return
@@ -81,52 +125,140 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
                 while (true) {
                     val n = input.read(buffer)
                     if (n < 0) break
-                    require(bytes.size() + n <= 8 * 1024 * 1024) { "Atlas vượt giới hạn dung lượng" }
+                    require(bytes.size() + n <= 8 * 1024 * 1024) { "Atlas vượt 8 MB" }
                     bytes.write(buffer, 0, n)
                 }
             }
             val blob = bytes.toByteArray()
             val digest = MessageDigest.getInstance("SHA-256").digest(blob)
                 .joinToString("") { "%02x".format(it.toInt() and 255) }
-            require(digest == pinnedAtlasSha) { "Sai atlas, hash không trùng CP402" }
-            val img = BitmapFactory.decodeByteArray(blob, 0, blob.size)
-            require(img != null && img.width == 2520 && img.height == 197) {
-                "Kích thước atlas không hợp lệ (15×168×197)"
+            require(digest == pinnedAtlasSha) { "Sai ảnh: SHA-256 không phải atlas CP402 chuẩn" }
+            val image = BitmapFactory.decodeByteArray(blob, 0, blob.size)
+            require(image != null && image.width == 2520 && image.height == 197) {
+                "Sai kích thước 15 × 168 × 197"
             }
-            art.setAtlas(img)
-            label.text = "ĐÃ XÁC MINH SHA-256 • chỉ preview trong bản debug • CHƯA DUYỆT MỸ THUẬT"
-        } catch (error: Exception) {
-            label.text = "Không tải được bản thử: ${error.message}"
+            art.setAtlas(image)
+            playPause.text = "Tạm dừng"
+            label.text = "ĐÚNG ATLAS CP402 — xem CANON mở bên cạnh mắt thử. " +
+                "KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT"
+            updateFrameLabel()
+        } catch (e: Exception) {
+            label.text = "Không tải được atlas: ${e.message}"
         }
     }
 
-    /** Draw 15 authored source-locked pose candidates on a 2.4 s blink loop. */
-    private class AtlasView(context: android.content.Context) : View(context) {
+    /** Exact source crop is frame zero. Preview is a separate frame from the SAME verified atlas. */
+    private class AtlasCompareView(
+        context: android.content.Context,
+        private val onFrame: () -> Unit
+    ) : View(context) {
         private var atlas: Bitmap? = null
-        private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-        private val sourceRect = Rect()
-        private val targetRect = RectF()
-        private var startTime = 0L
+        private val picture = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val legend = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            textSize = 31f
+            color = Color.WHITE
+        }
+        private val source = Rect()
+        private val dest = RectF()
+        private var startMs = SystemClock.uptimeMillis()
+        private var elapsedOnPauseMs = 0L
+        private var frozenPose: Int? = null
+        private var lastDisplayedPose: Int = -1
+        var isPlaying = true
+            private set
+        var isSharp = true
+            private set
+
         fun setAtlas(image: Bitmap) {
+            atlas?.takeUnless { it === image }?.recycle()
             atlas = image
-            startTime = SystemClock.uptimeMillis()
+            elapsedOnPauseMs = 0
+            frozenPose = null
+            startMs = SystemClock.uptimeMillis()
+            isPlaying = true
+            lastDisplayedPose = -1
             invalidate()
         }
+
+        fun togglePlaying(): Boolean {
+            if (atlas == null) return false
+            if (isPlaying) pause() else {
+                isPlaying = true
+                if (frozenPose != null) {
+                    // Resume at the same visual pose, then continue the natural loop.
+                    val p = frozenPose!!
+                    val t = when {
+                        p <= 0 -> 0.30f
+                        p <= 7 -> .31f + (p / 7f) * .045f
+                        else -> .395f + ((p - 7f) / 7f) * .065f
+                    }
+                    elapsedOnPauseMs = (t * 2400).toLong()
+                    frozenPose = null
+                }
+                startMs = SystemClock.uptimeMillis() - elapsedOnPauseMs
+                invalidate()
+            }
+            return isPlaying
+        }
+
+        fun pause() {
+            if (isPlaying) {
+                elapsedOnPauseMs = (SystemClock.uptimeMillis() - startMs) % 2400L
+                isPlaying = false
+                invalidate()
+            }
+        }
+
+        fun step() {
+            if (atlas == null) return
+            pause()
+            frozenPose = ((frozenPose ?: poseForTime(elapsedOnPauseMs / 2400f)) + 1) % 15
+            invalidate()
+        }
+
+        fun toggleFiltering() {
+            isSharp = !isSharp
+            invalidate()
+        }
+
+        fun currentPoseIndex(): Int = frozenPose ?: poseForTime(
+            (if (isPlaying) ((SystemClock.uptimeMillis() - startMs) % 2400L) else elapsedOnPauseMs) / 2400f
+        )
+
         override fun onDraw(canvas: Canvas) {
             super.onDraw(canvas)
-            val bitmap = atlas ?: return
+            val image = atlas ?: return
             if (width <= 0 || height <= 0) return
-            val t = ((SystemClock.uptimeMillis() - startTime) % 2400L) / 2400f
-            val pose = poseForTime(t)
-            sourceRect.set(pose * 168, 0, (pose + 1) * 168, 197)
-            val scale = min(width / 168f, height / 197f)
+            val index = currentPoseIndex()
+            picture.isFilterBitmap = !isSharp
+            if (index != lastDisplayedPose) { lastDisplayedPose = index; post { onFrame() } }
+            val horizontal = width > height
+            if (horizontal) {
+                drawPanel(canvas, image, 0, RectF(0f, 0f, width * .5f, height.toFloat()), "MỞ / CANON")
+                drawPanel(canvas, image, index, RectF(width * .5f, 0f, width.toFloat(), height.toFloat()), "CP402 / DRAFT")
+            } else {
+                drawPanel(canvas, image, 0, RectF(0f, 0f, width.toFloat(), height * .5f), "MỞ / CANON")
+                drawPanel(canvas, image, index, RectF(0f, height * .5f, width.toFloat(), height.toFloat()), "CP402 / DRAFT")
+            }
+            if (isPlaying && isAttachedToWindow && isShown) {
+                postInvalidateOnAnimation()
+            }
+            // Only update labels on user interaction, not every display refresh.
+        }
+
+        private fun drawPanel(canvas: Canvas, image: Bitmap, frame: Int, area: RectF, name: String) {
+            val panelH = area.height() - 42f
+            if (panelH <= 0) return
+            val scale = min(area.width() / 168f, panelH / 197f)
             val w = 168f * scale
             val h = 197f * scale
-            targetRect.set((width - w) / 2f, (height - h) / 2f,
-                (width + w) / 2f, (height + h) / 2f)
-            canvas.drawBitmap(bitmap, sourceRect, targetRect, paint)
-            if (isAttachedToWindow && isShown) postInvalidateOnAnimation()
+            val cx = area.centerX(); val cy = area.top + 21f + panelH * .5f
+            dest.set(cx - w * .5f, cy - h * .5f, cx + w * .5f, cy + h * .5f)
+            source.set(frame * 168, 0, (frame + 1) * 168, 197)
+            canvas.drawBitmap(image, source, dest, picture)
+            canvas.drawText(name, area.left + 8f, area.top + 35f, legend)
         }
+
         companion object {
             private fun smooth(v: Float): Float {
                 val z = v.coerceIn(0f, 1f)
