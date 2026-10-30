@@ -25,6 +25,8 @@ class TVKCombinedIdleMotionView(
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
     private val box = RectF()
     private val enabled = BooleanArray(5) { true } // breath, head, arm, hair, silk
+    private var auditNeutralSource = false
+    fun setAuditNeutralSource(on: Boolean) { auditNeutralSource = on; invalidate() }
     val playing: Boolean get() = timeline.playing
 
     fun setPlaying(active: Boolean) { timeline.setPlaying(active); invalidate() }
@@ -47,6 +49,11 @@ class TVKCombinedIdleMotionView(
         val w = canonCrop.width * scale
         val h = canonCrop.height * scale
         box.set((width - w) * .5f, (height - h) * .5f, (width + w) * .5f, (height + h) * .5f)
+        if (auditNeutralSource) {
+            // Draw exact original front pose, not a t=0 mesh with nonzero phase offsets.
+            canvas.drawBitmap(canonCrop, null, box, paint)
+            return
+        }
         // Unlike CP408, PAUSE freezes exact current time rather than snapping to t=0.
         val t = timeline.elapsedSeconds()
         val breathing = if (enabled[0]) sin(2 * PI * t / 3.8) else 0.0
