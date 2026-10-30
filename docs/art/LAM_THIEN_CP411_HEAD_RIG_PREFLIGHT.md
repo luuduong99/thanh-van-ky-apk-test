@@ -45,3 +45,12 @@ Nguồn CANON: `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, **941×1672**, SHA256 
 - `android/TVKFrontPoseRigAuditOverlay.kt` — lớp vẽ hướng dẫn ở debug APK.
 
 **Mốc chất lượng quan trọng:** Neutral compositing PASS chỉ chứng minh ảnh gốc không bị sửa; hoàn toàn không chứng minh head mesh/animation trông tự nhiên khi chuyển động.
+
+## CI và APK đã xác minh
+
+- [CP411 QA GitHub Actions](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41064409467): **SUCCESS**; 14 tests discovered, **7 PASS, 7 SKIP** do không có ảnh CANON riêng tư trong repo.
+- [Android debug build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41064400729): **SUCCESS**, artifact `12981517138`.
+- APK `TVK_CP411_Android_Debug_Preview.apk`: **8,813,299 bytes**, SHA-256 `a8fb34323fd38f5b0f05f7e87cffbd505055cbd54649fa1b8de264627d1cdf62`.
+- Kiểm tra APK: không có tên tệp private `LAM_THIEN_CANON` hay atlas `CP409_15_POSE` nằm trong assets. Ứng dụng đọc các tệp này qua Android file picker và kiểm tra SHA trước khi giải mã.
+- **Chưa kiểm thử trên điện thoại thật**, chỉ xác nhận Android build và kiểm thử mã nguồn/ảnh cục bộ.
+- Tệp thử nhanh `TVK_CP411_Android_APK_CANON_Atlas_Review.zip` chứa APK, đúng PNG CANON, đúng atlas CP409 và hướng dẫn. Mục đích: quan sát overlay mốc đầu/cổ và panel mắt riêng, **không** chứng minh đã rig/ghép mắt chính thức.
