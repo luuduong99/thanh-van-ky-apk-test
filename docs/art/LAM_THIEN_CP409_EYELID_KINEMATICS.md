@@ -35,3 +35,10 @@
 ## Bước tiếp theo
 
 CP410: họa sĩ sửa keyframe mắt và da theo bản hình học, xác nhận native/zoom; nếu đạt thì đồng bộ kênh mắt với đầu/body thật, test thiết bị rồi mới cân nhắc đưa vào runtime sản xuất. **Không tăng checkpoint nếu chỉ là vá pixel hoặc tăng test.**
+
+## Xác minh build cuối lượt
+
+- [CP409 GitHub QA](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41058915025): **SUCCESS**. CI công khai chạy 16 bài, **7 PASS / 9 SKIP** vì CANON nằm trong Library, không đưa vào repo.
+- [Android Debug Build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41058907069): **SUCCESS**, artifact `12978088196`, `app-debug.apk` **8,807,444 bytes**, SHA256 `efbd703fc7f564196fc4bd7c76631064227fdd433cf8e434f6c80ce5e5fedd3f`.
+- Đã kiểm tra nội dung APK không có bitmap CANON/atlas CP409 nhúng vào assets; phải chọn atlas qua Android picker theo đúng SHA.
+- Không có bằng chứng đã chạy kiểm thử trên điện thoại thật. Build thành công **không** tương đương rig hoàn thành hay mỹ thuật được duyệt.
