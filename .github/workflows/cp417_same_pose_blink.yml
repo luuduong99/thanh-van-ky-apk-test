@@ -1,0 +1,39 @@
+name: CP417 exact CANON same-pose source-lash blink QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp417_source_lash_blink.py'
+      - 'tests/art/test_cp417_source_lash_blink.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt'
+      - 'app/src/main/AndroidManifest.xml'
+      - '.github/workflows/cp417_same_pose_blink.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp417_source_lash_blink.py'
+      - 'tests/art/test_cp417_source_lash_blink.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - '.github/workflows/cp417_same_pose_blink.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-technical-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install raster QA
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: CP417 exact-source contract
+        run: python -m unittest discover -s tests/art -p 'test_cp417_source_lash_blink.py' -v
+      - name: Truthful art-release gate
+        run: |
+          echo 'Expected 5 public source tests PASS, 9 private-CANON tests SKIP.'
+          echo 'CP417 is a low-resolution preview-only debug animation.'
+          echo 'No fullbody Spine rig, no artist visual approval, no phone test.'
