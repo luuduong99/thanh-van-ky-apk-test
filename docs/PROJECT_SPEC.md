@@ -1722,3 +1722,16 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Điểm cần tham khảo:** gương mặt anime fantasy thanh tú, mắt/mi và da tự nhiên, ánh sáng và phụ kiện tinh xảo; biểu diễn chuyển mắt qua nhiều khung rõ ràng và bảng so sánh dễ nhìn.
 - **KHÔNG nhầm nhận diện và trạng thái:** hình minh họa này **không phải** CANON Lâm Thiển V2.1, không phải CANON Tô Nguyệt Ly đã duyệt, không chứng minh CP386 có 12/12 PASS/đã đạt art. Nếu phát triển Tô Nguyệt Ly, lấy CANON **riêng của Tô** làm nguồn nhân vật; nếu chưa có, ghi DRAFT và xin duyệt trước khi dùng trong game.
 - **Tài liệu và ảnh:** [Tô Nguyệt Ly style reference](art/TO_NGUYET_LY_STYLE_REFERENCE_2026_10_30.md). CP386/CP387 của Lâm Thiển **không thay đổi trạng thái** vì ghi chú này.
+
+---
+
+## 94. CP387 — Lâm Thiển: đánh giá thất bại 3 cách phục hồi mí mắt, khóa nghiệm thu (2026-10-30)
+
+- **Đúng nguồn CANON V2.1:** `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` user-approved, 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Dùng crop Ngại ngùng `(25,684,193,881)` 168×197; chỉ dùng CANON và các draft của Lâm Thiển, **KHÔNG dùng ảnh phong cách tham khảo Tô Nguyệt Ly làm Lâm Thiển**.
+- **Thực tế thử nghiệm:** sau CP386, chạy 3 phương án vùng mí/da `TELEA`, `Navier-Stokes`, `cheek donor` ngay trên pixel từ CANON, giữ nguyên toàn bộ bên ngoài hai mắt. Số pixel thay đổi trong mask là 1390/1389/1390; **0 pixel ngoài mask**. Cả 3 phương án **VISUAL FAIL** do màu da/viền/độ bóng mi và tóc chồng lớp; tuyệt đối không gọi chúng là art đẹp hơn hoặc animation game-ready.
+- **Tài liệu sửa art:** đã lập bảng so sánh CANON/CP386/ba phương án trên cùng nhân vật; OpenRaster **7 lớp** với đúng **1 lớp CANON tĩnh hiển thị**, 6 lớp ẩn gồm CP386 cũ, 3 draft bị loại và 2 mask đánh dấu. `mergedimage` đúng từng pixel CANON; có thể mở Krita tiếp tục vẽ. **Chưa có lớp mí nhắm chất lượng họa sĩ được duyệt.**
+- **Kiểm thử:** **9/9 local PASS** trên source exact; public-mode thiếu private art **3 PASS / 6 SKIP**. Test đúng SHA CANON trước khi ghi output, tính toàn vẹn vùng ngoài mắt, ORA CRC/stack và release gate. GitHub workflow `.github/workflows/cp387_canon_eyelid_visual_gate.yml` chỉ xác nhận kiểm thử source công khai, không thẩm định đẹp/giống CANON.
+- **Bàn giao:** [CP387 artist handoff](art/LAM_THIEN_CP387_EYELID_ART_ACCEPTANCE_GATE.md), tool `tools/art/cp387_occlusion_and_artist_gate.py`, test `tests/art/test_cp387_occlusion_and_artist_gate.py`. ZIP 14 tệp `TVK_CP387_LamThien_Eyelid_Rejected_QA_Not_Approved.zip` SHA256 `297b3fcbe215c8167cfcf694863aef861b6d314dea7a5c04516b66c5b2671de0` trong Library `/Thanh Van Ky/Development/CP387_Eyelid_Visual_Regression_Gate/`.
+- **Cổng phát hành:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `rig_ready=false`, `apk_ready=false`. Chưa có APK/Spine, không import kết quả tự động vào game.
+- **CP388:** chuyển sang **vẽ mí nhắm, lông mi, bóng mí và da ẩn thật theo CANON**; giữ nhận diện tĩnh pixel-exact, so native + 4×; gửi preview để người dùng duyệt trước khi vẽ các khung chuyển động và 4 biểu cảm còn lại.
+
