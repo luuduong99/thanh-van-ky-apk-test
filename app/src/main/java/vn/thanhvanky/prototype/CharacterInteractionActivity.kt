@@ -256,6 +256,13 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(row)
         }
 
+        // Preview-only CP402. It does not unlock any production sprite path.
+        if (selectedId == "lin_qian" && debugArtPreview) {
+            portraits.addView(btn("CP402 | Xem thử chớp mắt (DRAFT)") {
+                startActivity(android.content.Intent(this, TVKBlinkAtlasPreviewActivity::class.java))
+            })
+        }
+
         if (selectedId == "lin_qian" && !hasApprovedLamThienSprite) {
             val notice = if (debugArtPreview)
                 "ẢNH TEST / LEGACY — Lâm Thiển chưa có sprite CANON V2.1 được nghiệm thu. " +
