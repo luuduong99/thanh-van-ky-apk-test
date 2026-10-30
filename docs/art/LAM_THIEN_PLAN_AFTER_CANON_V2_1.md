@@ -149,3 +149,14 @@
 - [ ] **Visual QA NOT_PASSED**: còn viền lụa/bóng sàn, 204px underpaint missing theo CP373, chưa independent high-res art, 5 expression/integrity overlays, Spine/Android APK. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP375:** vẽ bản native hi-res Front thực theo CANON với các semantic layers/body underpaint; không biến mask crop/phóng to thành “vẽ HD”. Làm hai pose thật và xin duyệt trước khi rig.
 
+---
+
+## CP375 — Partial drawn hidden-wrist study (2026-10-30)
+
+- [x] Xác minh CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, dùng crop Front 217×458 đúng nguồn và chỉ hiển thị CANON của Lâm Thiển + draft cùng nhân vật.
+- [x] Tạo 4 SVG Bézier/gradient được vẽ mới thành 4 PNG art RGBA (canvas vector 1302×2748) + ORA 5 lớp có CANON guide ẩn. **Không được xem 6× là nâng chi tiết gốc lên HD**.
+- [x] Test dịch tay (-6,+3), nguồn CP374: **204** pixel hở ban đầu, **114** pixel được alpha vector mới phủ, **90** còn hở. Đây chỉ QA cục bộ, không phải rig chuyển động hoàn chỉnh.
+- [x] **9/9 local PASS**, mô phỏng public CI thiếu art **4 PASS / 5 SKIP**; ORA CRC PASS, hai giày xanh nguồn giữ 163/163 và 146/146. [Handoff CP375](LAM_THIEN_CP375_HIDDEN_WRIST_ART_STUDY.md), ZIP 21 entries SHA256 `c279ba8b9f24fd57fdd0fdc743cba7185474461fe6d2b57aedf871ee07c19ba7`, sao lưu Library `/Thanh Van Ky/Development/CP375_Hidden_Wrist_Native_Art_Study/`.
+- [ ] **Visual QA NOT PASSED / release blocked**: art chỉ là một phần cẳng tay, chưa full-body native painting hay anatomy hợp lý khi di chuyển; 90 px hở, lụa sáng/matte/bóng sàn còn lỗi; chưa Spine/APK.
+- [ ] **CP376:** vẽ lại *toàn bộ vai/tay trái/tay áo*, hoàn thiện underpaint và hai keyframes đúng CANON, rồi phát triển full-body semantic art / expression / clothing integrity trước kiểm thử Android.
+
