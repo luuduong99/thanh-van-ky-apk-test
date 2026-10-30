@@ -76,11 +76,10 @@ class StaticContract(unittest.TestCase):
         self.assertIn("'physical_android_tested':False",self.script)
         self.assertIn("'production_sprite_paths':{}",self.script)
 
+@unittest.skipUnless(CANON.exists() and ATLAS.exists(), 'CANON + atlas not bundled in public GitHub')
 class PrivateCanonContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if not CANON.exists() or not ATLAS.exists():
-            raise unittest.SkipTest('CANON + atlas not bundled in public GitHub')
         sys.path.insert(0,str(TOOLS))
         from cp410_sync_preview import sources,pose_at
         cls.source,cls.atlas=sources(CANON,ATLAS)
