@@ -58,8 +58,8 @@ def paint_eyes(src, previous):
    donor=source_skin*.78+deep_skin*.22
    for y in range(y1,y2):
     dy=y-yline
-    envelope=np.exp(-.5*((dy-.6)/2.45)**2)
-    alpha=.84*xe*envelope
+    envelope=np.exp(-.5*((dy-.6)/3.0)**2)
+    alpha=min(.995, 1.23*xe*envelope)
     if alpha<.006:continue
     prev_col=old[y,x,:3].astype(float)
     # shade fades below the lid and adds natural rosy boundary tint
@@ -78,7 +78,7 @@ def paint_eyes(src, previous):
    elif category=='CREASE':
     d.line([(x,y-2.8*N) for x,y in coords],fill=(136,77,110,37),width=round(.55*N))
    elif category=='LASH':
-    d.line(coords,fill=(91,45,66,210),width=round(.94*N))
+    d.line(coords,fill=(75,36,55,244),width=round(1.10*N))
     d.line([(x,y-.15*N) for x,y in coords],fill=(116,64,79,80),width=max(1,round(.38*N)))
     ts=([.075,.14,.21,.29] if side=='LEFT' else [.73,.81,.88,.94])
     for j,t in enumerate(ts):
@@ -99,7 +99,7 @@ def paint_eyes(src, previous):
    xx=float(np.clip(min((x-x1-2)/6,(x2-2-x)/6),0,1))
    edge=line_at(side,x)
    for y in range(y1,y2):
-    coverage=.66*xx*math.exp(-.5*((y-edge+.32)/.7)**2)
+    coverage=.32*xx*math.exp(-.5*((y-edge+.32)/.55)**2)
     if coverage>.008:
      pigment[y,x,:3]=a[y,x,:3]
      pigment[y,x,3]=round(coverage*255)
