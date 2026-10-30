@@ -17,7 +17,7 @@
 2. Định lượng pixel bị lộ trong vùng mặt nạ nghiên cứu cần underpaint thật: -4° **271 px**, -2° **174 px**, 0° **0 px**, +2° **174 px**, +4° **276 px** ở ảnh đứng native. Các số này không chấm chất lượng vẽ. Ở 0° ảnh tái ghép đúng pixel nguyên bản CANON.
 3. Bản `CP412_ARTIST_INTAKE_BLANK_LAYERS.ora` có **9 layer**: 1 layer nguồn fullbody CANON hiển thị; **8 layer vẽ trống/ẩn** dành cho tóc trước, mặt, mí mắt nhắm cùng pose, tóc dài phía sau, lớp lót cổ/gáy, lót vai, lót tóc và trang sức. Đây không phải nguồn art đã được vẽ hay master HD.
 4. Xuất `CP412_FRONT_HEAD_ANNOTATION_4X.png` (zoom NEAREST chỉ để soi); `CP412_CANON_FRONT_UNMODIFIED.png`; JSON manifest khóa nguồn và trạng thái art. Bộ offline có bản CANON byte-exact, script và unittest để dựng lại.
-5. **10/10 local unittest PASS** khi nạp CANON thật, gồm source guard, mask, head pivot, neutral exact, exposed-area diagnostics, ORA hidden blank layers và gate `art_approved=false`. CI công khai **dự kiến** 5 PASS / 5 SKIP do không có private CANON. Không tuyên bố GitHub Actions PASS cho tới khi xem run.
+5. **10/10 local unittest PASS** khi nạp CANON thật, gồm source guard, mask, head pivot, neutral exact, exposed-area diagnostics, ORA hidden blank layers và gate `art_approved=false`. CI công khai đã xác minh [GitHub Actions run 41069360009](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41069360009) **SUCCESS: 10 tests discovered, 5 PASS / 5 SKIP** do không có private CANON. Đây là kỹ thuật, không phải duyệt mỹ thuật.
 
 ## Không được nhầm với đã hoàn tất
 
