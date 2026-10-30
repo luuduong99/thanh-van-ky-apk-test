@@ -1,0 +1,36 @@
+name: CP384 exact CANON face editable-source static guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp384_exact_face_eye_master.py'
+      - 'tools/art/requirements_cp384.txt'
+      - 'tests/art/test_cp384_exact_face_eye_master.py'
+      - '.github/workflows/cp384_exact_face_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp384_exact_face_eye_master.py'
+      - 'tools/art/requirements_cp384.txt'
+      - 'tests/art/test_cp384_exact_face_eye_master.py'
+      - '.github/workflows/cp384_exact_face_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install static contract dependencies
+        run: python -m pip install -r tools/art/requirements_cp384.txt
+      - name: Run source-only tests (private CANON tests intentionally skipped)
+        run: python -m unittest discover -s tests/art -p 'test_cp384_exact_face_eye_master.py' -v
+      - name: Preserve art approval gate
+        run: |
+          echo 'Public mode: 3 static PASS, 7 source-dependent SKIP.'
+          echo 'The blink underpaint is technical, VISUAL QA NOT_PASSED, no APK release.'
