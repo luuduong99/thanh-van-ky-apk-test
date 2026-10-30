@@ -21,6 +21,9 @@ import android.widget.TextView
 import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 import kotlin.math.min
+import kotlin.math.PI
+import kotlin.math.exp
+import kotlin.math.sin
 import kotlin.math.roundToInt
 
 /**
@@ -46,6 +49,8 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
     private lateinit var playPause: Button
     private lateinit var viewer: BlinkView
     private lateinit var compareMode: Button
+    private lateinit var combinedMode: Button
+    private var requestedCombined = false
     private val frameButtons = ArrayList<Button>()
     private var changedPixels = IntArray(FRAMES)
     private var playing = true
@@ -60,14 +65,15 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Do not expose this private source review in release builds.
+        requestedCombined = intent.getBooleanExtra("cp419_combined", false)
         if ((applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) == 0) { finish(); return }
         val col = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(10), dp(10), dp(10), dp(10))
             setBackgroundColor(Color.rgb(21, 35, 52))
         }
-        col.addView(info("CP418 • LÂM THIỂN — SOI MÍ MẮT (DEBUG)", 17f))
-        col.addView(info("CANON đúng pose 208×443, 5 khung CP417. Bản nháp chưa duyệt mỹ thuật.", 12f))
+        col.addView(info("CP419 • LÂM THIỂN — CÙNG POSE: IDLE + BLINK (DEBUG)", 17f))
+        col.addView(info("CANON đứng 208×443 + 5 khung mắt cùng pose. Kết hợp 5 kênh idle trên ảnh phẳng, KHÔNG phải rig.", 12f))
         val pick = LinearLayout(this)
         pick.addView(button("1. Chọn CANON V2.1") { pick(PICK_CANON) },
             LinearLayout.LayoutParams(0, dp(48), 1f))
@@ -93,10 +99,25 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         compareMode = button("Soi cận 2 mặt: CANON / khung đang chọn") {
             val next = !viewer.comparing
             viewer.setCompareMode(next)
+            if (next && viewer.combined) {
+                viewer.setCombinedMode(false)
+                combinedMode.text = "CP419 | Bật thở + đầu + tay + tóc + lụa cùng mắt"
+            }
             compareMode.text = if (next) "Về toàn thân" else "Soi cận 2 mặt: CANON / khung đang chọn"
         }
         compareMode.isEnabled = false
         col.addView(compareMode, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(38)))
+        combinedMode = button("CP419 | Bật thở + đầu + tay + tóc + lụa cùng mắt") {
+            viewer.setCombinedMode(!viewer.combined)
+            if (viewer.combined && viewer.comparing) {
+                viewer.setCompareMode(false)
+                compareMode.text = "Soi cận 2 mặt: CANON / khung đang chọn"
+            }
+            combinedMode.text = if (viewer.combined) "CP419 | Tắt chuyển động cơ thể" else "CP419 | Bật thở + đầu + tay + tóc + lụa cùng mắt"
+            status.text = if (viewer.combined) "CP419 | CÙNG POSE: mesh 5 kênh + blink; DEBUG, KHÔNG phải rig/Spine." else "CP418 | Soi 5 khung, không có chuyển động cơ thể."
+        }
+        combinedMode.isEnabled = false
+        col.addView(combinedMode, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(42)))
         val stepRow = LinearLayout(this)
         for (step in 0 until FRAMES) {
             val b = button("$step/4") {
@@ -178,6 +199,8 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 chooseAtlas.isEnabled = true
                 playPause.isEnabled = false
                 compareMode.isEnabled = false
+                combinedMode.isEnabled = false
+                viewer.setCombinedMode(false)
                 for (button in frameButtons) button.isEnabled = false
                 viewer.setCompareMode(false)
                 compareMode.text = "Soi cận 2 mặt: CANON / khung đang chọn"
@@ -196,6 +219,9 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 playPause.text = "Tạm dừng"
                 playPause.isEnabled = true
                 compareMode.isEnabled = true
+                combinedMode.isEnabled = true
+                viewer.setCombinedMode(requestedCombined)
+                combinedMode.text = if (requestedCombined) "CP419 | Tắt chuyển động cơ thể" else "CP419 | Bật thở + đầu + tay + tóc + lụa cùng mắt"
                 for (button in frameButtons) button.isEnabled = true
                 status.text = "CANON ✓ | Atlas CP417 ✓ | So cận và chọn 0/4…4/4; chưa duyệt art."
             }
@@ -204,12 +230,16 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 front = null; atlas = null; chooseAtlas.isEnabled = false
                 playPause.isEnabled = false
                 compareMode.isEnabled = false
+                combinedMode.isEnabled = false
+                viewer.setCombinedMode(false)
                 for (button in frameButtons) button.isEnabled = false
                 viewer.setAssets(null, null)
             } else {
                 atlas = null
                 playPause.isEnabled = false
                 compareMode.isEnabled = false
+                combinedMode.isEnabled = false
+                viewer.setCombinedMode(false)
                 for (button in frameButtons) button.isEnabled = false
                 viewer.setAssets(front, null)
             }
@@ -226,6 +256,12 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         private var freeze = 0L
         private var active = true
         private var frameOverride: Int? = null
+        private var slices: List<Bitmap> = emptyList()
+        private val motionColumns = 20
+        private val motionRows = 36
+        private val motionMesh = FloatArray((motionColumns+1)*(motionRows+1)*2)
+        var combined = false
+            private set
         var comparing = false
             private set
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
@@ -243,8 +279,17 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
             invalidate()
         }
         fun setCompareMode(on: Boolean) { comparing = on; invalidate() }
+        fun setCombinedMode(on: Boolean) {
+            combined = on && sheet != null
+            invalidate()
+        }
         fun setAssets(front: Bitmap?, atlas: Bitmap?) {
             source = front; sheet = atlas; frameOverride = null
+            // All five slices contain the exact SAME front body pose. No extra face image.
+            slices = if (atlas == null) emptyList() else (0 until FRAMES).map {
+                Bitmap.createBitmap(atlas, it*W, 0, W, H)
+            }
+            combined = false
             anchor = SystemClock.uptimeMillis(); freeze = 0L
             invalidate()
         }
@@ -258,8 +303,10 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         private fun eased(t: Double): Double {
             val x = t.coerceIn(0.0, 1.0); return x*x*(3-2*x)
         }
-        private fun currentFrame(): Int {
-            val t = ((if (active) SystemClock.uptimeMillis()-anchor else freeze).toDouble()/1000.0) % 2.4
+        private fun elapsedSeconds(): Double = (if (active) SystemClock.uptimeMillis()-anchor else freeze)
+            .coerceAtLeast(0L).toDouble() / 1000.0
+        private fun currentFrame(tSeconds: Double): Int {
+            val t = tSeconds % 2.4
             return when {
                 t < 1.80 -> 0
                 t < 1.95 -> (4*eased((t-1.80)/0.15)).roundToInt().coerceIn(0,4)
@@ -267,6 +314,50 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 t < 2.22 -> (4*(1-eased((t-2.03)/0.19))).roundToInt().coerceIn(0,4)
                 else -> 0
             }
+        }
+        private fun gaussian(x: Double, center: Double, spread: Double): Double {
+            val d=(x-center)/spread
+            return exp(-0.5*d*d)
+        }
+        // CP419 technical mesh uses THE SAME timestamp and SAME source frame as blink.
+        // Not head/neck separation, painting, physics, or a production rig.
+        private fun drawSamePoseMotion(canvas: Canvas, frame: Bitmap, destination: RectF, seconds: Double) {
+            val breath=sin(2*PI*seconds/3.8)
+            val head=sin(2*PI*seconds/6.2+0.42)
+            val arm=sin(2*PI*seconds/5.3+0.9)
+            val hair=sin(2*PI*seconds/5.7+0.15)
+            val silk=sin(2*PI*seconds/4.5+0.3)
+            for (row in 0..motionRows) {
+                val v=row.toDouble()/motionRows
+                for (col in 0..motionColumns) {
+                    val u=col.toDouble()/motionColumns
+                    var dx=0.0
+                    var dy=0.0
+                    val torso=gaussian(v,0.29,0.13)*gaussian(u,0.49,0.22)
+                    dx+=(u-0.49)*0.010*breath*torso
+                    dy-=0.0031*breath*torso
+                    val headRegion=gaussian(v,0.13,0.09)*gaussian(u,0.50,0.30)
+                    dx+=0.0055*head*headRegion
+                    dy+=0.0013*head*headRegion
+                    val armRegion=gaussian(v,0.45,0.19)*(gaussian(u,0.19,0.10)+gaussian(u,0.81,0.10))
+                    dx+=0.0045*arm*armRegion
+                    dy+=0.0011*arm*armRegion
+                    val hairRegion=gaussian(v,0.32,0.29)*(gaussian(u,0.14,0.13)+gaussian(u,0.89,0.13))
+                    dx+=0.0065*hair*hairRegion
+                    dy+=0.0009*hair*hairRegion
+                    val hem=gaussian(v,0.80,0.23)*(gaussian(u,0.15,0.23)+gaussian(u,0.84,0.23))
+                    dx+=0.0085*silk*hem
+                    dy+=0.0014*silk*hem
+                    val index=(row*(motionColumns+1)+col)*2
+                    motionMesh[index]=((u+dx)*destination.width()).toFloat()
+                    motionMesh[index+1]=((v+dy)*destination.height()).toFloat()
+                }
+            }
+            canvas.save()
+            canvas.clipRect(destination)
+            canvas.translate(destination.left,destination.top)
+            canvas.drawBitmapMesh(frame,motionColumns,motionRows,motionMesh,0,null,0,paint)
+            canvas.restore()
         }
         override fun onDraw(canvas: Canvas) {
             super.onDraw(canvas)
@@ -276,7 +367,9 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
             val destination = RectF((width-w)/2f,(height-h)/2f,(width+w)/2f,(height+h)/2f)
             canvas.drawColor(Color.rgb(227, 237, 246))
             val data = sheet
-            val i = frameOverride ?: currentFrame()
+            // One monotonic clock chooses both the eyelid state and body deformation.
+            val seconds = elapsedSeconds()
+            val i = frameOverride ?: currentFrame(seconds)
             if (comparing && data != null) {
                 // Two true source-pixel crops side-by-side. Large display != new HD artwork.
                 val face = Rect(80, 34, 135, 91)
@@ -304,7 +397,9 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 }
                 markEyes(left); markEyes(right)
             } else if (data == null) canvas.drawBitmap(src, null, destination, paint)
-            else canvas.drawBitmap(data, Rect(i*W, 0, (i+1)*W, H), destination, paint)
+            else if (combined && slices.size == FRAMES) {
+                drawSamePoseMotion(canvas, slices[i], destination, seconds)
+            } else canvas.drawBitmap(data, Rect(i*W, 0, (i+1)*W, H), destination, paint)
             if (active && data != null && frameOverride == null && isAttachedToWindow) postInvalidateOnAnimation()
         }
     }
