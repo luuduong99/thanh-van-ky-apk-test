@@ -70,3 +70,13 @@ Nguồn [4 ảnh tham khảo và SHA](art/TVK_COSTUME_DAMAGE_REFERENCES_20261030
 - **Blocker:** `front-face/head master`, mắt nhắm đúng pose, vẽ cổ/tóc sau đầu, nhiều lớp tóc/phụ kiện vẫn thiếu; `sprite_paths={}`, `production_release.status=blocked_pending_art`. CP413 tập trung giải quyết blocker mỹ thuật.
 
 Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
+
+## 2026-10-30 — CP413 — Soi lỗi động trực tiếp trong APK thay vì chỉ xem ảnh tĩnh
+
+- **Nguyên nhân:** kiểm tra PNG/ORA ở tư thế 0° không phát hiện khe ghép phát sinh khi đầu nghiêng. Ảnh crop biểu cảm khác pose không thể dùng làm patch cho hình đứng.
+- **Đã làm tốt:** giữ SHA nguồn CANON cố định, dùng Android SAF picker kiểm raw byte + kích thước, giữ ảnh 0° đúng pixel, kiểm 5 góc ±4°/±2°/0°. Để trắng phần chưa vẽ có nhãn DEBUG, giúp nhìn rõ blocker thay vì che bằng inpaint giả.
+- **Code dùng lại:** `TVKCP413HeadTurnDebugView.kt` + chế độ CP413 trong `TVKCombinedIdlePreviewActivity.kt`; không nhúng bitmap private vào APK, không ghép face portrait khác góc. Đầu vào sai SHA từ chối trước render.
+- **Kiểm chứng:** [source CI](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41071306636) **6/6 PASS**, [Android build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41071295753) **SUCCESS**. APK 8,817,067 bytes, SHA256 `5d2382090a2df082fed950096ac570c59cb1db61a55fdb623d3451fd95ee54c0`; đã xác minh dex chứa CP413, không đóng gói bitmap CANON.
+- **Điều KHÔNG được suy ra:** static tests + assembleDebug không xác minh hiệu năng, độ đẹp, khe ghép thực khi chạy trên điện thoại, hay rig/Spine. Trạng thái vẫn **TECHNICAL_DEBUG**.
+- **Tối ưu lần sau:** sau khi có công cụ soi lỗi động, **dừng thêm phiên test mặt nạ nếu chưa có art mới**. Ưu tiên vẽ thật underpaint gáy/cổ/tóc và mí nhắm đúng front đứng; nghiệm thu bằng art ở 0° và biên ±4°, rồi mới ghép production.
+- **Tệp:** [CP413 Android debug handoff](art/LAM_THIEN_CP413_ANDROID_HEAD_TURN_DEBUG.md). Gói APK+CANON nguyên gốc được giữ riêng trong Library, không có trên GitHub công khai.
