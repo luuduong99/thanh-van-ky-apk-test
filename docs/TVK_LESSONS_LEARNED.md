@@ -120,3 +120,13 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Tái sử dụng:** Khi có nét đường viền gốc đã tốt, ưu tiên **bảo toàn nét gốc** và vẽ phần bị che ở dưới, không sinh thêm nét trùng. Test QA kỹ thuật kết hợp nhìn 1× + 8× + xem chuyển động trong APK debug. [Báo cáo CP417](art/LAM_THIEN_CP417_SAME_POSE_SOURCE_LASH_BLINK.md).
 
 - **Bằng chứng sau build CP417:** [public QA](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41080652448) **5 PASS/9 private SKIP**; [Android build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41080652547) **SUCCESS**. APK đã kiểm tra có CP417 class, không chứa ảnh CANON trong assets, SHA256 `633d72189b1cef1f756865f816df296678539afd7d466c7667559ad820887680`. Không đồng nghĩa FPS/thiết bị thật/visual QA đã PASS.
+
+## 2026-10-30 — CP418 — Review nhanh có giá trị hơn thêm vòng sửa mask
+
+- **Vấn đề:** CP417 tạo được blink same-pose nhưng chỉ có GIF và tự chạy vòng lặp; người dùng khó dừng đúng frame để đánh giá, đặc biệt vì hai mắt nguyên bản chỉ 13–15px ngang.
+- **Cải tiến cụ thể:** Android debug có nút 0/4–4/4 dừng đúng khung, chuyển toàn thân/cận mặt CANON và DRAFT đồng thời, vạch eye ROI; phóng NEAREST để xem pixel thật, không mô tả là bản HD.
+- **Cải tiến hiệu năng/bảo mật:** thay ~370 nghìn lượt `getPixel` khi xác minh atlas bằng 2 lần `getPixels` vào `IntArray`; check frame0 đúng source, SHA-256 của CANON+atlas, không cho sửa ngoài 2 eye ROI. Chỉ bật điều khiển khi đã chọn hai ảnh hợp lệ.
+- **QA:** 13/13 local tests trên private CANON và atlas, [public GitHub CI](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41082343710) 7 PASS/6 private SKIP. Review board đã sửa lỗi che phần chân khi gắn crop zoom: phải luôn nhìn toàn thân trọn vẹn ở cùng lượt review.
+- **Dữ liệu pixel có nghĩa giới hạn:** các khung 0/1/2/3/4 khác ảnh mở lần lượt 0/104/119/144/144 px, nhưng khung 3/4 khác nhau 46px. Không đánh giá vẻ tự nhiên, sắc nét hay FPS bằng số pixel.
+- **Quy trình tái sử dụng:** ưu tiên cho người dùng duyệt 1× và zoom frame-by-frame trong app trước khi làm thêm paint; nếu art gốc không đủ resolution, cần source/painting mới đúng nhận diện chứ không tiếp tục sửa inpaint/mask. `visual_approval=PENDING_USER`, `spine_ready=false`, `android_device_verified=false`.
+- **Tài liệu:** [CP418 Android Inspector](art/LAM_THIEN_CP418_ANDROID_FRAME_INSPECTOR.md).
