@@ -341,3 +341,13 @@
 - [ ] **VISUAL QA NOT_PASSED**: near-closed still has old lash/iris vestiges, incomplete hidden eyelid geometry. No true blink animation, art/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP393:** manually paint fully closed-eyelid master incl. skin, fold, lashes with source fidelity; request user preview approval before any intermediate frames or game integration.
 
+---
+
+## CP393 — Source-locked closed-eye layer painting study (2026-10-30)
+
+- [x] CANON Lâm Thiển V2.1 exact SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, Ngại ngùng 168×197 source pixel exact. No style transfer or replacement character.
+- [x] **6 RGBA layers** separate SKIN/SHADOW/LASH left/right with hand-authored curves and same-source skin colors; 2 closed-eye draft composites. ORA **9 layers** with only CANON visible + 8 hidden draft layers, mergedimage pixel exact. Full draft changed 1659 source pixels, soft draft 1143, **0 changed outside eye ROI**.
+- [x] **10/10 private-source local PASS**, public source layout **4 PASS / 6 SKIP**, ORA ZIP CRC PASS, wrong source SHA rejected before output. Archive 18 files SHA256 `0efef0fa1d71fc5e3711f04f3aff26c0d2247ebe813f0aca6fb6017bdba6d959` at Library `/Thanh Van Ky/Development/CP393_Closed_Eyelid_Art_Study/`. [CP393 handoff](LAM_THIEN_CP393_CLOSED_EYE_PAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED:** lashes and under-eye color not painter-grade, no native HD new artwork, no real animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP394:** artist-level closed-eye master on exact CANON, visual confirmation required before intermediate blink frames and game integration. Avoid repeated automated cheek sampling as release art.
+
