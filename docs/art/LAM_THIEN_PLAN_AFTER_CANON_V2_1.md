@@ -248,3 +248,13 @@
 - [ ] **Art/motion chưa đạt:** ảnh 174/176×203 không thành HD khi upscale, có nền bảng thiết kế, không tách semantic hair/skin/eye, chưa sprite animation/Spine/Android APK, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP384:** vẽ master mặt thực sự chi tiết theo CANON, chuẩn bị underpaint và các biểu cảm thật; kiểm giống CANON và phê duyệt trước khi phát hành game art.
 
+---
+
+## CP384 — CANON source-exact editable eyes/mouth portrait and technical blink underpaint (2026-10-30)
+
+- [x] CANON V2.1 gốc 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, chọn biểu cảm Ngại ngùng 168×197 native. Không dùng nhân vật/ảnh tìm trên mạng khác.
+- [x] Tách mắt trái, mắt phải, miệng thành **3 PNG source-pixel/3 editable masks**; **1 base da inpaint kỹ thuật và 2 nét mắt nhắm thử ẩn**; ORA **7 lớp** với CANON hidden. Static mergedimage **100% pixel exact** với crop CANON (RGB và alpha). Nháy mắt DRAFT vẫn bị nhòe, **KHÔNG chấp nhận** làm game art.
+- [x] **10/10 local tests PASS**, public simulation **3 PASS / 7 SKIP**, ORA CRC PASS; ZIP **23 files** SHA256 `c35f7ee7495a6648b7814f3668d1b339d6d2c042eded3eb388064565ccc24ac4` Library `/Thanh Van Ky/Development/CP384_Canon_Exact_Face_Editable_Source/`. [CP384 handoff](LAM_THIEN_CP384_SOURCE_EXACT_FACE_EDITABLE_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**, image vẫn có nền infographic, chỉ native 168×197, chưa được họa sĩ vẽ mắt đóng/skin underpaint đủ đẹp, chưa art animator-ready, `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không có Spine/APK mới.
+- [ ] **CP385:** artist hand paint eyelids/skin underlay theo cùng CANON, dọn nền/occlusion, test blink đúng hình, rồi tiếp tục các biểu cảm khác và full body. Không dùng inpaint tự động thay thế art chính thức.
+
