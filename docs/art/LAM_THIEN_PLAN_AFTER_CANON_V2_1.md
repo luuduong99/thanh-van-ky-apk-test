@@ -237,3 +237,14 @@
 - [ ] **ART VẪN CHƯA VẼ LẠI ĐẠT CANON.** Tất cả mask là vùng source cắt thô, chưa tách anatomy/đồng bộ 5 expression; 15 nét SVG được vẽ mới nhưng chưa được duyệt và cố ý ẩn. Không có 5 portrait transparent dùng trong game, Spine/APK. Giữ `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP383:** chọn một biểu cảm làm master và vẽ lại **thật** khuôn mặt đủ chi tiết theo CANON, gửi preview so trực tiếp để xác nhận; sau đó mới các nét mặt tiếp, tóc/áo, underpaint toàn thân, chuyển động rig/Android APK.
 
+---
+
+## CP383 — CANON-only 5 static dialogue portraits and atlas staging (2026-10-30)
+
+- [x] Thể hiện đúng quyết định: **hình nhân vật cuối phải giống ảnh CANON gốc**, vector CP379–382 chỉ là technical studies; hiển thị chân dung tĩnh có thể dùng bitmap chính từ CANON, không coi bitmap này là rig hoạt ảnh.
+- [x] Từ CANON SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` tạo 5 crop biểu cảm exact source (174/176×203), 5 inner crop xóa viền sheet 3px bằng crop trực tiếp; atlas **984×235** giữ nguyên RGB của từng crop, có JSON tọa độ pixel và ảnh QA.
+- [x] Preview hội thoại ngang 1600×900 chỉ dùng ảnh Lâm Thiển từ cùng CANON; **chỉ là mock UI tĩnh**, không phải screenshot APK.
+- [x] **9/9 local tests PASS**, simulated source-absent CI **3 PASS / 6 SKIP**, ZIP CRC PASS. Bundle **20 tệp** SHA256 `1d7938aa9d0f43e11b86b8658c4fd82f4985870e955c3bc15332d582d0330907` tại Library `/Thanh Van Ky/Development/CP383_Canon_Only_Static_Portrait_Staging/`. [Handoff](LAM_THIEN_CP383_CANON_STATIC_PORTRAITS_STAGING.md).
+- [ ] **Art/motion chưa đạt:** ảnh 174/176×203 không thành HD khi upscale, có nền bảng thiết kế, không tách semantic hair/skin/eye, chưa sprite animation/Spine/Android APK, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP384:** vẽ master mặt thực sự chi tiết theo CANON, chuẩn bị underpaint và các biểu cảm thật; kiểm giống CANON và phê duyệt trước khi phát hành game art.
+
