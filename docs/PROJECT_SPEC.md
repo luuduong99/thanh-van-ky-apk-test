@@ -1782,3 +1782,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Cổng phát hành:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không thêm ảnh CP391 vào `app/src/main/assets`; không build APK mới.
 - **CP392:** Vẽ lớp da khuất và mí nhắm chất lượng painter-grade thật, đối chiếu CANON ở native/zoom và nghiệm thu với người dùng. Sau đó mới chuẩn bị các khung nháy mắt trung gian, các biểu cảm khác, full-body rig/Spine và Android APK.
 
+---
+
+## 99. CP392 — Lâm Thiển: giữ nét mi CANON, 2 phương án khép mắt dùng mẫu da chính nguồn (2026-10-30)
+
+- **Giữ CANON:** đúng Lâm Thiển V2.1 user-approved 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng crop `(25,684,193,881)` kích thước 168×197. Chỉ sử dụng CANON thật và CP391 cũ được khóa SHA `24787edd37449346d0c6a97bc6a3cd06e2f4bfc8a093d21acbf6cb435d32acac`. Không dùng minh họa tự sinh / reference Tô Nguyệt Ly thay Lâm Thiển.
+- **Công việc:** nhận diện CP391 tô phẳng mí và mất hàng mi nguồn. CP392 đã tạo **2 trạng thái khảo sát** `gentle` (khép nhẹ) và `near_closed` (gần nhắm), **mỗi trạng thái có 2 patch độc lập cho hai mắt**. Mask đường mí đặt theo Bézier, da lấy màu từ chính vùng bên dưới (+13px trên portrait), giữ lại đường viền mi hiện hữu CANON. Đây là **source-sampled occlusion test**, KHÔNG phải art painter-quality hay closed-eye hoàn chỉnh.
+- **ORA 8 lớp:** chỉ một CANON gốc visible; 1 CP391 historical hidden, 4 patch chỉnh sửa độc lập hidden, 2 composite nghiên cứu hidden. Mergedimage pixel-exact với CANON. File nguồn full CANON trong ZIP copy nguyên byte.
+- **Kết quả đo trên nguồn thật:** `gentle` đổi 814 pixel so CANON; `near_closed` đổi 1.087; khác biệt hai phương án 748 pixel; **0 pixel thay đổi ngoài vùng 2 mắt**. Thông số kỹ thuật không phải điểm thẩm mỹ. **11/11 local tests PASS**; mô phỏng public CI thiếu private art **4 PASS / 7 SKIP**; ORA/ZIP CRC PASS, nguồn sai SHA từ chối trước output. Workflow `.github/workflows/cp392_source_retained_blink_guard.yml` được thêm, chỉ chạy static public. Chưa có test runtime/FPS/Android.
+- **Bàn giao:** [CP392 report](art/LAM_THIEN_CP392_SOURCE_RETAINED_BLINK_STUDY.md), `tools/art/cp392_source_retained_blink_study.py`, `tests/art/test_cp392_source_retained_blink_study.py`; ZIP **17 files** `TVK_CP392_LamThien_Source_Retained_Blink_Study_NOT_APPROVED.zip` SHA256 `e90e0f7d3606bba73378422342469b449111ce6ca3e83f5c8f058ea6b2477da7`, Library `/Thanh Van Ky/Development/CP392_Source_Retained_Blink_Study/`.
+- **Không nghiệm thu:** `visual_qa=NOT_PASSED`; CP392 near-closed còn dấu vết mắt mở, chưa underpaint/mi nhắm vẽ thật, không đủ art production. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import vào `app/src/main/assets`.
+- **CP393:** ưu tiên vẽ **mí nhắm hoàn toàn bằng lớp da/mi painter-quality thật**, sử dụng đường mi chính CANON làm hướng tạo hình, so trực tiếp ở native/4× và lấy visual approval trước khi làm khung chuyển động và toàn thân/Spine/APK.
+
