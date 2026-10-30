@@ -118,3 +118,12 @@
 - [x] Đã sao lưu ZIP 52 files SHA256 `b0f1a18c36edc9e69a9a3e232e0b20cc633c647fe7173555a9b673a93831eb2c`, Library `/Thanh Van Ky/Development/CP371_Silk_Detail_Two_Poses/`. [CP371 handoff](LAM_THIEN_CP371_SILK_FOLD_HEM_TWO_POSES.md).
 - [ ] **VISUAL QA NOT PASSED**: còn thô so CANON, thiếu nhiều lớp art nhân vật thực, chưa rig/Spine hoặc APK. Production blocked, sprite_paths empty.
 - [ ] **CP372 next:** ưu tiên true native art fidelity tay/bàn tay, áo và trang sức; sau đó full-body, hai giày xanh và 5 expression / 4 damage, trước khi duyệt art/rig, test APK.
+
+## CP372 — Finger, wrist and fixed-shoulder details (2026-10-30)
+- [x] CANON source-locked: đúng `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; preview chỉ dùng CANON thật + các bản CP371/CP372 của chính Lâm Thiển có nhãn DRAFT.
+- [x] Từ CP371 (9 lớp/tư thế), tạo thêm **3 lớp SVG/PNG có nét vẽ thật** mỗi tư thế: ngón tay/khớp, hoa văn cổ tay và hoa văn vàng vai cố định. Idle/raised có nét tay/cổ tay khác nhau; vai giữ nguyên pixel.
+- [x] Tất cả nét mới được alpha-clip vào art cha tương ứng; tạo **2 ORA 13 lớp** (12 art hiển thị + CANON guide ẩn). Composite thay đổi so CP371: 2.598 pixel idle và 2.624 pixel raised, không phải chứng nhận đẹp hơn.
+- [x] **11/11 local tests PASS**, đúng SHA source, từ chối nguồn sai trước output, path SVG, clip semantic, ORA CRC/13 lớp, static shoulder, mobile release gate. Khi thiếu ảnh và binary ORA trong GitHub CI, test art-dependent skip đúng. [Báo cáo CP372](LAM_THIEN_CP372_FINGER_GOLD_DETAIL_STUDY.md).
+- [x] ZIP 64 tệp SHA256 `721a17c057cc3732c1c8b084a81046fd2b4d1d1e9b11a5a7b1fe4a61d4118249`, CRC PASS; Library `/Thanh Van Ky/Development/CP372_Finger_Gold_Detail_Study/`. Code `tools/art/cp372_finger_gold_detail.py`, tests `tests/art/test_cp372_finger_gold_detail.py`.
+- [ ] **Visual QA NOT_PASSED**: vẫn là art mảng tay đơn giản, chưa có Front full-body native semantic, 5 expression, 4 damage, chân/giày 2 bên, Spine/physics, gameplay runtime hoặc Android APK.
+- [ ] **CP373 next:** ưu tiên tạo *bộ art Front full-body thực* theo CANON, tách tóc, mặt, thân/áo, hai tay, vạt lụa, chân và hai guốc xanh; tạo underpaint và kiểm pose với art chất lượng cao hơn trước khi phê duyệt và rig. Không nối CP372 vector thử trực tiếp vào APK.
