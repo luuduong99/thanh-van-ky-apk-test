@@ -42,3 +42,8 @@
 `visual_approval=PENDING_USER`, `spine_ready=false`, `sprite_paths={}`, `production_release.status=blocked_pending_art`, `android_device_verified=false`.
 
 CP418 là công cụ giúp quyết định chất lượng art, **không làm tăng độ phân giải mắt 13–15px**, không tự hoàn thiện lớp tóc/gáy/cổ hay rig. Nếu hình nhắm vẫn chưa đẹp ở thiết bị thật, bước tiếp theo phải là **họa sĩ dựng lại master đầu đúng pose ở độ phân giải phù hợp** dựa CANON, giữ nhận diện, trang phục +17%; cần xem preview trước khi chốt. **Không lặp thêm hàng chục checkpoint chỉ mask vài pixel.**
+## Xác minh Android debug build / bàn giao
+
+- [GitHub Android build run 41082343613](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41082343613): **SUCCESS**. Artifact `12989887360`, APK `TVK_CP418_Android_Debug_Inspector.apk`: **8.825.318 bytes**, SHA256 `29dcf40f65d05bb489331ef3b329eb026a854042f619448a0c479487fe3b59d9`.
+- Đã kiểm tra APK ZIP CRC, DEX có class `TVKCP417SamePoseBlinkActivity` và text `CP418`; không có file private CANON hay CP417 atlas trong assets APK. Đây là **xác minh biên dịch/đóng gói, không phải chạy trên điện thoại thật**.
+- Gói private `TVK_CP418_Android_Review_Pack.zip`: **12.643.773 bytes**, SHA256 `d3870e7527eeac812bbc35d9ae9272ff3693eb7e8ce7ebe0a5ecda98b54ad0fe` gồm APK + CANON exact bytes + atlas exact bytes + preview + README + manifest. Library: `/Thanh Van Ky/Development/CP418_Exact_CANON_Android_Frame_Inspector/`.
