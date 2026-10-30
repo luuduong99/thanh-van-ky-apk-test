@@ -1711,3 +1711,14 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Không đạt visual acceptance:** da phục hồi còn bệt, mí/mi chưa đúng ảnh chuẩn, portrait có nền bản thiết kế và độ phân giải gốc nhỏ. `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `rig_ready=false`, `apk_ready=false`. Không import bất kỳ bản CP386 nào vào `app/src/main/assets`.
 - **CP387:** **đòi hỏi vẽ mí nhắm và da ẩn thật theo kiểu họa sĩ** đúng CANON, xử lý mắt/hairline/viền da không lỗi, xin duyệt một master closed-eye trước khi làm các khung trung gian, tiếp tục 4 biểu cảm, full-body, Spine và Android APK.
 
+
+
+---
+
+## Ghi chú mẫu tham khảo Tô Nguyệt Ly — 2026-10-30
+
+- **Quyết định của người dùng:** thích ảnh minh họa bảng mắt/nháy mắt đã chia sẻ và muốn **lưu làm mẫu tham khảo thẩm mỹ cho Tô Nguyệt Ly trong tương lai**. Chỉ chốt **giữ làm REFERENCE**, **chưa chốt CANON nhân vật**.
+- **Ảnh thật đã lưu trong Library:** `/Thanh Van Ky/Character_References/To_Nguyet_Ly/TO_NGUYET_LY_FACIAL_BLINK_STYLE_REFERENCE_2026-10-30.png`; PNG 1536×1024 RGBA SHA256 `9593d53ba49faf8c97b74e76981e43b396dd6fd2598852bde080af0460e227f3`. Không chỉnh sửa tệp gốc.
+- **Điểm cần tham khảo:** gương mặt anime fantasy thanh tú, mắt/mi và da tự nhiên, ánh sáng và phụ kiện tinh xảo; biểu diễn chuyển mắt qua nhiều khung rõ ràng và bảng so sánh dễ nhìn.
+- **KHÔNG nhầm nhận diện và trạng thái:** hình minh họa này **không phải** CANON Lâm Thiển V2.1, không phải CANON Tô Nguyệt Ly đã duyệt, không chứng minh CP386 có 12/12 PASS/đã đạt art. Nếu phát triển Tô Nguyệt Ly, lấy CANON **riêng của Tô** làm nguồn nhân vật; nếu chưa có, ghi DRAFT và xin duyệt trước khi dùng trong game.
+- **Tài liệu và ảnh:** [Tô Nguyệt Ly style reference](art/TO_NGUYET_LY_STYLE_REFERENCE_2026_10_30.md). CP386/CP387 của Lâm Thiển **không thay đổi trạng thái** vì ghi chú này.
