@@ -261,6 +261,11 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(btn("CP402 | Xem thử chớp mắt (DRAFT)") {
                 startActivity(android.content.Intent(this, TVKBlinkAtlasPreviewActivity::class.java))
             })
+            portraits.addView(btn("CP409 | Chớp mắt theo mí (DRAFT)") {
+                startActivity(android.content.Intent(this, TVKBlinkAtlasPreviewActivity::class.java).apply {
+                    putExtra("cp409_review", true)
+                })
+            })
             // CP408: multiple idle channels together, with exact CANON file picker;
             // eye-blink art remains separately gated, no production art fallbacks.
             portraits.addView(btn("CP408 | Xem thử chuyển động toàn thân (DEBUG)") {
