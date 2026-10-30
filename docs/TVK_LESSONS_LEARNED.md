@@ -99,3 +99,13 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **QA:** local 12/12 tests PASS có private image; [GitHub Actions](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41075745315) SUCCESS 4 PASS / 8 SKIP, ORA merged nguyên pixel source, tamper rejection, layer alpha nằm trong matte và crown halo guard; kỹ thuật PASS không thay người dùng duyệt mỹ thuật hoặc test Android.
 - **Bước tái sử dụng:** từ CP416 trở đi ưu tiên cải thiện nguồn ở độ phân giải phù hợp, phân tách tóc thật, vẽ kín gáy/cổ và mí mắt cùng pose; kiểm 0°/±2°/±4° trực quan trước khi tích hợp. Không lặp lại vòng cắt mask/đếm test mà không bổ sung asset art rõ rệt.
 - **Bàn giao:** [CP415](art/LAM_THIEN_CP415_UNDERPAINT_PIGMENT_STUDY.md) · Library `/Thanh Van Ky/Development/CP415_Source_Locked_Underpaint_Study/`.
+
+## 2026-10-30 — CP416 — Đầu tiên phải vẽ đúng pose, sau đó mới nói tới chớp mắt mượt
+
+- **Nguồn:** chính xác CANON V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, front crop 208×443; mắt gốc quá nhỏ (~13–15px) để tái tạo thành master HD chỉ bằng zoom.
+- **Bước tiến art khác CP415:** vẽ **6 lớp pigment mới** (da, crease, mi cho mỗi biến thể nhắm) tạo hai trạng thái thực tế `RESTFUL` / `COMPLETE` trên **cùng front-pose**, thay vì tiếp tục cắt rough head mask. Atlas ba trạng thái có open frame pixel-exact. 12/12 private local source QA PASS; visual approval vẫn PENDING.
+- **Sai lầm mỹ thuật phát hiện bằng mắt:** phiên thử đầu tiên có **2 dải mí và vệt ngang nhìn rất giả** dù mọi test ROI/hash đạt. Cải thiện bằng đặt màu da từ má của CANON tại row cố định, thu hẹp mask, bỏ bớt crease và làm mảnh mi. Bài học: **đếm pixel/CI không thay việc nhìn bản 1× lẫn phóng to**.
+- **Không lẫn chức năng:** preview GIF 3 trạng thái chỉ là kiểm thử nhịp, không phải 15 keyframe eyelid motion, không chứng minh mượt, không gắn rig, không phải sprite production.
+- **Quy tắc tiến độ:** sau khi có **ảnh thật** để so (không chỉ script/ROI), phải xin duyệt thẩm mỹ trước mọi animation in-between/Spine. Nếu ảnh 208×443 không đủ đẹp, cần minh họa lại đầu đúng pose ở độ phân giải cao *dựa đúng nhận diện CANON*, không tạo người khác hoặc phóng to giả HD.
+- **Rào chắn:** lưu CANON private ngoài GitHub; `sprite_paths={}`, `visual_approval=PENDING_USER`, `production_release.status=blocked_pending_art`. Tóc, cổ, gáy phân lớp/underpaint họa sĩ còn thiếu, điện thoại Android thực chưa test.
+- **Bàn giao:** [CP416 report](art/LAM_THIEN_CP416_SAME_POSE_EYELID_REVIEW.md) và ZIP tại Library `/Thanh Van Ky/Development/CP416_Same_Pose_Eyelid_Review/`.
