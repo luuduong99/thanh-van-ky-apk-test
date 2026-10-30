@@ -361,3 +361,13 @@
 - [ ] **VISUAL QA NOT_PASSED**: vẫn cảm giác mắt trái hé và da chưa khớp nét họa sĩ; không blink animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP395:** vẽ thủ công master mắt nhắm đầy đủ, xử lý mi trái/các bóng/da dưới mí thật, gửi preview CANON để duyệt; chỉ sau khi được duyệt mới làm khung hoạt ảnh.
 
+---
+
+## CP395 — Local left-eyelash source refinement, not visual acceptance (2026-10-30)
+
+- [x] Exact CANON Lâm Thiển V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, approved +17%, portrait 168×197. Locked input CP394 closed-eye SHA `d3774068b0d9464a7c3c640b0f21289a812493765259365a3ee481cc8af326d9`.
+- [x] Hai bản mắt trái **TIGHT / SOFT** với 2 lớp RGBA mỗi bản (skin-local và source lash-local), 4 layer mới. So CP394 khác **133/151 pixel**, không đổi pixel ngoài mắt trái. CANON original visible trong ORA 9 layers, merged image pixel-exact.
+- [x] **11/11 local PASS**, public mode **4 PASS / 7 SKIP**, ORA/ZIP CRC PASS. ZIP 20 entries SHA256 `824e2508557faec6b446e5cbeef44367213199addc95e17905a3aeac1635b63a` lưu Library `/Thanh Van Ky/Development/CP395_Left_Eyelid_Refinement_Draft/`. [CP395 handoff](LAM_THIEN_CP395_LEFT_EYE_REFINEMENT.md).
+- [ ] **VISUAL QA NOT_PASSED**: cải thiện nhỏ chỉ ở source mask, không có closed-eye painted master đạt chuẩn, không 5 expression animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP396 ưu tiên quyết định:** Không tiếp tục tăng số CP bằng chỉnh những mask vài pixel. Cần thực hiện đúng vẽ mỹ thuật chất lượng cao master mí nhắm/da khuất với CANON gốc, nghiệm thu trực quan trước animation/game.
+
