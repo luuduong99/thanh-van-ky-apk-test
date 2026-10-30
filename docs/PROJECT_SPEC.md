@@ -1686,3 +1686,16 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Cổng phát hành:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. CP384 không import asset vào `app/src/main/assets`; không có APK mới.
 - **CP385 ưu tiên:** vẽ lại **mắt nhắm có chất lượng mỹ thuật thực** và phần da/mi/phụ kiện nằm dưới, dọn nền chân dung với tóc/tai bị che, kiểm hình thật cạnh CANON; chỉ sau phê duyệt mới xử lý bốn biểu cảm còn lại và toàn thân/rig/Android APK.
 
+---
+
+## 92. CP385 — Lâm Thiển: giữ nguyên mặt CANON và thử 5 khung nháy mắt (2026-10-30)
+
+- **CANON chuẩn:** đúng file Lâm Thiển V2.1 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop biểu cảm Ngại ngùng pixel-exact 168×197 tại `(25,684,193,881)`. Không thay nhân vật, không dùng ảnh minh họa khác. Yêu cầu artwork game cuối cùng phải giống đúng CANON; chỉ dùng vector/inpaint để nghiên cứu, không xuất vào app.
+- **Art/QA thực tế CP385:** từ CP384, thay mask hình ellipse rộng bằng hai **đa giác mắt xác định theo đường viền** và mask môi, giữ tách source-eye/source-mouth nguyên pixel; tạo **hai nét mí mắt đóng được vẽ riêng dạng kỹ thuật** và underpaint da OpenCV TELEA DRAFT. Đa giác là chọn vùng cục bộ, không phải lúc nào cũng nhỏ hơn vùng cũ. ORA **7 lớp** (4 visible gồm da và 3 cutout, 3 hidden gồm 2 eyelid DRAFT và CANON).
+- **Năm frame kỹ thuật:** ảnh mở CANON exact → nhắm 55% mô phỏng → đóng thử nghiệm → mở 55% → mở CANON exact. **Khung 0, 4 và static composite trùng từng pixel với CANON nguồn**, không có thay đổi RGB/alpha ngoài các mask ở lớp da kỹ thuật. Nháy mắt 55% được tạo bằng giảm opacity nguồn mắt, **không phải keyframe họa sĩ đã vẽ**.
+- **Định lượng:** lớp da CP384 khác CANON tại **1.660 pixel**, CP385 tại **1.722 pixel**. Đây là số pixel thay đổi, **không chứng minh chất lượng tốt hơn**. Review trực quan vẫn còn vết làm mịn và đường mí không đủ tinh xảo; **visual_qa=NOT_PASSED**. Chân dung gốc có nền bảng, chỉ 168×197, chưa trong suốt/nâng độ phân giải.
+- **Kiểm thử:** **10/10 local PASS** trên ảnh CANON thật; mô phỏng public GitHub không có private assets **3 PASS / 7 SKIP**. Sai hash bị chặn trước ghi, ORA 7-layer CRC/merged pixel-exact và nguồn byte-exact. Workflow `.github/workflows/cp385_blink_static_source_guard.yml` đã tạo, trạng thái Actions cần xác nhận riêng; CI xanh **không phải nghiệm thu mỹ thuật**.
+- **Lưu:** [CP385 handoff](art/LAM_THIEN_CP385_BLINK_SHAPE_STUDY.md), `tools/art/cp385_blink_shape_study.py`, `tests/art/test_cp385_blink_shape_study.py`; ZIP 26 tệp `TVK_CP385_CANON_Exact_Blink_Draft_NOT_APPROVED.zip` SHA256 `2a00604c1ad52c23a9e4b478b2b74b2f5f9c2cc18527b4d7fa18e789eabfa0e7`, Library `/Thanh Van Ky/Development/CP385_Exact_Face_Blink_Draft/`.
+- **Trạng thái phát hành:** vẫn `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import blink draft vào `app/src/main/assets`.
+- **CP386 tiếp:** vẽ lớp da khuất/mí mắt nhắm **bằng art thực** phù hợp CANON, xử lý hoàn chỉnh bóng da, mi và tóc chồng lớp; preview CANON vs closed-eye để người dùng duyệt. Chỉ sau đó mới vẽ keyframes trung gian đúng chất lượng, matting portrait trong suốt, mở rộng 4 biểu cảm còn lại và full-body Spine/APK.
+
