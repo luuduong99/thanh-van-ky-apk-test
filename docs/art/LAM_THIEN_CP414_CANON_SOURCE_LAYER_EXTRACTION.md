@@ -21,7 +21,7 @@
 ## Kiểm chứng
 
 - **11/11 bài test local PASS trên CANON thật**: khóa nguồn, từ chối sai SHA, nguồn pixel RGB không bị thay trong vùng mẫu, 14 lớp ORA đúng visibility và pixel merged, 2 art lớp trống, release gate đóng.
-- GitHub public không có CANON riêng tư, nên phần test private sẽ SKIP. **Không suy diễn CI xanh là đã vẽ xong mỹ thuật.**
+- [GitHub Actions CP414 run 41073132107](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41073132107) **SUCCESS**: 11 bài được phát hiện, **6 PASS / 5 SKIP** do public repo không có CANON riêng tư. **Không suy diễn CI xanh là đã vẽ xong mỹ thuật.**
 - Không thêm/đổi tệp ảnh Lâm Thiển vào `app/src/main/assets` và không tạo production APK.
 
 ## Bản chất blocker
