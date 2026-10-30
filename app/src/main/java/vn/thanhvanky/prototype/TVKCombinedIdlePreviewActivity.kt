@@ -116,10 +116,12 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 play.isEnabled = false
                 preview?.invalidate()
                 blinkPreview?.invalidate()
+                preview?.setAuditNeutralSource(true)
                 auditOverlay?.visibility = View.VISIBLE
                 status.text = "CP411 | Đầu vàng, mắt xanh, cổ hồng. Mặt nạ thô, không phải rig đã duyệt."
                 auditButton.text = "CP411 | Đóng chỉ dẫn"
             } else {
+                preview?.setAuditNeutralSource(false)
                 auditOverlay?.visibility = View.GONE
                 play.isEnabled = true
                 auditButton.text = "CP411 | Soi mốc đầu / mắt / cổ (DEBUG)"
@@ -185,6 +187,7 @@ class TVKCombinedIdlePreviewActivity : Activity() {
                 clock.reset()
                 clock.setPlaying(running)
                 preview = TVKCombinedIdleMotionView(this, crop, clock).also {
+                    it.setAuditNeutralSource(false)
                     frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT))
                 }
