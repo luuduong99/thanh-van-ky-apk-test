@@ -29,3 +29,9 @@
 5. Bản cũ được lưu là lịch sử/deprecated, không dùng làm mẫu sản xuất mới.
 
 **Lưu ý lưu trữ:** bản chính thức trên Google Drive riêng tư; bản dự phòng trong ChatGPT Library tại `/Thanh Van Ky/Approved References/TVK_LamThien_Approved_Reference_20261028.png`.
+
+## Ưu tiên trang phục mới được người dùng lưu (2026-10-30)
+
+- **Chọn để tham khảo nhân vật mới:** mẫu **B cổ quây ngang thấp**, mép ngang/hơi cong, không khoét sâu chữ V; mẫu **A khoét sâu** được giữ để so sánh. Ưu tiên chất liệu lụa trắng-xanh mềm, tiết chế dây kim loại/tua rua và bớt vải bay (1–2 tà chính giúp giảm độ phức tạp của rig).
+- **Nguồn hình tuyệt đối:** hai ảnh người dùng tải lại, SHA và đường dẫn Library trong [registry mới](NEW_CHARACTER_BANDEAU_REFERENCE_REGISTRY_2026_10_30.json) và [hướng dẫn reference](NEW_CHARACTER_MODEL_OUTFIT_PRIORITY_2026_10_30.md). Không sử dụng ảnh thay thế khác khi hiển thị ảnh đã chọn.
+- Đây là **reference phong cách trang phục**, không ghi đè thiết kế/cơ thể, trang phục CANON V2.1 của Lâm Thiển; nhân vật khác chỉ chốt CANON khi có duyệt riêng. Art phẳng ≠ rig/animation/APK.
