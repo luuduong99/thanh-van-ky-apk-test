@@ -1699,3 +1699,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Trạng thái phát hành:** vẫn `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import blink draft vào `app/src/main/assets`.
 - **CP386 tiếp:** vẽ lớp da khuất/mí mắt nhắm **bằng art thực** phù hợp CANON, xử lý hoàn chỉnh bóng da, mi và tóc chồng lớp; preview CANON vs closed-eye để người dùng duyệt. Chỉ sau đó mới vẽ keyframes trung gian đúng chất lượng, matting portrait trong suốt, mở rộng 4 biểu cảm còn lại và full-body Spine/APK.
 
+---
+
+## 93. CP386 — Lâm Thiển: nghiên cứu đường mí và màu da, CANON open-eye giữ nguyên (2026-10-30)
+
+- **Chỉ dùng đúng CANON:** Lâm Thiển V2.1, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Biểu cảm Ngại ngùng là crop gốc `(25,684,193,881)` 168×197. **Tuyệt đối không dùng ảnh nhân vật/phong cách khác trong preview.** Một ảnh minh họa tự động không khớp CANON đã bị loại, không dùng trong CP386 và không lưu làm asset.
+- **Công việc thực tế:** tạo vùng da mẫu kỹ thuật mới từ màu vùng má ngay trên CANON trong 2 đa giác mắt; vẽ độc lập nét mí trái/phải có khử răng cưa. Gói ORA 7 lớp: lớp da kỹ thuật và mắt/miệng ảnh nguồn đang hiển thị, hai mí thử + reference CANON ẩn. Tạo 7 khung ảnh thử 0 / 25 / 65 / 100 / 65 / 25 / 0% và GIF; **không phải animation game** hoặc artist master HD. CP386 **không đạt hình đẹp hơn CP385** ở một số vùng (bệt hồng, nếp mí), không được tự gắn nhãn final.
+- **Bảo toàn chính xác ảnh:** source CANON copy nguyên byte; ghép khuôn mặt mở mắt và khung 0/6 **pixel-exact**, lớp da kỹ thuật chỉ đổi **1.390 pixel** bên trong mask và 0 pixel bên ngoài. Số pixel là kiểm thử phạm vi thay đổi, **không phải điểm đẹp/giống CANON**.
+- **QA kỹ thuật:** **10/10 local PASS** trên ảnh CANON thật; thử public không có private CANON **3 PASS / 7 SKIP**. ORA CRC PASS, ref source SHA và guard sai SHA trước output. [CP386 handoff](art/LAM_THIEN_CP386_CANON_BLINK_TECH_REVIEW.md), `tools/art/cp386_painted_blink_draft.py`, `tests/art/test_cp386_painted_blink_draft.py`, [artist checklist](art/LAM_THIEN_CP386_ARTIST_REVIEW_CHECKLIST.md), workflow `.github/workflows/cp386_exact_blink_source_guard.yml`.
+- **Lưu trữ:** ZIP `TVK_CP386_LamThien_Canon_Exact_Eyelid_Tech_DRAFT_NOT_APPROVED.zip` 31 tệp SHA256 `7005dee6130b3b5189326316cbe46d7b78ce83e30502d21de26a8ebf00cf8505`, Library `/Thanh Van Ky/Development/CP386_Canon_Exact_Blink_Tech_Draft/`.
+- **Không đạt visual acceptance:** da phục hồi còn bệt, mí/mi chưa đúng ảnh chuẩn, portrait có nền bản thiết kế và độ phân giải gốc nhỏ. `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `rig_ready=false`, `apk_ready=false`. Không import bất kỳ bản CP386 nào vào `app/src/main/assets`.
+- **CP387:** **đòi hỏi vẽ mí nhắm và da ẩn thật theo kiểu họa sĩ** đúng CANON, xử lý mắt/hairline/viền da không lỗi, xin duyệt một master closed-eye trước khi làm các khung trung gian, tiếp tục 4 biểu cảm, full-body, Spine và Android APK.
+
