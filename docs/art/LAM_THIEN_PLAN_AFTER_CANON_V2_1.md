@@ -289,3 +289,13 @@
 - [ ] **Visual QA NOT PASSED / Android BLOCKED:** chưa có mắt nhắm/hair occlusion/skin underpaint thực sự đẹp, chưa rig/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP388:** vẽ trực tiếp mí nhắm/mi/da lớp ẩn có chất lượng họa sĩ từ CANON; preview native và zoom 4× trước xin duyệt. Sau duyệt mới vẽ animation intermediate và mở rộng 5 biểu cảm, toàn thân.
 
+---
+
+## CP388 — Six editable eyelid Bézier guides, exact CANON static (2026-10-30)
+
+- [x] Giữ đúng CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197, không thay hình nhận diện/không dùng ảnh nhân vật khác.
+- [x] Tạo **6 SVG/6 PNG riêng** cho mí trên, mí dưới và nếp mí mỗi bên. Tất cả nét confined vào các ROI mắt. Tạo ORA **8 lớp**: CANON tĩnh visible, 6 DRAFT hidden, **1 layer da khuất cố ý trống** hidden; mergedimage pixel-exact.
+- [x] **8/8 local PASS**, simulated public GitHub **3 PASS/5 SKIP**, ORA CRC PASS, source nguyên byte, lỗi SHA được từ chối trước khi ghi. ZIP **23 files** SHA256 `15a871c6badffd548677cbd295774ae078f6f7b0e9070276b45ae7184cda4f0d`, Library `/Thanh Van Ky/Development/CP388_Manual_Eyelid_Linework_Draft/`; [CP388 handoff](LAM_THIEN_CP388_CANON_EYELID_LINEWORK_HANDOFF.md).
+- [ ] **VISUAL QA NOT PASSED**: chưa có da khuất, mắt nhắm thực hay chuyển động; không đánh đồng linework overlay với nghiệm thu. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP389:** vẽ da khuất và closed-eye master có chất lượng nghệ thuật thật, xem trước cạnh CANON và xin duyệt trước khi làm khung chuyển động trung gian/Spine/APK.
+
