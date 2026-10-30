@@ -109,3 +109,12 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Quy tắc tiến độ:** sau khi có **ảnh thật** để so (không chỉ script/ROI), phải xin duyệt thẩm mỹ trước mọi animation in-between/Spine. Nếu ảnh 208×443 không đủ đẹp, cần minh họa lại đầu đúng pose ở độ phân giải cao *dựa đúng nhận diện CANON*, không tạo người khác hoặc phóng to giả HD.
 - **Rào chắn:** lưu CANON private ngoài GitHub; `sprite_paths={}`, `visual_approval=PENDING_USER`, `production_release.status=blocked_pending_art`. Tóc, cổ, gáy phân lớp/underpaint họa sĩ còn thiếu, điện thoại Android thực chưa test.
 - **Bàn giao:** [CP416 report](art/LAM_THIEN_CP416_SAME_POSE_EYELID_REVIEW.md) và ZIP tại Library `/Thanh Van Ky/Development/CP416_Same_Pose_Eyelid_Review/`.
+
+## 2026-10-30 — CP417 — Giữ hàng mi thật, tránh vẽ chồng và kiểm APK cùng pose
+
+- **Vấn đề CP416:** nét mi mới bị cộng thêm lên đường mi đậm vốn có của ảnh đứng, nên khi phóng to tạo cảm giác hai đường nhắm. Test ROI/hash vẫn PASS nhưng mỹ thuật chưa đạt.
+- **Cách làm có tiến bộ:** giữ nguyên hàng pixel mi trên CANON (y50–51), di chuyển mask che đồng tử phía dưới qua 5 mức 0/25/50/75/100. Source CANON nguyên byte SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; frame0 đúng source; mọi mức khác chỉ đổi hai ROI nhỏ, không mượn mặt biểu cảm khác pose.
+- **Debug Android cụ thể:** thay vì tự coi GIF như chuyển động trong game, tạo `TVKCP417SamePoseBlinkActivity.kt` render atlas nguồn chính trên toàn thân, chu kỳ 2.4s, picker kiểm SHA và so từng pixel bên ngoài ROI; file private không nhúng APK công khai.
+- **Kiểm chứng:** local 14/14 tests PASS có private CANON, bao gồm lash-row preservation, frame zero, ORA visible-source, atlas hash, gate không cấp quyền production. Public GitHub thiếu CANON cần để SKIP. APK CI chưa chứng minh chạy máy thật.
+- **Giới hạn:** 5 frame ở sprite 208×443 chưa phải mượt HD; nếu người dùng thấy nhỏ/khó nhìn, hướng đi đúng là artist redraw head ở độ phân giải cao theo cùng nhận diện, không phải thêm vài màu mask. Mái tóc/gáy/cổ vẫn thiếu master đẹp thực sự; `visual_approval=PENDING_USER`, `sprite_paths={}`.
+- **Tái sử dụng:** Khi có nét đường viền gốc đã tốt, ưu tiên **bảo toàn nét gốc** và vẽ phần bị che ở dưới, không sinh thêm nét trùng. Test QA kỹ thuật kết hợp nhìn 1× + 8× + xem chuyển động trong APK debug. [Báo cáo CP417](art/LAM_THIEN_CP417_SAME_POSE_SOURCE_LASH_BLINK.md).
