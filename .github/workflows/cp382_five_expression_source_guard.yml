@@ -1,0 +1,33 @@
+name: CP382 CANON-only five portrait source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp382_face_semantic_intake.py'
+      - 'tests/art/test_cp382_face_semantic_intake.py'
+      - '.github/workflows/cp382_five_expression_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp382_face_semantic_intake.py'
+      - 'tests/art/test_cp382_face_semantic_intake.py'
+      - '.github/workflows/cp382_five_expression_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow numpy CairoSVG
+      - name: Check source policy and hidden draft vector paths
+        run: python -m unittest discover -s tests/art -p 'test_cp382_face_semantic_intake.py' -v
+      - name: Guard production release gate
+        run: |
+          echo 'CP382 public source: 3 static PASS; 8 private CANON tests SKIP.'
+          echo '5 ORA are reference guides. Native face master and art approval remain BLOCKED.'
