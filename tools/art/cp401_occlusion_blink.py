@@ -34,8 +34,13 @@ def exact_source(path):
 def bez(p,t):
  a=np.asarray(p,float)
  return (1-t)**3*a[0]+3*(1-t)**2*t*a[1]+3*(1-t)*t*t*a[2]+t**3*a[3]
+_CURVE_CACHE = {}
 def curve(side,x,points):
- pp=np.array([bez(points[side],t) for t in np.linspace(0,1,300)])
+ key=(id(points),side)
+ pp=_CURVE_CACHE.get(key)
+ if pp is None:
+  pp=np.array([bez(points[side],t) for t in np.linspace(0,1,300)])
+  _CURVE_CACHE[key]=pp
  return float(np.interp(x,pp[:,0],pp[:,1]))
 def valid_pixels_only(src,candidate):
  a=np.asarray(src);b=np.asarray(candidate)
@@ -123,7 +128,7 @@ keyframes. Interior eye aperture narrows and natural skin slides over it.
  progress=float(np.clip(progress,0,1))
  if progress<=0:return src.copy()
  if progress>=1:return closed.copy()
- a=np.asarray(src).copy();z=np.asarray(closed)
+ source=np.asarray(src);a=source.copy();z=np.asarray(closed)
  for side,(x1,y1,x2,y2) in ROIS.items():
   for x in range(x1+2,x2-2):
    u=curve(side,x,UPPER);l=curve(side,x,LOWER)
@@ -146,9 +151,9 @@ keyframes. Interior eye aperture narrows and natural skin slides over it.
     if fade>.01:
      for dy in [0]:
       y=yy+dy
-      source=np.asarray(src)[y,x,:3].astype(float)
+      source_rgb=source[y,x,:3].astype(float)
       tint=np.asarray([73,40,59],float)
-      a[y,x,:3]=np.uint8(np.rint(source*(1-fade)+tint*fade))
+      a[y,x,:3]=np.uint8(np.rint(source_rgb*(1-fade)+tint*fade))
  # At near closure, swap the last exposed eye pixels for the authentic painted
  # close keyframe. This only affects inside the two ROIs.
  late=float(np.clip((progress-.82)/.18,0,1))
