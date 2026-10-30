@@ -73,7 +73,7 @@ def board(orig,prev,variants,path):
 
 def eyes_board(orig,prev,variants,path):
     items=[('CANON',orig),('CP397',prev),('NATURAL / DRAFT',variants['Natural']),('SOFT / DRAFT',variants['Soft'])]
-    W,H=1880,870;bg=Image.new('RGB',(W,H),(13,32,50)); d=ImageDraw.Draw(bg)
+    W,H=1880,990;bg=Image.new('RGB',(W,H),(13,32,50)); d=ImageDraw.Draw(bg)
     d.text((32,21),'CP399 — SO SÁNH MẮT GỐC  /  PHÓNG 8×, KHÔNG NỘI SUY',font=f(24,True),fill='white')
     d.text((32,60),'Đường nét ở kích thước gốc chỉ 168×197 px. Các vùng ảnh bên dưới đều đến từ Lâm Thiển CANON V2.1.',font=f(17),fill=(220,235,248))
     for row,(side,bb) in enumerate(ROIS.items()):
