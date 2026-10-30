@@ -278,6 +278,11 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(btn("CP418 | Soi mắt từng khung (DEBUG)") {
                 startActivity(android.content.Intent(this, TVKCP417SamePoseBlinkActivity::class.java))
             })
+            portraits.addView(btn("CP419 | Idle + mắt (DEBUG)") {
+                startActivity(android.content.Intent(this, TVKCP417SamePoseBlinkActivity::class.java).apply {
+                    putExtra("cp419_combined", true)
+                })
+            })
         }
 
         if (selectedId == "lin_qian" && !hasApprovedLamThienSprite) {
