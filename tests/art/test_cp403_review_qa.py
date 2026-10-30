@@ -63,10 +63,12 @@ class CP403PrivateSource(unittest.TestCase):
  def setUpClass(cls):
   cls.canon=Path(os.environ.get('TVK_CP403_CANON',''))
   cls.atlas=Path(os.environ.get('TVK_CP403_ATLAS',''))
-  if not os.environ.get('TVK_CP403_CANON') or not os.environ.get('TVK_CP403_ATLAS'):
-   raise unittest.SkipTest('Private approved CANON/atlas omitted from public repository')
-  if not cls.canon.is_file() or not cls.atlas.is_file():
-   raise unittest.SkipTest('Approved source paths not mounted')
+  cls.has_private_art=(bool(os.environ.get('TVK_CP403_CANON')) and
+                       bool(os.environ.get('TVK_CP403_ATLAS')) and
+                       cls.canon.is_file() and cls.atlas.is_file())
+ def setUp(self):
+  if not self.has_private_art:
+   self.skipTest('Private approved CANON/atlas omitted from public repository')
  def test_11_full_exact_contract(self):
   r=qa.verify(self.canon,self.atlas)
   self.assertEqual(r['outside_roi_changed'],0)
