@@ -1,0 +1,37 @@
+name: CP403 Lâm Thiển blink exact-source review QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp403_review_qa.py'
+      - 'tests/art/test_cp403_review_qa.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKBlinkAtlasPreviewActivity.kt'
+      - '.github/workflows/cp403_blink_review_qa.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp403_review_qa.py'
+      - 'tests/art/test_cp403_review_qa.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKBlinkAtlasPreviewActivity.kt'
+      - '.github/workflows/cp403_blink_review_qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-visual-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public-source QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: CP403 static contracts (private artwork never checked into the repo)
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp403_review_qa.py' -v
+      - name: Artist/release gate
+        run: |
+          echo 'Expect 10 public static PASS, 9 private art tests SKIPPED.'
+          echo 'Technical checks are NOT artist acceptance. Android device test not done.'
+          echo 'Production Lâm Thiển sprite_paths={}, blink_production_approved=false.'
