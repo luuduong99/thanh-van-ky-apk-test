@@ -1806,3 +1806,15 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Art/game blocker:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`. Không import ảnh nháp vào app, chưa có bản APK mới. Các bản phác 168×197 không có thêm độ phân giải nhờ upscale.
 - **CP394:** cần họa sĩ hoàn thiện một master mắt nhắm **painter-quality thật** theo CANON với da khuất, bóng mí, mi mềm, các phần tóc giao nhau, có preview nguồn ở native + phóng lớn cho người dùng duyệt; sau khi duyệt mới tạo blink in-betweens, 5 biểu cảm đầy đủ và rig toàn thân cho Android.
 
+---
+
+## 101. CP394 — Lâm Thiển: giữ mi gốc CANON khi thử tạo mí nhắm (2026-10-30)
+
+- **Nguồn bất biến:** Lâm Thiển CANON V2.1 +17%, `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Biểu cảm Ngại ngùng crop `(25,684,193,881)` = **168×197 native**; ảnh nguyên byte trong ZIP. Chỉ dùng CANON này và CP393 đúng nhân vật, không ảnh sinh ngoài / không ảnh Tô Nguyệt Ly.
+- **Kết quả thực:** từ CP393, tạo **6 lớp kỹ thuật RGBA** riêng cho hai mắt: `SKIN` (da lấy mẫu màu ngay dưới mắt từ CANON), `CANON_LASH` (đường mi **đúng pixel nguồn** với alpha mask), `CREASE` (bóng mí mềm). Tạo hai composite draft (`closed`/ `soft`) dùng cùng source. **Không coi chúng là vẽ lại artist-grade hoặc sprite HD**. Phương án CP394 vẫn có **mắt trái nhìn hơi hé**, phải vẽ sửa thật trước visual approval.
+- **OpenRaster:** ORA **10 lớp** gồm 1 CANON eyes-open visible, 6 lớp chỉnh sửa hidden, 2 composite hidden, 1 vùng đánh dấu mắt hidden. `mergedimage` là CANON pixel-exact; không import bất kỳ draft nào vào game.
+- **QA thật:** **11/11 local unittest PASS** trên CANON và bản CP393 thật; khi thiếu ảnh private trong public checkout **4 PASS / 7 SKIP**. CANON SHA được khóa trước khi ghi; composite chỉ thay pixel trong hai mắt: bản closed **1766 px**, bản soft **1481 px** khác source; **0 thay đổi ngoài vùng mắt**, đây không phải điểm chấm đẹp. ORA ZIP CRC PASS. Workflow `.github/workflows/cp394_source_lash_underpaint_guard.yml` có `PYTHONPATH=tools/art` để tránh lỗi import CP393; không tự coi CI PASS trước khi xác minh.
+- **Lưu trữ:** [CP394 report](art/LAM_THIEN_CP394_CANON_LASH_UNDERPAINT_STUDY.md), `tools/art/cp394_source_lash_underpaint.py`, `tests/art/test_cp394_source_lash_underpaint.py`. ZIP **18 tệp** `TVK_CP394_LamThien_Canon_Lash_Underpaint_DRAFT_NOT_APPROVED.zip`, SHA256 `5516199014cbea00942ffdf2570229cc3480b1f74ea807ef1071e6aae2d78115`, Library `/Thanh Van Ky/Development/CP394_Canon_Lash_Underpaint_Draft/`.
+- **Release gate:** `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`, `spine_ready=false`, `apk_ready=false`; chưa có rig/Android APK mới.
+- **CP395:** sửa **hình mắt trái** (màu đồng tử còn lộ / cảm giác hé) và vẽ mí nhắm hoàn toàn painter-quality dựa trên đường mi gốc, với da khuất, vi cấu trúc, bóng mí, đường tóc tự nhiên. Đặt bản native và zoom bên CANON để **người dùng duyệt** rồi mới vẽ các khung in-between và tích hợp.
+
