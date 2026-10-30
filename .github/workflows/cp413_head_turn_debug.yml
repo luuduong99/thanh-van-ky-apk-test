@@ -1,0 +1,17 @@
+name: CP413 head-turn debug QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths: ['tests/art/test_cp413_debug_contract.py', 'app/src/main/java/vn/thanhvanky/prototype/TVKCP413HeadTurnDebugView.kt', '.github/workflows/cp413_head_turn_debug.yml']
+  pull_request:
+    paths: ['tests/art/test_cp413_debug_contract.py', 'app/src/main/java/vn/thanhvanky/prototype/TVKCP413HeadTurnDebugView.kt', '.github/workflows/cp413_head_turn_debug.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Technical source guard, not art approval
+        run: python3 -m unittest discover -s tests/art -p 'test_cp413_debug_contract.py' -v
