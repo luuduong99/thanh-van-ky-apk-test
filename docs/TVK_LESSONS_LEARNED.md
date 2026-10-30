@@ -80,3 +80,12 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Điều KHÔNG được suy ra:** static tests + assembleDebug không xác minh hiệu năng, độ đẹp, khe ghép thực khi chạy trên điện thoại, hay rig/Spine. Trạng thái vẫn **TECHNICAL_DEBUG**.
 - **Tối ưu lần sau:** sau khi có công cụ soi lỗi động, **dừng thêm phiên test mặt nạ nếu chưa có art mới**. Ưu tiên vẽ thật underpaint gáy/cổ/tóc và mí nhắm đúng front đứng; nghiệm thu bằng art ở 0° và biên ±4°, rồi mới ghép production.
 - **Tệp:** [CP413 Android debug handoff](art/LAM_THIEN_CP413_ANDROID_HEAD_TURN_DEBUG.md). Gói APK+CANON nguyên gốc được giữ riêng trong Library, không có trên GitHub công khai.
+
+## 2026-10-30 — CP414 — Source-pixel extraction không phải art master mới
+
+- **Source/CANON:** Chỉ sử dụng chính xác Lâm Thiển V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop đứng (16,180,224,623), 208×443; không mượn portrait khác pose.
+- **Tiến triển thực:** tách **11 vùng RGBA chứa pixel màu nguyên bản** (tóc đỉnh, mặt, hai mắt, trang sức, tóc trên và dài, cổ), lưu đúng từng RGB gốc. ORA 14 lớp chứa 11 nguồn mẫu DRAFT ẩn, 2 lớp phải vẽ trống ẩn, 1 CANON visible; ảnh merged giữ đúng nguồn. **11/11 local source technical tests PASS**.
+- **Bài học từ preview QA:** mặt nạ polygon vẫn cắt nhầm nền trắng và trang phục, chồng lấn và không có underpaint dưới tóc/cổ; vì vậy 11 file không rỗng không có nghĩa 11 bộ phận rig-ready, và phóng zoom sprite 208×443 không thể tạo mắt HD.
+- **Phân biệt:** cắt/mask/số lượng layer chỉ là chuẩn bị dữ liệu. **Artist-painted underpaint, eyelashes/closed eyelid đúng pose, hair strands clean edge** mới là bước mang lại chất lượng production; chưa có thì `visual_approved=false` và `sprite_paths={}`.
+- **Quy tắc tăng tốc:** Sau CP414 **đừng lặp thêm một phiên chỉ cắt mặt nạ**. Ưu tiên công việc vẽ thật và gửi trước/sau tại native/zoom để được người dùng nghiệm thu, rồi mới dùng công cụ kiểm tra CP413 ở ±4°.
+- **Bàn giao:** [CP414 source layer extraction](art/LAM_THIEN_CP414_CANON_SOURCE_LAYER_EXTRACTION.md), ZIP private tại Library `/Thanh Van Ky/Development/CP414_Canon_SourcePixel_LayerDraft/`.
