@@ -9,116 +9,197 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import java.io.ByteArrayOutputStream
 import java.security.MessageDigest
 
-/** Debug-only CP408: source-locked, combined idle preview. NOT a real art/rig release. */
-class TVKCombinedIdlePreviewActivity:Activity(){
+/** Debug-only CP410: body mesh and separately labelled CANON face blink on ONE clock.
+ * The two images are distinct poses on the same CANON sheet. Never paste face onto body.
+ */
+class TVKCombinedIdlePreviewActivity : Activity() {
     companion object {
-        private const val PICK_CANON=408
-        private const val EXPECTED_HASH="f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
-        private val FRONT=intArrayOf(16,180,224,623)
-        private const val MAX_BYTES=5_000_000 // reject huge/hostile image uploads
+        private const val PICK_CANON = 408
+        private const val PICK_BLINK = 410
+        private const val CANON_HASH = "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
+        private const val BLINK_HASH = "d9234630eab9e13ec07527e2c7b6fbbacd849117bf2e4983bf35ac4bcf73a07e"
+        private const val MAX_CANON = 5_000_000
+        private const val MAX_BLINK = 8_000_000
+        private val FRONT = intArrayOf(16, 180, 224, 623)
+        private val FACE = intArrayOf(25, 684, 193, 881)
     }
-    private var preview:TVKCombinedIdleMotionView?=null
-    private lateinit var frame:FrameLayout
-    private lateinit var status:TextView
-    private lateinit var play:Button
-    private val names=arrayOf("Thở", "Đầu", "Tay", "Tóc", "Lụa")
-    private var running=true
-    private fun density(n:Int)=(n*resources.displayMetrics.density+.5f).toInt()
-    private fun text(s:String,size:Float=13f)=TextView(this).apply {
-        text=s
-        textSize=size
-        setTextColor(Color.rgb(234,240,255))
+    private val clock = TVKPreviewClock()
+    private var canonSheet: Bitmap? = null
+    private var preview: TVKCombinedIdleMotionView? = null
+    private var blinkPreview: TVKCombinedBlinkInsetView? = null
+    private lateinit var frame: FrameLayout
+    private lateinit var blinkPanel: LinearLayout
+    private lateinit var blinkContainer: FrameLayout
+    private lateinit var status: TextView
+    private lateinit var play: Button
+    private lateinit var blinkChoose: Button
+    private val names = arrayOf("Thở", "Đầu", "Tay", "Tóc", "Lụa")
+    private var running = true
+    private fun dp(n: Int) = (n * resources.displayMetrics.density + .5f).toInt()
+    private fun text(s: String, size: Float = 13f) = TextView(this).apply {
+        text = s
+        textSize = size
+        setTextColor(Color.rgb(234, 240, 255))
     }
-    private fun button(s:String,f:()->Unit)=Button(this).apply {text=s;isAllCaps=false;setOnClickListener{f()}}
+    private fun button(s: String, f: () -> Unit) = Button(this).apply {
+        text = s; isAllCaps = false; setOnClickListener { f() }
+    }
 
-    override fun onCreate(savedInstanceState:Bundle?){
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // No back door to production images: even explicit launching is refused in release builds.
-        if((applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE)==0){finish();return}
-        val root=LinearLayout(this).apply {
-            orientation=LinearLayout.VERTICAL
-            setPadding(density(9),density(9),density(9),density(9))
-            setBackgroundColor(Color.rgb(26,37,50))
+        if ((applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) == 0) { finish(); return }
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(8), dp(6), dp(8), dp(6))
+            setBackgroundColor(Color.rgb(26, 37, 50))
         }
-        root.addView(text("CP408 — Lâm Thiển | IDLE nhiều lớp (DEBUG)",19f))
-        root.addView(text("Nguồn CANON V2.1 giữ nguyên. Chưa có rig xương, chớp mắt được duyệt hay tích hợp chính thức."))
-        val select=button("Chọn đúng ảnh CANON V2.1 (PNG)"){
-            val intent=Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type="image/png"
-            }
-            startActivityForResult(intent,PICK_CANON)
-        }
-        root.addView(select)
-        status=text("Chưa chọn nguồn CANON. Chỉ chấp nhận SHA-256 chính xác.")
+        root.addView(text("CP410 — Lâm Thiển | ĐỒNG HỒ CHUNG (DEBUG)", 17f))
+        root.addView(text("Thân đứng + khuôn mặt phóng lớn là HAI TƯ THẾ KHÁC NHAU. Chưa có rig hoặc mắt production."))
+        val picks = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
+        picks.addView(button("1. CANON V2.1") { pickFile(PICK_CANON) },
+            LinearLayout.LayoutParams(0, dp(46), 1f))
+        blinkChoose = button("2. Atlas mắt CP409") { pickFile(PICK_BLINK) }
+        blinkChoose.isEnabled = false
+        picks.addView(blinkChoose, LinearLayout.LayoutParams(0, dp(46), 1f))
+        root.addView(picks)
+        status = text("Chọn file CANON trước; sẽ xác minh SHA-256 và kích thước.")
         root.addView(status)
-        frame=FrameLayout(this).apply {setBackgroundColor(Color.rgb(236,242,250))}
-        root.addView(frame,LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,0,1f))
-        val controls=LinearLayout(this).apply {orientation=LinearLayout.HORIZONTAL;gravity=Gravity.CENTER}
-        play=button("Tạm dừng") {
-            running=!running
-            preview?.setPlaying(running)
-            play.text=if(running)"Tạm dừng" else "Tiếp tục"
+        frame = FrameLayout(this).apply { setBackgroundColor(Color.rgb(236, 242, 250)) }
+        root.addView(frame, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
+        blinkPanel = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            visibility = View.GONE
         }
-        controls.addView(play,LinearLayout.LayoutParams(0,density(49),1f))
-        for(i in 0..4){
-            val b=button(names[i]){}
-            b.setOnClickListener{
-                val active=preview?.flipChannel(i) ?: false
-                b.text=names[i]+if(active)" ✓" else " ×"
+        blinkPanel.addView(text("MẮT — ảnh mặt CANON khác góc đứng, chỉ kiểm đồng bộ", 12f))
+        blinkContainer = FrameLayout(this)
+        blinkPanel.addView(blinkContainer, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
+        root.addView(blinkPanel, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(155)))
+        val controls = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER }
+        play = button("Tạm dừng") {
+            running = !running
+            clock.setPlaying(running)
+            preview?.invalidate()
+            blinkPreview?.invalidate()
+            play.text = if (running) "Tạm dừng" else "Tiếp tục"
+        }
+        controls.addView(play, LinearLayout.LayoutParams(0, dp(46), 1f))
+        for (i in 0..4) {
+            val b = button(names[i] + " ✓") { }
+            b.setOnClickListener {
+                val active = preview?.flipChannel(i) ?: false
+                b.text = names[i] + (if (active) " ✓" else " ×")
             }
-            b.text=names[i]+" ✓"
-            controls.addView(b,LinearLayout.LayoutParams(0,density(49),1f))
+            controls.addView(b, LinearLayout.LayoutParams(0, dp(46), 1f))
         }
         root.addView(controls)
-        root.addView(text("Chuyển động đa kênh chạy đồng thời. Không vẽ giả mí/lông mi; kênh chớp mắt chờ master được duyệt."))
+        root.addView(text("Hai nguồn cùng thời gian; KHÔNG ghép mắt vào body; KHÔNG là asset game đã duyệt."))
         setContentView(root)
     }
 
-    @Deprecated("Compatible with Android API 23 in this debug-only prototype")
-    override fun onActivityResult(requestCode:Int,resultCode:Int,data:Intent?){
-        super.onActivityResult(requestCode,resultCode,data)
-        if(requestCode!=PICK_CANON || resultCode!=RESULT_OK)return
-        val uri:Uri=data?.data ?:return
-        try{
-            // File picker data is untrusted: verify raw file bytes BEFORE bitmap decode.
-            val all=contentResolver.openInputStream(uri)?.use { input->
-                val out=java.io.ByteArrayOutputStream()
-                val buffer=ByteArray(8192)
-                while(true){
-                    val n=input.read(buffer)
-                    if(n<0)break
-                    if(out.size()+n>MAX_BYTES)throw IllegalArgumentException("PNG quá lớn")
-                    out.write(buffer,0,n)
-                }
-                out.toByteArray()
-            } ?: throw IllegalArgumentException("Không đọc được file")
-            val hash=MessageDigest.getInstance("SHA-256").digest(all)
-                .joinToString(""){"%02x".format(it.toInt() and 0xff)}
-            if(hash!=EXPECTED_HASH)throw IllegalArgumentException("File không đúng CANON V2.1 — SHA khác")
-            val options=BitmapFactory.Options().apply {inJustDecodeBounds=true}
-            BitmapFactory.decodeByteArray(all,0,all.size,options)
-            if(options.outWidth!=941||options.outHeight!=1672)throw IllegalArgumentException("Kích thước không khớp CANON")
-            val source=BitmapFactory.decodeByteArray(all,0,all.size) ?: throw IllegalArgumentException("PNG không hợp lệ")
-            val crop=Bitmap.createBitmap(source,FRONT[0],FRONT[1],FRONT[2]-FRONT[0],FRONT[3]-FRONT[1])
-            frame.removeAllViews()
-            preview=TVKCombinedIdleMotionView(this,crop).also {
-                it.setPlaying(running)
-                frame.addView(it,FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT))
+    private fun pickFile(code: Int) {
+        val request = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "image/png"
+        }
+        startActivityForResult(request, code)
+    }
+
+    private fun decodeVerified(uri: Uri, hash: String, limit: Int, width: Int, height: Int): Bitmap {
+        // Decode only AFTER checking raw bytes against source-of-truth.
+        val blob = contentResolver.openInputStream(uri)?.use { input ->
+            val bytes = ByteArrayOutputStream()
+            val buffer = ByteArray(8192)
+            while (true) {
+                val n = input.read(buffer)
+                if (n < 0) break
+                require(bytes.size() + n <= limit) { "PNG vượt giới hạn" }
+                bytes.write(buffer, 0, n)
             }
-            status.text="CANON SHA ✓ — 5 chuyển động kỹ thuật đang ghép. Mắt: CHƯA DUYỆT."
-        }catch(e:Exception){
-            frame.removeAllViews();preview=null
-            status.text="Từ chối ảnh: ${e.message}"
+            bytes.toByteArray()
+        } ?: throw IllegalArgumentException("Không đọc được file")
+        val actual = MessageDigest.getInstance("SHA-256").digest(blob)
+            .joinToString("") { "%02x".format(it.toInt() and 255) }
+        require(actual == hash) { "Sai file CANON/atlas (SHA-256 không khớp)" }
+        val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeByteArray(blob, 0, blob.size, opts)
+        require(opts.outWidth == width && opts.outHeight == height) { "Kích thước ảnh không đúng" }
+        return BitmapFactory.decodeByteArray(blob, 0, blob.size)
+            ?: throw IllegalArgumentException("PNG không hợp lệ")
+    }
+
+    @Deprecated("Android API 23 compatible document picker")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != RESULT_OK || (requestCode != PICK_CANON && requestCode != PICK_BLINK)) return
+        val uri = data?.data ?: return
+        try {
+            if (requestCode == PICK_CANON) {
+                val source = decodeVerified(uri, CANON_HASH, MAX_CANON, 941, 1672)
+                canonSheet = source
+                // These coordinates are on the CANON concept sheet, not production rig layers.
+                val crop = Bitmap.createBitmap(source, FRONT[0], FRONT[1], FRONT[2] - FRONT[0], FRONT[3] - FRONT[1])
+                frame.removeAllViews()
+                blinkContainer.removeAllViews()
+                blinkPreview = null
+                blinkPanel.visibility = View.GONE
+                clock.reset()
+                clock.setPlaying(running)
+                preview = TVKCombinedIdleMotionView(this, crop, clock).also {
+                    frame.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT))
+                }
+                blinkChoose.isEnabled = true
+                status.text = "CANON ✓ | 5 kênh cơ thể chạy. Có thể chọn atlas CP409 để xem mắt ở panel riêng."
+            } else {
+                val sheet = canonSheet ?: throw IllegalArgumentException("Hãy chọn CANON trước")
+                val atlas = decodeVerified(uri, BLINK_HASH, MAX_BLINK, 2520, 197)
+                // Strict identity check: frame 0 MUST be identical to face region on the same CANON.
+                val face = Bitmap.createBitmap(sheet, FACE[0], FACE[1], FACE[2] - FACE[0], FACE[3] - FACE[1])
+                val first = Bitmap.createBitmap(atlas, 0, 0, 168, 197)
+                require(first.sameAs(face)) { "Frame đầu không đúng mặt CANON" }
+                blinkContainer.removeAllViews()
+                blinkPreview = TVKCombinedBlinkInsetView(this, atlas, clock).also {
+                    blinkContainer.addView(it, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT))
+                }
+                blinkPanel.visibility = View.VISIBLE
+                status.text = "CANON ✓ Atlas CP409 ✓ | Đồng hồ chung; hai pose KHÔNG chồng lên nhau."
+            }
+        } catch (e: Exception) {
+            // Fail closed: never show mismatched source, stale overlays, or a fallback character.
+            if (requestCode == PICK_CANON) {
+                canonSheet = null
+                preview = null
+                blinkPreview = null
+                blinkChoose.isEnabled = false
+                frame.removeAllViews()
+                blinkContainer.removeAllViews()
+                blinkPanel.visibility = View.GONE
+            } else {
+                blinkPreview = null
+                blinkContainer.removeAllViews()
+                blinkPanel.visibility = View.GONE
+            }
+            status.text = "Từ chối ảnh: ${e.message}"
         }
     }
-    override fun onStop(){super.onStop();preview?.setPlaying(false)}
-    override fun onResume(){super.onResume();preview?.setPlaying(running)}
+
+    override fun onStop() { super.onStop(); clock.setPlaying(false); preview?.invalidate(); blinkPreview?.invalidate() }
+    override fun onResume() {
+        super.onResume()
+        if (::frame.isInitialized) {
+            clock.setPlaying(running)
+            preview?.invalidate()
+            blinkPreview?.invalidate()
+        }
+    }
 }
