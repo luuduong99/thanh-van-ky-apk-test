@@ -1,0 +1,35 @@
+name: CP390 CANON-only skin edge and lash study source QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp390_boundary_skin_study.py'
+      - 'tests/art/test_cp390_boundary_skin_study.py'
+      - '.github/workflows/cp390_skin_edge_lash_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp390_boundary_skin_study.py'
+      - 'tests/art/test_cp390_boundary_skin_study.py'
+      - '.github/workflows/cp390_skin_edge_lash_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Source contract requirements
+        run: python -m pip install Pillow numpy opencv-python-headless
+      - name: Public technical regression tests
+        run: python -m unittest discover -s tests/art -p 'test_cp390_boundary_skin_study.py' -v
+      - name: Art acceptance remains blocked
+        run: |
+          echo 'With no private CANON/CP389 source assets: 3 PASS and 6 SKIP expected.'
+          echo 'Local source 9/9 PASS does not certify quality of painted eyelids.'
+          echo 'Keep visual_qa=NOT_PASSED; blocked_pending_art; no APK.'
