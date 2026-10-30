@@ -1,13 +1,15 @@
 """CP372 semantic overlay regression checks; PASS != artwork approval."""
-import hashlib, importlib.util, tempfile, unittest, zipfile, xml.etree.ElementTree as ET
+import hashlib, importlib.util, tempfile, unittest, zipfile, os, xml.etree.ElementTree as ET
 from pathlib import Path
 from PIL import Image
 import numpy as np
 
 HERE=Path(__file__).resolve().parent
-spec=importlib.util.spec_from_file_location('cp372',HERE/'cp372_finger_gold_detail.py')
+SRC=HERE/'cp372_finger_gold_detail.py'
+if not SRC.exists(): SRC=HERE.parents[1]/'tools'/'art'/'cp372_finger_gold_detail.py'
+spec=importlib.util.spec_from_file_location('cp372',SRC)
 m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-CAN=HERE/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png'
+CAN=Path(os.environ.get('TVK_CANON_PATH',str(HERE/'LAM_THIEN_CANON_V2_1_FINAL_20261029.png')))
 OUT=HERE/'OUTPUT'
 HAS_ASSETS=CAN.exists() and (OUT/'CP372_IDLE_TWELVE_LAYER_DRAFT_NOT_SPINE.ora').exists() and (OUT/'CP372_RAISED_TWELVE_LAYER_DRAFT_NOT_SPINE.ora').exists()
 
@@ -32,7 +34,7 @@ class TestCP372(unittest.TestCase):
                 self.assertNotIn('image href=',s)
 
     def test_release_gate_explicit(self):
-        s=(HERE/'cp372_finger_gold_detail.py').read_text(encoding='utf8')
+        s=SRC.read_text(encoding='utf8')
         self.assertIn("'visual_qa':'NOT_PASSED'",s)
         self.assertIn("'production_release':'blocked_pending_art'",s)
         self.assertIn("'sprite_paths':{}",s)
