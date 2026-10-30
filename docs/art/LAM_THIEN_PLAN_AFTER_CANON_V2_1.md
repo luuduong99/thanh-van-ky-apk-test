@@ -269,3 +269,13 @@
 - [ ] Chưa có painter-quality closed eye / underpaint, portrait transparency, full face semantic rig, Spine hoặc APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP386:** Vẽ mắt nhắm và lớp da khuất *thực* đúng CANON; xin duyệt visual, sau đó mới kiểm chuyển động trong engine và hoàn thiện các biểu cảm.
 
+---
+
+## CP386 — CANON exact static / technical eyelid & cheek patch trial (2026-10-30)
+
+- [x] Giữ nguyên Lâm Thiển CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Crop Ngại ngùng 168×197 và khung mắt mở 0,6 **pixel-exact**; không dùng hình nhân vật thay thế.
+- [x] Vẽ nét mí kỹ thuật riêng 2 bên và mẫu màu da từ vùng má trong đúng mask mắt. Tạo 7-frame trial + ORA 7 lớp, **chưa là artist-painted rig**. 1390 pixel đổi trong mask/0 ngoài mask; không đo chất lượng từ số pixel.
+- [x] **10/10 local tests PASS**, public-mode **3 PASS / 7 SKIP**, ORA CRC PASS. ZIP 31 files SHA256 `7005dee6130b3b5189326316cbe46d7b78ce83e30502d21de26a8ebf00cf8505`, Library `/Thanh Van Ky/Development/CP386_Canon_Exact_Blink_Tech_Draft/`; [handoff](LAM_THIEN_CP386_CANON_BLINK_TECH_REVIEW.md).
+- [ ] **VISUAL QA NOT PASSED:** da phẳng/hồng chưa tự nhiên, mi và khóe mắt chưa match source; CP386 có điểm còn tệ hơn CP385. Không thay bản hiển thị game; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP387:** vẽ artist-quality mắt nhắm và da lớp ẩn *thực*, so trực tiếp CANON, xin duyệt visual master rồi mới 5-frame animation, face expressions còn lại, full-body, Spine/Android.
+
