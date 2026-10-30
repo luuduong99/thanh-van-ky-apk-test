@@ -215,3 +215,15 @@
 - [ ] **VISUAL QA NOT PASSED**: mặt, tóc, đồ trang sức, vải chưa đạt CANON. Không native production source HD, không painted underpaint/Spine/Android APK, giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP381:** artist-grade full-body painter redraw thật, ưu tiên face/hair/bodice likeness từ CANON, semantic layers và hidden underpaint đúng giải phẫu; preview xác nhận rồi mới làm facial expressions, wardrobe damage, rig và APK.
 
+---
+
+## CP381 — CANON fidelity review and true face-painting handoff (2026-10-30)
+
+- [x] Giữ CANON Lâm Thiển V2.1 nguyên byte, SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Không dùng hình nhân vật khác.
+- [x] So CP380 với CANON trên đúng tọa độ Front cho **mặt/tóc/thân áo**; xác định cả ba cần vẽ lại. Giá trị chẩn đoán RGB MAE **44,04/38,57/50,00**, SSIM **0,0397/0,1459/0,0849** (không phải thang duyệt thẩm mỹ).
+- [x] Trích **5 mẫu biểu cảm khuôn mặt + 8 phụ kiện nguyên pixel từ chính CANON sheet**, cho nguồn vẽ rõ hơn Front 217×458; ảnh đối chiếu vẫn CANON-only.
+- [x] Tạo workspace ORA **8 lớp** (3 painting layer hiện **RỖNG**, 3 hidden ROI, 1 hidden CP380, 1 visible enlarged CANON guide). Không nhận nhầm làm painting production/HD.
+- [x] **9/9 local PASS**, simulated public-source **3 PASS / 6 SKIP**, CRC PASS; ZIP 34 entries SHA `ce0f53516f41f9a9b84299607a9974b0b1c31586cbcb8f2cf63c33b66d1a6626`, Library `/Thanh Van Ky/Development/CP381_Canon_Face_Fidelity_Painting_Workspace/`. [CP381 handoff](LAM_THIEN_CP381_FACE_FIDELITY_PAINTING_HANDOFF.md).
+- [ ] **Visual QA NOT_PASSED / BLOCKED:** chưa có painted art mặt/tóc/thân áo thật, không Spine/APK, `sprite_paths={}`, `production_release.status=blocked_pending_art`.
+- [ ] **CP382:** vẽ lại master khuôn mặt đúng chuẩn từ 5 mẫu CANON, đặt cạnh ảnh chuẩn để duyệt; sau đó đến tóc/áo, tiếp tục hidden parts, 5 expressions, 4 clothing damage và rig/game.
+
