@@ -34,3 +34,11 @@
 4. Test on Android *physical* device, review compositing, clipping, aliasing, draw cadence and release gate.
 
 **DO NOT** count this as finished whole-body animation or merge debug-only assets into production.
+
+## Verified CI and Android artifact (same checkpoint)
+
+- CP408 public CI: [Run 41055678227](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41055678227) **SUCCESS** (7 public PASS, 7 private-source SKIP); on exact local source **14/14 PASS**.
+- CANON manifest CI: **SUCCESS** at the CP408 checkpoint; original pixel SHA unchanged.
+- Android debug: [Run 41055670232](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41055670232) **SUCCESS**, artifact ID `12977125558` (APK `8,806,596` bytes, SHA256 `3790b839e8225057df267325f5216289c536a67a17f9389d54e514a1bfd8aafb`).
+- Android APK DEX includes `TVKCombinedIdlePreviewActivity` and `TVKCombinedIdleMotionView`; no private CANON or CP408 preview imagery is embedded in APK assets. Debug viewer requires the original CANON selected by user. **Physical device testing NOT performed**.
+- Portable test pack `TVK_CP408_Android_And_Canon_Review.zip` contains exact source CANON, compiled APK, draft video and instructions. Keep it private; do not commit CANON artwork to GitHub.
