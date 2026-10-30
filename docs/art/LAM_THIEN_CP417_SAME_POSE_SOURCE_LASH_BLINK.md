@@ -29,3 +29,9 @@
 - Script: `tools/art/cp417_source_lash_blink.py`. Test: `tests/art/test_cp417_source_lash_blink.py`. APK activity: `app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt`.
 
 **Bước tiếp theo CP418:** ưu tiên đánh giá độ tự nhiên của mắt khép cùng CANON và art underpaint gáy/cổ/tóc đúng pose; không tiếp tục tăng số checkpoint bằng cách đếm test nhỏ nếu chưa cải thiện chất lượng thật.
+## CP417 — CI và APK thực sự xác minh
+
+- [Source QA workflow](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41080652448) **SUCCESS**; 14 tests discovered, **5 PASS / 9 SKIP** vì private CANON không có trong checkout GitHub. Với nguồn thật trên máy dựng, **14/14 local PASS**.
+- [Android debug APK workflow](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41080652547) **SUCCESS**, artifact `12990370039`; tệp `TVK_CP417_Android_Debug_Preview.apk` **8.822.005 bytes**, SHA-256 `633d72189b1cef1f756865f816df296678539afd7d466c7667559ad820887680`.
+- Đã kiểm tra CRC ZIP của APK và thấy `TVKCP417SamePoseBlinkActivity` cùng atlas SHA trong DEX; **không có CANON/atlas nguồn trong assets**. Gói `TVK_CP417_Android_SamePose_Blink_Review_Pack.zip` chứa APK + private CANON + atlas + hướng dẫn, SHA-256 `0182e8fa32cad4774a10a769021e3ffe4b7fc06c78cb49f33885babee847cf12`, lưu trong Library `/Thanh Van Ky/Development/CP417_SamePose_SourceLash_Blink_Review/`.
+- **Không** xác nhận đã chạy thiết bị vật lý, chất lượng FPS, nghiệm thu vẽ mắt hay rig. Trạng thái release art vẫn `blocked_pending_art`.
