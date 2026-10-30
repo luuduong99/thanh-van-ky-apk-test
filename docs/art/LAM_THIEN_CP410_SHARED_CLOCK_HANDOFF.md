@@ -22,7 +22,10 @@
 
 - Trên máy tạo thử có hai ảnh chính xác: **14/14 local QA PASS** (9 source/static + 5 private exact-image).
 - GitHub repo công khai không có private source: **9 PASS, 5 SKIP** là kết quả dự kiến, không tự coi SKIP là PASS.
-- Android `assembleDebug` cần ghi kết quả thực sau khi chạy GitHub Actions.
+- [CP410 public source QA](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41061717703) **SUCCESS**: 9 PASS, 5 private-source SKIP.
+- [Android build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41061708348) **SUCCESS**: `app-debug.apk` 8,810,643 bytes, SHA256 `a6ba38ee15f604a088827d0e327e57d17945786859d82c0c5904ef304ad79870`. This confirms compilation, not execution on a physical phone.
+- CANON production lock succeeded. The APK has no original CANON bitmap or private CP409 atlas embedded in assets.
+- Entry point: `CP410 | Body + chớp mắt đồng bộ (DEBUG)` in Lâm Thiển interaction screen.
 - **Art QA NOT APPROVED; true rig NOT READY; exact same-pose eyelid master MISSING; physical phone QA NOT DONE; production sprite paths `{}`.**
 - Không đưa CP409 vào mặt hình đứng chỉ để minh họa hiệu ứng; cần master mắt nhắm đúng pose body (hoặc bộ head rig phân lớp đúng nhận diện) rồi mới làm compositing thực.
 
