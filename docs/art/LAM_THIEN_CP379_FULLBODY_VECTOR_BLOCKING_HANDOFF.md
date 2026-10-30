@@ -40,3 +40,8 @@ python -m unittest tests/art/test_cp379_fullbody_vector_blocking.py -v
 ```
 
 Lưu ý: `CP374_SOURCE_LAYERS` là 19 PNG từ CP374. Không đưa ảnh private vào GitHub công khai; bản handoff ZIP và Library giữ các byte nguồn và lớp ảnh để chạy lại.
+
+## GitHub Actions sau khi đồng bộ
+
+- Workflow **`CP379 full-body draft technical source guard`**, run ID `40994186046`: **completed / success** trên commit CP379 được kiểm tra. Đây là kiểm thử static public source; các test cần ảnh CANON/source-layer riêng tư không chạy trên GitHub.
+- **Không suy ra Visual QA đã đạt, không mở khóa Spine hay APK** chỉ từ workflow xanh.
