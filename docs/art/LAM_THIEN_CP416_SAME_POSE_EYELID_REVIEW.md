@@ -22,6 +22,7 @@
 | Neutral / atlas frame 0 / ORA merged | **pixel-identical CANON** |
 | 6 lớp alpha art không rỗng, đều ở ROI mắt | PASS |
 | 12 bài kiểm thử cục bộ khi có CANON private | **12/12 PASS** |
+| [GitHub Actions CP416](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41078692596) | **SUCCESS: 5 PASS / 7 SKIP** (không có private CANON) |
 | Đã nhận duyệt mỹ thuật / blinking theo hình học mí thật | **NO** |
 | Master HD, tóc/gáy/cổ phân lớp / rig/Spine | **NO** |
 | APK production art, test điện thoại thật | **NO** |
