@@ -45,6 +45,9 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
     private lateinit var chooseAtlas: Button
     private lateinit var playPause: Button
     private lateinit var viewer: BlinkView
+    private lateinit var compareMode: Button
+    private val frameButtons = ArrayList<Button>()
+    private var changedPixels = IntArray(FRAMES)
     private var playing = true
 
     private fun dp(n: Int) = (n * resources.displayMetrics.density + .5f).toInt()
@@ -63,8 +66,8 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
             setPadding(dp(10), dp(10), dp(10), dp(10))
             setBackgroundColor(Color.rgb(21, 35, 52))
         }
-        col.addView(info("CP417 • LÂM THIỂN — CÙNG POSE (DEBUG)", 17f))
-        col.addView(info("Mắt trên ảnh đứng 208×443. Chỉ bản nháp, chưa nghiệm thu mỹ thuật.", 12f))
+        col.addView(info("CP418 • LÂM THIỂN — SOI MÍ MẮT (DEBUG)", 17f))
+        col.addView(info("CANON đúng pose 208×443, 5 khung CP417. Bản nháp chưa duyệt mỹ thuật.", 12f))
         val pick = LinearLayout(this)
         pick.addView(button("1. Chọn CANON V2.1") { pick(PICK_CANON) },
             LinearLayout.LayoutParams(0, dp(48), 1f))
@@ -77,12 +80,38 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         viewer = BlinkView()
         col.addView(viewer, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
         playPause = button("Tạm dừng") {
-            playing = !playing
-            viewer.setPlaying(playing)
-            playPause.text = if (playing) "Tạm dừng" else "Tiếp tục"
+            if (viewer.hasAtlas()) {
+                playing = !playing
+                viewer.setFrameOverride(null)
+                viewer.setPlaying(playing)
+                playPause.text = if (playing) "Tạm dừng" else "Tiếp tục"
+                status.text = if (playing) "Đang xem blink DRAFT (2,4 giây/chu kỳ)." else "Đã tạm dừng: chọn một trong 5 khung để soi."
+            }
         }
+        playPause.isEnabled = false
         col.addView(playPause, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(42)))
-        col.addView(info("Ảnh CANON không nằm trong APK. 5 khung mắt DRAFT, không phải rig/Spine.", 12f))
+        compareMode = button("Soi cận 2 mặt: CANON / khung đang chọn") {
+            val next = !viewer.comparing
+            viewer.setCompareMode(next)
+            compareMode.text = if (next) "Về toàn thân" else "Soi cận 2 mặt: CANON / khung đang chọn"
+        }
+        compareMode.isEnabled = false
+        col.addView(compareMode, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(38)))
+        val stepRow = LinearLayout(this)
+        for (step in 0 until FRAMES) {
+            val b = button("$step/4") {
+                playing = false
+                viewer.setPlaying(false)
+                viewer.setFrameOverride(step)
+                playPause.text = "Chạy lại"
+                status.text = "CP418 | Khung $step/4: ${changedPixels[step]} pixel khác CANON, chỉ trong vùng mắt."
+            }
+            b.isEnabled = false
+            frameButtons.add(b)
+            stepRow.addView(b, LinearLayout.LayoutParams(0, dp(40), 1f))
+        }
+        col.addView(stepRow)
+        col.addView(info("Ảnh CANON không nằm trong APK. Phóng to chỉ để kiểm pixel, không tạo HD/rig/Spine.", 11f))
         setContentView(col)
     }
     private fun pick(code: Int) {
@@ -113,17 +142,27 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
             ?: throw IllegalArgumentException("Không thể giải mã PNG")
     }
-    private fun validAtlas(source: Bitmap, sheet: Bitmap): Boolean {
+    private fun validAtlas(source: Bitmap, sheet: Bitmap): IntArray? {
         val first = Bitmap.createBitmap(sheet, 0, 0, W, H)
-        if (!first.sameAs(source)) return false
-        // Reject a sheet which secretly changes body/hair/costume outside two ROIs.
+        if (!first.sameAs(source)) return null
+        // One bulk read per bitmap, no hundreds of thousands of getPixel JNI calls.
+        val original = IntArray(W * H)
+        source.getPixels(original, 0, W, 0, 0, W, H)
+        val atlasPixels = IntArray(FRAMES * W * H)
+        sheet.getPixels(atlasPixels, 0, FRAMES * W, 0, 0, FRAMES * W, H)
+        val differences = IntArray(FRAMES)
+        // Fail closed if any frame changes skin/body/costume/hair outside two eye ROIs.
         for (i in 1 until FRAMES) for (y in 0 until H) for (x in 0 until W) {
             val inLeft = x in 88 until 104 && y in 50 until 56
             val inRight = x in 107 until 124 && y in 50 until 57
-            if (!inLeft && !inRight && sheet.getPixel(i * W + x, y) != source.getPixel(x, y))
-                return false
+            val sourcePixel = original[y * W + x]
+            val atlasPixel = atlasPixels[y * FRAMES * W + i * W + x]
+            if (sourcePixel != atlasPixel) {
+                if (!inLeft && !inRight) return null
+                differences[i]++
+            }
         }
-        return true
+        return differences
     }
     @Deprecated("Compatible document picker on minSdk 23")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -137,22 +176,41 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
                 front = crop
                 atlas = null
                 chooseAtlas.isEnabled = true
+                playPause.isEnabled = false
+                compareMode.isEnabled = false
+                for (button in frameButtons) button.isEnabled = false
+                viewer.setCompareMode(false)
+                compareMode.text = "Soi cận 2 mặt: CANON / khung đang chọn"
                 viewer.setAssets(crop, null)
                 status.text = "CANON ✓ | Mở đúng ảnh gốc 208×443. Chọn atlas CP417 để xem nháy mắt."
             } else {
                 val source = front ?: throw IllegalArgumentException("Chọn CANON trước")
                 val candidate = decodeVerified(uri, ATLAS_SHA, 3_000_000, FRAMES * W, H)
-                require(validAtlas(source, candidate)) { "Atlas sửa sai pixel ngoài mắt / frame 0" }
+                val counts = validAtlas(source, candidate)
+                    ?: throw IllegalArgumentException("Atlas sửa sai pixel ngoài mắt / frame 0")
+                changedPixels = counts
                 atlas = candidate
                 viewer.setAssets(source, candidate)
-                status.text = "CANON ✓ | CP417 atlas ✓ | 5 khung cùng pose. DEMO, không phải production."
+                playing = true
+                viewer.setPlaying(true)
+                playPause.text = "Tạm dừng"
+                playPause.isEnabled = true
+                compareMode.isEnabled = true
+                for (button in frameButtons) button.isEnabled = true
+                status.text = "CANON ✓ | Atlas CP417 ✓ | So cận và chọn 0/4…4/4; chưa duyệt art."
             }
         } catch (e: Exception) {
             if (requestCode == PICK_CANON) {
                 front = null; atlas = null; chooseAtlas.isEnabled = false
+                playPause.isEnabled = false
+                compareMode.isEnabled = false
+                for (button in frameButtons) button.isEnabled = false
                 viewer.setAssets(null, null)
             } else {
                 atlas = null
+                playPause.isEnabled = false
+                compareMode.isEnabled = false
+                for (button in frameButtons) button.isEnabled = false
                 viewer.setAssets(front, null)
             }
             status.text = "Từ chối tệp: ${e.message}"
@@ -167,9 +225,27 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
         private var anchor = SystemClock.uptimeMillis()
         private var freeze = 0L
         private var active = true
+        private var frameOverride: Int? = null
+        var comparing = false
+            private set
         private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+        private val pixelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = false }
+        private val outline = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(255, 193, 37); style = Paint.Style.STROKE; strokeWidth = 1.5f
+        }
+        private val caption = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(25, 45, 70); textSize = dp(12).toFloat()
+        }
+        fun hasAtlas(): Boolean = sheet != null
+        fun setFrameOverride(index: Int?) {
+            require(index == null || index in 0 until FRAMES)
+            frameOverride = index
+            invalidate()
+        }
+        fun setCompareMode(on: Boolean) { comparing = on; invalidate() }
         fun setAssets(front: Bitmap?, atlas: Bitmap?) {
-            source = front; sheet = atlas; anchor = SystemClock.uptimeMillis(); freeze = 0L
+            source = front; sheet = atlas; frameOverride = null
+            anchor = SystemClock.uptimeMillis(); freeze = 0L
             invalidate()
         }
         fun setPlaying(on: Boolean) {
@@ -200,12 +276,36 @@ class TVKCP417SamePoseBlinkActivity : Activity() {
             val destination = RectF((width-w)/2f,(height-h)/2f,(width+w)/2f,(height+h)/2f)
             canvas.drawColor(Color.rgb(227, 237, 246))
             val data = sheet
-            if (data == null) canvas.drawBitmap(src, null, destination, paint)
-            else {
-                val i = currentFrame()
-                canvas.drawBitmap(data, Rect(i*W, 0, (i+1)*W, H), destination, paint)
-                if (active && isAttachedToWindow) postInvalidateOnAnimation()
-            }
+            val i = frameOverride ?: currentFrame()
+            if (comparing && data != null) {
+                // Two true source-pixel crops side-by-side. Large display != new HD artwork.
+                val face = Rect(80, 34, 135, 91)
+                val space = dp(8).toFloat()
+                val paneWidth = ((width.toFloat() - 3f * space) / 2f).coerceAtLeast(1f)
+                val paneScale = min(paneWidth / face.width(), (height.toFloat() - dp(48)) / face.height())
+                val pw = face.width() * paneScale; val ph = face.height() * paneScale
+                val top = ((height.toFloat() - ph) / 2f).coerceAtLeast(dp(30).toFloat())
+                val left = RectF(space, top, space + pw, top + ph)
+                val rightX = 2f * space + paneWidth
+                val right = RectF(rightX, top, rightX + pw, top + ph)
+                canvas.drawText("CANON · GỐC", left.left, (top - dp(9)).coerceAtLeast(dp(14).toFloat()), caption)
+                canvas.drawText("KHUNG $i/4", right.left, (top - dp(9)).coerceAtLeast(dp(14).toFloat()), caption)
+                canvas.drawBitmap(src, face, left, pixelPaint)
+                val frameFace = Rect(i*W + face.left, face.top, i*W + face.right, face.bottom)
+                canvas.drawBitmap(data, frameFace, right, pixelPaint)
+                fun markEyes(pane: RectF) {
+                    val sx = pane.width() / face.width(); val sy = pane.height() / face.height()
+                    for (rect in listOf(Rect(88,50,104,56), Rect(107,50,124,57))) {
+                        val rx = pane.left + (rect.left-face.left)*sx
+                        val ry = pane.top + (rect.top-face.top)*sy
+                        canvas.drawRect(rx, ry, pane.left+(rect.right-face.left)*sx,
+                            pane.top+(rect.bottom-face.top)*sy, outline)
+                    }
+                }
+                markEyes(left); markEyes(right)
+            } else if (data == null) canvas.drawBitmap(src, null, destination, paint)
+            else canvas.drawBitmap(data, Rect(i*W, 0, (i+1)*W, H), destination, paint)
+            if (active && data != null && frameOverride == null && isAttachedToWindow) postInvalidateOnAnimation()
         }
     }
 }
