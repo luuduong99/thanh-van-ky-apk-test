@@ -65,7 +65,7 @@ Nguồn [4 ảnh tham khảo và SHA](art/TVK_COSTUME_DAMAGE_REFERENCES_20261030
 - **Vấn đề thật:** neutral head recompose đúng pixel vẫn không có nghĩa 2D rig khi chuyển động ổn. Khi nghiêng 2°–4°, rough mask cắt ngang tóc/underpaint giả sẽ lộ vùng chưa có art.
 - **Cách phát hiện hiệu quả:** một board nguồn thật với 5 góc -4/-2/0/+2/+4; ghi số pixel phụ thuộc underpaint **271/174/0/174/276** (không diễn giải là chấm điểm mỹ thuật); soi luôn mặt cận và toàn thân. Cấm quảng bá debug rotation là hoạt ảnh đã đạt.
 - **Cải tiến tăng tốc:** thay vì liên tục sửa vài pixel mí mắt, dùng một `ORA` có 8 lớp vẽ trống tên rõ ràng và source CANON hiển thị, chuyển giao trực tiếp phần cần vẽ. Test chặn nhầm CANON và chặn nâng trạng thái art nếu lớp vẫn trống.
-- **Bằng chứng:** local **10/10 technical PASS** với CANON thật; GitHub public không có private source nên skip. Đã tạo source tool/test và ZIP offline. Không có art mới được vẽ, rig thật hay test điện thoại thực.
+- **Bằng chứng:** local **10/10 technical PASS** với CANON thật; [GitHub Actions CP412](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41069360009) SUCCESS: 5 PASS / 5 SKIP vì thiếu private CANON. Đã tạo source tool/test và ZIP offline. Không có art mới được vẽ, rig thật hay test điện thoại thực.
 - **Quy tắc tái dùng:** mỗi prototype động phải kiểm tra 0° nguyên bản + biên chuyển động và lớp hình bị khuất; định nghĩa rõ `DRAFT` vs `APPROVED_CANON`. Sau khi phát hiện thiếu underpaint, ưu tiên họa sĩ tạo master thực sự thay vì thêm vòng kiểm thử kỹ thuật.
 - **Blocker:** `front-face/head master`, mắt nhắm đúng pose, vẽ cổ/tóc sau đầu, nhiều lớp tóc/phụ kiện vẫn thiếu; `sprite_paths={}`, `production_release.status=blocked_pending_art`. CP413 tập trung giải quyết blocker mỹ thuật.
 
