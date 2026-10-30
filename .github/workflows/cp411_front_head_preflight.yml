@@ -1,0 +1,39 @@
+name: CP411 Lâm Thiển front-pose head readiness QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp411_front_head_preflight.py'
+      - 'tests/art/test_cp411_head_preflight.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKFrontPoseRigAuditOverlay.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - '.github/workflows/cp411_front_head_preflight.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp411_front_head_preflight.py'
+      - 'tests/art/test_cp411_head_preflight.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKFrontPoseRigAuditOverlay.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - '.github/workflows/cp411_front_head_preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  technical-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline art QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Run CP411 front-pose rig preflight checks
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp411_head_preflight.py' -v
+      - name: Reject false art completion
+        run: |
+          echo 'Expected 7 static PASS / 7 source-private SKIP.'
+          echo 'CP411 auto-inpaint and rough head mask are NOT approved art, NOT a finished head rig.'
+          echo 'Approved CANON remains private; sprite_paths={}, actual_game_blink=false.'
