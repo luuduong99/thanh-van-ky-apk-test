@@ -51,7 +51,7 @@ class TVKBlinkAtlasPreviewActivity : Activity() {
             textSize = size
             setTextColor(Color.WHITE)
         }
-        layout.addView(heading("Lâm Thiển — " + if (modeCp409) "CP409 | MÍ CHUYỂN ĐỘNG (DRAFT)" else "CP403 | KIỂM TRA MẮT NHẮM (DRAFT)", 16f))
+        layout.addView(heading("Lâm Thiển — " + (if (modeCp409) "CP409 | MÍ CHUYỂN ĐỘNG (DRAFT)" else "CP403 | KIỂM TRA MẮT NHẮM (DRAFT)"), 16f))
         label = heading((if (modeCp409) "Chọn CP409_15_POSE_NATIVE_SHA_LOCKED_DRAFT.png" else "Chọn CP402_ATLAS_ROOT_DRAFT_15.png") + "; so sánh CANON mở và mắt thử. " +
             "KHÔNG PHẢI ẢNH GAME ĐÃ DUYỆT", 12f)
         label.setTextColor(Color.rgb(250, 207, 158))
