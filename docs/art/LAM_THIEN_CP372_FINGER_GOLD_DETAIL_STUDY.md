@@ -24,3 +24,9 @@
 1. Ưu tiên **thực sự dựng bộ Front full-body native semantically layered** đúng CANON: body/face/head front+back hair, bodice, hai tay, váy/vạt, hai guốc xanh và phần khuất khi xương di chuyển.
 2. So ảnh với CANON tại cùng kích thước/góc; không dùng việc phóng lớn crop raster làm chứng nhận sprite HD. Kiểm alpha/draw order với xương, đưa hai pose để người dùng xét duyệt.
 3. Chỉ sau khi đạt art/animation QA mới mở cổng rig và APK.
+
+## Gói nguồn cuối cùng
+- ZIP 64 entries, CRC PASS, SHA256 `721a17c057cc3732c1c8b084a81046fd2b4d1d1e9b11a5a7b1fe4a61d4118249`.
+- ORA idle SHA256 `a045b28a5120e2be6e99956479b4f3bee157419530180ca3e06086fde080126a`.
+- ORA raised SHA256 `bf002c5e8524f7e06086bd76491a1aebceeb433363ab8c21f9c31a43fb12ac92`.
+- Hash ZIP xác minh file nén sau cùng; phần handoff bên ngoài ZIP có thể có thêm các dòng này.
