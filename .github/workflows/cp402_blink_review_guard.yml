@@ -1,0 +1,41 @@
+name: CP402 Lâm Thiển source-root blink and debug atlas safety
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp402_canon_lash_refine.py'
+      - 'tools/art/cp401_occlusion_blink.py'
+      - 'tests/art/test_cp402_canon_lash_refine.py'
+      - 'tests/art/test_cp402_debug_preview_contract.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKBlinkAtlasPreviewActivity.kt'
+      - '.github/workflows/cp402_blink_review_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp402_canon_lash_refine.py'
+      - 'tools/art/cp401_occlusion_blink.py'
+      - 'tests/art/test_cp402_canon_lash_refine.py'
+      - 'tests/art/test_cp402_debug_preview_contract.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKBlinkAtlasPreviewActivity.kt'
+      - '.github/workflows/cp402_blink_review_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  private-art-not-in-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Verify public-only contracts (private-dependent SKIPs expected)
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp402_*.py' -v
+      - name: Keep release blocked while exact private art awaits approval
+        run: |
+          echo '9 public PASS / 10 private SKIP expected without CANON bitmap.'
+          echo 'Debug atlas is SHA-pinned and not bundled in APK.'
+          echo 'art_approved=false; production_sprite_paths={}; apk_runtime_approved=false.'
