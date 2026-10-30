@@ -268,7 +268,7 @@ class CharacterInteractionActivity : Activity() {
             })
             // CP408: multiple idle channels together, with exact CANON file picker;
             // eye-blink art remains separately gated, no production art fallbacks.
-            portraits.addView(btn("CP408 | Xem thử chuyển động toàn thân (DEBUG)") {
+            portraits.addView(btn("CP410 | Body + chớp mắt đồng bộ (DEBUG)") {
                 startActivity(android.content.Intent(this, TVKCombinedIdlePreviewActivity::class.java))
             })
         }
