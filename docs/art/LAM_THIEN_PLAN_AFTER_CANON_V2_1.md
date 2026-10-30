@@ -194,3 +194,14 @@
 - [ ] **Visual QA NOT PASSED**: vector vẫn thô, chưa art native high-res full-body/rig; giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP379 next:** tạo master Front toàn thân được vẽ **thực**, không chỉ cắt/phóng ảnh CANON nhỏ; semantic layers, underpaint, alpha sạch, hai mũi guốc; đối chiếu chất lượng rồi xin duyệt trước Spine/Android.
 
+---
+
+## CP379 — Full-body 21 layer art blocking, separate source-fidelity guide (2026-10-30)
+
+- [x] Source-Lâm Thiển **CANON V2.1 exact bytes** 941×1672 RGBA SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; fix lỗi re-encode PNG làm đổi hash, giờ lưu bằng byte copy gốc.
+- [x] **21 SVG Bézier/gradient thật** và PNG-alpha độc lập phủ toàn bộ Front (hair, face, arms/silk, bodice/skin, hips, legs, both blue shoes, ornaments). Tạo ORA 22 lớp (21 vẽ + CANON hidden) để tiếp tục vẽ chi tiết trực tiếp trong Krita.
+- [x] Giữ ORA **20 lớp** riêng cho 19 guide-part RGB nguồn CP374, ghép tĩnh đúng source matte; đây là nguồn đối chiếu, **KHÔNG** có underpaint hay sprite full detail. Front native chỉ 217×458; canvas SVG 1302×2748 không phải nâng art thật lên HD.
+- [x] **12/12 local tests PASS**, public CI source-absent simulation **4 PASS/8 SKIP**, cả hai ORA ZIP CRC PASS; blue shoes trên reference 163/163 trái và 146/146 phải. ZIP 97 tệp SHA `1f54852d39392accf116272abea6290eb8aff44eb578d02c54ac47224619ed23` trong Library `/Thanh Van Ky/Development/CP379_FullBody_Vector_Blocking/`. [CP379 handoff](LAM_THIEN_CP379_FULLBODY_VECTOR_BLOCKING_HANDOFF.md).
+- [ ] **VISUAL QA NOT PASSED:** bản vector blocking còn thô/khác CANON, chưa redraw họa sĩ, chưa underpaint khớp/Spine, chưa 5 expression/4 damage hoặc Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP380 tiếp:** ưu tiên vẽ thật đủ chi tiết mặt–tóc–áo và toàn thân trên master, tách anatomy dưới các lớp, kiểm mép, hai guốc xanh, xin duyệt mới tính tới rig và APK.
+
