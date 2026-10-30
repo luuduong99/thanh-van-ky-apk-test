@@ -1,0 +1,34 @@
+name: CP383 exact CANON portrait staging source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp383_canon_portrait_staging.py'
+      - 'tests/art/test_cp383_canon_portrait_staging.py'
+      - '.github/workflows/cp383_exact_canon_portraits_source_contract.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp383_canon_portrait_staging.py'
+      - 'tests/art/test_cp383_canon_portrait_staging.py'
+      - '.github/workflows/cp383_exact_canon_portraits_source_contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-staging-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install static contract requirements
+        run: python -m pip install Pillow numpy
+      - name: Check public CP383 source contract
+        run: python -m unittest discover -s tests/art -p 'test_cp383_canon_portrait_staging.py' -v
+      - name: Keep character sprite release blocked
+        run: |
+          echo 'Without private CANON file, 3 static tests PASS and 6 real-asset tests SKIP.'
+          echo 'Game character release still blocked_pending_art; no APK/art animation claim.'
