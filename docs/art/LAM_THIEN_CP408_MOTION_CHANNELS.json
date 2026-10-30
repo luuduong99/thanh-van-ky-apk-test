@@ -1,0 +1,44 @@
+{
+  "checkpoint": "CP408",
+  "character": "lam_thien",
+  "source_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "reference_crop": [
+    16,
+    180,
+    224,
+    623
+  ],
+  "status": "DEBUG_MULTI_CHANNEL_BITMAP_MESH_ONLY",
+  "tracks": [
+    {
+      "name": "breath",
+      "period_seconds": 3.8
+    },
+    {
+      "name": "head",
+      "period_seconds": 6.2
+    },
+    {
+      "name": "arms",
+      "period_seconds": 5.3
+    },
+    {
+      "name": "hair",
+      "period_seconds": 5.7
+    },
+    {
+      "name": "silk",
+      "period_seconds": 4.5
+    }
+  ],
+  "eye_blink": {
+    "status": "BLOCKED_PENDING_APPROVED_NATIVE_CLOSED_EYE_MASTER"
+  },
+  "release": {
+    "source_canon_unchanged": true,
+    "artist_approved": false,
+    "true_layered_rig_ready": false,
+    "apk_production_sprite_paths": {},
+    "physical_phone_tested": false
+  }
+}
