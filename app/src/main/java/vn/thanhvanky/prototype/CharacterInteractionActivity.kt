@@ -275,6 +275,9 @@ class CharacterInteractionActivity : Activity() {
             portraits.addView(btn("CP413 | Kiểm tra đường ghép đầu (DEBUG)") {
                 startActivity(android.content.Intent(this, TVKCombinedIdlePreviewActivity::class.java))
             })
+            portraits.addView(btn("CP417 | Mắt nhắm đúng pose (DEBUG)") {
+                startActivity(android.content.Intent(this, TVKCP417SamePoseBlinkActivity::class.java))
+            })
         }
 
         if (selectedId == "lin_qian" && !hasApprovedLamThienSprite) {
