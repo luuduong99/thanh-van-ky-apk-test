@@ -299,3 +299,13 @@
 - [ ] **VISUAL QA NOT PASSED**: chưa có da khuất, mắt nhắm thực hay chuyển động; không đánh đồng linework overlay với nghiệm thu. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP389:** vẽ da khuất và closed-eye master có chất lượng nghệ thuật thật, xem trước cạnh CANON và xin duyệt trước khi làm khung chuyển động trung gian/Spine/APK.
 
+---
+
+## CP389 — Four editable closed-eye paint study layers, original face unchanged (2026-10-30)
+
+- [x] Lâm Thiển CANON V2.1 nguyên byte SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197 đúng nguồn; không ảnh khác.
+- [x] Tạo **4 lớp RGBA thực sự có pixel vẽ mới** (2 lớp da/bóng mí + 2 lớp đường mí/mi) và composite closed-eye DRAFT. ORA **6 lớp** (ảnh mở mắt CANON visible, 4 lớp vẽ mới + 1 preview closed hidden), mergedimage 100% CANON. Đây là raster painting **dựa trên hình học/gradient thủ công**, chưa đạt chất lượng họa sĩ hoặc HD.
+- [x] Test chỉ thay trong ROI: 1.680 pixel đổi (709/971 theo mắt trái/phải), **0 ngoài hai vùng mắt**; test nguồn sai SHA bị từ chối trước khi xuất. **9/9 local PASS**, public-mode **3 PASS / 6 SKIP**; ZIP 15 tệp SHA256 `3477bd468c0dd6bcf8ce1d7888526e8f71fbffc44d52b7c1da9a2fbcb69b6bc5` trong Library `/Thanh Van Ky/Development/CP389_Canon_Closed_Eye_Paint_Study/`. [CP389 handoff](LAM_THIEN_CP389_CLOSED_EYE_DRAFT_HANDOFF.md).
+- [ ] **Visual QA NOT_PASSED:** da quanh mắt còn phẳng và nét mi đơn giản; chưa được duyệt, chưa animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP390:** tinh chỉnh skin/crease/lash native theo CANON, gửi preview để duyệt, sau đó mới vẽ khung trung gian nháy mắt và tích hợp rig.
+
