@@ -107,3 +107,14 @@
 - [x] ZIP 43 entries, CRC PASS, SHA256 `6845f2543befe36c7dabb19d2e097e0821b71485ca7d7835b6f7e8dd2bb18e9e` lưu Library `/Thanh Van Ky/Development/CP370_Independent_Arm_KeyPose_Study/`. [CP370 handoff](LAM_THIEN_CP370_INDEPENDENT_ARM_KEYPOSE_STUDY.md), script `tools/art/cp370_two_hand_authored_poses.py`, test `tests/art/test_cp370_two_hand_authored_poses.py`.
 - [ ] **Visual QA NOT_PASSED**: bàn tay/nếp lụa còn sơ lược so CANON; chưa full-body native painted, không có in-betweens, rig, Spine, FPS hay APK. **Production release BLOCKED**.
 - [ ] **CP371 tiếp tục:** vẽ lại chi tiết tay/lụa 2 pose, bảo vệ nhận diện CANON; xây các semantic layers còn thiếu (mặt/tóc trước/thân/tay phải/2 guốc xanh), gửi preview để duyệt rồi mới rig và build APK.
+
+
+
+## CP371 — Two-pose silk fold and hem detail (2026-10-30)
+
+- [x] Khóa nguồn Lâm Thiển CANON V2.1 (941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`). Toàn bộ preview chỉ có đúng CANON của nhân vật và art draft từ đó, không có ảnh thay thế.
+- [x] Thêm 2 mảng SVG vector **vẽ riêng cho idle/raised**: nếp lụa sáng và chỉ viền xanh/vàng; bổ sung nét bàn tay và giữ các phần đứng yên chính xác giữa 2 pose. Mỗi tư thế 9 art layers + CANON guide ẩn; 2 ORA 10 lớp, PNG alpha, preview đối chiếu.
+- [x] **11/11 local tests PASS**, hai ORA CRC PASS. Khác CP370: idle 19.833 pixels, raised 35.436 pixels. Coverage mới (trong hoặc sát silhouette tay áo) folds/hem idle 100%/100%, raised 96,11%/100%. Chỉ QA kỹ thuật cục bộ, **không chứng nhận đạt thẩm mỹ**.
+- [x] Đã sao lưu ZIP 52 files SHA256 `b0f1a18c36edc9e69a9a3e232e0b20cc633c647fe7173555a9b673a93831eb2c`, Library `/Thanh Van Ky/Development/CP371_Silk_Detail_Two_Poses/`. [CP371 handoff](LAM_THIEN_CP371_SILK_FOLD_HEM_TWO_POSES.md).
+- [ ] **VISUAL QA NOT PASSED**: còn thô so CANON, thiếu nhiều lớp art nhân vật thực, chưa rig/Spine hoặc APK. Production blocked, sprite_paths empty.
+- [ ] **CP372 next:** ưu tiên true native art fidelity tay/bàn tay, áo và trang sức; sau đó full-body, hai giày xanh và 5 expression / 4 damage, trước khi duyệt art/rig, test APK.
