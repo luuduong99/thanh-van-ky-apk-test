@@ -320,3 +320,14 @@
 - [ ] **Visual QA NOT_PASSED**: da/mí nhắm còn chưa tự nhiên, không closed-eye master được duyệt, không rig/Spine/APK; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP391:** bản vẽ mắt nhắm artist-quality độc lập từ CANON, so native/4×, xin duyệt trước khi tạo blink in-betweens và tích hợp game.
 
+---
+
+## CP391 — Six shadow, crease, tapered-lash painting overlays (2026-10-30)
+
+- [x] Lấy đúng Lâm Thiển CANON V2.1, source SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197; không thay nhận diện hay dùng ảnh tham khảo nhân vật khác.
+- [x] Bảo toàn bản eyes-open từng pixel; tạo **6 layer RGBA mắt** tách riêng, alpha clipped trong LEFT(31,94,70,124), RIGHT(84,70,130,107); tạo ORA **9 lớp** gồm duy nhất CANON visible, các draft CP390/CP391 hidden.
+- [x] CP391 closed-eye study khác CP390 1.113 pixel; bên ngoài vùng mắt 0 pixel đổi. Đây là **phân tích kỹ thuật**, không phải điểm fidelity hay bản blink được phê duyệt.
+- [x] **10/10 local tests PASS**, simulated GitHub checkout **3 PASS / 7 SKIP**. ZIP 18 entries CRC PASS SHA256 `d88e16702f3ec5ccdcb5d9f1215e3eb69e1c9277e9d0f4b0300e47cb098c734c`, Library `/Thanh Van Ky/Development/CP391_Canon_Eyelid_Paint_Study/`. [CP391 handoff](LAM_THIEN_CP391_CANON_EYELID_PAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**: chưa có skin/eyelid closed-eye painter-grade thật; chưa khung trung gian, rig/Spine hay Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP392:** ưu tiên bản da/mí/mi nhắm vẽ thực đủ chất lượng CANON, nhận nghiệm thu ảnh preview trước khi tiếp tục chuyển động. Không cố dùng những lớp kỹ thuật còn thô để hiển thị trong game.
+
