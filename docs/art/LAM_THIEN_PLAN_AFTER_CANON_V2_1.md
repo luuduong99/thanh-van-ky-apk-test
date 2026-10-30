@@ -172,3 +172,14 @@
 - [ ] **Visual QA NOT_PASSED / production blocked:** cổ tay/ribbon vẫn là vector sơ lược, chưa làm full-body art thật hay hai keyframe toàn diện, chưa Spine/APK.
 - [ ] **CP377:** vẽ riêng hình đầu ngón, cổ tay, mép lụa cho keyframe; QA chuyển động nhiều hướng với CANON, rồi tiếp tục hoàn thành Front semantic body/face/hair/legs/shoes trước nghiệm thu và build.
 
+---
+
+## CP377 — Two pose-specific finger contours and rear silk drafts (2026-10-30)
+
+- [x] CANON V2.1 user-approved exact PNG 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` không thay; mọi preview chỉ dùng đúng nguồn này và draft Lâm Thiển.
+- [x] 4 SVG vẽ riêng (2 fingertip silhouettes + 2 rear silk folds), cộng 7 lớp CP376 giữ nguyên giữa pose; xuất 2 ORA **10 lớp**/pose (9 vẽ + 1 exact CANON hidden). Hai composite art khác biệt 36.705 RGBA pixels trên canvas 6×; không phải 2 keyframe full-body đạt nghiệm thu.
+- [x] **10/10 local QA PASS**, public layout **4 PASS / 6 SKIP**, ZIP/ORA CRC PASS, 2 toe-blue ROIs 163/163 và 146/146 từ nguồn không bị sửa. Không flood-fill 15 pixel finger silhouette hoặc đổi số baseline CP376 18/21/98/26.
+- [x] Library `/Thanh Van Ky/Development/CP377_Hand_Silk_Two_Pose_Draft/`, ZIP 54 tệp SHA256 `3950db5a0f628795e3da9f8ccda1a5428a64b9cd263362ac0f495f96c3896c7a`. [CP377 handoff](LAM_THIEN_CP377_HAND_SILK_TWO_POSE_DRAFT.md).
+- [ ] **Visual QA NOT PASSED**: ngón tay/lụa còn thô, không khớp hoàn toàn CANON, chưa full-body/rig/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP378:** chi tiết hóa tay/khớp/viền/vải bằng native painter art theo đúng CANON, kiểm nhiều keypose thực; chuyển sang toàn thân semantic layers + alpha underpaint trước khi nghiệm thu/rig.
+
