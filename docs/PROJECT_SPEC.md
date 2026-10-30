@@ -1529,3 +1529,14 @@ Người dùng xác nhận lại rõ ràng **3 ảnh gốc phải được gán 
 - **Cổng art:** **VISUAL QA NOT PASSED** do vẽ vector vẫn đơn giản hơn CANON; chưa có body đầy đủ, pose động hoàn chỉnh, Spine/physics hoặc APK Android kiểm thử. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không đăng ký art chưa duyệt vào APK.
 
 - **CP372:** tiếp tục vẽ bàn tay, viền áo, chi tiết tóc và phụ kiện bằng semantic art đúng CANON, sau đó phát triển các lớp toàn thân còn thiếu (mặt, thân, váy, tay phải, cả hai mũi guốc xanh) và underpaint, lấy phê duyệt preview thật trước khi dựng rig và build APK.
+
+---
+
+## 79. CP372 — Lâm Thiển: lớp ngón tay, vòng cổ tay và vai (2026-10-30)
+
+- **Giữ đúng CANON:** ảnh Lâm Thiển V2.1 đã chốt, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Không dùng ảnh nhân vật khác hoặc thay đổi thân hình/trang phục. CANON giữ nguyên RGB/alpha, art CP372 chỉ là DRAFT.
+- **Mã art và asset mới:** bổ sung ba lớp SVG riêng cho mỗi pose: chi tiết ngón tay, đường chạm trên vòng cổ tay, hoa văn vàng vai; clip alpha vào body part cha nên không còn nét tràn khỏi parent silhouette. Lớp vai giữ cố định pixel-identical giữa idle/raised, chi tiết tay và vòng cổ tay khác nhau theo pose. 12 art SVG/PNG cho mỗi pose + 1 guide CANON ẩn → **2 OpenRaster, 13 lớp/file**, composite và bảng CANON/CP371/CP372.
+- **QA local:** 11/11 test PASS: hash chuẩn, nhận diện source sai và ngăn tạo output, parse SVG, tính độc lập hai pose, clip alpha có tác dụng, ORA CRC/13 layers, release gate; phần art trên CI thiếu private source được skip đúng. CP372 idle/raised khác CP371 2.598/2.624 pixel ở composite (số liệu kỹ thuật, không phải chất lượng thẩm mỹ).
+- **Nguồn bàn giao:** [CP372 report](art/LAM_THIEN_CP372_FINGER_GOLD_DETAIL_STUDY.md), `tools/art/cp372_finger_gold_detail.py`, `tests/art/test_cp372_finger_gold_detail.py`. Archive `TVK_CP372_LamThien_Finger_Gold_Details_NOT_APPROVED.zip`, 64 files, SHA256 `721a17c057cc3732c1c8b084a81046fd2b4d1d1e9b11a5a7b1fe4a61d4118249`, Library `/Thanh Van Ky/Development/CP372_Finger_Gold_Detail_Study/`.
+- **Trạng thái:** VISUAL QA NOT PASSED; art mới vẫn là mảng tay/vai vector sơ lược, chưa chuẩn nhân vật full-body; không có 5 biểu cảm/4 trạng thái đủ lớp, Spine, build APK/thiết bị. Giữ `production_release.status=blocked_pending_art` và `sprite_paths={}`; không import asset chưa duyệt.
+- **CP373:** chuyển trọng tâm sang Front full-body semantic native-quality (tóc/mặt/thân/tay còn lại/váy/chân/hai guốc xanh), bổ sung phần bị che khuất để vận động và so đúng CANON ở mọi tư thế trước khi rig/game.
