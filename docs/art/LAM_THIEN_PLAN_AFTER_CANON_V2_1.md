@@ -309,3 +309,14 @@
 - [ ] **Visual QA NOT_PASSED:** da quanh mắt còn phẳng và nét mi đơn giản; chưa được duyệt, chưa animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
 - [ ] **CP390:** tinh chỉnh skin/crease/lash native theo CANON, gửi preview để duyệt, sau đó mới vẽ khung trung gian nháy mắt và tích hợp rig.
 
+---
+
+## CP390 — CANON skin-edge and eyelash line study, still not approved (2026-10-30)
+
+- [x] Sử dụng đúng CANON Lâm Thiển V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197 native; preview chỉ dùng CANON/CP389/CP390 cùng nhân vật.
+- [x] Từ CP389 tạo 4 raster layer mới có chỉnh sửa thật: da hai mắt cân màu từ chính mép skin CANON + 2 lớp mi mảnh. ORA **10 lớp** có đúng 1 CANON original visible (các draft hidden), mergedimage 100% exact source. Không tuyên bố vẽ HD.
+- [x] Kiểm thử **9/9 local PASS**, public-source thiếu art **3 PASS/6 SKIP**; source SHA exact, 0 pixel ngoài 2 ROI mắt, CRC PASS. RGB feather-edge MAE (so ảnh **mở mắt**, chỉ để chẩn đoán) trái **14,9951→13,5437**, phải **11,4506→10,3900**; không phải painter score.
+- [x] ZIP 21 files SHA256 `d4fc57718179cf6c27ae6bdeb5f0b87ecb0b19947551c95e07067df02ed4b86f`; Library `/Thanh Van Ky/Development/CP390_Canon_Skin_Edge_Lash_Study/`; [CP390 handoff](LAM_THIEN_CP390_SKIN_EDGE_LASH_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**: da/mí nhắm còn chưa tự nhiên, không closed-eye master được duyệt, không rig/Spine/APK; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP391:** bản vẽ mắt nhắm artist-quality độc lập từ CANON, so native/4×, xin duyệt trước khi tạo blink in-betweens và tích hợp game.
+
