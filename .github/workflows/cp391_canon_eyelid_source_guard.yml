@@ -1,0 +1,34 @@
+name: CP391 Lâm Thiển exact CANON eyelid paint study guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp391_eyelid_paint_pass.py'
+      - 'tests/art/test_cp391_eyelid_paint_pass.py'
+      - '.github/workflows/cp391_canon_eyelid_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp391_eyelid_paint_pass.py'
+      - 'tests/art/test_cp391_eyelid_paint_pass.py'
+      - '.github/workflows/cp391_canon_eyelid_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-public-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source contract libraries
+        run: python -m pip install Pillow numpy
+      - name: Validate public contracts (private CANON art checks skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp391_eyelid_paint_pass.py' -v
+      - name: Preserve artist approval gate
+        run: |
+          echo 'Expected on a public checkout without private CANON: 3 PASS / 7 SKIP.'
+          echo 'Art is NOT_PASSED and must never be auto imported into game sprites.'
