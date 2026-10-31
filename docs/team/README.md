@@ -2,6 +2,10 @@
 
 **Phiên bản:** 1.0 · **Ngày:** 2026-10-30 · **Phạm vi:** Quy trình và tài liệu, không thay đổi gameplay, CANON hay điều kiện release.
 
+## Quyết định gameplay mới — static-first / view-only (31-10-2026)
+
+**[Đọc quy chuẩn đã chốt](STATIC_FIRST_SCENE_MODE.md):** Trong cảnh nhân vật, **tạm tắt body touch-zone** và mọi warp/bitmap-mesh ở màn thường; chọn cảnh, pose, wardrobe, biểu cảm, hội thoại bằng nút **vẫn hoạt động**. Ảnh tĩnh là fallback an toàn. 4 thread không được tự tái bật touch-zone hoặc thay CANON. Chuyển động nhẹ chỉ qua layer có nghiệm thu, không kéo méo ảnh.
+
 ## Đọc trước khi bắt đầu
 
 1. [Quy định chung của dự án](../PROJECT_SPEC.md) — nguồn sự thật về gameplay, các quyết định CANON và điều kiện phát hành. **Đọc `PROJECT_SPEC.md` trước**.
