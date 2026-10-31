@@ -2,6 +2,27 @@
 
 **Cách làm:** Mở **4 cuộc trò chuyện trong cùng ChatGPT Project Thanh Vân Ký**, đổi tên theo tiêu đề và dán nguyên mẫu tương ứng dưới đây. Mẫu nhắc GPT tự đọc GitHub và chỉ xử lý task khi nhận yêu cầu. *Không thể tạo thư mục con chat thật; không tự tạo chat bằng việc commit các file này.*
 
+## BẮT BUỘC: Khởi động ba nhóm theo quy trình đồng bộ quyết định (2026-10-31)
+
+**Thứ tự đọc:** Luôn fetch bằng GitHub connector trực tiếp từ **ref `map-2d-prototype`** (không đọc bản cũ trên branch nhóm hoặc nhớ từ chat), trong đó có:
+1. `docs/PROJECT_SPEC.md` và `docs/team/STATIC_FIRST_SCENE_MODE.md`
+2. `docs/team/DECISION_LOG.md` — các quyết định đã chốt, thay đổi/supersede
+3. `docs/team/DEPENDENCIES.md` — nhóm cung cấp/nhóm nhận và blocker
+4. `docs/team/ASSET_CONTRACTS.md` — asset keys/approval/missing state
+5. `docs/team/WORKSTREAMS.md`, `SYNC_AND_MERGE.md`, `STATUS_BOARD.md`
+
+**Các thread cũ đã mở trước ngày 31-10 cũng phải làm lại bước đọc tài liệu trên**; commit trên `map-2d-prototype` không tự làm đổi branch `tvk/characters`, `tvk/world-story`, `tvk/combat` và các cuộc chat không tự nhận tin nhắn của nhau.
+
+**Khi người dùng chốt điều ảnh hưởng nhiều nhóm:** ghi tài liệu theo owner branch, commit và mở **PR nhỏ chỉ chứa tài liệu/contract** tới `map-2d-prototype`, báo `DECISION_READY`; TVK-04 kiểm tra/merge sớm. **Không chờ xong code/ảnh** mới thông báo quyết định. Khi source/asset đủ điều kiện và kiểm thử/duyệt xong, mở PR triển khai riêng, báo `READY_FOR_REVIEW`. Thiếu truy cập/commit thì báo `NOT_SYNCED`, không giả định đã lưu.
+
+### Một lệnh đồng bộ cho các chat cũ (gửi vào từng chat)
+
+```text
+TVK-01 đồng bộ quy trình mới: Dùng GitHub đọc docs/PROJECT_SPEC.md, docs/team/DECISION_LOG.md, docs/team/DEPENDENCIES.md, docs/team/ASSET_CONTRACTS.md, docs/team/SHORT_COMMANDS.md trên branch map-2d-prototype. Đối chiếu với branch tvk/characters; tóm tắt quy tắc đã hiểu và dependency; không sửa code hay tạo ảnh cho đến khi đọc xong. Từ sau, mọi quyết định đã chốt phải commit branch riêng và PR tài liệu sớm để TVK-04 tích hợp; không tự merge.
+```
+
+Với TVK-02, thay `TVK-01` → `TVK-02` và `tvk/characters` → `tvk/world-story`. Với TVK-03, thay `TVK-01` → `TVK-03` và `tvk/characters` → `tvk/combat`. Sau khi nhóm xác nhận đọc được GitHub bằng **tên file và commit/ref thực**, dùng lệnh `TVK-0X tiếp tục` như trước.
+
 ## Cách dùng nhanh sau khi thiết lập Project một lần
 
 Bạn **không cần sao chép lại** các mẫu prompt dài bên dưới nếu đã thêm đoạn hướng dẫn chung trong [SHORT_COMMANDS.md](SHORT_COMMANDS.md) vào Project Thanh Vân Ký. Mở cuộc trò chuyện mới rồi chỉ nhập:
