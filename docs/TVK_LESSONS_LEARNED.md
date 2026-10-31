@@ -153,3 +153,5 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Bảo toàn state:** wardrobe / integrity 100-70-50-30 / pose / expression vẫn lưu riêng. Thiếu ảnh cần báo thiếu, không thay bằng CANON khác pose, người khác hoặc trang phục khác.
 - **Cửa kiểm thử:** source regression + Android CI là điều kiện kỹ thuật; thực nghiệm người dùng / Android thật mới có bằng chứng cảm nhận. Không tự đánh dấu `spine_ready` hay `production_release`.
 - **Tài liệu chuẩn mới ưu tiên cao hơn ghi chú touch-zone cũ:** [TVK static-first view-only](team/STATIC_FIRST_SCENE_MODE.md). Cả 4 thread phải đọc từ nhánh `map-2d-prototype` trước khi làm việc.
+
+- **Xác minh INT-002:** [source contract](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151380759) SUCCESS 7/7; [build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151376829) SUCCESS; APK 8,824,258 bytes SHA256 `4842812c72ce3d8fcc35a1e600e2c0cc1f7417c42f381918494090946bf18fcd`. Đó là kiểm chứng **mã và bản build**, không phải xác nhận gameplay hay chất lượng art trên điện thoại thật.
