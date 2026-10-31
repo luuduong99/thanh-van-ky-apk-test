@@ -30,3 +30,10 @@
 - Source contract [41151380759](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151380759) **SUCCESS 7/7**.
 - Android build [41151376829](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151376829) **SUCCESS**, APK `8,824,258` bytes SHA256 `4842812c72ce3d8fcc35a1e600e2c0cc1f7417c42f381918494090946bf18fcd`. Có thể lấy ở Library `/Thanh Van Ky/Development/INT002_Static_First_View_Only_20261031/`.
 - Trạng thái: **SOURCE_AND_BUILD_PASSED, DEVICE_QA_PENDING, SCENE_ART_PARTIAL, ANIMATION_APPROVAL_PENDING**. Các thread khác phải nhận quy định từ `map-2d-prototype`, không tự bật lại body hotspots.
+
+### 2026-10-31 — Phản hồi motion demo — ART REWORK REQUIRED
+
+- Người dùng phản hồi `TVK_LamThien_NaturalMotion_PriorityChest.mp4` và các video thử trông như **kéo ảnh**, không phải chuyển động tự nhiên như video tham chiếu. **Không đạt nghiệm thu**; tuyệt đối không xem đây là animation chính thức.
+- Quy tắc cập nhật tại [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MODE.md): không scale/warp *cả cục bộ* ngực, torso, tóc, tay từ ảnh phẳng. Làm frame art/layer/underpaint thật rồi mới animate; ưu tiên nhịp thở/vòng một tự nhiên, chớp mắt/má ửng/tóc/tay nhẹ.
+- **TVK-01 action:** kiểm tra nguồn master painter-quality, dựng 2–4 keyframe có duyệt CANON cùng pose; **không** lặp demo filter/mesh/pixel patch. **TVK-04:** giữ static fallback, chưa tích hợp motion draft.
+- Source/build CI pass của viewer không xác nhận animation. `visual_approval=PENDING_USER`, `animation_ready=false`.
