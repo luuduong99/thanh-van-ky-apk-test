@@ -49,3 +49,12 @@
 3. Không nhúng nguồn CANON riêng tư vào GitHub public hoặc APK public; giữ trong Library/nguồn được phép.
 4. Các file shared như `MainActivity.kt`, `AndroidManifest.xml`, Gradle, CI build, `docs/PROJECT_SPEC.md` do TVK-04 tích hợp. Thread khác gửi đề xuất API/PR thay vì sửa trực tiếp vào nhánh tích hợp.
 5. Không tạo nhiều PR cùng sửa một file rồi merge tùy ý. Dùng `SYNC_AND_MERGE.md`.
+
+## Quy trình chia sẻ quyết định — áp dụng từ 2026-10-31
+
+**Sau khi người dùng chốt trong TVK-01/02/03, không chờ hoàn thành cả tính năng mới báo cho nhóm khác.**
+- Mỗi nhóm ghi quyết định + bằng chứng vào tài liệu trên **branch của chính mình**, commit và đề xuất **PR tài liệu nhỏ** tới `map-2d-prototype`.
+- TVK-04 kiểm tra và tích hợp tài liệu dùng chung trước code/art khi phù hợp, cập nhật [Decision Log](DECISION_LOG.md) và [Dependencies](DEPENDENCIES.md).
+- Mỗi nhóm đọc **[DECISION_LOG.md](DECISION_LOG.md)**, **[DEPENDENCIES.md](DEPENDENCIES.md)** và **[ASSET_CONTRACTS.md](ASSET_CONTRACTS.md)** trên nhánh tích hợp trước khi làm task mới. Chỉ dùng thay đổi branch khác sau khi đồng bộ/kiểm chứng; không tự suy diễn chat khác đã sync.
+- Quyết định đã chốt ≠ ảnh đã được duyệt ≠ code đã merge ≠ APK đã được test thực tế. Asset private CANON vẫn không commit lên GitHub công khai.
+- Nếu không commit/PR được, báo `NOT_SYNCED` kèm blocker; không thông báo các nhóm khác đã nhận được.
