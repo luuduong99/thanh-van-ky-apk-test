@@ -39,3 +39,18 @@
 - Mỗi chat chỉ xử lý tác vụ khi bạn giao việc; không giả định các thread đang tự chạy ngầm.
 - Không có thư mục chat con thật; tổ chức bằng tên chat có tiền tố `[TVK-XX]` và tài liệu trong GitHub.
 - Nếu có plugin/runner không truy cập được, ghi rõ **BLOCKED**, không tự tuyên bố đã merge, đã chạy APK/điện thoại, hay đã nghiệm thu.
+
+## Luồng A — chia sẻ quyết định/hợp đồng **trước khi feature hoàn tất** (hiệu lực từ 2026-10-31)
+
+1. Khi người dùng chốt yêu cầu, owner TVK-01/02/03 tạo một entry theo [DECISION_LOG.md](DECISION_LOG.md): quyết định chính xác, nguồn/chứng cứ, ảnh hưởng, `CONFIRMED` / `PROPOSED`, trạng thái art/code riêng.
+2. Nếu ảnh hưởng nhóm khác, tạo/cập nhật dependency theo [DEPENDENCIES.md](DEPENDENCIES.md) và nếu liên quan ảnh nhân vật thì đối chiếu [ASSET_CONTRACTS.md](ASSET_CONTRACTS.md).
+3. **Commit trên branch riêng** và mở **PR tài liệu/hợp đồng nhỏ** về `map-2d-prototype` sớm. PR tài liệu có thể merge khi nội dung xác minh đúng dù art hoặc code vẫn `DRAFT/BLOCKED`; không được đăng ảnh CANON private.
+4. **TVK-04** xác minh tính nhất quán với `PROJECT_SPEC.md`, quyết định mới/thay thế, phạm vi ảnh hưởng và quyền file; chỉ sau đó merge tài liệu và cập nhật bảng trạng thái chung.
+5. Trước mỗi task, TVK-01/02/03 đọc latest integration `DECISION_LOG`, `DEPENDENCIES`, `ASSET_CONTRACTS` và sync branch khi cần. Không dùng tài liệu trong branch khác chưa merge làm chuẩn đã duyệt.
+6. Quyết định bị thay đổi ghi `SUPERSEDED` + ID mới, không xóa lịch sử. Có thiếu thông tin thì `BLOCKED_BY_TEAM`; có commit nhưng chưa merge thì `NOT_SYNCED_TO_INTEGRATION`.
+
+## Luồng B — PR triển khai code/art
+
+- Giữ nguyên quy trình PR/code/CI/QA bên trên. `DECISION_READY` chỉ yêu cầu TVK-04 xử lý tài liệu; `READY_FOR_REVIEW` của art/code yêu cầu kiểm thử/duyệt độc lập.
+- TVK-04 có thể kiểm PR ngay khi một nhóm sẵn sàng; **không cần chờ cả ba nhóm**. Không phải mọi commit tài liệu đều cần build APK.
+- Các nhóm không tự ghi đè file tích hợp; không tự công bố production khi art/Android chưa đạt.
