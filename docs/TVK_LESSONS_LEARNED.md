@@ -155,3 +155,11 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Tài liệu chuẩn mới ưu tiên cao hơn ghi chú touch-zone cũ:** [TVK static-first view-only](team/STATIC_FIRST_SCENE_MODE.md). Cả 4 thread phải đọc từ nhánh `map-2d-prototype` trước khi làm việc.
 
 - **Xác minh INT-002:** [source contract](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151380759) SUCCESS 7/7; [build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151376829) SUCCESS; APK 8,824,258 bytes SHA256 `4842812c72ce3d8fcc35a1e600e2c0cc1f7417c42f381918494090946bf18fcd`. Đó là kiểm chứng **mã và bản build**, không phải xác nhận gameplay hay chất lượng art trên điện thoại thật.
+
+## 2026-10-31 — Art rejection: cục bộ co giãn vẫn là kéo méo ảnh
+
+- Người dùng nhận ra `TVK_LamThien_NaturalMotion_PriorityChest.mp4` dù có nháy mắt/tóc/tay/vòng ngực nhẹ **vẫn giống kéo ảnh để giả chuyển động**, trái yêu cầu đã chốt.
+- Nguyên nhân: scale vùng ngực + biến dạng/rotate lớp trích từ ảnh phẳng không có underpaint và không có alternate frame thật. Dùng hiệu ứng nhỏ hoặc che viền không thay thế việc vẽ các frame chất lượng.
+- **Lesson:** không gọi một demo kỹ thuật dùng scale/warp là "chuyển động tự nhiên" hoặc "không méo". Phân loại chính xác: `SIMULATION_NOT_APPROVED`; không đưa vào APK; chỉ hiển thị nếu người dùng muốn xem kỹ thuật.
+- **Thực hiện đúng:** từng frame nhịp thở/ngực và nếp vải phải là art thật, dựa đúng pose CANON; mặt và mí vẽ riêng cho blink, tay/tóc cần layer sạch/underpaint. Giảm tốc độ và số chuyển động không bù được thiếu art.
+- Trạng thái `ART_REWORK_REQUIRED`/ `visual_approval=PENDING_USER`. Bắt đầu từ asset/master mới hoặc bộ keyframe được duyệt, rồi mới sản xuất video và nghiệm thu.
