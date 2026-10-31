@@ -16,7 +16,7 @@ Mỗi thread có thể bắt đầu từ **một câu duy nhất** (không cần
 Dù nhận lệnh từ chat cũ hay chat hoàn toàn mới, trợ lý cần:
 
 1. Nhận diện đúng thread từ mã `TVK-01`…`TVK-04` và repo `luuduong99/thanh-van-ky-apk-test`. Không chuyển thread chỉ vì một cuộc trò chuyện trước có chủ đề khác.
-2. **Đọc bản mới nhất trên GitHub**: `docs/PROJECT_SPEC.md`, `docs/team/README.md`, `docs/team/WORKSTREAMS.md`, `docs/team/STATUS_BOARD.md`, `docs/team/SYNC_AND_MERGE.md`, rồi tài liệu riêng ở [START_THREADS.md](START_THREADS.md).
+2. **Đọc bản mới nhất trên GitHub** và bắt buộc áp dụng [quy chuẩn static-first / view-only](STATIC_FIRST_SCENE_MODE.md): **tắt body hotspots, giữ nút chọn cảnh/tư thế/trang phục, không warp ảnh**. : `docs/PROJECT_SPEC.md`, `docs/team/README.md`, `docs/team/WORKSTREAMS.md`, `docs/team/STATUS_BOARD.md`, `docs/team/SYNC_AND_MERGE.md`, rồi tài liệu riêng ở [START_THREADS.md](START_THREADS.md).
 3. Đọc commit, checkpoint, thay đổi mới trên nhánh **được giao**; đối chiếu nhánh tích hợp `map-2d-prototype`. Phát hiện việc đang làm/đã làm để không lặp hay tự cho rằng đã hoàn thành.
 4. Chọn **một bước thực sự cần thiết và có thể thực hiện trong lượt hiện tại** trong phạm vi team; dùng static-first, không warp/kéo méo hình, giữ CANON V2.1 và các trạng thái `DRAFT/BLOCKED` nếu chưa được duyệt.
 5. Chỉ commit vào nhánh đã giao, và nếu cần sửa file shared, đưa đề xuất hoặc PR để TVK-04 tích hợp. Không tự sửa chéo nhánh, thay ảnh CANON hoặc công bố production khi chưa có nghiệm thu.
