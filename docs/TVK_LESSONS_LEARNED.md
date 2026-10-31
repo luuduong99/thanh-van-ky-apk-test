@@ -143,3 +143,13 @@ Chi tiết: [CP412 handoff](art/LAM_THIEN_CP412_SAME_POSE_ART_INTAKE.md).
 - **Mốc tiếp theo CP420:** yêu cầu artist paint high-res đúng nhận diện và góc đứng, full head/hair/neck underpaint + eye closed master; chỉ khi người dùng duyệt mới ghép rig production. Chi tiết [CP419 handoff](art/LAM_THIEN_CP419_SAME_POSE_SYNC_DEBUG.md).
 
 - **CP419 verified build:** [source CI](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41084788314) 7 PASS/3 SKIP; [Android APK](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41084788184) SUCCESS; APK 8,827,665 bytes SHA-256 `0ab6e9b95c5aec405e98a9d581d3244f1e8385976103375c5fae1a28561b0b28`. The APK does not embed private character source. The combined idle+blink mode is still debug, not phone QA or rig validation.
+
+## 2026-10-31 — INT-002 — Static-first scene-view, dừng body-touch và warp ảnh thường
+
+- **Lý do:** Người dùng ưu tiên **xem cảnh tĩnh sắc nét / chuyển động nhẹ tự nhiên**, muốn nút đổi tư thế, thay trang phục và chọn cảnh vẫn hoạt động, nhưng **không tương tác chạm vị trí trên body**. Các CP mesh cũ có nguy cơ kéo méo body, mặt, eo, trang phục.
+- **Thay đổi đúng nhu cầu:** `CharacterInteractionActivity.kt` chuyển ảnh nhân vật sang `ImageView.ScaleType.FIT_CENTER` cho toàn bộ pose (kể cả bed), không gắn listener/hit-test `touchZones` hoặc `TVKCharacterMotionView`. Các nút portrait selection, dialogue, scenes, expression, pose, wardrobe vẫn dùng code hiện hữu, `MainActivity` không bị thay đổi.
+- **Không nhầm giữa loại tương tác:** Tắt **body-zone touch** ≠ tắt chạm nút, bản đồ, tiếp tục hội thoại hoặc chọn cảnh. Metadata `touchZones` có thể còn trong JSON lịch sử nhưng không được dùng khi render view-only.
+- **Không nhầm art và animation:** static-first cho phép game tiếp tục ngay với ảnh tĩnh hợp lệ; chỉ đưa animation nhẹ vào runtime sau khi có layer/underpaint chất lượng được nghiệm thu. `drawBitmapMesh` của CP419 chỉ còn ở debug, không phải giải pháp phòng méo hình.
+- **Bảo toàn state:** wardrobe / integrity 100-70-50-30 / pose / expression vẫn lưu riêng. Thiếu ảnh cần báo thiếu, không thay bằng CANON khác pose, người khác hoặc trang phục khác.
+- **Cửa kiểm thử:** source regression + Android CI là điều kiện kỹ thuật; thực nghiệm người dùng / Android thật mới có bằng chứng cảm nhận. Không tự đánh dấu `spine_ready` hay `production_release`.
+- **Tài liệu chuẩn mới ưu tiên cao hơn ghi chú touch-zone cũ:** [TVK static-first view-only](team/STATIC_FIRST_SCENE_MODE.md). Cả 4 thread phải đọc từ nhánh `map-2d-prototype` trước khi làm việc.
