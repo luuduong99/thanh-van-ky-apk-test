@@ -1,6 +1,6 @@
 # TVK-02 / WORLD-001 — Map, dialogue and quest logic extraction
 
-**Date:** 2026-10-31. **Branch:** tvk/world-story. **Status:** READY_FOR_REVIEW; not merged, not Android-device-verified.
+**Date:** 2026-10-31. **Branch:** tvk/world-story. **Source commit:** 669123f8db9397c18207a4dbef645a9dbb8a8a39. **Draft PR:** https://github.com/luuduong99/thanh-van-ky-apk-test/pull/3. **Status:** READY_FOR_REVIEW; not merged, not Android-device-verified.
 
 ## Audited baseline
 
