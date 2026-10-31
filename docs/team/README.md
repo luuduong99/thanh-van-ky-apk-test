@@ -11,6 +11,10 @@
 5. [Bảng tình trạng công việc](STATUS_BOARD.md) — thread tích hợp cập nhật sau khi **xác minh**, không phải dựa trên lời hứa.
 6. [Mẫu bàn giao checkpoint](CHECKPOINT_TEMPLATE.md) — để một thread khác tiếp tục không cần đoán trạng thái.
 
+## Lệnh ngắn khi mở lại thread
+
+**Bạn chỉ cần gửi `TVK-01 tiếp tục`, `TVK-02 tiếp tục`, `TVK-03 tiếp tục` hoặc `TVK-04 tiếp tục`** trong chat mới. Quy ước và đoạn hướng dẫn Project một lần nằm tại **[SHORT_COMMANDS.md](SHORT_COMMANDS.md)**. Trợ lý phải đọc checkpoint GitHub mới nhất trước khi tiếp tục; tên chat đơn thuần không bảo đảm đồng bộ.
+
 ## Cách sử dụng với một tài khoản ChatGPT
 
 - Trong ChatGPT Project **Thanh Vân Ký**, tạo bốn cuộc trò chuyện có tên:
