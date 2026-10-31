@@ -1,3 +1,5 @@
+> **LƯU Ý 2026-10-31 — REPO PROTOTYPE LỊCH SỬ:** Quy trình ở tài liệu này chỉ áp dụng cho source Kotlin/Android của repo thử nghiệm; KHÔNG dùng làm nguồn chuẩn hoặc branch/commit của dự án Unity 6 đang phát triển trong một repository riêng. Hãy đọc Project instructions chính thức và tài liệu mới nhất của repository Unity trước mọi task TVK-01/02/03/04. Không chuyển code Kotlin/Gradle vào Unity hoặc hiểu các checkpoint Android ở đây là QA Unity.
+
 # Thanh Vân Ký — Bộ điều phối bốn thread ChatGPT
 
 **Phiên bản:** 1.0 · **Ngày:** 2026-10-30 · **Phạm vi:** Quy trình và tài liệu, không thay đổi gameplay, CANON hay điều kiện release.
