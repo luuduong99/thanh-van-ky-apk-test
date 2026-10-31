@@ -49,3 +49,12 @@ Gửi `TVK-04 bàn giao` (hoặc đúng số thread) để yêu cầu ghi checkp
 - `TVK-01 tiếp tục` **không** tự chuyển sang `map-2d-prototype` để commit art.
 - `TVK-04 tiếp tục` **không** đồng nghĩa tự tạo PR/merge tất cả nhánh bất kể CI, xung đột hay quyền hạn.
 - Các lệnh ngắn **không** thay thế chính sách về private CANON, xét duyệt hình ảnh và kiểm thử thiết bị thật.
+
+## Bổ sung bắt buộc cho mọi lệnh TVK-01/02/03/04 (2026-10-31)
+
+Sau `Read PROJECT_SPEC.md first`, luôn đọc từ branch `map-2d-prototype`:
+- `docs/team/DECISION_LOG.md` — quyết định đã chốt và quyết định bị thay thế.
+- `docs/team/DEPENDENCIES.md` — cần gì từ nhóm khác và ai phụ trách.
+- `docs/team/ASSET_CONTRACTS.md` — schema ảnh / trạng thái / điều kiện phê duyệt.
+
+Khi người dùng chốt thay đổi ảnh, gameplay, story hay API: **ghi quyết định, commit branch nhóm, đề xuất PR tài liệu dùng chung sớm**; không chờ viết xong feature. Báo trong chat `DECISION_READY` khi có commit/PR thật; chỉ TVK-04 xác nhận đã merge. Khi phần code/ảnh đủ điều kiện, báo `READY_FOR_REVIEW` riêng. Nếu chưa có thao tác GitHub, nói rõ `NOT_SYNCED`.
