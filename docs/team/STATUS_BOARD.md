@@ -37,3 +37,10 @@
 - Quy tắc cập nhật tại [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MODE.md): không scale/warp *cả cục bộ* ngực, torso, tóc, tay từ ảnh phẳng. Làm frame art/layer/underpaint thật rồi mới animate; ưu tiên nhịp thở/vòng một tự nhiên, chớp mắt/má ửng/tóc/tay nhẹ.
 - **TVK-01 action:** kiểm tra nguồn master painter-quality, dựng 2–4 keyframe có duyệt CANON cùng pose; **không** lặp demo filter/mesh/pixel patch. **TVK-04:** giữ static fallback, chưa tích hợp motion draft.
 - Source/build CI pass của viewer không xác nhận animation. `visual_approval=PENDING_USER`, `animation_ready=false`.
+
+## DOC-SYNC-001 — Chuẩn hóa chia sẻ quyết định giữa 4 nhóm (2026-10-31)
+
+- Đã thêm 3 tài liệu dùng chung trên nhánh `map-2d-prototype`: [DECISION_LOG.md](DECISION_LOG.md), [DEPENDENCIES.md](DEPENDENCIES.md), [ASSET_CONTRACTS.md](ASSET_CONTRACTS.md).
+- Quyết định trong TVK-01/02/03 sẽ cần commit **trên nhánh riêng**, PR tài liệu sớm để TVK-04 merge, rồi các nhóm đọc bản trên nhánh tích hợp. **Không có cơ chế tự đồng bộ chat hoặc branch tự động**.
+- Ghi rõ `DECISION_READY`, `READY_FOR_REVIEW`, `PENDING_APPROVAL`, `BLOCKED_BY_TEAM` và `NOT_SYNCED` để không nhầm quyết định đã chốt với asset/code production đã nghiệm thu.
+- Không thay đổi gameplay, source code, CANON private hoặc APK trong DOC-SYNC-001. Art Lâm Thiển vẫn `PENDING_USER_APPROVAL`, Android device QA vẫn chưa xác minh; `production_release.status=blocked_pending_art`.
