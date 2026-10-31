@@ -21,6 +21,8 @@ TVK-04 tiếp tục
 
 Các prompt đầy đủ dưới đây vẫn giữ làm phương án dự phòng khi Project không truy xuất được GitHub hoặc chưa có hướng dẫn chung.
 
+**QUY TẮC MỚI (2026-10-31):** Bắt buộc đọc [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MODE.md) trên nhánh tích hợp mới nhất trước khi tiếp tục bất kỳ thread nào. Trước mắt không có tương tác chạm body, chỉ chọn cảnh/pose/wardrobe bằng nút; dùng ảnh tĩnh và các lớp chuyển động nhẹ được duyệt, tuyệt đối không bóp méo ảnh. Các prompt lịch sử bên dưới phải tuân theo quy tắc này.
+
 ## [TVK-01] Nhân vật & Animation
 
 ```text
