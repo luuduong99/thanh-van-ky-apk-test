@@ -49,3 +49,10 @@ Cả bốn thread phải theo [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MO
 | Art private, CANON Lâm Thiển V2.1 | TVK-01, 03, 04 | Chỉ dùng đúng ảnh đã duyệt, SHA nguồn, `blocked_pending_art` cho sản phẩm chưa duyệt |
 
 Nếu file mới chưa xác định chủ sở hữu: **đừng tự nhận**. Ghi vào PR, để TVK-04 gán owner và đường tích hợp trước.
+
+## Owner của tài liệu điều phối chung (31-10-2026)
+
+- TVK-01/02/03 chịu trách nhiệm ghi **quyết định đã được người dùng chốt** và dependency trong handoff trên branch của mình, đề xuất PR tài liệu sớm tới `map-2d-prototype`.
+- TVK-04 sở hữu bản tích hợp `docs/team/DECISION_LOG.md`, `DEPENDENCIES.md`, `ASSET_CONTRACTS.md`, `STATUS_BOARD.md`; xác minh trước khi merge hoặc bổ sung khi user giao trực tiếp.
+- Mỗi nhóm đọc ba tài liệu trên ở nhánh tích hợp trước task mới; sync rõ ràng, không dựa vào chat khác hoặc branch chưa merge.
+- [Quy trình](SYNC_AND_MERGE.md) phân biệt `DECISION_READY` (có thể merge docs) và `READY_FOR_REVIEW` (code/art hoàn chỉnh có test/duyệt).
