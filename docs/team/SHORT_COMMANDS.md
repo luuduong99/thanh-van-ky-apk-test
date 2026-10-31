@@ -1,3 +1,5 @@
+> **LƯU Ý 2026-10-31 — REPO PROTOTYPE LỊCH SỬ:** Quy trình ở tài liệu này chỉ áp dụng cho source Kotlin/Android của repo thử nghiệm; KHÔNG dùng làm nguồn chuẩn hoặc branch/commit của dự án Unity 6 đang phát triển trong một repository riêng. Hãy đọc Project instructions chính thức và tài liệu mới nhất của repository Unity trước mọi task TVK-01/02/03/04. Không chuyển code Kotlin/Gradle vào Unity hoặc hiểu các checkpoint Android ở đây là QA Unity.
+
 # TVK — Lệnh ngắn tiếp tục 4 thread
 
 **Bản quy ước 2026-10-31 — dùng trong Project ChatGPT "Thanh Vân Ký".**
