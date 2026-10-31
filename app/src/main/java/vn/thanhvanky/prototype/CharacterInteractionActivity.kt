@@ -10,9 +10,7 @@ import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.Gravity
-import kotlin.math.abs
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -49,9 +47,7 @@ class CharacterInteractionActivity : Activity() {
     private var currentPose = "front"
     private var messageView: TextView? = null
     private var affinityView: TextView? = null
-    private var touchFeedbackView: TextView? = null
     private var videoDialog: Dialog? = null
-    private var animatedPortrait: TVKCharacterMotionView? = null
     private val bgColor = Color.rgb(20, 32, 43)
     private val panel = Color.rgb(38, 57, 70)
     private val gold = Color.rgb(225, 190, 123)
@@ -146,8 +142,6 @@ class CharacterInteractionActivity : Activity() {
 
     private fun render() {
         val heroine = findCharacter(selectedId) ?: return
-        animatedPortrait = null
-        touchFeedbackView = null
         val screen = column().apply { setBackgroundColor(bgColor) }
         val scroll = ScrollView(this).apply { isFillViewport = true }
         val content = column(16)
@@ -160,7 +154,7 @@ class CharacterInteractionActivity : Activity() {
         val title = txt("THANH VÂN KÝ", 20f, gold, true).apply { gravity = Gravity.CENTER }
         header.addView(title, LinearLayout.LayoutParams(0, dp(48), 1f))
         content.addView(header)
-        content.addView(txt("TƯƠNG TÁC NHÂN VẬT", 12f, muted), margin(10))
+        content.addView(txt("XEM CẢNH NHÂN VẬT · STATIC-FIRST", 12f, muted), margin(10))
 
         val chooser = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
         for (index in 0 until catalogue.length()) {
@@ -228,16 +222,15 @@ class CharacterInteractionActivity : Activity() {
                 break
             }
         }
-        val motionSettings = pose.optJSONObject("motionProfile")
-        val cycleSeconds = motionSettings?.optDouble("cycleSeconds", 3.6) ?: 3.6
+        // Scene-view mode: no whole-image mesh, no body hotspot callbacks.
+        // Approved lightweight animations may be added later as independent layers.
         if (currentPose.startsWith("bed_")) {
             // Landscape bed artwork uses the available width; the protagonist is an inset.
             // Avoid squeezing wide artwork into a narrow half-width portrait.
             val bedFrame = FrameLayout(this).apply {
                 setBackgroundDrawable(rounded(Color.rgb(39, 56, 69)))
             }
-            bedFrame.addView(portrait(heroine.optString("name"), safeHeroineImage,
-                heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
+            bedFrame.addView(portrait(heroine.optString("name"), safeHeroineImage, heroineCrop),
                 FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(310)))
             bedFrame.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
                 FrameLayout.LayoutParams(dp(92), dp(142),
@@ -250,8 +243,7 @@ class CharacterInteractionActivity : Activity() {
             val row = LinearLayout(this)
             row.addView(portrait("Nam chính", "characters/main_portrait.png", "full"),
                 LinearLayout.LayoutParams(0, dp(345), 1f).apply { rightMargin = dp(8) })
-            row.addView(portrait(heroine.optString("name"), safeHeroineImage,
-                heroineCrop, interactive = true, motionCycleSeconds = cycleSeconds),
+            row.addView(portrait(heroine.optString("name"), safeHeroineImage, heroineCrop),
                 LinearLayout.LayoutParams(0, dp(345), 1f))
             portraits.addView(row)
         }
@@ -391,28 +383,22 @@ class CharacterInteractionActivity : Activity() {
                 11f, muted
             ))
         }
-        if (pose.optJSONObject("motionProfile")?.optBoolean("spineOrLive2DRequired") == true) {
-            portraits.addView(txt(
-                "Đã bật chuyển động ảnh tĩnh theo lưới (thở/tóc) và phản ứng chạm. " +
-                    "Chuyển động rig Spine/Live2D phân lớp chưa hoàn thiện.",
-                11f, muted
-            ))
-        }
         portraits.addView(txt(heroine.optString("subtitle"), 12f, muted))
-        touchFeedbackView = txt("Chạm ảnh nhân vật để xem phản ứng.", 12f, gold)
-            .apply { setPadding(dp(5), dp(5), dp(5), dp(5)) }
-        portraits.addView(touchFeedbackView!!)
+        portraits.addView(txt(
+            "Chế độ xem cảnh: ảnh tĩnh giữ nguyên hình dáng. Chuyển động nhẹ chỉ dùng " +
+                "khi có asset phân lớp đã nghiệm thu; hiện không kéo méo ảnh.",
+            11f, gold
+        ))
         content.addView(portraits, margin(14))
 
         affinityView = txt("Thân thiết (bản thử): " + prefs.getInt("affinity_" + selectedId, 0),
             14f, gold, true)
         content.addView(affinityView!!, margin(16))
-        content.addView(txt("CHẠM TRỰC TIẾP VÀO NHÂN VẬT", 16f, gold, true), margin(12))
+        content.addView(txt("CHỌN CẢNH / TƯ THẾ / TRANG PHỤC BẰNG NÚT", 16f, gold, true), margin(12))
         content.addView(txt(
-            if (currentPose == "front" || currentPose == "back")
-                "Chạm trực tiếp lên ảnh. Mỗi góc nhìn dùng vùng tương tác riêng và chỉ nhận chạm khi có ảnh đúng tư thế."
-            else
-                "Tư thế giường dùng ảnh và vùng chạm riêng. Chạm trực tiếp trên ảnh để xem phản ứng.",
+            "Chạm trực tiếp lên cơ thể không kích hoạt tương tác. Các nút chọn cảnh, " +
+                "trò chuyện, đổi tư thế, thay trang phục vẫn hoạt động; " +
+                "ảnh chưa có sẽ báo thiếu, không tự thay bằng ảnh sai trạng thái.",
             11f, muted
         ), margin(6))
         val controls = heroine.getJSONArray("controls")
@@ -446,19 +432,22 @@ class CharacterInteractionActivity : Activity() {
         ), margin(12))
     }
 
-    private fun portrait(name: String, assetPath: String, crop: String,
-                         interactive: Boolean = false, motionCycleSeconds: Double = 3.6): View {
+    /**
+     * TVK static-first scene viewer. No interactive body hotspots, no mesh deformation.
+     * The image is drawn with FIT_CENTER and retains the actual source proportions.
+     * Scene/pose/wardrobe remain controlled by the visible buttons in render().
+     */
+    private fun portrait(name: String, assetPath: String, crop: String): View {
         val frame = FrameLayout(this).apply { setBackgroundDrawable(rounded(Color.rgb(56, 80, 93))) }
-        val bitmap = bitmap(assetPath, crop)
-        if (bitmap != null) {
-            val pictureView: View =
-                if (interactive) TVKCharacterMotionView(
-                    this, bitmap, motionCycleSeconds,
-                    movement = 1f
-                ).also { animatedPortrait = it } else ImageView(this).apply {
-                    setImageBitmap(bitmap)
-                    scaleType = ImageView.ScaleType.FIT_CENTER
-                }
+        val source = bitmap(assetPath, crop)
+        if (source != null) {
+            val pictureView = ImageView(this).apply {
+                setImageBitmap(source)
+                scaleType = ImageView.ScaleType.FIT_CENTER
+                isClickable = false
+                isLongClickable = false
+                contentDescription = "Ảnh tĩnh của " + name
+            }
             frame.addView(pictureView, FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT).apply {
                     bottomMargin = dp(34)
@@ -474,99 +463,7 @@ class CharacterInteractionActivity : Activity() {
             gravity = Gravity.CENTER
             setBackgroundColor(Color.argb(215, 23, 37, 48))
         }, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(34), Gravity.BOTTOM))
-        if (interactive) {
-            frame.contentDescription = "Chạm để tương tác với " + name
-            if (bitmap != null) {
-                frame.setOnClickListener { /* Touch listener provides the actual hit test. */ }
-                var downX = 0f
-                var downY = 0f
-                frame.setOnTouchListener { view, event ->
-                    when (event.actionMasked) {
-                        MotionEvent.ACTION_DOWN -> {
-                            downX = event.x
-                            downY = event.y
-                            true
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            if (abs(event.x - downX) <= dp(20) &&
-                                abs(event.y - downY) <= dp(20)) {
-                                view.performClick()
-                                touchPortrait(
-                                    event.x, event.y, view.width.toFloat(), view.height.toFloat(),
-                                    bitmap.width.toFloat(), bitmap.height.toFloat()
-                                )
-                            }
-                            true
-                        }
-                        else -> true
-                    }
-                }
-            } else {
-                frame.setOnClickListener {
-                    messageView?.text = "Chưa có ảnh " + name + " ở tư thế này; không thể xác định vùng chạm."
-                }
-            }
-        }
         return frame
-    }
-
-    private fun touchPortrait(
-        x: Float, y: Float, width: Float, height: Float, imageWidth: Float, imageHeight: Float
-    ) {
-        if (width <= 0f || height <= dp(34) || imageWidth <= 0f || imageHeight <= 0f) return
-        if (y < 0f || y >= height - dp(34)) return
-
-        // The ImageView uses FIT_CENTER; map the touch into actual image pixels,
-        // excluding margins from letterboxing. Avoid matching blank space as body.
-        val contentHeight = height - dp(34)
-        val scale = kotlin.math.min(width / imageWidth, contentHeight / imageHeight)
-        val drawnWidth = imageWidth * scale
-        val drawnHeight = imageHeight * scale
-        val left = (width - drawnWidth) / 2f
-        val top = (contentHeight - drawnHeight) / 2f
-        if (x < left || x >= left + drawnWidth || y < top || y >= top + drawnHeight) {
-            messageView?.text = "Bạn chạm ngoài hình nhân vật."
-            return
-        }
-        val nx = ((x - left) / drawnWidth).coerceIn(0f, 1f).toDouble()
-        val ny = ((y - top) / drawnHeight).coerceIn(0f, 1f).toDouble()
-        val heroine = findCharacter(selectedId) ?: return
-        val zones = heroine.optJSONArray("touchZones") ?: return
-        val pose = currentPose
-        for (index in 0 until zones.length()) {
-            val zone = zones.getJSONObject(index)
-            if (zone.optString("pose", "front") != pose) continue
-            val regions = zone.optJSONArray("regions") ?: continue
-            for (regionIndex in 0 until regions.length()) {
-                val box = regions.getJSONObject(regionIndex)
-                if (nx >= box.optDouble("x1") && nx <= box.optDouble("x2") &&
-                    ny >= box.optDouble("y1") && ny <= box.optDouble("y2")) {
-                    respondToTouch(zone)
-                    return
-                }
-            }
-        }
-        messageView?.text = "Bạn chạm vào khoảng trống. Hãy chọn một vùng trên nhân vật."
-        touchFeedbackView?.text = "Vị trí chạm chưa có phản ứng riêng."
-    }
-
-    private fun respondToTouch(zone: JSONObject) {
-        animatedPortrait?.react(zone.optString("id"))
-        val sensitive = zone.optBoolean("requiresConsent", false)
-        val expression = zone.optString(
-            "expression", if (sensitive) "troubled" else "smile"
-        )
-        CharacterAppearanceState.setExpression(this, selectedId, expression)
-        CharacterAppearanceState.setAction(this, selectedId, "touch_reaction")
-        val zoneName = zone.optString("title", "Tương tác")
-        val reactionText = zoneName + ": " + zone.optString("message")
-        messageView?.text = reactionText
-        touchFeedbackView?.text = reactionText
-        if (sensitive) return // Respect character boundaries; do not reward uninvited touch.
-        val key = "affinity_" + selectedId
-        val points = prefs.getInt(key, 0) + zone.optInt("affinityGain", 0)
-        prefs.edit().putInt(key, points).apply()
-        affinityView?.text = "Thân thiết (bản thử): " + points
     }
 
     // Preserve source details for normal character portraits. The old hardcoded
