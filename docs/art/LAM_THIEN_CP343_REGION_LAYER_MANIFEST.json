@@ -1,0 +1,139 @@
+{
+  "checkpoint": "CP343",
+  "date": "2026-10-29",
+  "status": "source_exact_provisional_semantic_regions_not_riggable",
+  "approved_canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "approved_source_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "native_cutout_size": [
+    215,
+    449
+  ],
+  "previous_cp342_sha256": "d1f8ab09f517d484d93c7356270338c040c399b9a715c30624c6cefd2d635890",
+  "region_count": 10,
+  "region_assignments": [
+    {
+      "name": "01_outer_left_hair_and_silk",
+      "description": "outer_left",
+      "color": "#4f8aca",
+      "visible_pixels": 14507,
+      "png": "layers/01_outer_left_hair_and_silk.png",
+      "mask": "masks/01_outer_left_hair_and_silk_mask.png",
+      "png_sha256": "754e89c607b3e71ae828fe6d066aea0d7b650253d5911236868fe200f5982dbe"
+    },
+    {
+      "name": "02_outer_right_hair_and_silk",
+      "description": "outer_right",
+      "color": "#6ca0cc",
+      "visible_pixels": 11237,
+      "png": "layers/02_outer_right_hair_and_silk.png",
+      "mask": "masks/02_outer_right_hair_and_silk_mask.png",
+      "png_sha256": "bcf8da216a3d1ec9d593d854edc029de1ae3a73f323bcba6f3f93d2fdff1e641"
+    },
+    {
+      "name": "03_left_leg_and_shoe",
+      "description": "leg_left",
+      "color": "#c28a9a",
+      "visible_pixels": 5104,
+      "png": "layers/03_left_leg_and_shoe.png",
+      "mask": "masks/03_left_leg_and_shoe_mask.png",
+      "png_sha256": "31afacc794d20b858ac389abac8b3863670d982890f0653e615ed6047f74ddbb"
+    },
+    {
+      "name": "04_right_leg_and_shoe",
+      "description": "leg_right",
+      "color": "#e0a3a4",
+      "visible_pixels": 5960,
+      "png": "layers/04_right_leg_and_shoe.png",
+      "mask": "masks/04_right_leg_and_shoe_mask.png",
+      "png_sha256": "f46524bbefa40ac0c40d305881bf6b9018c7eeea99b78e9f1f74b2f95ed37772"
+    },
+    {
+      "name": "05_waist_center_fabric",
+      "description": "waist",
+      "color": "#80bdd3",
+      "visible_pixels": 4972,
+      "png": "layers/05_waist_center_fabric.png",
+      "mask": "masks/05_waist_center_fabric_mask.png",
+      "png_sha256": "6e4189229cf7fee1ddd6cfe59aadd8bce99383df6aef4f5baa1467e9bd3f1be6"
+    },
+    {
+      "name": "06_left_arm_and_sleeve",
+      "description": "arm_left",
+      "color": "#9a83c4",
+      "visible_pixels": 4269,
+      "png": "layers/06_left_arm_and_sleeve.png",
+      "mask": "masks/06_left_arm_and_sleeve_mask.png",
+      "png_sha256": "988a6780db2cbbd27a3f5f8702a77c30d8d03851d611bb431d99240ba87a1faf"
+    },
+    {
+      "name": "07_right_arm_and_sleeve",
+      "description": "arm_right",
+      "color": "#8b6ec9",
+      "visible_pixels": 3537,
+      "png": "layers/07_right_arm_and_sleeve.png",
+      "mask": "masks/07_right_arm_and_sleeve_mask.png",
+      "png_sha256": "f4ee9f9b0cbe1925e5920fa316e200d79534425e352606e90a6349b3d80c9c4b"
+    },
+    {
+      "name": "08_bodice_and_necklace",
+      "description": "bodice",
+      "color": "#c9a452",
+      "visible_pixels": 6315,
+      "png": "layers/08_bodice_and_necklace.png",
+      "mask": "masks/08_bodice_and_necklace_mask.png",
+      "png_sha256": "816a0c697069be3a5bb12667807f01fbb6fbd8b13c5fa4b57aad4f2ba5e2b1a4"
+    },
+    {
+      "name": "09_head_hair_front_and_ornament",
+      "description": "head",
+      "color": "#dc9c6a",
+      "visible_pixels": 5272,
+      "png": "layers/09_head_hair_front_and_ornament.png",
+      "mask": "masks/09_head_hair_front_and_ornament_mask.png",
+      "png_sha256": "182257df54a53b0d3bf692c707acd4d8fcc06af6e0272fd5c0bba53209546357"
+    },
+    {
+      "name": "10_small_unassigned_transition",
+      "description": "seam_residual",
+      "color": "#777777",
+      "visible_pixels": 851,
+      "png": "layers/10_small_unassigned_transition.png",
+      "mask": "masks/10_small_unassigned_transition_mask.png",
+      "png_sha256": "a8c233264164bc4f5a0cefa8564ba7dbf7768f9a642f95cfd606577b93e96855"
+    }
+  ],
+  "visible_source_pixels": 62024,
+  "visible_recomposition_is_pixel_exact": true,
+  "underpaint_for_motion_exists": false,
+  "semantic_borders_artist_verified": false,
+  "high_resolution_repaint_exists": false,
+  "riggable_layers_ready": false,
+  "spine_verified": false,
+  "apk_verified": false,
+  "android_production_release": "blocked_pending_art",
+  "game_sprite_paths_registered": 0,
+  "ora": "ora/CP343_FRONT_REGION_LAYERS_EDITABLE_NOT_RIG.ora",
+  "qa_preview": "preview/CP343_CANON_SOURCE_EXACT_LAYER_MAP_QA.png",
+  "notes": [
+    "10 editable mutually-exclusive move-region images preserve exact source pixels; masks approximate by hand-placed geometric topology.",
+    "Do not animate separated pieces directly. Straight/angled boundaries and missing occluded body fabric/hair require artist redraw, mask refinements and underpaint.",
+    "Source native raster is 215x449 and cannot yield true native high-res with resizing.",
+    "No change to body proportion, bodice, 5 emotions or integrity 100/70/50/30."
+  ],
+  "arm_motion_stress_test": {
+    "offset_left_px": [
+      -10,
+      5
+    ],
+    "offset_right_px": [
+      10,
+      5
+    ],
+    "missing_source_pixels": 1798,
+    "new_protruding_pixels": 1098,
+    "result": "FAIL_no_hidden_underpaint",
+    "diagnostic_preview": "preview/CP343_ARTICULATION_UNDERPAINT_FAIL_QA.png"
+  },
+  "local_binary_tests_passed": 12,
+  "package_note": "This archive is a 10-region editable pixel segmentation, NOT artist painted production layers."
+}

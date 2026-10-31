@@ -1,0 +1,94 @@
+{
+  "checkpoint": "CP342",
+  "date": "2026-10-29",
+  "canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "canon_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "source_px": [
+    941,
+    1672
+  ],
+  "source_bbox_xyxy": [
+    13,
+    177,
+    228,
+    626
+  ],
+  "native_front_px": [
+    215,
+    449
+  ],
+  "mode": "RGB_unchanged_alpha_floor_shadow_attenuation",
+  "rgb_unchanged": true,
+  "upper_410_scanlines_alpha_unchanged": true,
+  "still_single_flat_character_foreground": true,
+  "not_artist_clean_semantic_layers": true,
+  "edit_confined_to": "bottom_39_rows_floor_shadow_neutral_blue_gray_only",
+  "pixel_qa": {
+    "upper_body_untouched_pixels": 88150,
+    "alpha_pixels_changed": 2364,
+    "alpha_pixels_removed_sum": 360784,
+    "before_alpha_gt_128": 55547,
+    "after_alpha_gt_128": 54041,
+    "floor_zone_delta": 209000,
+    "center_shoe_delta": 0,
+    "upper_torso_delta": 0,
+    "left_drape_strong_alpha_after": 2242,
+    "right_drape_strong_alpha_after": 1544
+  },
+  "output_files": {
+    "canonical_original": {
+      "path": "source/LAM_THIEN_CANON_V2_1_EXACT_UNMODIFIED.png",
+      "sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
+    },
+    "front_native": {
+      "path": "source/FRONT_NATIVE_EXACT_CROP.png",
+      "sha256": "7211201013a1f18681cff822baae12144800bddc901fa9507b032676ebfa8bdc"
+    },
+    "cp341_previous": {
+      "path": "source/FRONT_CP341_PREVIOUS.png",
+      "sha256": "ef87fa2152c397c3e86002bdcc50b23a3c2cfc808f91e271c9b2d58834578103"
+    },
+    "cp342_refined": {
+      "path": "source/FRONT_CP342_FLOOR_CLEAN_ALPHA_NOT_RIG.png",
+      "sha256": "d1f8ab09f517d484d93c7356270338c040c399b9a715c30624c6cefd2d635890"
+    },
+    "cp342_mask": {
+      "path": "source/FRONT_CP342_EDITABLE_ALPHA_MASK.png",
+      "sha256": "89dd962d25bf2fcbac5f7b6a62c292168ac6e6b40b23c6165838ad28fa3b1504"
+    },
+    "cp342_delta": {
+      "path": "source/FRONT_CP342_REMOVED_ALPHA_DIAGNOSTIC.png",
+      "sha256": "99062dc51fed0db5be999009a3d2a299fe98e43c3f903305b17e73f31d4bc9a2"
+    },
+    "ora": {
+      "path": "ora/CP342_MATTE_VARIANTS_NOT_RIG.ora",
+      "sha256": "93212939e904977e52ba821530a847ad899c04fde3733ec1a27f7f71acddf8e9"
+    },
+    "comparison": {
+      "path": "preview/CP342_THREE_WAY_CANON_ALPHA_QA.png",
+      "sha256": "d75371b7ac5031e89a228b52d42aaabea74acb96cb9cc1f5d7998105f7768447"
+    },
+    "shoe_detail": {
+      "path": "preview/CP342_SHADOW_BEFORE_AFTER_DETAIL.png",
+      "sha256": "63dc3b8a5d1c5d90bc714142a908ed163e5b469289fe80adc90b42a426e9881a"
+    }
+  },
+  "production_gate": {
+    "canon_locked": true,
+    "manual_artist_edge_clean_approved": false,
+    "face_underpaint_complete": false,
+    "independent_hair_body_garment_parts_created": false,
+    "riggable_layers_ready": false,
+    "spine_verified": false,
+    "apk_built_and_tested": false,
+    "runtime_release": "blocked_pending_art",
+    "sprite_paths_registered": 0
+  },
+  "limitations": [
+    "Some floor shadow remains, especially central under-foot grey pixels and pale drape edges.",
+    "Source contains pre-composited white/light fabric and background; 215px thumbnail cannot recover hidden brush strokes or body parts.",
+    "RBG source is locked but alpha remains heuristic; line-art rerender/manual painter cleanup is necessary.",
+    "No 2D rig, no independent facial/bodice/hair/skin parts, no user asset approval."
+  ],
+  "status": "CLEANER_FLOOR_ALPHA_R_AND_D_NOT_PRODUCTION_READY"
+}

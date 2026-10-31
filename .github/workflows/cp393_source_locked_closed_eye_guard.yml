@@ -1,0 +1,33 @@
+name: CP393 CANON-only closed-eye study technical guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp393_closed_eye_master_study.py'
+      - 'tests/art/test_cp393_closed_eye_master_study.py'
+      - '.github/workflows/cp393_source_locked_closed_eye_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp393_closed_eye_master_study.py'
+      - 'tests/art/test_cp393_closed_eye_master_study.py'
+      - '.github/workflows/cp393_source_locked_closed_eye_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow numpy
+      - name: Run CP393 static tests, skip private CANON tests
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp393_closed_eye_master_study.py' -v
+      - name: Explain artist release blocker
+        run: |
+          echo 'Public checkout without private CANON: 4 PASS / 6 SKIP.'
+          echo 'Closed-eye paint study is NOT_PASSED; no approved animation, Spine or APK.'

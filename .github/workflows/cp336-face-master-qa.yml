@@ -1,0 +1,36 @@
+name: CP336 two-angle facial layer contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP336_SOURCE_MASTER_MANIFEST.json'
+      - 'tools/cp336/validate_head_layers.py'
+      - 'tools/cp336/build_reference_board.py'
+      - 'tests/art/test_cp336_head_layers.py'
+      - 'tests/art/test_cp336_reference_contract.py'
+      - '.github/workflows/cp336-face-master-qa.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP336_SOURCE_MASTER_MANIFEST.json'
+      - 'tools/cp336/validate_head_layers.py'
+      - 'tests/art/test_cp336_head_layers.py'
+      - 'tests/art/test_cp336_reference_contract.py'
+
+jobs:
+  face-master-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python3 -m pip install Pillow
+      - name: Two angles and five expressions with real synthetic PNG layers
+        run: python3 -m unittest discover -s tests/art -p 'test_cp336_head_layers.py' -v
+      - name: Verify user-approved CANON V2 and five emotion sources remain unchanged
+        run: python3 -m unittest discover -s tests/art -p 'test_cp336_reference_contract.py' -v
+      # Real CANON V2 and approved sheet are in Library/Drive; their SHA
+      # and lossless crop pixels were verified locally, not in this CI.
+      # No art source, Spine or Android APK is released by these tests.

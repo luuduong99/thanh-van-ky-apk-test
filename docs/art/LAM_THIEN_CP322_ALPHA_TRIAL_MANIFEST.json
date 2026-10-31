@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "project": "Thanh Van Ky",
+  "character": "Lam Thien",
+  "checkpoint": "CP322",
+  "asset_purpose": "technical_alpha_pipeline_trial_only",
+  "visual_approval": "NOT_APPROVED",
+  "canonical_reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_reference_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "new_visual_is_not_canon": true,
+  "native_pixel_only": true,
+  "limitations": [
+    "differs from canon V2 face/body/ornament design",
+    "low native resolution, not rig-ready",
+    "white-background transparency extraction contains edge artifacts",
+    "not 15 independently painted character layers",
+    "do not use to silently replace approved canon"
+  ],
+  "files": [
+    {
+      "view_id": "front",
+      "file": "front_draft_RGBA_PROXY.png",
+      "native_px": [
+        192,
+        427
+      ],
+      "alpha_occupied_pixels": 56419,
+      "alpha_coverage_pct": 68.82,
+      "sha256": "6899d5799e5e39d32f853ad6a2dcd726276b9f024ce4deb4669446721501e61d",
+      "status": "unapproved_visual_candidate_alpha_proxy_not_canon"
+    },
+    {
+      "view_id": "side",
+      "file": "side_draft_RGBA_PROXY.png",
+      "native_px": [
+        147,
+        427
+      ],
+      "alpha_occupied_pixels": 35006,
+      "alpha_coverage_pct": 55.77,
+      "sha256": "d9c9ce2bd559099b20440c3ab2a3d1c7f6ecd93f9b1b42455e68d38cbdd60242",
+      "status": "unapproved_visual_candidate_alpha_proxy_not_canon"
+    },
+    {
+      "view_id": "back",
+      "file": "back_draft_RGBA_PROXY.png",
+      "native_px": [
+        199,
+        427
+      ],
+      "alpha_occupied_pixels": 51748,
+      "alpha_coverage_pct": 60.9,
+      "sha256": "28d5dfb018e10df71c7bdcc97916ef34358581f38e852644d9cf1c2e4aee82f4",
+      "status": "unapproved_visual_candidate_alpha_proxy_not_canon"
+    },
+    {
+      "view_id": "front_3q",
+      "file": "front_3q_draft_RGBA_PROXY.png",
+      "native_px": [
+        186,
+        427
+      ],
+      "alpha_occupied_pixels": 54491,
+      "alpha_coverage_pct": 68.61,
+      "sha256": "dd7d8e7ea740efcd811f4c5e8b43d2e633ee212fc453454c98fadd695571c998",
+      "status": "unapproved_visual_candidate_alpha_proxy_not_canon"
+    },
+    {
+      "view_id": "back_3q",
+      "file": "back_3q_draft_RGBA_PROXY.png",
+      "native_px": [
+        186,
+        427
+      ],
+      "alpha_occupied_pixels": 47695,
+      "alpha_coverage_pct": 60.05,
+      "sha256": "5057e18eb71175b49217f2d92ade04c47f359e122a980e163c86ab82c7b87927",
+      "status": "unapproved_visual_candidate_alpha_proxy_not_canon"
+    }
+  ]
+}

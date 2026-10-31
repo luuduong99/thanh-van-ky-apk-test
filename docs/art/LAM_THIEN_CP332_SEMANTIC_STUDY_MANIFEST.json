@@ -1,0 +1,374 @@
+{
+  "checkpoint": "CP332",
+  "date": "2026-10-29",
+  "status": "hand_drawn_vector_semantic_face_study_not_user_approved_not_spine_ready",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_source_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_source_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "source_type": "new_vector_paths_without_automated_cutouts_or_baked_face_expressions",
+  "vector_native_canvas": [
+    1024,
+    1024
+  ],
+  "note": "New illustration is vector-rendered at output size, not upscaled from canon. Style/identity requires user visual review; production NOT approved.",
+  "master_source_image_native": [
+    230,
+    114
+  ],
+  "base_layer_names": [
+    "hair_back",
+    "shoulders_costume",
+    "neck",
+    "ears",
+    "face_underpaint",
+    "nose_anchor",
+    "hair_front",
+    "hair_side_locks",
+    "flower_gold",
+    "choker_jewel"
+  ],
+  "semantic_expression_layers": [
+    "blush_left",
+    "blush_right",
+    "eye_white_left",
+    "eye_white_right",
+    "iris_left",
+    "iris_right",
+    "eyelashes_left",
+    "eyelashes_right",
+    "eyelid_left",
+    "eyelid_right",
+    "brow_left",
+    "brow_right",
+    "mouth"
+  ],
+  "base_slots_count": 10,
+  "expression_slots_each": 13,
+  "total_independent_emotion_slots": 65,
+  "shared_base_hashes": {
+    "hair_back": "9d57de2d4ab38e70e3fe2d0b4f6acbe3847fc3ed4feba12360ee8be95b15f962",
+    "shoulders_costume": "601f4d8fb6a01b55c2a3ad2e0bd0f2f8f510d8ed89ee924456c3f2c689977352",
+    "neck": "143e7170e7785b25dfc9ed90eec40305ed2a11da617899ee4a786559a08cd5cd",
+    "ears": "614ed4b710844f8946708cd28aaefe8fbb6fcadddcd0a2058648198968a586bb",
+    "face_underpaint": "c95e855ff170f714ea144e8cee78582855a195ce1aa66f3f7a454bc057379ba5",
+    "nose_anchor": "3a28e3463ef2e4059abf12a0a77539dc7714c14443d84e6a283ab0340a59a728",
+    "hair_front": "1f9634246e32a4fdfa0630f2adaf5b68f600b04df93720286b5ff1ae01165dca",
+    "hair_side_locks": "5a3425447b4517574083379312d47375180e94f3d842fff2395d155feb2c862f",
+    "flower_gold": "75f32c298948af69e4663322c48b99d0c8ade3fdfe4bae85609e0fcfe82d7abc",
+    "choker_jewel": "62c4f2e806e66146e6c6b5df299b0f000e000e34596457ea98a92b49a02283df"
+  },
+  "emotions": [
+    {
+      "id": "shy",
+      "slots": {
+        "blush_left": {
+          "alpha_nonzero_px": 6392,
+          "sha256": "b98ca7a55cd8449b642195952f3819180ca81cd0efa92927ec7a2105738b7cd7"
+        },
+        "blush_right": {
+          "alpha_nonzero_px": 6391,
+          "sha256": "5f38550d6f901a548fa3e9d6c99229b4e30880023d7d75f59c675ce8147fb39e"
+        },
+        "eye_white_left": {
+          "alpha_nonzero_px": 3438,
+          "sha256": "3239ec435cb0d7a07240d94c712714548f81232d1bc4b36ea877fd174866aaa3"
+        },
+        "eye_white_right": {
+          "alpha_nonzero_px": 3438,
+          "sha256": "6ad27e1a3db4cb50fdd858511ae1f5ff79b15ea604b8c2dd02155de085809064"
+        },
+        "iris_left": {
+          "alpha_nonzero_px": 1809,
+          "sha256": "caaf56c3d8086397f71ef80e6a36184171a205401f67acf030924e0dd67be90f"
+        },
+        "iris_right": {
+          "alpha_nonzero_px": 1809,
+          "sha256": "47f1706934367eaa235ed51eb77d3e3708bd8e4cc19982bb3e2749c779d76dbd"
+        },
+        "eyelashes_left": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "da03cb9feca20814ff2dd125104e0ba31d0d3684d4674f745622c5de21fca077"
+        },
+        "eyelashes_right": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "b4513c383699bf988e4507f5b558f1dcd84a182a9b9908e1cab7efe381dcdb4d"
+        },
+        "eyelid_left": {
+          "alpha_nonzero_px": 811,
+          "sha256": "ce4a36c98977ce64276b55cfef4379577d2a13d9b885b2eda0971f242a66f366"
+        },
+        "eyelid_right": {
+          "alpha_nonzero_px": 811,
+          "sha256": "7a6943b01956e3a2aa847c4b6d26356ac45016ba648354e69c90be40be72aa37"
+        },
+        "brow_left": {
+          "alpha_nonzero_px": 1211,
+          "sha256": "708f2243654b798879a0dff3a487a83757a1b253d5af58580c95436f2c4f2318"
+        },
+        "brow_right": {
+          "alpha_nonzero_px": 1166,
+          "sha256": "8c71ebf6ff9224ae51477a199387865dd7b993ca975ad49a58449031944c166a"
+        },
+        "mouth": {
+          "alpha_nonzero_px": 536,
+          "sha256": "e325a965e4fb9ad54566eee9b6cb1d99a2ac099c465f968ae722abaa7f1df7f7"
+        }
+      },
+      "ora": "CP332_SHY_SEMANTIC_NOT_APPROVED.ora",
+      "sha256_merged": "85fae869388b798db6726b35a1679cb6a31a45141bba088a5d3f0b4a079c1df4"
+    },
+    {
+      "id": "angry",
+      "slots": {
+        "blush_left": {
+          "alpha_nonzero_px": 6188,
+          "sha256": "c841f21277c265b8e5a09c12a92cccc2ea46ce0c26295cb23e68434e32ec9b91"
+        },
+        "blush_right": {
+          "alpha_nonzero_px": 6188,
+          "sha256": "3ee99209b0f97b019353581e6ede39975588e4912bb6dac6288cbf8b4fbaaa09"
+        },
+        "eye_white_left": {
+          "alpha_nonzero_px": 3132,
+          "sha256": "13a24c7fe7d02880887bca5069d44b3cb0cdc2f33eb1b4eb835ce800ee013e13"
+        },
+        "eye_white_right": {
+          "alpha_nonzero_px": 3132,
+          "sha256": "5fe1d0e7672ea98b32c23a9120008d01f953463a411fd15da9ed5933aff7cb3f"
+        },
+        "iris_left": {
+          "alpha_nonzero_px": 1490,
+          "sha256": "a38bf3581575c0961c541c1a1150478f59c160127afa7308a5a64ad4e40e0fcf"
+        },
+        "iris_right": {
+          "alpha_nonzero_px": 1490,
+          "sha256": "3fd8ac7d79de6350cca4666211d24e451b95e7bb378097779e1e4b03ab9dd6b4"
+        },
+        "eyelashes_left": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "82d5648a04443b5aae5049045525139a65ccd66da3545dc948f46ea8afe5027e"
+        },
+        "eyelashes_right": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "34a6c91e6e77c6ac2ba454a68316ce0272f67280ca80810314424589319241cc"
+        },
+        "eyelid_left": {
+          "alpha_nonzero_px": 811,
+          "sha256": "0347e69819be91625b6ab0b90ad34d34626680834690756abadfed7d49e3ab4c"
+        },
+        "eyelid_right": {
+          "alpha_nonzero_px": 811,
+          "sha256": "3d761de5fa8b12582c3e7e8ab3699eb5704b23ec76e04fcfff068245e07e1abc"
+        },
+        "brow_left": {
+          "alpha_nonzero_px": 1156,
+          "sha256": "60d2d21132633c5dd64371bdb208641a28ac84413678c29baed6a477dafa08c8"
+        },
+        "brow_right": {
+          "alpha_nonzero_px": 1233,
+          "sha256": "684dbec2aed1c145fcb2a0c90d011cf6d304e919a2f5332515a2b809d47beb32"
+        },
+        "mouth": {
+          "alpha_nonzero_px": 576,
+          "sha256": "84ccfbd83c62e19f79bb3878edd9f4d4667596d0c4c97bd2b5796388423d24d2"
+        }
+      },
+      "ora": "CP332_ANGRY_SEMANTIC_NOT_APPROVED.ora",
+      "sha256_merged": "9b1f54b9089aab8137cc687b2b86410ea36c2d02ccd8ab6fa642139af7538909"
+    },
+    {
+      "id": "pain",
+      "slots": {
+        "blush_left": {
+          "alpha_nonzero_px": 6272,
+          "sha256": "076b978179a2c33cd97b889f95157ef796ee3a1987de4bff1816685792137bd8"
+        },
+        "blush_right": {
+          "alpha_nonzero_px": 6271,
+          "sha256": "b02c8d6f8cb77c1f4cda80e4de68c8092c0efe90828228b6843c3f36f0f89f4f"
+        },
+        "eye_white_left": {
+          "alpha_nonzero_px": 2726,
+          "sha256": "69d20e495cba2f7fd96a49fb641a0c527ebc2e8c07b39b47713926e4fd89e41f"
+        },
+        "eye_white_right": {
+          "alpha_nonzero_px": 2726,
+          "sha256": "f270bbfb57f7788131ed0132965291d16e173c762d0596ebf671e69503ba4a9e"
+        },
+        "iris_left": {
+          "alpha_nonzero_px": 1142,
+          "sha256": "2ef5ee2c7ffb3ae649191b30ff26a636514daf8fd961527512f51a591099c60c"
+        },
+        "iris_right": {
+          "alpha_nonzero_px": 1142,
+          "sha256": "c99fb4d6ac959b295a0cf452cf5bd7b2e4c8bee3164015f7aa4df1cb89d412df"
+        },
+        "eyelashes_left": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "cab3402b07c369f76620c4dea080f3975a085d6b7af701b2f29227225ff376fb"
+        },
+        "eyelashes_right": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "bf191c4abf99bb45db8cc4c795f16c3dbbf7aeedfd213faa1b87c08541bd3a44"
+        },
+        "eyelid_left": {
+          "alpha_nonzero_px": 811,
+          "sha256": "48387706189d255c1f797b69fd09f5ab7f07b403a958799f320bc0aaf5e278b2"
+        },
+        "eyelid_right": {
+          "alpha_nonzero_px": 811,
+          "sha256": "0a6c0b313bbce84f5263d420c208630776a858648396beb28c55caafa917afa4"
+        },
+        "brow_left": {
+          "alpha_nonzero_px": 1244,
+          "sha256": "57fac253ebc7257221720ceee5548d862603b03e2a4ff5c94c62be90aaf0657b"
+        },
+        "brow_right": {
+          "alpha_nonzero_px": 1152,
+          "sha256": "dd75d77ef950ac2980bc8eb48c189b086e5046ffc84508c4124167dc515d0903"
+        },
+        "mouth": {
+          "alpha_nonzero_px": 2049,
+          "sha256": "a6897c18ee82f84e642b3dff17ea079d37dedf8a3577333c11f921ee5c8406fa"
+        }
+      },
+      "ora": "CP332_PAIN_SEMANTIC_NOT_APPROVED.ora",
+      "sha256_merged": "4a3b95b286a6bb6a0e76f0a0cb692da54a08015375ed2e4401a7ca0a105fec61"
+    },
+    {
+      "id": "embarrassed",
+      "slots": {
+        "blush_left": {
+          "alpha_nonzero_px": 6416,
+          "sha256": "d4eb2616c20c16e001857a9ccbe82614b7a45215aa6d055298e2e052f4e4302a"
+        },
+        "blush_right": {
+          "alpha_nonzero_px": 6416,
+          "sha256": "1ca7d67ca1ffa0cb24c9a299849144effab63bc87a70a167f0a07cd88d54587d"
+        },
+        "eye_white_left": {
+          "alpha_nonzero_px": 2777,
+          "sha256": "fdb517558151a9958ffbce0d24d2c8c6fb029bc37f843b0341deacdb2b963e20"
+        },
+        "eye_white_right": {
+          "alpha_nonzero_px": 2777,
+          "sha256": "210397ac8138bca2d9f3d882326ab1f74782bb340de0320916f016c4e4402c16"
+        },
+        "iris_left": {
+          "alpha_nonzero_px": 1175,
+          "sha256": "e97ab061ef2fe49cec51ed9695049a5b26423fe149629c42a51b6db3e8ce6438"
+        },
+        "iris_right": {
+          "alpha_nonzero_px": 1175,
+          "sha256": "331fb6683d7f2023a9e5c35dfb605d4f1ee73af191560747bad180bf5ff66bc3"
+        },
+        "eyelashes_left": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "2adac747f5477f46e8ed9f5b12d3f973db35b6f9d52ee1888c367ea26b5703bd"
+        },
+        "eyelashes_right": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "1a42d6dad610fb970082b7b16495d083ffd91512431694ba81d11325dd215df0"
+        },
+        "eyelid_left": {
+          "alpha_nonzero_px": 811,
+          "sha256": "61c1cdea35c2d698be025e5c10b2e93dfebbbed092bc50f5f5d2805589c08919"
+        },
+        "eyelid_right": {
+          "alpha_nonzero_px": 811,
+          "sha256": "3e62cb4b3e505143f45ed8723ff1801acb1d3c60babfa58a6695506669d4975c"
+        },
+        "brow_left": {
+          "alpha_nonzero_px": 1220,
+          "sha256": "e71e2275581dd84d90aaeb4346378809dfa4e75aa01e5e06df46bd2981a5d2a0"
+        },
+        "brow_right": {
+          "alpha_nonzero_px": 1142,
+          "sha256": "ecfb2e040670dfc8c4fbee138ed98cebc8a620556972733b7fd9a304b138c71f"
+        },
+        "mouth": {
+          "alpha_nonzero_px": 291,
+          "sha256": "887439502cf334833adb21fbc6c4fb11d4fe1612d3604798daf52a931f88d830"
+        }
+      },
+      "ora": "CP332_EMBARRASSED_SEMANTIC_NOT_APPROVED.ora",
+      "sha256_merged": "9a3690acdb3dec88c172bead7cd45065481f8fd7ecc38f141bd146361c82abc2"
+    },
+    {
+      "id": "alluring",
+      "slots": {
+        "blush_left": {
+          "alpha_nonzero_px": 6308,
+          "sha256": "e4e053672ba91c292a211cd44af656ef542c07d276f4b95dbec631022cc5fb5a"
+        },
+        "blush_right": {
+          "alpha_nonzero_px": 6308,
+          "sha256": "eedbf478c67f8849877ed29023eb4fb3b571c2f010ba028b847c87c70993086c"
+        },
+        "eye_white_left": {
+          "alpha_nonzero_px": 2954,
+          "sha256": "7fadf095e8196394e443fe5293a8362076368375be1b5c417467952d7fee4e34"
+        },
+        "eye_white_right": {
+          "alpha_nonzero_px": 2954,
+          "sha256": "7104c84ecbc1c1292289ec72e21f7576abebbcaa52d96936e00e57bc13581aee"
+        },
+        "iris_left": {
+          "alpha_nonzero_px": 1325,
+          "sha256": "1d50ae966dbf0cbb3b2c550614d242b387d8f1d171c8fc07999864ab2b9f7793"
+        },
+        "iris_right": {
+          "alpha_nonzero_px": 1325,
+          "sha256": "947ec2d9b41fc04eb80bea93721ff3e0dcf3751707dda0b54a7dd8085cfaf505"
+        },
+        "eyelashes_left": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "f98ae150e2bd428d4f1e97cb716632fdd237e560856fbffdfb83e00aab289375"
+        },
+        "eyelashes_right": {
+          "alpha_nonzero_px": 1746,
+          "sha256": "d2887531a3333d12852335c6ff0af1c8c797da2ad122727398f3cfbac57aa7a0"
+        },
+        "eyelid_left": {
+          "alpha_nonzero_px": 811,
+          "sha256": "8c70ea08105fd91243037921c3100bf3154bd43a86a875e9cdabd867f43150a7"
+        },
+        "eyelid_right": {
+          "alpha_nonzero_px": 811,
+          "sha256": "5d1bdfa604915cbf67841b61d22a6da3d741563ed2e689d99f6705d26e53426d"
+        },
+        "brow_left": {
+          "alpha_nonzero_px": 1184,
+          "sha256": "9409726a923d505da6ad7d7a84e45b5953c5d67aac0de897025e45511930cb19"
+        },
+        "brow_right": {
+          "alpha_nonzero_px": 1185,
+          "sha256": "73a00b990504de4faa0c0222eeaea5d3a5bf5e7188babcd0dbba5807f973f62d"
+        },
+        "mouth": {
+          "alpha_nonzero_px": 715,
+          "sha256": "66e1439f4bc50370c24c8034f65eb48ede4f9ff8692940547c82443b97ee40a2"
+        }
+      },
+      "ora": "CP332_ALLURING_SEMANTIC_NOT_APPROVED.ora",
+      "sha256_merged": "cf3d51b69d618755a00bafae9f1489e96937642b30c1bcb592b855c9e87c8054"
+    }
+  ],
+  "pixel_sources_cut_from_flat_posters": false,
+  "base_baked_eyes_brows_mouth": false,
+  "underpaint_source": "newly_drafted_vector_skin_underpaint_not_artist_approved",
+  "iris_color_reference": "amber_not_blue",
+  "requires_artist_visual_approval": true,
+  "asset_registration_allowed": false,
+  "production_face_master_approved": false,
+  "production_face_sprites_approved": false,
+  "spine_rig_complete": false,
+  "apk_verified": false,
+  "sample_ui_sizes": [
+    132,
+    64
+  ],
+  "side_three_quarter_completed": false,
+  "wardrobe_damage_pose_integration_complete": false
+}

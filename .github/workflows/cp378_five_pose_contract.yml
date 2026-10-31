@@ -1,0 +1,39 @@
+name: CP378 five-pose CANON source guard (static public CI)
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp375_hidden_wrist_art.py'
+      - 'tools/art/cp376_local_wrist_refinement.py'
+      - 'tools/art/cp378_five_pose_vector_study.py'
+      - 'tests/art/test_cp378_five_pose_vector_study.py'
+      - '.github/workflows/cp378_five_pose_contract.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp375_hidden_wrist_art.py'
+      - 'tools/art/cp376_local_wrist_refinement.py'
+      - 'tools/art/cp378_five_pose_vector_study.py'
+      - 'tests/art/test_cp378_five_pose_vector_study.py'
+      - '.github/workflows/cp378_five_pose_contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install pillow numpy cairosvg opencv-python-headless
+      - name: Validate public CP378 contracts (private CANON tests skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp378_five_pose_vector_study.py' -v
+      - name: Do not mistake skipped private image tests for visual acceptance
+        run: |
+          echo 'Only four static checks can run without the approved private CANON and upstream art.'
+          echo 'Visual QA remains NOT_PASSED. The job does not approve production release.'

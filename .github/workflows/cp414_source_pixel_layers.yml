@@ -1,0 +1,35 @@
+name: CP414 Lâm Thiển source-pixel artist layer draft QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp414_canon_semantic_layers.py'
+      - 'tests/art/test_cp414_canon_semantic_layers.py'
+      - '.github/workflows/cp414_source_pixel_layers.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp414_canon_semantic_layers.py'
+      - 'tests/art/test_cp414_canon_semantic_layers.py'
+      - '.github/workflows/cp414_source_pixel_layers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  technical-contract-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install art QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: Run source contract (private CANON tests must skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp414_canon_semantic_layers.py' -v
+      - name: Do not promote draft to game art
+        run: |
+          echo 'Expected 6 public PASS and 5 private-source SKIP.'
+          echo '11 rough source-pixel samples are NOT cleaned layers or new painter art.'
+          echo 'True underpaint and eyelids are not drawn or approved.'

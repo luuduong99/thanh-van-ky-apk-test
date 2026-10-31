@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP325",
+  "date": "2026-10-29",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sheet_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "status": "REFERENCE_REGION_EDITABLE_POC_NOT_GAME_ART",
+  "disclaimer": "Portrait sources are small flat RGB reference crops; seven feathered pixel patches in each ORA contain adjacent skin/hair and cannot be used as true eyes/mouth/brows/Spine sprites, do not replace CANON V2.",
+  "count_files": 5,
+  "region_types": [
+    "brow_image_left",
+    "brow_image_right",
+    "eye_image_left",
+    "eye_image_right",
+    "mouth",
+    "blush_image_left",
+    "blush_image_right"
+  ],
+  "asset_registration_allowed": false,
+  "spine_ready": false,
+  "apk_ready": false,
+  "annotation_sheet": "CP325_FACIAL_REGION_ANNOTATIONS_REFERENCE_ONLY.png",
+  "annotation_sheet_sha256": "29ae1c26044491606c0148f0e84de3f01bbc40900c57e0c6baec8f58d8ef38f1",
+  "items": [
+    {
+      "emotion_id": "shy",
+      "label_vi": "Ngại ngùng",
+      "approved_crop_name": "01_shy_portrait_APPROVED_REFERENCE_ONLY.png",
+      "native_size_px": [
+        297,
+        385
+      ],
+      "approved_crop_sha256": "da063f4d2780c01ec72c2bca98e3fce3df2af56ac21072cc1fe09541a909cb9e",
+      "ora_filename": "CP325_01_shy_FACIAL_REGION_PROXY_NOT_SPINE_READY.ora",
+      "ora_sha256": "b47fb71094a0b220efd5ef9ef6447d2e87f63166fd12aff6e3d3afd70a26a90b",
+      "regions": [
+        {
+          "name": "brow_image_left",
+          "source_bbox_xyxy": [
+            74,
+            135,
+            125,
+            161
+          ],
+          "sha256": "e509ba960ed8178c26d6da6c0acb3d4c686468ac3322c8b19685d9f9680aefda",
+          "alpha_nonzero": 1325,
+          "alpha_opaque": 46
+        },
+        {
+          "name": "brow_image_right",
+          "source_bbox_xyxy": [
+            140,
+            119,
+            198,
+            146
+          ],
+          "sha256": "fedd468ee9cfeb6809744febabf603d8538d3aad2549af59162d7dbae9b6805d",
+          "alpha_nonzero": 1563,
+          "alpha_opaque": 76
+        },
+        {
+          "name": "eye_image_left",
+          "source_bbox_xyxy": [
+            69,
+            147,
+            129,
+            193
+          ],
+          "sha256": "3d3d20e9abd2623518f2841b663fde920e34c0b508c529715c2a08c53a488f6a",
+          "alpha_nonzero": 2693,
+          "alpha_opaque": 639
+        },
+        {
+          "name": "eye_image_right",
+          "source_bbox_xyxy": [
+            139,
+            126,
+            202,
+            174
+          ],
+          "sha256": "7bafbe5a308bb43d136cc1353cdc847cd2845015b545bad7659daa4ccf1581ae",
+          "alpha_nonzero": 2937,
+          "alpha_opaque": 756
+        },
+        {
+          "name": "mouth",
+          "source_bbox_xyxy": [
+            122,
+            195,
+            170,
+            226
+          ],
+          "sha256": "e74bf0d80d1c9405329c62cd0c6cab0d92b29dfb06d1e45178aefbb2b969e2c4",
+          "alpha_nonzero": 1483,
+          "alpha_opaque": 128
+        },
+        {
+          "name": "blush_image_left",
+          "source_bbox_xyxy": [
+            66,
+            177,
+            136,
+            229
+          ],
+          "sha256": "2e65068d23ee5aa7f314a386706b520e992b4b8de477fabc25f1ae59bb4b3e4a",
+          "alpha_nonzero": 3493,
+          "alpha_opaque": 1023
+        },
+        {
+          "name": "blush_image_right",
+          "source_bbox_xyxy": [
+            162,
+            157,
+            223,
+            209
+          ],
+          "sha256": "02c338320c84e4d9c796f7b361f110d7b250763e30b0c95288e596ac5d4ec071",
+          "alpha_nonzero": 3059,
+          "alpha_opaque": 830
+        }
+      ],
+      "reference_hidden": true,
+      "patches_feathered_from_flat_reference": true,
+      "status": "PROTOTYPE_ART_REGION_NOT_FACE_RIG"
+    },
+    {
+      "emotion_id": "angry",
+      "label_vi": "Tức giận",
+      "approved_crop_name": "02_angry_portrait_APPROVED_REFERENCE_ONLY.png",
+      "native_size_px": [
+        303,
+        385
+      ],
+      "approved_crop_sha256": "73279a14b88571a935c9910e67bf08b32429ba77a66f33cc94429ddebc590d20",
+      "ora_filename": "CP325_02_angry_FACIAL_REGION_PROXY_NOT_SPINE_READY.ora",
+      "ora_sha256": "3dce1e0534a8a232210f698ec211432eb0087ffb383b88031d34c826c90f84b5",
+      "regions": [
+        {
+          "name": "brow_image_left",
+          "source_bbox_xyxy": [
+            83,
+            136,
+            146,
+            163
+          ],
+          "sha256": "fc45948cb8e7958afaaf1460b315815b60bdbc7e29c19e6bf342deb0a9e73063",
+          "alpha_nonzero": 1694,
+          "alpha_opaque": 88
+        },
+        {
+          "name": "brow_image_right",
+          "source_bbox_xyxy": [
+            162,
+            126,
+            222,
+            152
+          ],
+          "sha256": "88ef4ca2a3ad6fe22441a818e7147217b5b082811d6d5d3558557b1adf9590a5",
+          "alpha_nonzero": 1557,
+          "alpha_opaque": 57
+        },
+        {
+          "name": "eye_image_left",
+          "source_bbox_xyxy": [
+            80,
+            150,
+            144,
+            197
+          ],
+          "sha256": "6698b5be432ebefe22fb6b29f2b43024f277a040ac7f68a281b2e6610e28d3fb",
+          "alpha_nonzero": 2921,
+          "alpha_opaque": 736
+        },
+        {
+          "name": "eye_image_right",
+          "source_bbox_xyxy": [
+            164,
+            137,
+            230,
+            182
+          ],
+          "sha256": "26eea14479c23f3dc88ad7476188c0fbc5edc8d0bff33f66cbd644ea8535d72e",
+          "alpha_nonzero": 2883,
+          "alpha_opaque": 706
+        },
+        {
+          "name": "mouth",
+          "source_bbox_xyxy": [
+            135,
+            205,
+            194,
+            246
+          ],
+          "sha256": "3c07356b65bbddd3b6de3e1cc947c4f7e2bd027ca3afb974045c37220c7608d1",
+          "alpha_nonzero": 2376,
+          "alpha_opaque": 476
+        },
+        {
+          "name": "blush_image_left",
+          "source_bbox_xyxy": [
+            76,
+            181,
+            140,
+            222
+          ],
+          "sha256": "549d04b9b3f5ab4bbc66294698043a7266ab27106fe35ff33a0032769cf211bf",
+          "alpha_nonzero": 2561,
+          "alpha_opaque": 538
+        },
+        {
+          "name": "blush_image_right",
+          "source_bbox_xyxy": [
+            181,
+            162,
+            234,
+            216
+          ],
+          "sha256": "c65e1981d25dc1823a7ac5d00f9768a5489854154c92ea3894394d00c425fd5a",
+          "alpha_nonzero": 2777,
+          "alpha_opaque": 702
+        }
+      ],
+      "reference_hidden": true,
+      "patches_feathered_from_flat_reference": true,
+      "status": "PROTOTYPE_ART_REGION_NOT_FACE_RIG"
+    },
+    {
+      "emotion_id": "pain",
+      "label_vi": "Đau đớn",
+      "approved_crop_name": "03_pain_portrait_APPROVED_REFERENCE_ONLY.png",
+      "native_size_px": [
+        291,
+        385
+      ],
+      "approved_crop_sha256": "20d1cf59f8a40ba1074494d262b34af28a242f2bcc644b3b07ff45bfe104a490",
+      "ora_filename": "CP325_03_pain_FACIAL_REGION_PROXY_NOT_SPINE_READY.ora",
+      "ora_sha256": "c0909f0e3c9f27ef2ac164094ef8d007fd4496fef63a8a32746305bfe2703de6",
+      "regions": [
+        {
+          "name": "brow_image_left",
+          "source_bbox_xyxy": [
+            62,
+            145,
+            131,
+            179
+          ],
+          "sha256": "8e8e413a05a1116c4bce78e5d47fee2d5b01c8bee9d7bda51f0f7720746a45cd",
+          "alpha_nonzero": 2315,
+          "alpha_opaque": 342
+        },
+        {
+          "name": "brow_image_right",
+          "source_bbox_xyxy": [
+            139,
+            102,
+            217,
+            139
+          ],
+          "sha256": "5b097720bb99341dc29f6a4b981fd9ab44c2732772b4dece90e8661b7e1760eb",
+          "alpha_nonzero": 2829,
+          "alpha_opaque": 530
+        },
+        {
+          "name": "eye_image_left",
+          "source_bbox_xyxy": [
+            58,
+            163,
+            135,
+            217
+          ],
+          "sha256": "b6141f5845a60c501007b8c67254d6121199b3f3a3cab3f85dd441b93fe67fd8",
+          "alpha_nonzero": 3969,
+          "alpha_opaque": 1266
+        },
+        {
+          "name": "eye_image_right",
+          "source_bbox_xyxy": [
+            141,
+            116,
+            219,
+            172
+          ],
+          "sha256": "11f5871df28a54fa90564d7f679516e512b97027329c88fe5de9705f1196d335",
+          "alpha_nonzero": 4171,
+          "alpha_opaque": 1387
+        },
+        {
+          "name": "mouth",
+          "source_bbox_xyxy": [
+            126,
+            187,
+            196,
+            240
+          ],
+          "sha256": "9ebb3e4d08a69e4245c2ef02d06298fc5ce45527637a9b49e38d25c7b6bdce1d",
+          "alpha_nonzero": 3559,
+          "alpha_opaque": 1070
+        },
+        {
+          "name": "blush_image_left",
+          "source_bbox_xyxy": [
+            60,
+            203,
+            137,
+            250
+          ],
+          "sha256": "89a7cd9d1f05caef48e8ca7829c15f86af64c796c5e95da5731369092e9d4ba6",
+          "alpha_nonzero": 3490,
+          "alpha_opaque": 968
+        },
+        {
+          "name": "blush_image_right",
+          "source_bbox_xyxy": [
+            171,
+            151,
+            239,
+            218
+          ],
+          "sha256": "b2cd0c823a1f2941e1b8035fad4ffedf18244295ef5270ea73e3928a445e6ba2",
+          "alpha_nonzero": 4331,
+          "alpha_opaque": 1520
+        }
+      ],
+      "reference_hidden": true,
+      "patches_feathered_from_flat_reference": true,
+      "status": "PROTOTYPE_ART_REGION_NOT_FACE_RIG"
+    },
+    {
+      "emotion_id": "embarrassed",
+      "label_vi": "Xấu hổ",
+      "approved_crop_name": "04_embarrassed_portrait_APPROVED_REFERENCE_ONLY.png",
+      "native_size_px": [
+        292,
+        385
+      ],
+      "approved_crop_sha256": "5023912dcdb95a39169b26918bf3c48d4863b0981c5bb99bcecca155304c44a3",
+      "ora_filename": "CP325_04_embarrassed_FACIAL_REGION_PROXY_NOT_SPINE_READY.ora",
+      "ora_sha256": "602b658f20fd88989eedccba0b5cd1f8a17bc5383af83e3aef23312e4655dc0b",
+      "regions": [
+        {
+          "name": "brow_image_left",
+          "source_bbox_xyxy": [
+            56,
+            168,
+            127,
+            193
+          ],
+          "sha256": "6353ec235aa88eaf7baf72495bb48c82cb7cf9f6b86c4fe20302b9c716d3dcef",
+          "alpha_nonzero": 1772,
+          "alpha_opaque": 40
+        },
+        {
+          "name": "brow_image_right",
+          "source_bbox_xyxy": [
+            133,
+            166,
+            209,
+            192
+          ],
+          "sha256": "49eb3db209145ccf2dfbb522a030c94c189b997e17fd97c3c82c82b2b1889083",
+          "alpha_nonzero": 1969,
+          "alpha_opaque": 77
+        },
+        {
+          "name": "eye_image_left",
+          "source_bbox_xyxy": [
+            56,
+            181,
+            129,
+            228
+          ],
+          "sha256": "0c477ea65056e100257eac130bd3a38f6ef43d97a58e9d7ea7f9c61cf8bf735f",
+          "alpha_nonzero": 3310,
+          "alpha_opaque": 896
+        },
+        {
+          "name": "eye_image_right",
+          "source_bbox_xyxy": [
+            135,
+            177,
+            209,
+            224
+          ],
+          "sha256": "8077af8da2ddcf2509e57569d0d5c668d3212359a0b6a13b207e4aaac8ee853a",
+          "alpha_nonzero": 3357,
+          "alpha_opaque": 916
+        },
+        {
+          "name": "mouth",
+          "source_bbox_xyxy": [
+            114,
+            238,
+            161,
+            278
+          ],
+          "sha256": "b5b93bba1a483d5ebcb61de7a5bac1fa966e46cec52c2e8a5f9b211b6bcb2ebc",
+          "alpha_nonzero": 1855,
+          "alpha_opaque": 296
+        },
+        {
+          "name": "blush_image_left",
+          "source_bbox_xyxy": [
+            57,
+            205,
+            136,
+            254
+          ],
+          "sha256": "5042611a74f081cc1514f6479f841cf3974b098daaa3ea9a90aa6451bb206c66",
+          "alpha_nonzero": 3714,
+          "alpha_opaque": 1088
+        },
+        {
+          "name": "blush_image_right",
+          "source_bbox_xyxy": [
+            148,
+            205,
+            225,
+            251
+          ],
+          "sha256": "8d17ca68dcaa49ec280a405c377d565e48c2440993c72a3ca08dd9bb4ac9e76e",
+          "alpha_nonzero": 3417,
+          "alpha_opaque": 916
+        }
+      ],
+      "reference_hidden": true,
+      "patches_feathered_from_flat_reference": true,
+      "status": "PROTOTYPE_ART_REGION_NOT_FACE_RIG"
+    },
+    {
+      "emotion_id": "alluring",
+      "label_vi": "Quyến rũ",
+      "approved_crop_name": "05_alluring_portrait_APPROVED_REFERENCE_ONLY.png",
+      "native_size_px": [
+        285,
+        385
+      ],
+      "approved_crop_sha256": "549481c6b559a325fb50a16f355b26310e9a42cd4a39387c4157a6f6b3cdd7d0",
+      "ora_filename": "CP325_05_alluring_FACIAL_REGION_PROXY_NOT_SPINE_READY.ora",
+      "ora_sha256": "2f212eb1c8d4a782115bf508ceff97fd514d04dd1096d3971514c15a6a6505b5",
+      "regions": [
+        {
+          "name": "brow_image_left",
+          "source_bbox_xyxy": [
+            75,
+            138,
+            152,
+            168
+          ],
+          "sha256": "8f8d921913b5364abc551741ca777fe843af8add26f5c77a7d0298ed67587aa7",
+          "alpha_nonzero": 2291,
+          "alpha_opaque": 232
+        },
+        {
+          "name": "brow_image_right",
+          "source_bbox_xyxy": [
+            158,
+            99,
+            223,
+            126
+          ],
+          "sha256": "5aef57c2f7ac99d7aede7cdc937cb1399d0f5e50c6b23fdbaca57ac4d470c3ad",
+          "alpha_nonzero": 1748,
+          "alpha_opaque": 92
+        },
+        {
+          "name": "eye_image_left",
+          "source_bbox_xyxy": [
+            73,
+            150,
+            151,
+            211
+          ],
+          "sha256": "db26c1ae0c5f8ef03d1da0bacb9dbca2ba88b2443c6371d61ebf1fe9d56c3917",
+          "alpha_nonzero": 4521,
+          "alpha_opaque": 1598
+        },
+        {
+          "name": "eye_image_right",
+          "source_bbox_xyxy": [
+            156,
+            111,
+            228,
+            163
+          ],
+          "sha256": "72ec6ec7a812d619251d91edbc899523d78969d2c57f1316db739e61f05d1393",
+          "alpha_nonzero": 3591,
+          "alpha_opaque": 1069
+        },
+        {
+          "name": "mouth",
+          "source_bbox_xyxy": [
+            135,
+            187,
+            200,
+            230
+          ],
+          "sha256": "dc64703a743a3abfcbb071d192abbad81f6da9daf5f77fb16ad7c281b822844c",
+          "alpha_nonzero": 2726,
+          "alpha_opaque": 616
+        },
+        {
+          "name": "blush_image_left",
+          "source_bbox_xyxy": [
+            77,
+            195,
+            146,
+            236
+          ],
+          "sha256": "d2a9c6f24c6b3c2de7f4167444af250007c2b30179d07b58936448300c7adc0e",
+          "alpha_nonzero": 2760,
+          "alpha_opaque": 600
+        },
+        {
+          "name": "blush_image_right",
+          "source_bbox_xyxy": [
+            183,
+            156,
+            240,
+            204
+          ],
+          "sha256": "5f54addf3f2831e1c98398571261468938654890de4fc2f804a520ed13ca1065",
+          "alpha_nonzero": 2669,
+          "alpha_opaque": 638
+        }
+      ],
+      "reference_hidden": true,
+      "patches_feathered_from_flat_reference": true,
+      "status": "PROTOTYPE_ART_REGION_NOT_FACE_RIG"
+    }
+  ],
+  "dialogue_preview_name": "CP325_DIALOGUE_THUMBNAIL_QA_REFERENCE_ONLY.png",
+  "dialogue_preview_sha256": "33eb19bd5f29b0b507da8132fbeb0419fdbd014f1164025d310169202b6ded2d"
+}

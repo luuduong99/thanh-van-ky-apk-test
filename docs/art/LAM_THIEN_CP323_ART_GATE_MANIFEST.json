@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP323",
+  "date": "2026-10-29",
+  "character_id": "lin_qian",
+  "source_canon_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "source_canon_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "technical_checks": "PASS_STRUCTURAL_ON_BOTH_ORA",
+  "unit_tests": "5/5_PASS_LOCAL",
+  "approved_art_ready": false,
+  "spine_ready": false,
+  "apk_ready": false,
+  "p0_02_complete": false,
+  "p0_03_complete": false,
+  "next": "Draw new full-body canon-matched Front/Back, 7 landmarks and real 15-layer art; request visual approval before production."
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "expression_reference_approved_art_release_blocked_until_separate_user_signoff",
+  "source_document": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+  "independent_state_keys": [
+    "expression",
+    "wardrobe",
+    "integrity",
+    "pose",
+    "action"
+  ],
+  "required_approval_rule": "Each character needs its own explicitly approved five-expression preview",
+  "characters": [
+    {
+      "id": "lin_qian",
+      "name": "Lâm Thiển",
+      "approval_status": "explicit_user_approved_expression_preview",
+      "approved_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+      "canonical_body_visual_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+      "canonical_body_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+      "expression_preview_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+      "approved_expressions": [
+        {
+          "id": "shy",
+          "label": "Ngại ngùng"
+        },
+        {
+          "id": "angry",
+          "label": "Tức giận"
+        },
+        {
+          "id": "pain",
+          "label": "Đau đớn"
+        },
+        {
+          "id": "embarrassed",
+          "label": "Xấu hổ"
+        },
+        {
+          "id": "alluring",
+          "label": "Quyến rũ"
+        }
+      ],
+      "sprite_paths": {},
+      "sprite_status": "not_created",
+      "spine_status": "not_created",
+      "missing_sprite_policy": "withhold_instead_of_showing_wrong_expression_or_damage_state",
+      "note": "CANON V2.1 is the active character body reference. The five-expression reference approval remains a separate historical facial-direction contract. Native layered body/sprite art is NOT ready.",
+      "production_release": {
+        "status": "blocked_pending_art",
+        "artist_qa_passed": false,
+        "runtime_qa_passed": false,
+        "user_asset_approval_id": null,
+        "canonical_body_visual_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+        "canonical_body_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+        "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+        "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+        "sprite_manifest_path": null,
+        "sprite_manifest_sha256": null,
+        "approved_sprite_hashes": {},
+        "note": "The five emotion design directions are approved only for Lam Thien; actual facial sprite art is NOT approved. Do not switch to approved_for_runtime until artist QA + explicit user asset acceptance + real PNG SHA manifest + Android QA."
+      },
+      "active_user_approved_art_reference": {
+        "id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+        "sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+        "library_source": "/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+        "visual_status": "APPROVED_REFERENCE_ONLY",
+        "requires_new_real_sprite_art_and_separate_asset_approval": true,
+        "note": "Single active body/costume reference for upcoming art and eventual runtime. Expression design guide may retain its historical V2 association but no production sprite may bind to V2."
+      },
+      "archived_body_release_metadata": {
+        "id": "LT_CANON_BODY_REF_2026-10-28_V2",
+        "sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711"
+      }
+    },
+    {
+      "id": "to_nguyet_ly",
+      "name": "Tô Nguyệt Ly",
+      "approval_status": "individual_preview_required",
+      "approved_profile_id": null,
+      "approved_expressions": [],
+      "sprite_paths": {},
+      "sprite_status": "not_created",
+      "spine_status": "not_created",
+      "note": "Use this character's own face canon and personality; do not auto-approve Lam Thien artwork.",
+      "production_release": {
+        "status": "blocked_pending_art",
+        "artist_qa_passed": false,
+        "runtime_qa_passed": false,
+        "user_asset_approval_id": null,
+        "canonical_body_visual_id": null,
+        "canonical_body_sha256": null,
+        "approved_expression_profile_id": null,
+        "approved_expression_sha256": null,
+        "sprite_manifest_path": null,
+        "sprite_manifest_sha256": null,
+        "approved_sprite_hashes": {},
+        "note": "The five emotion design directions are approved only for Lam Thien; actual facial sprite art is NOT approved. Do not switch to approved_for_runtime until artist QA + explicit user asset acceptance + real PNG SHA manifest + Android QA."
+      }
+    }
+  ],
+  "active_lam_thien_visual_canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "active_lam_thien_visual_canon_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a"
+}

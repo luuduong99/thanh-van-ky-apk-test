@@ -1,0 +1,25 @@
+name: CP338 CANON preservation and optional trim policy
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json'
+      - 'tests/art/test_cp338_canon_trim_policy.py'
+      - '.github/workflows/cp338-canon-fringe-policy.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json'
+      - 'tests/art/test_cp338_canon_trim_policy.py'
+
+jobs:
+  canon-reference-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Lock CANON V2 identity and optional minor fringe allowance
+        run: python3 -m unittest discover -s tests/art -p 'test_cp338_canon_trim_policy.py' -v
+      # Does not contain full binary source PNG or production art on runner.
+      # True cropped pixel equality was verified locally on approved source.

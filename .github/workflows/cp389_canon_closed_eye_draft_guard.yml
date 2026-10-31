@@ -1,0 +1,35 @@
+name: CP389 Lâm Thiển closed-eye CANON source-only QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp389_closed_eye_study.py'
+      - 'tests/art/test_cp389_closed_eye_study.py'
+      - '.github/workflows/cp389_canon_closed_eye_draft_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp389_closed_eye_study.py'
+      - 'tests/art/test_cp389_closed_eye_study.py'
+      - '.github/workflows/cp389_canon_closed_eye_draft_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-only regression dependencies
+        run: python -m pip install Pillow numpy
+      - name: Validate source policy and release blocker
+        run: python -m unittest discover -s tests/art -p 'test_cp389_closed_eye_study.py' -v
+      - name: Avoid claiming artist acceptance
+        run: |
+          echo 'Public runner (without private CANON): 3 PASS / 6 SKIP expected.'
+          echo 'CP389 painted-gradient closed-eye sample VISUAL QA NOT_PASSED.'
+          echo 'Blocked: not an approved animation, rig or APK.'

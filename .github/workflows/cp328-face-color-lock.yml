@@ -1,0 +1,31 @@
+name: CP328 CANON V2 face color-lock contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/cp328/cp328_face_color_gate.py'
+      - 'docs/art/LAM_THIEN_CP328_FACE_MASTER_GATE.json'
+      - 'tests/art/test_cp328_color_contract.py'
+      - '.github/workflows/cp328-face-color-lock.yml'
+  pull_request:
+    paths:
+      - 'tools/cp328/cp328_face_color_gate.py'
+      - 'docs/art/LAM_THIEN_CP328_FACE_MASTER_GATE.json'
+      - 'tests/art/test_cp328_color_contract.py'
+
+jobs:
+  color-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image QA dependencies
+        run: python3 -m pip install Pillow numpy opencv-python-headless
+      - name: Verify V2 and five-expression immutable references and negative blue-eye cases
+        run: python3 -m unittest discover -s tests/art -p 'test_cp328_color_contract.py' -v
+      # Only metadata and synthetic color cases run on CI.
+      # The real canonical V2 PNG is retained outside GitHub and was
+      # checksum-verified in a separate local audit.

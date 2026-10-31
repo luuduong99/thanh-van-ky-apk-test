@@ -1,0 +1,32 @@
+name: CP324 character expression runtime contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'app/src/main/assets/character_expression_profiles.json'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterAppearanceState.kt'
+      - 'tests/art/test_cp324_expression_runtime.py'
+      - '.github/workflows/cp324-expression-runtime.yml'
+  pull_request:
+    paths:
+      - 'app/src/main/assets/character_expression_profiles.json'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterAppearanceState.kt'
+      - 'tests/art/test_cp324_expression_runtime.py'
+
+jobs:
+  approved-expression-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check five-expression configuration and no-fallback runtime behavior
+        run: |
+          python3 tools/validate_lam_thien_expression_approval.py
+          python3 -m unittest discover -s tests/art -p 'test_cp324_expression_runtime.py' -v

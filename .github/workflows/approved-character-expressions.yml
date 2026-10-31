@@ -1,0 +1,34 @@
+name: Approved character expressions consistency
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json'
+      - 'docs/art/LAM_THIEN_DESIGN_REGISTRY.json'
+      - 'docs/art/LAM_THIEN_MODEL_CARD_V2.json'
+      - 'docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.json'
+      - 'tools/validate_lam_thien_expression_approval.py'
+      - 'tests/art/test_lam_thien_expression_approval.py'
+      - '.github/workflows/approved-character-expressions.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json'
+      - 'docs/art/LAM_THIEN_DESIGN_REGISTRY.json'
+      - 'docs/art/LAM_THIEN_MODEL_CARD_V2.json'
+      - 'docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.json'
+      - 'tools/validate_lam_thien_expression_approval.py'
+      - 'tests/art/test_lam_thien_expression_approval.py'
+
+jobs:
+  expression-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check five-expression approval source and V2 model identity
+        run: |
+          python3 tools/validate_lam_thien_expression_approval.py
+          python3 -m unittest tests.art.test_lam_thien_expression_approval -v

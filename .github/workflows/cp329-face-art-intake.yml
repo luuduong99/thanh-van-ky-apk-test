@@ -1,0 +1,31 @@
+name: CP329 canonical face art intake preflight
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/cp329/validate_cp329_intake.py'
+      - 'docs/art/LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json'
+      - 'tests/art/test_cp329_face_contract.py'
+      - '.github/workflows/cp329-face-art-intake.yml'
+  pull_request:
+    paths:
+      - 'tools/cp329/validate_cp329_intake.py'
+      - 'docs/art/LAM_THIEN_CP329_FACE_INTAKE_MANIFEST.json'
+      - 'tests/art/test_cp329_face_contract.py'
+
+jobs:
+  face-intake-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install QA prerequisites
+        run: python3 -m pip install Pillow
+      - name: Check approved sources and honest art gate with synthetic ORA
+        run: python3 -m unittest discover -s tests/art -p 'test_cp329_face_contract.py' -v
+      # NOTE: ORA binaries are stored in the Library ZIP, NOT in GitHub.
+      # Local 8/8 binary artifact tests are reported separately and do
+      # NOT turn the unpainted scaffold into production artwork.

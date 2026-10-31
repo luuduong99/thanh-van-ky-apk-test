@@ -1,0 +1,252 @@
+{
+  "checkpoint": "CP340",
+  "source_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "source_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "source_file": "reference/CANON_V2_1_EXACT_ORIGINAL.png",
+  "original_pixel_size": [
+    941,
+    1672
+  ],
+  "source_preserved": true,
+  "reference_crops": [
+    {
+      "id": "view_front",
+      "source_box_xyxy": [
+        13,
+        177,
+        228,
+        626
+      ],
+      "size_px": [
+        215,
+        449
+      ],
+      "sha256": "7211201013a1f18681cff822baae12144800bddc901fa9507b032676ebfa8bdc",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "view_side",
+      "source_box_xyxy": [
+        232,
+        177,
+        365,
+        626
+      ],
+      "size_px": [
+        133,
+        449
+      ],
+      "sha256": "ff44eb6b9ecc532b33019f20284c3f9358d26dc7a5f55910294c64c8f8ca9425",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "view_back",
+      "source_box_xyxy": [
+        364,
+        177,
+        562,
+        626
+      ],
+      "size_px": [
+        198,
+        449
+      ],
+      "sha256": "6e59e4c6ddaf82071a89ea439f2f0ab7488d6b24492b17a988e1b904bcdc0cff",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "view_three_quarter_front",
+      "source_box_xyxy": [
+        544,
+        177,
+        753,
+        626
+      ],
+      "size_px": [
+        209,
+        449
+      ],
+      "sha256": "02f7346575a1fd0f7c58c652fcf87d35d78290e00f8a7ad444ab6c343cd53350",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "view_three_quarter_back",
+      "source_box_xyxy": [
+        741,
+        177,
+        913,
+        626
+      ],
+      "size_px": [
+        172,
+        449
+      ],
+      "sha256": "2e0974849c5935a7cfdc7c2a1cb259f4baa8c42d22fcbf547435dfe0ed05145f",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "emotion_shy",
+      "source_box_xyxy": [
+        19,
+        671,
+        190,
+        921
+      ],
+      "size_px": [
+        171,
+        250
+      ],
+      "sha256": "f610558ed677e8291880b37151189905137aff4816d7287e4561519d248d9c59",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "emotion_angry",
+      "source_box_xyxy": [
+        198,
+        671,
+        369,
+        921
+      ],
+      "size_px": [
+        171,
+        250
+      ],
+      "sha256": "16d485548ceb12e57a6ec239fc31d865144c42d8d3e20cf63df4f871dcb7fb46",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "emotion_pain",
+      "source_box_xyxy": [
+        378,
+        671,
+        546,
+        921
+      ],
+      "size_px": [
+        168,
+        250
+      ],
+      "sha256": "b3b2a81bd43b89651aedd8adfd9f8ab15e408820f80ae56a4a7d910ee4bcb682",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "emotion_embarrassed",
+      "source_box_xyxy": [
+        555,
+        671,
+        732,
+        921
+      ],
+      "size_px": [
+        177,
+        250
+      ],
+      "sha256": "742de72820718cbf5614f6d986dc1e322b831cc61e4bd5a0dacc02b3f82ec972",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "emotion_alluring",
+      "source_box_xyxy": [
+        733,
+        671,
+        913,
+        921
+      ],
+      "size_px": [
+        180,
+        250
+      ],
+      "sha256": "3e725eaa079d715092447f1ef0c3bf84581c19f2950f99680b265dd84b2dbb96",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "damage_100",
+      "source_box_xyxy": [
+        16,
+        1186,
+        239,
+        1388
+      ],
+      "size_px": [
+        223,
+        202
+      ],
+      "sha256": "452c6d102ff2ad3911bc6782bcdda800a53ffe955f211fc510474d0bf878ed7b",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "damage_70",
+      "source_box_xyxy": [
+        244,
+        1186,
+        461,
+        1388
+      ],
+      "size_px": [
+        217,
+        202
+      ],
+      "sha256": "bc65e39b9005be4db4e59e3894801f6f8f5c78fd3a5408fd90ed6e6bd9c7f714",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "damage_50",
+      "source_box_xyxy": [
+        466,
+        1186,
+        680,
+        1388
+      ],
+      "size_px": [
+        214,
+        202
+      ],
+      "sha256": "180069168a4b9d860b46c412ccb6c99812212f5b446e7eb7d11fb16b22d59556",
+      "exact_source_pixels": true
+    },
+    {
+      "id": "damage_30",
+      "source_box_xyxy": [
+        685,
+        1186,
+        914,
+        1388
+      ],
+      "size_px": [
+        229,
+        202
+      ],
+      "sha256": "7c7caceb8391831214f7e860b246a36747fbdccb5d4bdbd473dc0e73e70013ae",
+      "exact_source_pixels": true
+    }
+  ],
+  "first_alpha_trial": {
+    "path": "extracted/view_front_EXPERIMENTAL_GRABCUT_ALPHA_NOT_RIG.png",
+    "sha256": "055cd90afbdbd1b9dded95956b8ecd69e340b36d0e8f86086248894e8fe0024d",
+    "native_size": [
+      215,
+      449
+    ],
+    "composite_type": "GrabCut from original front pixels, non-semantic single flattened foreground",
+    "source_rgb_pixels_unchanged": true,
+    "approved": false,
+    "hair_edges_need_redraw": true,
+    "cloth_underdrawing_absent": true
+  },
+  "ora_path": "ora/CP340_FRONT_TRIAL_REFERENCE_AND_MASK_NOT_RIG.ora",
+  "ora_sha256": "abef1826d3c5bc17180ab6b2a37c9fa5441e9c65c0a808ceffb09c9e54f49651",
+  "production": {
+    "real_artist_native_highres_layers_complete": false,
+    "clean_underpaint_done": false,
+    "facial_attachments_independent": false,
+    "spine_ready": false,
+    "android_apk_verified": false,
+    "sprite_paths_registered": 0
+  },
+  "source_view_observations": [
+    "Front and 3/4 Front in this board are close in facial orientation; artist needs explicit true 3/4 perspective at production redraw",
+    "damage 30% must not be exaggerated beyond approved visual reference",
+    "original full-body view cells have very low native resolution compared with rig quality"
+  ],
+  "status": "P0_VISUAL_SOURCE_AUDIT_COMPLETE_P1_ONE_EXPERIMENTAL_FLAT_ALPHA_CUTOUT_NOT_PRODUCTION"
+}

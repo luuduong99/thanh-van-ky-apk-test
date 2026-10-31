@@ -1,0 +1,35 @@
+name: CP398 Lâm Thiển CANON eyelid refinement guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp398_eyelid_refinement.py'
+      - 'tests/art/test_cp398_eyelid_refinement.py'
+      - '.github/workflows/cp398_canon_eye_refinement_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp398_eyelid_refinement.py'
+      - 'tests/art/test_cp398_eyelid_refinement.py'
+      - '.github/workflows/cp398_canon_eye_refinement_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-art-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: Verify CP398 source contract (private art absent in public repo)
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp398_eyelid_refinement.py' -v
+      - name: Preserve art approval gate
+        run: |
+          echo 'Public checkout: expected 4 static PASS / 15 source-dependent SKIP.'
+          echo 'Source-dependent skips are not aesthetic approval.'
+          echo 'Visual QA NOT_PASSED; Lâm Thiển CANON remains unchanged; no sprite / rig / APK.'

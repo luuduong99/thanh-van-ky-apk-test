@@ -1,0 +1,57 @@
+{
+  "registry_schema": 1,
+  "project": "Thanh Vân Ký",
+  "updated_on": "2026-10-30",
+  "source": "user_reuploaded_exact_files_verified_sha256",
+  "reference_scope": "approved_priority_outfit_style_reference_NOT_character_CANON",
+  "approved_reference_variant": "B",
+  "variant_A": {
+    "status": "reference_comparison_only",
+    "neckline": "deep_cut"
+  },
+  "variant_B": {
+    "status": "user_selected_and_saved_as_priority_outfit_reference",
+    "neckline": "low_straight_bandeau_or_soft_curve",
+    "cut": "not_deep_V",
+    "fabric": "soft_silk_white_pale_blue",
+    "embellishments": "minimal_gold_chains_tassels_ribbons",
+    "animation_friendly": "reduce_multiple_floating_panels_to_1_or_2_main_cloth_parts"
+  },
+  "reference_images": [
+    {
+      "file_name": "TVK_USER_REUPLOADED_BANDEAU_AB_SHEET_20261030.png",
+      "sha256": "b0d243f361727c2780040e35c28a53b5010ca6bf733993361e019e620e7187fa",
+      "size": [
+        1024,
+        1536
+      ],
+      "bytes": 3445462,
+      "role": "USER_REUPLOADED_PRIMARY_A_B_COMPARISON",
+      "library_path": "/Thanh Van Ky/Character_References/Priority_Model_Outfits_2026_10_30/TVK_USER_REUPLOADED_BANDEAU_AB_SHEET_20261030.png"
+    },
+    {
+      "file_name": "TVK_USER_REUPLOADED_BANDEAU_AB_FULLVIEW_20261030.png",
+      "sha256": "88cfcf4efc5526082995b815ba8bf1745e01dee2b9d358f6939081c3d64182f7",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 3466066,
+      "role": "USER_REUPLOADED_FULLVIEW_A_B_COMPARISON",
+      "library_path": "/Thanh Van Ky/Character_References/Priority_Model_Outfits_2026_10_30/TVK_USER_REUPLOADED_BANDEAU_AB_FULLVIEW_20261030.png"
+    }
+  ],
+  "library_manifest_path": "/Thanh Van Ky/Character_References/Priority_Model_Outfits_2026_10_30/TVK_USER_REUPLOADED_BANDEAU_AB_MANIFEST_20261030.json",
+  "archive_path": "/Thanh Van Ky/Character_References/Priority_Model_Outfits_2026_10_30/TVK_Bandeau_B_User_Reuploaded_References_20261030.zip",
+  "not_applicable_to": [
+    "Lam_Thien_existing_CANON_V2_1",
+    "any_other_character_approved_CANON_without_explicit_new_approval"
+  ],
+  "production_status": {
+    "character_design_canon_approved": false,
+    "flat_reference_only": true,
+    "layered_sprites_ready": false,
+    "rig_ready": false,
+    "apk_integrated": false
+  }
+}

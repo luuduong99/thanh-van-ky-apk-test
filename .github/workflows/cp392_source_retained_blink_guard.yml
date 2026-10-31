@@ -1,0 +1,35 @@
+name: CP392 Lâm Thiển exact CANON eyelash-retention source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp392_source_retained_blink_study.py'
+      - 'tests/art/test_cp392_source_retained_blink_study.py'
+      - '.github/workflows/cp392_source_retained_blink_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp392_source_retained_blink_study.py'
+      - 'tests/art/test_cp392_source_retained_blink_study.py'
+      - '.github/workflows/cp392_source_retained_blink_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source QA dependencies
+        run: python -m pip install Pillow numpy
+      - name: Validate CP392 public source contracts
+        run: python -m unittest discover -s tests/art -p 'test_cp392_source_retained_blink_study.py' -v
+      - name: Keep game release blocked
+        run: |
+          echo 'Without private art: 4 PASS / 7 SKIP expected.'
+          echo 'Source-sampled eye patches are NOT final painted eyelids.'
+          echo 'visual_qa=NOT_PASSED, release=blocked_pending_art, no APK.'

@@ -1,0 +1,35 @@
+name: CP406 Lâm Thiển 4x eyelid overlay source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp406_layered_lash_overlay.py'
+      - 'tests/art/test_cp406_layered_lash_overlay.py'
+      - '.github/workflows/cp406_layered_eyelid_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp406_layered_lash_overlay.py'
+      - 'tests/art/test_cp406_layered_lash_overlay.py'
+      - '.github/workflows/cp406_layered_eyelid_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-not-art-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install static source QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Static public tests; private source-dependent tests intentionally skipped
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp406_layered_lash_overlay.py' -v
+      - name: Preserve CANON and artist approval gates
+        run: |
+          echo 'Expected 6 PASS / 9 private-source SKIP on public GitHub.'
+          echo '4x art is display-only editable DRAFT, NOT a true 4x CANON master.'
+          echo 'artist_qa=NOT_APPROVED; sprite_paths={}; android_art_integrated=false'

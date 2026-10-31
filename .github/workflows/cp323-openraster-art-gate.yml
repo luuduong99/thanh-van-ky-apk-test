@@ -1,0 +1,29 @@
+name: CP323 OpenRaster pixel audit
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/validate_lam_thien_cp323_layers.py'
+      - 'tests/art/test_lam_thien_cp323_layers.py'
+      - '.github/workflows/cp323-openraster-art-gate.yml'
+  pull_request:
+    paths:
+      - 'tools/validate_lam_thien_cp323_layers.py'
+      - 'tests/art/test_lam_thien_cp323_layers.py'
+
+jobs:
+  art-gate-tests:
+    name: Validate ORA pixel inspection contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python -m pip install Pillow
+      - name: Run synthetic ORA regression tests
+        run: python -m unittest discover -s tests/art -p 'test_lam_thien_cp323_layers.py' -v
+      # Production ORA binaries reside in Library, not git.
+      # Synthetic fixture tests do not certify that real art is rig-ready.

@@ -1,0 +1,52 @@
+{
+  "project": "Thanh Vân Ký",
+  "character": "Lâm Thiển",
+  "character_id": "lin_qian",
+  "approved_on": "2026-10-29",
+  "canonical_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "approval_status": "USER_APPROVED_FLAT_REFERENCE_NOT_PRODUCTION_SPRITES",
+  "filename": "LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+  "sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+  "width": 941,
+  "height": 1672,
+  "mode": "RGBA",
+  "role": "single authoritative full character sheet for visual identity, body, wardrobe, 5 expressions, poses, angles and garment damage states",
+  "precedence": "supersedes all older visual reference sheets as main active canon; historical docs remain archived only",
+  "approved_details": {
+    "format": "9:16 vertical reference board",
+    "body_plus_17_percent": "already baked in; do not reapply",
+    "bodice_and_bust": "use exact approved image styling and silhouette; do not redesign",
+    "colors_and_identity": "silver hair, floral ornament, white/light-blue/gold outfit; use image as source of truth",
+    "expressions": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "garment_integrity_states": {
+      "100": "pristine/no dirt or tears",
+      "70": "subtle dirt/light scuffs and small tears",
+      "50": "moderate dirt/scuffs/tears with meaningful coverage preserved",
+      "30": "more visibly damaged than 50 but restrained per this image; do not exaggerate dirt or exposure"
+    },
+    "optional_trim": "minor excess non-structural fringe can be omitted; preserve garment identity"
+  },
+  "production_safety": {
+    "flat_reference_only": true,
+    "artist_drawn_layered_source_complete": false,
+    "spine_ready": false,
+    "apk_build_verified": false,
+    "android_production_release": "blocked_pending_art",
+    "allow_legacy_sheet_as_new_primary": false
+  },
+  "approval_gates": [
+    "Reference lock",
+    "Art extraction/redraw + review",
+    "Real editable semantic layers",
+    "Damage/expression cross-state QA",
+    "Spine/animation integration",
+    "Android APK build and on-device QA"
+  ],
+  "important": "Text printed inside generated image is not evidence for layers, atlases, animations or actual game assets."
+}

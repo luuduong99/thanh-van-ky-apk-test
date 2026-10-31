@@ -1,0 +1,35 @@
+name: CP401 Lâm Thiển geometric blink source lock
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp401_occlusion_blink.py'
+      - 'tests/art/test_cp401_occlusion_blink.py'
+      - '.github/workflows/cp401_blink_occlusion_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp401_occlusion_blink.py'
+      - 'tests/art/test_cp401_occlusion_blink.py'
+      - '.github/workflows/cp401_blink_occlusion_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline art pipeline dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Run source and release gate tests
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp401_occlusion_blink.py' -v
+      - name: Release remains blocked until user art signoff
+        run: |
+          echo '5 static PASS / 8 private-source SKIP expected in public repository.'
+          echo 'Private-source test skips are not artistic acceptance.'
+          echo 'visual_qa=NOT_APPROVED; apk_ready=false; sprite_paths={}'

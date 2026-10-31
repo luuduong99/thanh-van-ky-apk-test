@@ -1,0 +1,373 @@
+# Thanh Vân Ký — Kế hoạch từ CANON V2.1
+
+## P0 — Khóa nguồn và chất lượng chuẩn (đã thực hiện phần lưu)
+- [x] Lưu **file gốc nguyên pixel** và SHA-256, ảnh duy nhất làm chuẩn chính thức.
+- [x] Ghi model, tỷ lệ +17% đã áp dụng, kiểu áo ngực, biểu cảm và trạng thái hư hại.
+- [ ] Đối chiếu trực quan thêm độ nhất quán giữa các góc Front/Side/Back/3/4 và màu mắt trên sheet; mọi nghi vấn được gắn review, không tự ý thay.
+
+## P1 — Sản xuất art game thực
+- [ ] Tách thành các bộ art riêng cho góc Front và 3/4 đầu tiên, chọn một pose chuẩn; không upscale crop mà tự coi là nét vẽ mới.
+- [ ] Dựng file ORA/PSD/KRA editable native theo layer thật: tóc trước/sau, body, áo/váy, phụ kiện, facial underpaint, mắt/mày/miệng, đồ trang trí rủ.
+- [ ] Ghép test trên 1 pose/góc, bảo đảm đường cắt alpha, vùng vẽ ẩn, rig draw-order, đồng nhất form.
+- [ ] Sinh năm nét mặt từ cùng một face master; kiểm các cỡ thoại 256/132/64.
+- [ ] Dựng các mức integrity 100/70/50/30 qua overlay dirt/scuff/tear, không thay đổi hình thể hay phóng đại damage 30.
+- [ ] Hoàn thiện Side/Back/3/4 Back và các pose còn lại theo cùng model; không vẽ lại trang phục khác.
+- [ ] Gửi preview có đối chiếu CANON và kiểm tính liên tục qua góc nhìn; phê duyệt art sprite riêng.
+
+## P2 — Rig + game runtime
+- [ ] Nhập asset thật vào Spine / bộ rig 2D tương đương; kiểm bone, mesh, clipping, chuyển động tóc/tua, blink, mouth.
+- [ ] Nối `expression × wardrobe × integrity × pose` vào game, bật art release gate sau khi thật sự được nghiệm thu.
+- [ ] Kiểm tra damage đổi lần đầu khi HP qua ngưỡng, trạng thái giữ khi hội thoại và tương tác theo spec.
+
+## P3 — Build APK & nghiệm thu
+- [ ] GitHub Actions build Android debug APK; lưu artifact có thể tải.
+- [ ] Chạy smoke test Android: chọn nhân vật, trang phục, 5 biểu cảm, damage 4 mức, combat/dialogue và save/load.
+- [ ] Đóng băng release và cập nhật PROJECT_SPEC với commit/tag, version và APK SHA.
+
+**Không coi chỉ ảnh phẳng hoặc ảnh đã được chốt là đã có Spine, layer hay APK.**
+
+## CP340 — kết quả triển khai thực (2026-10-29)
+
+- [x] Kiểm hash gốc V2.1 lại tại file nguồn: SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, 941×1672 RGBA.
+- [x] Cắt **14 ảnh tham chiếu native giữ nguyên pixel**: 5 angle, 5 facial expression, 4 damage 100/70/50/30. `9/9 local binary tests PASS` gồm so pixel/CRC/source RGB/alpha.
+- [x] Thử **một Front alpha thực** native 215×449 từ source (chỉ thay alpha), ORA 2 layer có source crop ẩn; có preview `CP340_FRONT_ALPHA_SIDE_BY_SIDE.png`. Art này **không** phải sprite sạch/rig/underpaint; kích thước từ infographic không phải master HD.
+- [x] Lưu [CP340 handoff](LAM_THIEN_CP340_SOURCE_EXACT_FRONT_ALPHA_HANDOFF.md), [manifest](LAM_THIEN_CP340_ALPHA_TRIAL_MANIFEST.json), script/QA + ZIP SHA256 `51cafc14800032712eeed7f0d1ff47edf6f486659ac38c28279298a1be0cb535` ở Library Development.
+- [ ] **Bước P1 kế tiếp — REDRAW ART THẬT:** từ cutout làm guide, họa sĩ cần redraw native high-res thành semantic RGBA + clean underpaint (body, áo, tóc, tay, phụ kiện), QA silhouette/bodice V2.1 trước các biểu cảm/góc còn lại.
+- [ ] Preview của nguồn V2.1 cho thấy `3/4 Front` chưa rõ khác Front ở khuôn mặt; artist phải làm phối cảnh đúng khi thực hiện view production mà **không thiết kế lại model**. Vẽ damage/biểu cảm theo đúng bản mới nhất, không tăng vết rách ở 30.
+- [ ] CP335 art gate còn **BLOCKED**, Spine/APK chưa hoàn thành. Không tự chốt bản alpha trial.
+
+
+## CP341 — Refine alpha foreground trên crop Front gốc (2026-10-29)
+
+- [x] CANON V2.1 vẫn được SHA-checked (941×1672, SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`); không thay RGB nhân vật hay trang phục.
+- [x] Phục hồi tóc bạc/viền tay áo/vạt vải sáng từ source crop 215×449 bị CP340 làm mất; alpha >128 tăng 19.983 pixel có kiểm vùng. Tạo **PNG RGBA**, **mask grayscale chỉnh sửa được**, **ORA 3 lớp so sánh (không phải bộ phận rig)** và preview.
+- [x] **13/13 local binary tests PASS**, ZIP CRC PASS; [CP341 handoff](LAM_THIEN_CP341_MATTE_HANDOFF.md), [manifest](LAM_THIEN_CP341_MATTE_MANIFEST.json), gói ZIP SHA `08d8aa08bc4b00163e092d056f1e067a5652b0f80b9462e5308277dbe8baacb1` tại Library Development.
+- [ ] **CP342 cần thực hiện:** cleanup thủ công white halo + shadow dưới chân và vạt, tạo **art native Front semantically layered** với underpaint thực và vùng vải/tóc ẩn khi bone chuyển động. Preview bắt buộc so silhouette/body/bodice với CANON V2.1 để tránh sai mẫu.
+- [ ] Mới sau Front artist-approved: tách 5 nét biểu cảm độc lập, 4 mức hư hại vừa phải, góc nhìn khác; rig/Spine và Android APK vẫn chưa DONE. CP335 release gate tiếp tục BLOCK.
+
+
+## CP342 — xử lý bóng sàn trong alpha Front (2026-10-29)
+
+- [x] Dùng CANON V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; RGB bảo toàn tuyệt đối. Chỉnh alpha chỉ vùng 39 dòng cuối; vùng thân/bodice trên **không thay**.
+- [x] Giảm dải bóng nền xanh-xám dưới giày/vạt: 2.364 pixel alpha khác, vùng sàn giảm 209.000 alpha-unit, giày giữa giữ nguyên. Xuất PNG, mask, delta và ORA 4 layer so sánh, không phải skeleton/semantic art.
+- [x] **13/13 binary tests PASS** (file PNG/ORA thật); ZIP 15 file SHA `76d8fd962688dde6356d4853b5e522b5ce78567a1e08ae3739668851ec5ebf66`, sao lưu Library Development. [Handoff](LAM_THIEN_CP342_SHADOW_CLEANUP_HANDOFF.md).
+- [ ] **CP343 P1 ART THẬT:** vẽ lại **Front native high-res đúng CANON V2.1** thành body, tóc trước/sau, face/skin underpaint, tay, bodice, tay áo, phụ kiện và vạt lụa có alpha sạch/vùng che khuất. Preview 1 pose quay/di chuyển có draw-order và không lộ lỗ dưới lớp.
+- [ ] Chỉ sau art Front mới tạo 5 expression attachments, 4 damage overlays giữ giới hạn 30% từ CANON, góc/tư thế còn lại, user asset acceptance, Spine và APK.
+- [ ] Cổng CP335 Android vẫn `blocked_pending_art`, `sprite_paths={}`. Không coi PNG flat 215×449 là asset hoàn thiện.
+
+
+## CP343 — phân vùng ảnh thật theo Front, kiểm chuyển động (2026-10-29)
+
+- [x] Tách **10 PNG vùng/source-pixel**, 10 mask grayscale riêng, tạo **ORA 10 lớp**, giữ đúng RGB và alpha của CP342 khi ghép ở tư thế ban đầu. **12/12 binary tests PASS**, source đúng CANON V2.1.
+- [x] **Kiểm tra di chuyển hai tay** ±10px/+5px: **1.798 pixel bị hở** do không có da/vải vẽ bên dưới; 1.098 pixel nhô ra. Kết luận **FAIL no hidden underpaint**, chưa thể rig thật.
+- [x] Bảng QA source-composite-mask, bản đồ màu lớp và preview hở khớp; lưu [CP343 handoff](LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md), [manifest](LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json). ZIP 34 files SHA `b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519` đã sao lưu Library Development.
+- [ ] **CP344 ưu tiên:** vẽ lại một vùng tay trái–vai/thân áo **có vùng ẩn thật**, chỉnh alpha đường biên thủ công và xem thử 2 frame với dịch/rotation nhỏ; không để lỗ/mất váy/đổi bodice. Sau QA tay trái mới làm tay phải/tóc.
+- [ ] Chưa native painted high-res art, chưa có layer mặt thật, năm expression sprites, damage overlay hay Android/Spine. **Release tiếp tục BLOCK**.
+
+
+## CP366 — Partial sleeve vector artwork (2026-10-29)
+- [x] Sáu mảng SVG vẽ độc lập dùng cho tay/vai/tóc/vải bên trái; ORA 7 lớp; 5/5 structural tests PASS.
+- [ ] **Visual QA NOT_PASSED**: sai khác đường nét, nếp lụa và đồ trang sức so với CANON; không thể thay thế ảnh chuẩn. Không phải full-body sprite/Spine/APK.
+- Tài liệu: [CP366 partial art study](LAM_THIEN_CP366_LEFT_SLEEVE_SIX_VECTOR_ART_STUDY.md).
+
+## CP367 — CANON-only QA và khóa quy tắc preview (2026-10-29)
+- [x] Xác minh file gốc người dùng gửi, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, 941×1672 RGBA.
+- [x] QA hai mũi guốc xanh từ crop Front chính xác: trái 163/163, phải 146/146 pixel nguồn. Hai lỗi xóa alpha mũi guốc bị phát hiện, crop lệch kích thước bị chặn; **6/6 local test PASS**.
+- [x] Cập nhật PROJECT_SPEC: mọi lần hiển thị nhân vật chỉ dùng ảnh CANON mới nhất đã duyệt của chính nhân vật hoặc crop đúng nguồn; ảnh draft phải ghi rõ draft và so với CANON, không dùng hình khác thay thế.
+- [x] Công cụ và test kiểm chân tại `tools/art/cp367_canon_guard.py` và `tests/art/test_cp367_canon_guard.py`.
+- [ ] **CP368 tiếp theo:** nâng chất lượng art tay/vai/tóc/vải CP366 theo CANON, kiểm khớp/underpaint qua dịch/rotation và vẽ tiếp các layer full-body; đòi hỏi preview nhận xét của người dùng trước khi rig thật.
+- [ ] Spine/rig, art đã duyệt, APK vẫn **BLOCKED**. Chi tiết: [CP367 handoff](LAM_THIEN_CP367_CANON_ONLY_QA.md).
+
+
+## CP368 — Localized left-sleeve SVG refinement (2026-10-29)
+
+- [x] CANON V2.1 nguồn duy nhất: SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672 RGBA). Không dùng ảnh nhân vật thay thế; bản mới phải ghi rõ **DRAFT**.
+- [x] Tinh chỉnh 6 SVG art thực từ CP366: tóc sau, bodice khuất, da vai khuất, tay/bàn tay, lụa tay áo, hoa văn vàng. Có 6 PNG alpha, ORA 7 lớp (1 guide CANON ẩn), ảnh đối chiếu CANON/CP366/CP368; không chỉnh sửa ảnh gốc.
+- [x] **6/6 local tests PASS**, có QA vùng chồng lớp vai khi xoay 0/-8/-15/+8°; các vùng có pixel chồng nhưng **chưa chứng minh rig không hở hình**. ZIP CRC PASS, 25 files SHA256 `2a8ab1c8a5b22eac5a265ebfe07bcde592de501c9b98014aaa6c957f618009b8`, lưu Library `/Thanh Van Ky/Development/CP368_Refined_Sleeve_Study/`. [CP368 report](LAM_THIEN_CP368_REFINED_LEFT_SLEEVE_DRAFT.md).
+- [ ] **ART VISUAL QA NOT_PASSED**: nét vẽ còn khác ảnh chuẩn, chưa native painted full body hoặc keyframe tay nâng do họa sĩ vẽ; chưa được phê duyệt để nhập game. Spine/APK vẫn BLOCK.
+- [ ] **CP369 ưu tiên:** làm chi tiết nếp lụa/vải khuất và hair/ornament đúng CANON, phát triển các semantic layer full body, làm idle/raised-arm vẽ riêng và xin nghiệm thu hình trước khi tích hợp gameplay.
+
+
+
+## CP369 — Fixed-shoulder gold, moving wrist và hidden-underpaint (2026-10-29)
+- [x] Nguồn duy nhất là CANON V2.1 đã được chốt, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672 RGBA); chỉ dùng crop chính xác từ nguồn này để đối chiếu, art mới ghi rõ UNAPPROVED DRAFT.
+- [x] Sửa lỗi logic CP368: tách vàng vai **cố định** khỏi vàng cổ tay **di chuyển cùng tay**; tạo 7 lớp SVG/PNG alpha độc lập + ORA 8 lớp (7 art và CANON guide ẩn). Thêm path vẽ da/vải lót bị khuất tại vai.
+- [x] Local motion ở ROI source x=54..83, y=124..170: -8° có 3.192 pixel mới lộ / 0 thiếu lót; -15° có 5.905 / 0; +8° có 789 / 0. Test âm bỏ da/vải lót phải FAIL. **Chỉ là kiểm tra alpha cục bộ; không chứng minh toàn sprite hoặc rig không hở.**
+- [x] 8/8 kiểm thử local PASS (SHA source, SVG, ORA CRC, một lớp guide ẩn, vai cố định/cổ tay chuyển động, phủ alpha ở khớp, test âm, release gate). Gói CP369 ZIP 29 file SHA256 `84a5b29e6618c0b4901707f045e44b9020febc768181b758748355c513917dfb`, ORA SHA256 `cf0b06461ae0c1aace0d3c5bc92691a066b0f2446df7bd617a9de4f4cabf54be`; lưu Library `/Thanh Van Ky/Development/CP369_Static_Shoulder_Moving_Wrist_Underpaint/`.
+- [ ] **Visual QA NOT_PASSED**: nguồn vẽ còn quá đơn giản so với CANON, chuyển động vẫn là xoay bitmap kỹ thuật, chưa có 2 keyframe vẽ thật, chưa đủ full-body semantic layers. Spine/APK vẫn BLOCK.
+- [ ] **CP370 tiếp tục:** vẽ/nâng chất lượng tay/vai và lụa so với CANON, triển khai các lớp thật của tay phải, thân, mặt và hai guốc xanh; sau đó vẽ riêng idle/raised-arm keyframes rồi xin duyệt art.
+- [CP369 handoff](LAM_THIEN_CP369_STATIC_SHOULDER_MOVING_WRIST.md), code `tools/art/cp369_split_gold_and_underpaint.py`, QA `tests/art/test_cp369_split_gold_and_underpaint.py`.
+
+
+## CP370 — Two independently drawn SVG arm key poses (2026-10-29)
+- [x] Chỉ sử dụng Lâm Thiển **CANON V2.1** nguyên bản, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` (941×1672 RGBA); preview có crop đúng nguồn + 2 DRAFT có nhãn, không dùng ảnh nhân vật khác.
+- [x] **Vẽ riêng đường SVG** cho 3 phần moving ở key pose tay nâng (tay/bàn tay, lụa có nếp rủ mới, vòng vàng cổ tay); 4 phần khác vẫn cố định gồm tóc sau, bodice khuất, da vai khuất, phụ kiện vai. Khác CP369: không chỉ xoay bitmap của pose idle.
+- [x] Xuất **2 bộ art / 2 ORA**, mỗi tư thế 7 art SVG/PNG độc lập + ORA 8 lớp (1 CANON guide ẩn), cùng canvas 1302×2748. Chỉ là canvas vector 6× crop 217×458; không được suy ra nguồn tranh đã HD.
+- [x] Local **9/9 PASS** (8 có ảnh nguồn thật + 1 static contract). Trên GitHub CI không có CANON/ORA private thì bài kiểm tra cần asset skip; không được gọi đó là kiểm thử art đã đạt. Vai vàng fixed pixel-exact, vòng vàng cổ tay thay vị trí; ROI vai có 2.996 pixel lộ và 0 pixel thiếu lót theo alpha trong vùng nhỏ; không chứng minh mọi khớp an toàn.
+- [x] ZIP 43 entries, CRC PASS, SHA256 `6845f2543befe36c7dabb19d2e097e0821b71485ca7d7835b6f7e8dd2bb18e9e` lưu Library `/Thanh Van Ky/Development/CP370_Independent_Arm_KeyPose_Study/`. [CP370 handoff](LAM_THIEN_CP370_INDEPENDENT_ARM_KEYPOSE_STUDY.md), script `tools/art/cp370_two_hand_authored_poses.py`, test `tests/art/test_cp370_two_hand_authored_poses.py`.
+- [ ] **Visual QA NOT_PASSED**: bàn tay/nếp lụa còn sơ lược so CANON; chưa full-body native painted, không có in-betweens, rig, Spine, FPS hay APK. **Production release BLOCKED**.
+- [ ] **CP371 tiếp tục:** vẽ lại chi tiết tay/lụa 2 pose, bảo vệ nhận diện CANON; xây các semantic layers còn thiếu (mặt/tóc trước/thân/tay phải/2 guốc xanh), gửi preview để duyệt rồi mới rig và build APK.
+
+
+
+## CP371 — Two-pose silk fold and hem detail (2026-10-30)
+
+- [x] Khóa nguồn Lâm Thiển CANON V2.1 (941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`). Toàn bộ preview chỉ có đúng CANON của nhân vật và art draft từ đó, không có ảnh thay thế.
+- [x] Thêm 2 mảng SVG vector **vẽ riêng cho idle/raised**: nếp lụa sáng và chỉ viền xanh/vàng; bổ sung nét bàn tay và giữ các phần đứng yên chính xác giữa 2 pose. Mỗi tư thế 9 art layers + CANON guide ẩn; 2 ORA 10 lớp, PNG alpha, preview đối chiếu.
+- [x] **11/11 local tests PASS**, hai ORA CRC PASS. Khác CP370: idle 19.833 pixels, raised 35.436 pixels. Coverage mới (trong hoặc sát silhouette tay áo) folds/hem idle 100%/100%, raised 96,11%/100%. Chỉ QA kỹ thuật cục bộ, **không chứng nhận đạt thẩm mỹ**.
+- [x] Đã sao lưu ZIP 52 files SHA256 `b0f1a18c36edc9e69a9a3e232e0b20cc633c647fe7173555a9b673a93831eb2c`, Library `/Thanh Van Ky/Development/CP371_Silk_Detail_Two_Poses/`. [CP371 handoff](LAM_THIEN_CP371_SILK_FOLD_HEM_TWO_POSES.md).
+- [ ] **VISUAL QA NOT PASSED**: còn thô so CANON, thiếu nhiều lớp art nhân vật thực, chưa rig/Spine hoặc APK. Production blocked, sprite_paths empty.
+- [ ] **CP372 next:** ưu tiên true native art fidelity tay/bàn tay, áo và trang sức; sau đó full-body, hai giày xanh và 5 expression / 4 damage, trước khi duyệt art/rig, test APK.
+
+## CP372 — Finger, wrist and fixed-shoulder details (2026-10-30)
+- [x] CANON source-locked: đúng `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; preview chỉ dùng CANON thật + các bản CP371/CP372 của chính Lâm Thiển có nhãn DRAFT.
+- [x] Từ CP371 (9 lớp/tư thế), tạo thêm **3 lớp SVG/PNG có nét vẽ thật** mỗi tư thế: ngón tay/khớp, hoa văn cổ tay và hoa văn vàng vai cố định. Idle/raised có nét tay/cổ tay khác nhau; vai giữ nguyên pixel.
+- [x] Tất cả nét mới được alpha-clip vào art cha tương ứng; tạo **2 ORA 13 lớp** (12 art hiển thị + CANON guide ẩn). Composite thay đổi so CP371: 2.598 pixel idle và 2.624 pixel raised, không phải chứng nhận đẹp hơn.
+- [x] **11/11 local tests PASS**, đúng SHA source, từ chối nguồn sai trước output, path SVG, clip semantic, ORA CRC/13 lớp, static shoulder, mobile release gate. Khi thiếu ảnh và binary ORA trong GitHub CI, test art-dependent skip đúng. [Báo cáo CP372](LAM_THIEN_CP372_FINGER_GOLD_DETAIL_STUDY.md).
+- [x] ZIP 64 tệp SHA256 `721a17c057cc3732c1c8b084a81046fd2b4d1d1e9b11a5a7b1fe4a61d4118249`, CRC PASS; Library `/Thanh Van Ky/Development/CP372_Finger_Gold_Detail_Study/`. Code `tools/art/cp372_finger_gold_detail.py`, tests `tests/art/test_cp372_finger_gold_detail.py`.
+- [ ] **Visual QA NOT_PASSED**: vẫn là art mảng tay đơn giản, chưa có Front full-body native semantic, 5 expression, 4 damage, chân/giày 2 bên, Spine/physics, gameplay runtime hoặc Android APK.
+- [ ] **CP373 next:** ưu tiên tạo *bộ art Front full-body thực* theo CANON, tách tóc, mặt, thân/áo, hai tay, vạt lụa, chân và hai guốc xanh; tạo underpaint và kiểm pose với art chất lượng cao hơn trước khi phê duyệt và rig. Không nối CP372 vector thử trực tiếp vào APK.
+
+## CP373 — Full-body source-region guide (2026-10-30)
+- [x] Khóa nguồn **CANON V2.1 đã duyệt**: đúng PNG 941×1672 RGBA, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; chỉ dùng ảnh này và các phần cắt đúng từ ảnh này trong bảng preview, không tìm hình khác thay thế.
+- [x] Dùng vùng Front gốc chính xác `(13,172,230,630)` = **217×458 pixel thật** để xây **19 source-region PNG/mask** phủ toàn bộ Front và một file ORA 20 lớp (19 lớp nguồn + 1 CANON guide ẩn). Composite tư thế đứng pixel-exact so với **alpha matte kỹ thuật**; không phải art redraw high-res, không có hidden anatomy.
+- [x] Tách nền thử nghiệm bằng GrabCut + phục hồi vùng dải lụa xanh/tím; **vẫn có nền/bóng sàn lẫn ở dưới chân và mất một số mép vải sáng**, phải dọn bằng tay, không được dùng làm production sprite.
+- [x] QA hai mũi guốc xanh theo CANON: bên trái **163/163** và bên phải **146/146 pixel nguồn** còn thấy. Khi dịch phần bàn tay (-6,+3) phát hiện **204 pixel hở** vì thiếu lớp da/vải khuất; rig gate **FAIL**.
+- [x] **10/10 local tests PASS**: lock SHA, sai nguồn từ chối trước xuất, RGB giữ nguyên, 19 mask ghép tĩnh, ORA CRC/stack, mũi guốc, kiểm hở khi chuyển động và release gate. Không đánh đồng test kỹ thuật với Visual QA.
+- [x] ZIP 54 files SHA256 `72f25fff04c64d5345ba8047de9aceb0c3713d8c3f45580341210b028f937662`, Library `/Thanh Van Ky/Development/CP373_FullBody_Canon_SourceGuide/`. [CP373 report](LAM_THIEN_CP373_FULL_BODY_SOURCE_GUIDE.md); công cụ `tools/art/cp373_fullbody_source_guide.py`, test `tests/art/test_cp373_fullbody_source_guide.py`.
+- [ ] **VISUAL QA NOT PASSED / PRODUCTION BLOCKED:** source chỉ có 217×458 pixel, chưa phải 2D art vẽ thật đủ chi tiết, alpha còn dính bóng sàn và thiếu underpaint. Spine/Android APK chưa hoàn thành. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP374:** artist redraw Front native HD theo đúng CANON thành tóc/mặt/cơ thể, thân áo, hai tay, váy/vạt, chân và hai mũi guốc xanh, bổ sung hidden underpaint; kiểm alpha/pose và xin duyệt trước khi rig/Spine.
+
+---
+
+## CP374 — Partial source-matte floor-shadow removal (2026-10-30)
+
+- [x] CANON-only V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; nguồn Front thật 217×458, ảnh gốc 941×1672 RGBA. Giữ nguyên hình đã chốt, **không dùng image-search/nhân vật khác**.
+- [x] Từ CP373, thử gỡ alpha **1.030 pixel** ứng viên bóng sàn trong ROI thận trọng dưới chân. RGB không đổi, alpha vùng chân/giày bảo vệ giữ nguyên; mũi guốc xanh trái 163/163, phải 146/146. Không tuyên bố bóng sàn đã sạch hoàn toàn.
+- [x] Xuất 19 source-region PNG/mask và ORA **21 lớp** (19 visible, 2 hidden để hoàn tác/đối chiếu CANON), ảnh so sánh CANON/CP373/CP374, mask phần loại, JSON và script reproducible.
+- [x] **10/10 local tests PASS** trên private CANON và CP373; simulated public CI **2 pass / 8 skip**, CRC PASS. ZIP 72 items SHA256 `824215ec6a2ae08321b8e895cc0c42dc68cae408f32b72473139b90df2ec8d41`, Library `/Thanh Van Ky/Development/CP374_Floor_Shadow_Partial_Cleanup/`. [CP374 handoff](LAM_THIEN_CP374_FLOOR_CANDIDATE_CLEANUP.md).
+- [ ] **Visual QA NOT_PASSED**: còn viền lụa/bóng sàn, 204px underpaint missing theo CP373, chưa independent high-res art, 5 expression/integrity overlays, Spine/Android APK. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP375:** vẽ bản native hi-res Front thực theo CANON với các semantic layers/body underpaint; không biến mask crop/phóng to thành “vẽ HD”. Làm hai pose thật và xin duyệt trước khi rig.
+
+---
+
+## CP375 — Partial drawn hidden-wrist study (2026-10-30)
+
+- [x] Xác minh CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, dùng crop Front 217×458 đúng nguồn và chỉ hiển thị CANON của Lâm Thiển + draft cùng nhân vật.
+- [x] Tạo 4 SVG Bézier/gradient được vẽ mới thành 4 PNG art RGBA (canvas vector 1302×2748) + ORA 5 lớp có CANON guide ẩn. **Không được xem 6× là nâng chi tiết gốc lên HD**.
+- [x] Test dịch tay (-6,+3), nguồn CP374: **204** pixel hở ban đầu, **114** pixel được alpha vector mới phủ, **90** còn hở. Đây chỉ QA cục bộ, không phải rig chuyển động hoàn chỉnh.
+- [x] **9/9 local PASS**, mô phỏng public CI thiếu art **4 PASS / 5 SKIP**; ORA CRC PASS, hai giày xanh nguồn giữ 163/163 và 146/146. [Handoff CP375](LAM_THIEN_CP375_HIDDEN_WRIST_ART_STUDY.md), ZIP 21 entries SHA256 `c279ba8b9f24fd57fdd0fdc743cba7185474461fe6d2b57aedf871ee07c19ba7`, sao lưu Library `/Thanh Van Ky/Development/CP375_Hidden_Wrist_Native_Art_Study/`.
+- [ ] **Visual QA NOT PASSED / release blocked**: art chỉ là một phần cẳng tay, chưa full-body native painting hay anatomy hợp lý khi di chuyển; 90 px hở, lụa sáng/matte/bóng sàn còn lỗi; chưa Spine/APK.
+- [ ] **CP376:** vẽ lại *toàn bộ vai/tay trái/tay áo*, hoàn thiện underpaint và hai keyframes đúng CANON, rồi phát triển full-body semantic art / expression / clothing integrity trước kiểm thử Android.
+
+---
+
+## CP376 — Wrist cuff and rear-ribbon alpha diagnostic art (2026-10-30)
+
+- [x] Giữ duy nhất Lâm Thiển CANON V2.1 `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; không dùng hình nhân vật không liên quan.
+- [x] Bổ sung **3 SVG vẽ mới**, tổng 7 art PNG/layers, ORA 8 lớp (7 art đang hiển thị + 1 CANON guide ẩn); vẫn chỉ là mảng cổ tay/lụa thử nghiệm.
+- [x] Phân nhóm 90 pixel còn lại ở CP375 theo quan sát trực quan CANON: 35 vòng cổ tay, 40 mép lụa, 15 đầu ngón tay. Kết quả hướng (-6,+3): **90→18 pixel** sau CP376; còn 3 mép lụa và 15 đầu ngón tay. KHÔNG tự xóa điểm ngón tay vì thay silhouette không nhất thiết là alpha hole.
+- [x] Thử thêm (-4,+2): 68→21; (+3,-2): 121→98; (-8,+5): 113→26. **11/11 local tests PASS**, public-mode 4 PASS/7 SKIP. Art chuyển động và quality gate **CHƯA ĐẠT**.
+- [x] ZIP 32 tệp SHA256 `e110ed56c1d40c41450363d1d4cc40c60067f801c68ccfc510870ce666f775b8`, Library `/Thanh Van Ky/Development/CP376_Wrist_Ribbon_Underpaint_Draft/`. [CP376 handoff](LAM_THIEN_CP376_WRIST_RIBBON_UNDERPAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED / production blocked:** cổ tay/ribbon vẫn là vector sơ lược, chưa làm full-body art thật hay hai keyframe toàn diện, chưa Spine/APK.
+- [ ] **CP377:** vẽ riêng hình đầu ngón, cổ tay, mép lụa cho keyframe; QA chuyển động nhiều hướng với CANON, rồi tiếp tục hoàn thành Front semantic body/face/hair/legs/shoes trước nghiệm thu và build.
+
+---
+
+## CP377 — Two pose-specific finger contours and rear silk drafts (2026-10-30)
+
+- [x] CANON V2.1 user-approved exact PNG 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` không thay; mọi preview chỉ dùng đúng nguồn này và draft Lâm Thiển.
+- [x] 4 SVG vẽ riêng (2 fingertip silhouettes + 2 rear silk folds), cộng 7 lớp CP376 giữ nguyên giữa pose; xuất 2 ORA **10 lớp**/pose (9 vẽ + 1 exact CANON hidden). Hai composite art khác biệt 36.705 RGBA pixels trên canvas 6×; không phải 2 keyframe full-body đạt nghiệm thu.
+- [x] **10/10 local QA PASS**, public layout **4 PASS / 6 SKIP**, ZIP/ORA CRC PASS, 2 toe-blue ROIs 163/163 và 146/146 từ nguồn không bị sửa. Không flood-fill 15 pixel finger silhouette hoặc đổi số baseline CP376 18/21/98/26.
+- [x] Library `/Thanh Van Ky/Development/CP377_Hand_Silk_Two_Pose_Draft/`, ZIP 54 tệp SHA256 `3950db5a0f628795e3da9f8ccda1a5428a64b9cd263362ac0f495f96c3896c7a`. [CP377 handoff](LAM_THIEN_CP377_HAND_SILK_TWO_POSE_DRAFT.md).
+- [ ] **Visual QA NOT PASSED**: ngón tay/lụa còn thô, không khớp hoàn toàn CANON, chưa full-body/rig/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP378:** chi tiết hóa tay/khớp/viền/vải bằng native painter art theo đúng CANON, kiểm nhiều keypose thực; chuyển sang toàn thân semantic layers + alpha underpaint trước khi nghiệm thu/rig.
+
+---
+
+## CP378 — Five independently drawn vector hand/silk pose geometry frames (2026-10-30)
+
+- [x] Giữ nguồn **CANON V2.1 exact** SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; preview chỉ từ ảnh Lâm Thiển thật và các bản vẽ thử Lâm Thiển ghi rõ NOT APPROVED.
+- [x] 5 tư thế bàn tay/lụa với các landmark vector t=0,.25,.5,.75,1; 7 static CP376 underpaint layer + 3 SVG riêng cho mỗi pose. 5 ORA **11 lớp/file** gồm 10 visible + exact CANON guide ẩn. Không dùng raster crossfade hai bàn tay.
+- [x] **12/12 local tests PASS**, simulated public CI **4 PASS / 8 SKIP**. Bước dịch tâm bàn tay trên canvas 6× lần lượt 12.076 / 12.120 / 12.220 / 12.333 px. Đây là QA hình học chứ không phải FPS/chuyển động game.
+- [x] ZIP 70 entries SHA256 `22b47e5c498ec45a4c7495f641817436e3d1e547560e0f5879fb76584992ac84`, Library `/Thanh Van Ky/Development/CP378_Five_Pose_Vector_Motion_Study/`. [Handoff CP378](LAM_THIEN_CP378_FIVE_POSE_VECTOR_STUDY.md), tool/test/code và workflow GitHub.
+- [ ] **Visual QA NOT PASSED**: vector vẫn thô, chưa art native high-res full-body/rig; giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP379 next:** tạo master Front toàn thân được vẽ **thực**, không chỉ cắt/phóng ảnh CANON nhỏ; semantic layers, underpaint, alpha sạch, hai mũi guốc; đối chiếu chất lượng rồi xin duyệt trước Spine/Android.
+
+---
+
+## CP379 — Full-body 21 layer art blocking, separate source-fidelity guide (2026-10-30)
+
+- [x] Source-Lâm Thiển **CANON V2.1 exact bytes** 941×1672 RGBA SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; fix lỗi re-encode PNG làm đổi hash, giờ lưu bằng byte copy gốc.
+- [x] **21 SVG Bézier/gradient thật** và PNG-alpha độc lập phủ toàn bộ Front (hair, face, arms/silk, bodice/skin, hips, legs, both blue shoes, ornaments). Tạo ORA 22 lớp (21 vẽ + CANON hidden) để tiếp tục vẽ chi tiết trực tiếp trong Krita.
+- [x] Giữ ORA **20 lớp** riêng cho 19 guide-part RGB nguồn CP374, ghép tĩnh đúng source matte; đây là nguồn đối chiếu, **KHÔNG** có underpaint hay sprite full detail. Front native chỉ 217×458; canvas SVG 1302×2748 không phải nâng art thật lên HD.
+- [x] **12/12 local tests PASS**, public CI source-absent simulation **4 PASS/8 SKIP**, cả hai ORA ZIP CRC PASS; blue shoes trên reference 163/163 trái và 146/146 phải. ZIP 97 tệp SHA `3a6133b5a26ff0c0d1d5cfda6cce4a6b11ad00cd056c147bfbb303ca2ccca8d9` trong Library `/Thanh Van Ky/Development/CP379_FullBody_Vector_Blocking/`. [CP379 handoff](LAM_THIEN_CP379_FULLBODY_VECTOR_BLOCKING_HANDOFF.md).
+- [ ] **VISUAL QA NOT PASSED:** bản vector blocking còn thô/khác CANON, chưa redraw họa sĩ, chưa underpaint khớp/Spine, chưa 5 expression/4 damage hoặc Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP380 tiếp:** ưu tiên vẽ thật đủ chi tiết mặt–tóc–áo và toàn thân trên master, tách anatomy dưới các lớp, kiểm mép, hai guốc xanh, xin duyệt mới tính tới rig và APK.
+
+---
+
+## CP380 — Eight editable hair/face/bodice detail SVG overlays (2026-10-30)
+
+- [x] Khóa CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, nguyên file gốc 941×1672 RGBA; toàn bộ hình so sánh chỉ dùng CANON và draft của Lâm Thiển.
+- [x] Bảo toàn toàn bộ **21 PNG/SVG nguồn CP379 byte-exact**; bổ sung 8 SVG Bézier sửa tóc/mắt/hoa/trang sức/nếp áo/tà lụa, tổng 29 art layers + 1 hidden reference ORA. Bản mới vẫn là study, không phải artist-painted full-body art.
+- [x] **12/12 local tests PASS**, public CI-mode **4 PASS / 8 SKIP**, ORA ZIP CRC PASS; khác biệt 152.505 pixel RGBA trên vector canvas (không phải measure fidelity). ZIP 72 file SHA256 `60de03b274402b30e3290be0fb7285872d5e123062dfad476105399bf8a7941d` lưu Library `/Thanh Van Ky/Development/CP380_FullBody_Detail_Study/`. [CP380 handoff](LAM_THIEN_CP380_FULLBODY_DETAIL_DRAFT.md).
+- [ ] **VISUAL QA NOT PASSED**: mặt, tóc, đồ trang sức, vải chưa đạt CANON. Không native production source HD, không painted underpaint/Spine/Android APK, giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP381:** artist-grade full-body painter redraw thật, ưu tiên face/hair/bodice likeness từ CANON, semantic layers và hidden underpaint đúng giải phẫu; preview xác nhận rồi mới làm facial expressions, wardrobe damage, rig và APK.
+
+---
+
+## CP381 — CANON fidelity review and true face-painting handoff (2026-10-30)
+
+- [x] Giữ CANON Lâm Thiển V2.1 nguyên byte, SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Không dùng hình nhân vật khác.
+- [x] So CP380 với CANON trên đúng tọa độ Front cho **mặt/tóc/thân áo**; xác định cả ba cần vẽ lại. Giá trị chẩn đoán RGB MAE **44,04/38,57/50,00**, SSIM **0,0397/0,1459/0,0849** (không phải thang duyệt thẩm mỹ).
+- [x] Trích **5 mẫu biểu cảm khuôn mặt + 8 phụ kiện nguyên pixel từ chính CANON sheet**, cho nguồn vẽ rõ hơn Front 217×458; ảnh đối chiếu vẫn CANON-only.
+- [x] Tạo workspace ORA **8 lớp** (3 painting layer hiện **RỖNG**, 3 hidden ROI, 1 hidden CP380, 1 visible enlarged CANON guide). Không nhận nhầm làm painting production/HD.
+- [x] **9/9 local PASS**, simulated public-source **3 PASS / 6 SKIP**, CRC PASS; ZIP 34 entries SHA `ce0f53516f41f9a9b84299607a9974b0b1c31586cbcb8f2cf63c33b66d1a6626`, Library `/Thanh Van Ky/Development/CP381_Canon_Face_Fidelity_Painting_Workspace/`. [CP381 handoff](LAM_THIEN_CP381_FACE_FIDELITY_PAINTING_HANDOFF.md).
+- [ ] **Visual QA NOT_PASSED / BLOCKED:** chưa có painted art mặt/tóc/thân áo thật, không Spine/APK, `sprite_paths={}`, `production_release.status=blocked_pending_art`.
+- [ ] **CP382:** vẽ lại master khuôn mặt đúng chuẩn từ 5 mẫu CANON, đặt cạnh ảnh chuẩn để duyệt; sau đó đến tóc/áo, tiếp tục hidden parts, 5 expressions, 4 clothing damage và rig/game.
+
+---
+
+## CP382 — Five exact CANON portraits source-guided ORA studies (2026-10-30)
+
+- [x] 5 crop biểu cảm **đúng byte pixel** từ ảnh Lâm Thiển CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Dùng nguồn CANON-only; người dùng không phải xét lại nhận diện.
+- [x] **5 ORA** × 13 lớp: 9 vùng source-guide ảnh gốc visible, 3 lớp SVG/PNG nét chân mày/mắt/miệng thử **ẩn**, 1 exact CANON guide ẩn. 45 part PNG và 15 SVG/PNG line-study. Mọi ORA ghép lại pixel-exact với crop CANON ở trạng thái đứng yên; polygon thô không phải native semantic rig/underpaint.
+- [x] **11/11 local tests PASS**; wrong SHA và 1-pixel modified expression bị reject trước output; ORA CRC PASS; workflow Github public chỉ 3 static PASS/8 private SKIP. ZIP **100 tệp** SHA256 `b1f874f4a130145b4f8d624499fe762df12b65b1f7f1a3c9d29407947f7205fd`, Library `/Thanh Van Ky/Development/CP382_Five_Expression_Source_Guides/`; [CP382 handoff](LAM_THIEN_CP382_FIVE_FACE_EXPRESSION_SOURCE_GUIDES.md).
+- [ ] **ART VẪN CHƯA VẼ LẠI ĐẠT CANON.** Tất cả mask là vùng source cắt thô, chưa tách anatomy/đồng bộ 5 expression; 15 nét SVG được vẽ mới nhưng chưa được duyệt và cố ý ẩn. Không có 5 portrait transparent dùng trong game, Spine/APK. Giữ `visual_qa=NOT_PASSED`, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP383:** chọn một biểu cảm làm master và vẽ lại **thật** khuôn mặt đủ chi tiết theo CANON, gửi preview so trực tiếp để xác nhận; sau đó mới các nét mặt tiếp, tóc/áo, underpaint toàn thân, chuyển động rig/Android APK.
+
+---
+
+## CP383 — CANON-only 5 static dialogue portraits and atlas staging (2026-10-30)
+
+- [x] Thể hiện đúng quyết định: **hình nhân vật cuối phải giống ảnh CANON gốc**, vector CP379–382 chỉ là technical studies; hiển thị chân dung tĩnh có thể dùng bitmap chính từ CANON, không coi bitmap này là rig hoạt ảnh.
+- [x] Từ CANON SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a` tạo 5 crop biểu cảm exact source (174/176×203), 5 inner crop xóa viền sheet 3px bằng crop trực tiếp; atlas **984×235** giữ nguyên RGB của từng crop, có JSON tọa độ pixel và ảnh QA.
+- [x] Preview hội thoại ngang 1600×900 chỉ dùng ảnh Lâm Thiển từ cùng CANON; **chỉ là mock UI tĩnh**, không phải screenshot APK.
+- [x] **9/9 local tests PASS**, simulated source-absent CI **3 PASS / 6 SKIP**, ZIP CRC PASS. Bundle **20 tệp** SHA256 `1d7938aa9d0f43e11b86b8658c4fd82f4985870e955c3bc15332d582d0330907` tại Library `/Thanh Van Ky/Development/CP383_Canon_Only_Static_Portrait_Staging/`. [Handoff](LAM_THIEN_CP383_CANON_STATIC_PORTRAITS_STAGING.md).
+- [ ] **Art/motion chưa đạt:** ảnh 174/176×203 không thành HD khi upscale, có nền bảng thiết kế, không tách semantic hair/skin/eye, chưa sprite animation/Spine/Android APK, `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP384:** vẽ master mặt thực sự chi tiết theo CANON, chuẩn bị underpaint và các biểu cảm thật; kiểm giống CANON và phê duyệt trước khi phát hành game art.
+
+---
+
+## CP384 — CANON source-exact editable eyes/mouth portrait and technical blink underpaint (2026-10-30)
+
+- [x] CANON V2.1 gốc 941×1672 RGBA SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, chọn biểu cảm Ngại ngùng 168×197 native. Không dùng nhân vật/ảnh tìm trên mạng khác.
+- [x] Tách mắt trái, mắt phải, miệng thành **3 PNG source-pixel/3 editable masks**; **1 base da inpaint kỹ thuật và 2 nét mắt nhắm thử ẩn**; ORA **7 lớp** với CANON hidden. Static mergedimage **100% pixel exact** với crop CANON (RGB và alpha). Nháy mắt DRAFT vẫn bị nhòe, **KHÔNG chấp nhận** làm game art.
+- [x] **10/10 local tests PASS**, public simulation **3 PASS / 7 SKIP**, ORA CRC PASS; ZIP **23 files** SHA256 `c35f7ee7495a6648b7814f3668d1b339d6d2c042eded3eb388064565ccc24ac4` Library `/Thanh Van Ky/Development/CP384_Canon_Exact_Face_Editable_Source/`. [CP384 handoff](LAM_THIEN_CP384_SOURCE_EXACT_FACE_EDITABLE_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**, image vẫn có nền infographic, chỉ native 168×197, chưa được họa sĩ vẽ mắt đóng/skin underpaint đủ đẹp, chưa art animator-ready, `production_release.status=blocked_pending_art`, `sprite_paths={}`. Không có Spine/APK mới.
+- [ ] **CP385:** artist hand paint eyelids/skin underlay theo cùng CANON, dọn nền/occlusion, test blink đúng hình, rồi tiếp tục các biểu cảm khác và full body. Không dùng inpaint tự động thay thế art chính thức.
+
+---
+
+## CP385 — Source-exact portrait and unapproved 5-frame blink test (2026-10-30)
+
+- [x] Lâm Thiển CANON V2.1 exact SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197 lấy đúng nguồn.
+- [x] Polygon ROI kỹ thuật chọn từng mắt, tách mắt trái/phải/miệng nguồn CANON; tạo skin-inpaint DRAFT và hai eyelid-closed strokes DRAFT. ORA 7 lớp với 3 lớp hidden. Static mergedimage và hai khung mở hoàn toàn source-exact.
+- [x] 5-frame blink nghiên cứu source-only, chưa artist authored intermediate (opacity 55% chỉ thử nghiệm). Da CP384 đổi 1660 pixel, CP385 đổi 1722 pixel so CANON; không đánh đồng con số với fidelity. **Visual QA NOT PASSED**.
+- [x] **10/10 local tests PASS**, simulated public **3 PASS / 7 SKIP**, ORA CRC PASS. Gói 26 tệp SHA `2a00604c1ad52c23a9e4b478b2b74b2f5f9c2cc18527b4d7fa18e789eabfa0e7` ở Library `/Thanh Van Ky/Development/CP385_Exact_Face_Blink_Draft/`. [CP385 report](LAM_THIEN_CP385_BLINK_SHAPE_STUDY.md).
+- [ ] Chưa có painter-quality closed eye / underpaint, portrait transparency, full face semantic rig, Spine hoặc APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP386:** Vẽ mắt nhắm và lớp da khuất *thực* đúng CANON; xin duyệt visual, sau đó mới kiểm chuyển động trong engine và hoàn thiện các biểu cảm.
+
+---
+
+## CP386 — CANON exact static / technical eyelid & cheek patch trial (2026-10-30)
+
+- [x] Giữ nguyên Lâm Thiển CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`. Crop Ngại ngùng 168×197 và khung mắt mở 0,6 **pixel-exact**; không dùng hình nhân vật thay thế.
+- [x] Vẽ nét mí kỹ thuật riêng 2 bên và mẫu màu da từ vùng má trong đúng mask mắt. Tạo 7-frame trial + ORA 7 lớp, **chưa là artist-painted rig**. 1390 pixel đổi trong mask/0 ngoài mask; không đo chất lượng từ số pixel.
+- [x] **10/10 local tests PASS**, public-mode **3 PASS / 7 SKIP**, ORA CRC PASS. ZIP 31 files SHA256 `7005dee6130b3b5189326316cbe46d7b78ce83e30502d21de26a8ebf00cf8505`, Library `/Thanh Van Ky/Development/CP386_Canon_Exact_Blink_Tech_Draft/`; [handoff](LAM_THIEN_CP386_CANON_BLINK_TECH_REVIEW.md).
+- [ ] **VISUAL QA NOT PASSED:** da phẳng/hồng chưa tự nhiên, mi và khóe mắt chưa match source; CP386 có điểm còn tệ hơn CP385. Không thay bản hiển thị game; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP387:** vẽ artist-quality mắt nhắm và da lớp ẩn *thực*, so trực tiếp CANON, xin duyệt visual master rồi mới 5-frame animation, face expressions còn lại, full-body, Spine/Android.
+
+---
+
+## CP387 — Eyelid occlusion QA: automated variants REJECTED (2026-10-30)
+
+- [x] Source SHA locked: Lâm Thiển V2.1 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`; đúng portrait Ngại ngùng 168×197, ngoài vùng mắt không đổi.
+- [x] Thử 3 cách da khuất: TELEA, Navier-Stokes, cheek donor. Thay đổi trong mắt **1390/1389/1390** pixel; ngoài mắt **0**. Review thực tế **FAIL** cả 3 (viền, bóng, da và tóc chưa đạt CANON), **không chọn bản nào**.
+- [x] Bảng ảnh CANON-only + ORA **7 lớp**: duy nhất CANON tĩnh visible, tất cả các draft/ROI hidden; mergedimage pixel-exact. `9/9 local tests PASS`; public `3 PASS / 6 SKIP`; ZIP 14 tệp SHA256 `297b3fcbe215c8167cfcf694863aef861b6d314dea7a5c04516b66c5b2671de0` lưu Library `/Thanh Van Ky/Development/CP387_Eyelid_Visual_Regression_Gate/`. [Handoff CP387](LAM_THIEN_CP387_EYELID_ART_ACCEPTANCE_GATE.md).
+- [ ] **Visual QA NOT PASSED / Android BLOCKED:** chưa có mắt nhắm/hair occlusion/skin underpaint thực sự đẹp, chưa rig/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP388:** vẽ trực tiếp mí nhắm/mi/da lớp ẩn có chất lượng họa sĩ từ CANON; preview native và zoom 4× trước xin duyệt. Sau duyệt mới vẽ animation intermediate và mở rộng 5 biểu cảm, toàn thân.
+
+---
+
+## CP388 — Six editable eyelid Bézier guides, exact CANON static (2026-10-30)
+
+- [x] Giữ đúng CANON V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197, không thay hình nhận diện/không dùng ảnh nhân vật khác.
+- [x] Tạo **6 SVG/6 PNG riêng** cho mí trên, mí dưới và nếp mí mỗi bên. Tất cả nét confined vào các ROI mắt. Tạo ORA **8 lớp**: CANON tĩnh visible, 6 DRAFT hidden, **1 layer da khuất cố ý trống** hidden; mergedimage pixel-exact.
+- [x] **8/8 local PASS**, simulated public GitHub **3 PASS/5 SKIP**, ORA CRC PASS, source nguyên byte, lỗi SHA được từ chối trước khi ghi. ZIP **23 files** SHA256 `15a871c6badffd548677cbd295774ae078f6f7b0e9070276b45ae7184cda4f0d`, Library `/Thanh Van Ky/Development/CP388_Manual_Eyelid_Linework_Draft/`; [CP388 handoff](LAM_THIEN_CP388_CANON_EYELID_LINEWORK_HANDOFF.md).
+- [ ] **VISUAL QA NOT PASSED**: chưa có da khuất, mắt nhắm thực hay chuyển động; không đánh đồng linework overlay với nghiệm thu. Giữ `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP389:** vẽ da khuất và closed-eye master có chất lượng nghệ thuật thật, xem trước cạnh CANON và xin duyệt trước khi làm khung chuyển động trung gian/Spine/APK.
+
+---
+
+## CP389 — Four editable closed-eye paint study layers, original face unchanged (2026-10-30)
+
+- [x] Lâm Thiển CANON V2.1 nguyên byte SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197 đúng nguồn; không ảnh khác.
+- [x] Tạo **4 lớp RGBA thực sự có pixel vẽ mới** (2 lớp da/bóng mí + 2 lớp đường mí/mi) và composite closed-eye DRAFT. ORA **6 lớp** (ảnh mở mắt CANON visible, 4 lớp vẽ mới + 1 preview closed hidden), mergedimage 100% CANON. Đây là raster painting **dựa trên hình học/gradient thủ công**, chưa đạt chất lượng họa sĩ hoặc HD.
+- [x] Test chỉ thay trong ROI: 1.680 pixel đổi (709/971 theo mắt trái/phải), **0 ngoài hai vùng mắt**; test nguồn sai SHA bị từ chối trước khi xuất. **9/9 local PASS**, public-mode **3 PASS / 6 SKIP**; ZIP 15 tệp SHA256 `3477bd468c0dd6bcf8ce1d7888526e8f71fbffc44d52b7c1da9a2fbcb69b6bc5` trong Library `/Thanh Van Ky/Development/CP389_Canon_Closed_Eye_Paint_Study/`. [CP389 handoff](LAM_THIEN_CP389_CLOSED_EYE_DRAFT_HANDOFF.md).
+- [ ] **Visual QA NOT_PASSED:** da quanh mắt còn phẳng và nét mi đơn giản; chưa được duyệt, chưa animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP390:** tinh chỉnh skin/crease/lash native theo CANON, gửi preview để duyệt, sau đó mới vẽ khung trung gian nháy mắt và tích hợp rig.
+
+---
+
+## CP390 — CANON skin-edge and eyelash line study, still not approved (2026-10-30)
+
+- [x] Sử dụng đúng CANON Lâm Thiển V2.1 SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197 native; preview chỉ dùng CANON/CP389/CP390 cùng nhân vật.
+- [x] Từ CP389 tạo 4 raster layer mới có chỉnh sửa thật: da hai mắt cân màu từ chính mép skin CANON + 2 lớp mi mảnh. ORA **10 lớp** có đúng 1 CANON original visible (các draft hidden), mergedimage 100% exact source. Không tuyên bố vẽ HD.
+- [x] Kiểm thử **9/9 local PASS**, public-source thiếu art **3 PASS/6 SKIP**; source SHA exact, 0 pixel ngoài 2 ROI mắt, CRC PASS. RGB feather-edge MAE (so ảnh **mở mắt**, chỉ để chẩn đoán) trái **14,9951→13,5437**, phải **11,4506→10,3900**; không phải painter score.
+- [x] ZIP 21 files SHA256 `d4fc57718179cf6c27ae6bdeb5f0b87ecb0b19947551c95e07067df02ed4b86f`; Library `/Thanh Van Ky/Development/CP390_Canon_Skin_Edge_Lash_Study/`; [CP390 handoff](LAM_THIEN_CP390_SKIN_EDGE_LASH_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**: da/mí nhắm còn chưa tự nhiên, không closed-eye master được duyệt, không rig/Spine/APK; `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP391:** bản vẽ mắt nhắm artist-quality độc lập từ CANON, so native/4×, xin duyệt trước khi tạo blink in-betweens và tích hợp game.
+
+---
+
+## CP391 — Six shadow, crease, tapered-lash painting overlays (2026-10-30)
+
+- [x] Lấy đúng Lâm Thiển CANON V2.1, source SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, crop Ngại ngùng 168×197; không thay nhận diện hay dùng ảnh tham khảo nhân vật khác.
+- [x] Bảo toàn bản eyes-open từng pixel; tạo **6 layer RGBA mắt** tách riêng, alpha clipped trong LEFT(31,94,70,124), RIGHT(84,70,130,107); tạo ORA **9 lớp** gồm duy nhất CANON visible, các draft CP390/CP391 hidden.
+- [x] CP391 closed-eye study khác CP390 1.113 pixel; bên ngoài vùng mắt 0 pixel đổi. Đây là **phân tích kỹ thuật**, không phải điểm fidelity hay bản blink được phê duyệt.
+- [x] **10/10 local tests PASS**, simulated GitHub checkout **3 PASS / 7 SKIP**. ZIP 18 entries CRC PASS SHA256 `d88e16702f3ec5ccdcb5d9f1215e3eb69e1c9277e9d0f4b0300e47cb098c734c`, Library `/Thanh Van Ky/Development/CP391_Canon_Eyelid_Paint_Study/`. [CP391 handoff](LAM_THIEN_CP391_CANON_EYELID_PAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED**: chưa có skin/eyelid closed-eye painter-grade thật; chưa khung trung gian, rig/Spine hay Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP392:** ưu tiên bản da/mí/mi nhắm vẽ thực đủ chất lượng CANON, nhận nghiệm thu ảnh preview trước khi tiếp tục chuyển động. Không cố dùng những lớp kỹ thuật còn thô để hiển thị trong game.
+
+---
+
+## CP392 — Source-retained eyelash occlusion variants (2026-10-30)
+
+- [x] Exact CANON V2.1 source SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197; CP391 history SHA locked. CANON-only previews and exact-byte original in bundle.
+- [x] **2 variants** gentle and near_closed; **4 independent source-sampled cheek occlusion patches** LEFT/RIGHT for both; original CANON eyelashes kept instead of completely drawn over. 8-layer ORA, only CANON visible, all drafts hidden. Not new painter-grade closed-eye art.
+- [x] Source differences: gentle 814px, near_closed 1087px, variants differ 748px; **0 outside eye ROI**. **11/11 local PASS**, simulated CI **4 PASS / 7 SKIP**, ZIP/ORA CRC PASS. ZIP 17 entries SHA256 `e90e0f7d3606bba73378422342469b449111ce6ca3e83f5c8f058ea6b2477da7` backed up at Library `/Thanh Van Ky/Development/CP392_Source_Retained_Blink_Study/`. [CP392 handoff](LAM_THIEN_CP392_SOURCE_RETAINED_BLINK_STUDY.md).
+- [ ] **VISUAL QA NOT_PASSED**: near-closed still has old lash/iris vestiges, incomplete hidden eyelid geometry. No true blink animation, art/Spine/Android APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP393:** manually paint fully closed-eyelid master incl. skin, fold, lashes with source fidelity; request user preview approval before any intermediate frames or game integration.
+
+---
+
+## CP393 — Source-locked closed-eye layer painting study (2026-10-30)
+
+- [x] CANON Lâm Thiển V2.1 exact SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, Ngại ngùng 168×197 source pixel exact. No style transfer or replacement character.
+- [x] **6 RGBA layers** separate SKIN/SHADOW/LASH left/right with hand-authored curves and same-source skin colors; 2 closed-eye draft composites. ORA **9 layers** with only CANON visible + 8 hidden draft layers, mergedimage pixel exact. Full draft changed 1659 source pixels, soft draft 1143, **0 changed outside eye ROI**.
+- [x] **10/10 private-source local PASS**, public source layout **4 PASS / 6 SKIP**, ORA ZIP CRC PASS, wrong source SHA rejected before output. Archive 18 files SHA256 `0efef0fa1d71fc5e3711f04f3aff26c0d2247ebe813f0aca6fb6017bdba6d959` at Library `/Thanh Van Ky/Development/CP393_Closed_Eyelid_Art_Study/`. [CP393 handoff](LAM_THIEN_CP393_CLOSED_EYE_PAINT_STUDY.md).
+- [ ] **Visual QA NOT_PASSED:** lashes and under-eye color not painter-grade, no native HD new artwork, no real animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP394:** artist-level closed-eye master on exact CANON, visual confirmation required before intermediate blink frames and game integration. Avoid repeated automated cheek sampling as release art.
+
+---
+
+## CP394 — CANON-pixel eyelash retention and localized skin underpaint (2026-10-30)
+
+- [x] Chỉ lấy đúng ảnh Lâm Thiển CANON V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, portrait Ngại ngùng 168×197 native. Không dùng ảnh người mẫu/nhân vật khác.
+- [x] **6 lớp RGBA kỹ thuật** trên hai mắt: donor da cùng source, vùng mi nguồn alpha, bóng crease mềm. ORA **10 lớp** (1 CANON chính thức visible, 9 draft/guide hidden), compositing nguyên nguồn khi mở mắt. Không phải 6 layer native anatomy HD.
+- [x] **11/11 local PASS**; public checkout **4 PASS/7 SKIP**; hai draft đổi 1766px/1481px so CANON và **0 pixel ngoài mắt**. 18 file ZIP SHA `5516199014cbea00942ffdf2570229cc3480b1f74ea807ef1071e6aae2d78115`, Library `/Thanh Van Ky/Development/CP394_Canon_Lash_Underpaint_Draft/`. [Handoff CP394](LAM_THIEN_CP394_CANON_LASH_UNDERPAINT_STUDY.md).
+- [ ] **VISUAL QA NOT_PASSED**: vẫn cảm giác mắt trái hé và da chưa khớp nét họa sĩ; không blink animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP395:** vẽ thủ công master mắt nhắm đầy đủ, xử lý mi trái/các bóng/da dưới mí thật, gửi preview CANON để duyệt; chỉ sau khi được duyệt mới làm khung hoạt ảnh.
+
+---
+
+## CP395 — Local left-eyelash source refinement, not visual acceptance (2026-10-30)
+
+- [x] Exact CANON Lâm Thiển V2.1 SHA `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`, approved +17%, portrait 168×197. Locked input CP394 closed-eye SHA `d3774068b0d9464a7c3c640b0f21289a812493765259365a3ee481cc8af326d9`.
+- [x] Hai bản mắt trái **TIGHT / SOFT** với 2 lớp RGBA mỗi bản (skin-local và source lash-local), 4 layer mới. So CP394 khác **133/151 pixel**, không đổi pixel ngoài mắt trái. CANON original visible trong ORA 9 layers, merged image pixel-exact.
+- [x] **11/11 local PASS**, public mode **4 PASS / 7 SKIP**, ORA/ZIP CRC PASS. ZIP 20 entries SHA256 `824e2508557faec6b446e5cbeef44367213199addc95e17905a3aeac1635b63a` lưu Library `/Thanh Van Ky/Development/CP395_Left_Eyelid_Refinement_Draft/`. [CP395 handoff](LAM_THIEN_CP395_LEFT_EYE_REFINEMENT.md).
+- [ ] **VISUAL QA NOT_PASSED**: cải thiện nhỏ chỉ ở source mask, không có closed-eye painted master đạt chuẩn, không 5 expression animation/Spine/APK. `production_release.status=blocked_pending_art`, `sprite_paths={}`.
+- [ ] **CP396 ưu tiên quyết định:** Không tiếp tục tăng số CP bằng chỉnh những mask vài pixel. Cần thực hiện đúng vẽ mỹ thuật chất lượng cao master mí nhắm/da khuất với CANON gốc, nghiệm thu trực quan trước animation/game.
+

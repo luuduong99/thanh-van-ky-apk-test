@@ -1,0 +1,42 @@
+name: CP335 facial art release gate
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'app/src/main/assets/character_expression_profiles.json'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt'
+      - 'tools/verify_expression_art_release.py'
+      - 'tests/art/test_cp335_release_gate.py'
+      - 'tests/art/test_cp335_reference_gate.py'
+      - 'docs/art/LAM_THIEN_CP335_VISUAL_GATE_MANIFEST.json'
+      - '.github/workflows/cp335-expression-production-gate.yml'
+      - 'app/src/main/assets/characters/**'
+  pull_request:
+    paths:
+      - 'app/src/main/assets/character_expression_profiles.json'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt'
+      - 'tools/verify_expression_art_release.py'
+      - 'tests/art/test_cp335_release_gate.py'
+      - 'tests/art/test_cp335_reference_gate.py'
+      - 'docs/art/LAM_THIEN_CP335_VISUAL_GATE_MANIFEST.json'
+      - 'app/src/main/assets/characters/**'
+
+jobs:
+  verify-unreleased-art-is-blocked:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image verification dependency
+        run: python3 -m pip install Pillow
+      - name: Verify sprite SHA and explicit production art approval
+        run: python3 tools/verify_expression_art_release.py --repo .
+      - name: Run positive and negative release-gate tests
+        run: python3 -m unittest discover -s tests/art -p 'test_cp335_release_gate.py' -v
+      - name: Keep CANON V2 and five expression references immutable
+        run: python3 -m unittest discover -s tests/art -p 'test_cp335_reference_gate.py' -v
+      # This is the metadata/asset release gate. Artist visual acceptance and
+      # real Android APK testing are separate, mandatory gates.

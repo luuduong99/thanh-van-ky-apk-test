@@ -1,0 +1,24 @@
+name: CP343 V2.1 editable regions source guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json'
+      - 'tests/art/test_cp343_region_metadata.py'
+      - '.github/workflows/cp343-region-source-guard.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP343_REGION_LAYER_MANIFEST.json'
+      - 'tests/art/test_cp343_region_metadata.py'
+jobs:
+  cp343-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify current user-approved V2.1 and underpaint-motion FAIL gate
+        run: python3 -m unittest discover -s tests/art -p 'test_cp343_region_metadata.py' -v
+      # Actual 10-layer ORA source images remain in Library ZIP and are
+      # tested locally (12 binary tests); CI metadata does NOT approve art/rig/APK.

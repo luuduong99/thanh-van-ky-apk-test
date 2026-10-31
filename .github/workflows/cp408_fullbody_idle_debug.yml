@@ -1,0 +1,39 @@
+name: CP408 Lâm Thiển multi-channel idle debug QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp408_simultaneous_idle.py'
+      - 'tests/art/test_cp408_simultaneous_idle.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdleMotionView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - '.github/workflows/cp408_fullbody_idle_debug.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp408_simultaneous_idle.py'
+      - 'tests/art/test_cp408_simultaneous_idle.py'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdleMotionView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - '.github/workflows/cp408_fullbody_idle_debug.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-not-art-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install art QA dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Test CP408 source lock and independent motion channels
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp408_simultaneous_idle.py' -v
+      - name: Protect production
+        run: |
+          echo 'Expected public: 7 static PASS, 7 private-source SKIP.'
+          echo 'Actual CANON and debug animation not bundled as production artwork.'
+          echo 'This is a single-bitmap mesh preview. No completed limb rig or approved blinking.'

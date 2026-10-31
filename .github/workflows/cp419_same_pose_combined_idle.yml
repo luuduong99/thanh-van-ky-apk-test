@@ -1,0 +1,31 @@
+name: CP419 same-pose idle and blink technical contract
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt'
+      - 'tests/art/test_cp419_same_pose_sync.py'
+      - '.github/workflows/cp419_same_pose_combined_idle.yml'
+  pull_request:
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - 'tests/art/test_cp419_same_pose_sync.py'
+      - '.github/workflows/cp419_same_pose_combined_idle.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test same-pose synchronized source contracts (private source tests SKIP)
+        run: python -m unittest discover -s tests/art -p 'test_cp419_same_pose_sync.py' -v
+      - name: Release gate
+        run: |
+          echo 'Expected 7 public PASS / 3 private CANON+atlas SKIP'
+          echo 'A single bitmap mesh and eyelid sprite are debug, not artist-approved rig'

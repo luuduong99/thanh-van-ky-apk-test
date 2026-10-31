@@ -1,0 +1,440 @@
+{
+  "schema_version": 2,
+  "character": "Lâm Thiển",
+  "updated_on": "2026-10-29",
+  "policy": "Active source of truth is latest_user_approved_design (CANON V2.1 PNG SHA f43046...); earlier V2/CP337-CP339 are archive, not active. Never claim an approved flat sheet is approved Spine or game art.",
+  "latest_user_approved_design": {
+    "id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+    "approved_on": "2026-10-29",
+    "approval_type": "explicit_user_chosen_final_superseding_visual_sheet",
+    "visual_reference_name": "LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+    "visual_reference_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "visual_reference_dimensions": [
+      941,
+      1672
+    ],
+    "visual_reference_mode": "RGBA",
+    "visual_reference_bytes": 3504804,
+    "library_backup_path": "/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/LAM_THIEN_CANON_V2_1_FINAL_20261029.png",
+    "documentation_path": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_2026_10_29.md",
+    "model_card_path": "docs/art/LAM_THIEN_MODEL_CARD_V2_1_FINAL.json",
+    "manifest_path": "docs/art/LAM_THIEN_CANON_V2_1_FINAL_MANIFEST.json",
+    "asset_type": "user_approved_9_16_flat_character_sheet_NOT_LAYERED_RIG",
+    "scope": [
+      "character_identity",
+      "full_body_shape",
+      "clothing_and_bodice",
+      "hair_accessories",
+      "front_side_back_threequarter",
+      "poses",
+      "five_core_expressions",
+      "damage_100_70_50_30"
+    ],
+    "body_scale_reference": {
+      "historical_plus_17_percent_already_integrated": true,
+      "reapply": false
+    },
+    "optional_trim_only": "minor redundant nonstructural tassels",
+    "damage_note": "30% must remain restrained; dirt, scuffs and tears as pictured, not more severe",
+    "note": "ACTIVE SINGLE SOURCE OF TRUTH. Supersedes V2 and CP339 user-selected older images as final design reference. Does not approve separate sprites or rig.",
+    "required_traits": [
+      "silver_lavender_hair_and_white_flower",
+      "recognizable_approved_face_and_amber_eyes",
+      "body_proportions_plus_17_percent_already_integrated",
+      "white_blue_gold_costume_bodice_neckline_and_covering_unchanged",
+      "consistent_silhouette_and_front_side_back_three_quarter_views",
+      "both_blue_shoe_toes_visible",
+      "five_individually_approved_expressions",
+      "garment_damage_100_70_50_30_from_final_sheet"
+    ],
+    "visual_reference_location": "Library:/Thanh Van Ky/Approved References/Lam_Thien_CANON_V2_1_FINAL_20261029/LAM_THIEN_CANON_V2_1_FINAL_20261029.png"
+  },
+  "latest_pending_preview": null,
+  "deprecated_visual_sources": [
+    "CP317_LamThien_Back_10Layer_RECONSTRUCTION_NOT_ORIGINAL.ora",
+    "lin_qian_back.png",
+    "CP318_Back_generated_concept",
+    "CP319_LamThien_Clean_Primary_Back_Review.png"
+  ],
+  "implementation": {
+    "design_reference_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+    "sprite_layers_complete": false,
+    "spine_rig_complete": false,
+    "physics_approved": false,
+    "apk_integrated": false
+  },
+  "archived_approved_designs": [
+    {
+      "id": "lam_thien_2026_10_27_design_requirements",
+      "approved_on": "2026-10-27",
+      "approval_type": "confirmed_requirements_and_prior_visual_reference",
+      "visual_source_status": "original_CP251_Back_not_retrieved",
+      "required_traits": [
+        "long_silver_hair",
+        "white_pale_blue_gold_costume",
+        "symmetrical_hip_cutouts",
+        "defined_rear_silhouette",
+        "character_specific_plus_17_percent_upper_body_guideline",
+        "tall_balanced_proportions"
+      ],
+      "visual_reference_location": null,
+      "note": "Do not replace known user-approved requirements with old flat Back PNG or CP317 proxy. Exact pixel measurements unavailable."
+    },
+    {
+      "id": "lam_thien_visual_reference_approved_2026_10_28",
+      "approved_on": "2026-10-28",
+      "approval_type": "explicit_user_confirmed_approved_visual_sheet",
+      "visual_source_status": "verified_stored_google_drive_and_library",
+      "visual_reference_location": "https://drive.google.com/file/d/10jKNq-VL62sv1gez5PHlVT9QKyJp_Cvd/view?usp=drivesdk",
+      "visual_reference_name": "TVK_LamThien_Approved_Reference_20261028.png",
+      "visual_reference_sha256": "4b6cbf29ee8aef6aa2d927e7bb89428a9fda5bca1bb67a3f1c7b08e3a94129fd",
+      "visual_reference_dimensions": [
+        1672,
+        941
+      ],
+      "library_backup_path": "/Thanh Van Ky/Approved References/TVK_LamThien_Approved_Reference_20261028.png",
+      "documentation_path": "docs/art/LAM_THIEN_APPROVED_REFERENCE_2026_10_28.md",
+      "asset_type": "flat_RGB_concept_sheet_not_layered_rig",
+      "required_traits": [
+        "long_silver_hair",
+        "white_pale_blue_gold_costume",
+        "symmetrical_hip_cutouts",
+        "defined_rear_silhouette",
+        "character_specific_plus_17_percent_upper_body_guideline",
+        "tall_balanced_proportions",
+        "restrained_gold_ornamentation",
+        "consistent_bust_waist_hip_proportions_in_all_views",
+        "approved_indoor_bed_chair_wall_pose_sheet"
+      ],
+      "note": "Use this exact approved visual sheet for Lam Thien. The prior +17% is Lam Thien-specific; do not infer exact pixel ratio from poster. AI-generated numerical profile fields are illustrative and not canonical. This art approval does not imply Spine/physics/APK approval.",
+      "superseded_by": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "archived_on": "2026-10-28"
+    },
+    {
+      "id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "approved_on": "2026-10-28",
+      "approval_type": "explicit_user_confirmed_superseding_visual",
+      "visual_source_status": "verified_stored_google_drive_and_library",
+      "visual_reference_location": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+      "visual_reference_name": "TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+      "visual_reference_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+      "visual_reference_dimensions": [
+        1672,
+        941
+      ],
+      "visual_reference_mode": "RGBA",
+      "visual_reference_bytes": 3747713,
+      "library_backup_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+      "documentation_path": "docs/art/LAM_THIEN_CANON_BODY_V2_2026_10_28.md",
+      "model_card_path": "docs/art/LAM_THIEN_MODEL_CARD_V2.json",
+      "asset_type": "flat_RGBA_concept_sheet_not_layered_rig",
+      "required_traits": [
+        "long_silver_hair",
+        "white_pale_blue_gold_costume",
+        "symmetrical_hip_cutouts",
+        "defined_rear_silhouette",
+        "character_specific_plus_17_percent_upper_body_guideline",
+        "tall_balanced_proportions",
+        "restrained_gold_ornamentation",
+        "consistent_bust_waist_hip_proportions_in_all_views",
+        "approved_indoor_bed_chair_wall_pose_sheet",
+        "soft_silk_bodice_without_heavy_gold_edge_trim",
+        "reduced_gold_chain_and_border_density",
+        "approved_v2_bust_waist_hip_visual_silhouette",
+        "bust_waist_hips_consistent_across_views"
+      ],
+      "body_scale_reference": {
+        "bust_percent_of_v2": 100,
+        "waist_percent_of_v2": 100,
+        "hip_percent_of_v2": 100,
+        "height_percent_of_v2": 100,
+        "absolute_dimensions_from_image": "not_measured",
+        "historical_plus_17_percent_already_in_approved_reference": true
+      },
+      "note": "Visual image and SHA-256 authoritative; optional B/W/H mnemonic 102/60/110 is unmeasured and not real or separately approved measurement. Reference supersedes old exterior model but not global expression/pose/wardrobe/state rules. No completed rig/APK implied.",
+      "superseded_by": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29"
+    }
+  ],
+  "archived_previews": [
+    {
+      "id": "CP318_Back_generated_concept",
+      "approval_status": "superseded",
+      "review_image_name": "CP318_LamThien_Back_NEW_DESIGN_REVIEW_NOT_APPROVED.png",
+      "image_sha256": "29bca1bb136394bcca3b31f05b0c4f43e8dbe15766f921436d2a27649e729e26",
+      "dimensions": [
+        725,
+        981
+      ],
+      "kind": "flat_RGB_concept_not_sprite_or_rig",
+      "review_board_name": "CP319_LamThien_Clean_Primary_Back_Review.png",
+      "ready_for_approval": true,
+      "archived_reason": "superseded_by_approved_2026_10_28_visual_reference"
+    }
+  ],
+  "latest_outfit_damage_decision": {
+    "id": "lam_thien_outfit_damage_chosen_2026_10_28",
+    "date": "2026-10-28",
+    "user_decision": "confirmed_choice",
+    "source_status": "verified_user_uploaded_two_png_reference_sheets",
+    "source_blob_url_for_provenance_only": "blob:https://chatgpt.com/8d8b9f33-3a9b-47c6-a677-c31dd0dcfccc",
+    "verified_asset_url": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
+    "image_sha256": "96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2",
+    "note": "Verified two user-uploaded PNG references. These reference sheets do not constitute layered sprites or rig/APK; base body remains separately approved.",
+    "base_body_design_reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "revised_damage_guideline": "moderate_damage_replacing_earlier_fixed_plus_20_percent",
+    "durability_levels": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "damage_remaining_covering_fabric_at_30": true,
+    "damage_and_wardrobe_are_independent": true,
+    "preserve_state_across_poses": true,
+    "apply_to_poses": [
+      "front",
+      "back",
+      "side",
+      "front_three_quarter",
+      "back_three_quarter",
+      "bed_kneel_forward",
+      "bed_recline",
+      "bed_side_lying",
+      "bed_sit",
+      "chair_sit",
+      "wall_lean"
+    ],
+    "include_contextual_expression_and_action": true,
+    "documented_in": "docs/art/LAM_THIEN_CLOTHING_VARIANT_APPROVAL_2026_10_28.md",
+    "production_art_verified": false,
+    "image_dimensions": [
+      1672,
+      941
+    ],
+    "reference_images": [
+      {
+        "role": "expression_action_pose_wardrobe_damage",
+        "name": "TVK_LamThien_Expression_Action_Pose_Outfit_Approved_20261028.png",
+        "url": "https://drive.google.com/file/d/1M-6KIEeon7HX4Qn56UlhGMfV76Lr-sN5/view?usp=drivesdk",
+        "sha256": "96caa07b59abd998f905dc19da732a3ebe455ab50863d934865da9a4eace94b2",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      {
+        "role": "art_production_roadmap",
+        "name": "TVK_LamThien_Production_Roadmap_Approved_20261028.png",
+        "url": "https://drive.google.com/file/d/1ZgMB8nkRlkar3-MYCrH32uQaYxO29S5Q/view?usp=drivesdk",
+        "sha256": "380d21c2b8f6e862ce7b7a9f4b751e8625716a9c02b06b3bb672e4d0dc49b31a",
+        "dimensions": [
+          1672,
+          941
+        ]
+      }
+    ],
+    "wardrobe_last_stage_persists_across_all_poses": true,
+    "wardrobe_last_stage_internal_id_proposed": "private_fantasy",
+    "no_fallback_to_default_art_when_variant_pose_missing": true,
+    "reference_document": "docs/art/LAM_THIEN_EXPRESSION_ACTION_REFERENCE_2026_10_28.md"
+  },
+  "approved_expression_profile": {
+    "id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "approved_on": "2026-10-29",
+    "approval_type": "explicit_user_approved_preview",
+    "status": "approved_facial_expression_reference_only",
+    "character_id": "lin_qian",
+    "source_filename": "TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "source_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+    "source_dimensions": [
+      1536,
+      1024
+    ],
+    "source_mode": "RGB",
+    "source_library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Expressions_20261029/TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "expression_ids": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "documentation_path": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md",
+    "metadata_path": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json",
+    "facial_layers_complete": false,
+    "spine_animations_complete": false,
+    "apk_verified": false,
+    "precedence": "body_identity_and_costume_follow_latest_user_approved_design; this source governs expression style only"
+  },
+  "global_expression_standard": {
+    "status": "approved_shared_process_not_shared_face_art",
+    "file": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+    "policy": "Adapt intensity and cues to each character's own approved face, personality and context; review each character separately; no copying Lam Thien body or face"
+  },
+  "runtime_expression_integration": {
+    "checkpoint": "CP324",
+    "implemented_on": "2026-10-29",
+    "status": "state_selector_and_safe_sprite_resolver_implemented_not_art_integrated",
+    "profile_source": "app/src/main/assets/character_expression_profiles.json",
+    "approved_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "selector_source": "app/src/main/java/vn/thanhvanky/prototype/CharacterInteractionActivity.kt",
+    "resolver_source": "app/src/main/java/vn/thanhvanky/prototype/CharacterExpressionCatalog.kt",
+    "test_source": "tests/art/test_cp324_expression_runtime.py",
+    "handoff": "docs/art/LAM_THIEN_CP324_EXPRESSION_RUNTIME_HANDOFF.md",
+    "approved_expression_count": 5,
+    "neutral_reset_is_not_sixth_approved_expression": true,
+    "sprite_paths_registered": 0,
+    "facial_art_approved_for_rig": false,
+    "spine_verified": false,
+    "apk_built_and_verified": false
+  },
+  "latest_technical_face_art_checkpoint": {
+    "checkpoint": "CP337",
+    "date": "2026-10-29",
+    "status": "generated_front_three_quarter_rejected_by_user_for_body_and_costume_drift",
+    "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "generated_front_task_id": "880ac92b-bf38-48ae-bd33-e7fde597efd8",
+    "generated_three_quarter_task_id": "263c4531-2b33-4f2a-9ef5-5f5029a5b450",
+    "generated_front_image_exists": true,
+    "generated_three_quarter_image_exists": true,
+    "both_candidate_visuals_approved": false,
+    "user_qa_failure_reason": "Body proportions and clothing differ significantly from approved CANON V2; user expressed concern about fidelity.",
+    "candidate_reuse_for_3d_or_spine": false,
+    "candidate_use_in_game": false,
+    "canonical_body_and_costume_locked": true,
+    "canonical_plus_17_percent_already_applied": true,
+    "production_front_master_ready": false,
+    "production_three_quarter_master_ready": false,
+    "artist_drawn_semantic_expression_layers_complete": false,
+    "spine_verified": false,
+    "apk_verified": false,
+    "approved_sprite_paths_registered": 0,
+    "runtime_art_release_status": "blocked_pending_art",
+    "handoff": "docs/art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md",
+    "next": "Stop unconstrained portrait generation. Preserve exact V2 full-body/costume, make body-and-wardrobe-fidelity visual gate, redraw head using original V2 then only make matched 3/4 and five expressions."
+  },
+  "latest_reference_preparation_checkpoint": {
+    "checkpoint": "CP338",
+    "date": "2026-10-29",
+    "status": "canon_locked_native_reference_crops_delivered_optional_minor_tassels_trim_allowed",
+    "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+    "user_authorized_minor_fringe_simplification": true,
+    "trim_only": "surplus small free-hanging nonstructural tassel/fringe tips; optional if art/rig complexity",
+    "design_locked": "body silhouette +17%; face/amber eyes; primary garment cut/coverage/neckline; white-blue-gold; hair flowers; signature ribbons and jewelry",
+    "actual_canon_image_modified": false,
+    "native_source_crop_references_created": 22,
+    "native_canon_pixel_exact_crops": 17,
+    "approved_expression_reference_crops": 5,
+    "package_sha256": "a17de705436b5ad814507a8dc23135021d2ebd8ceb4d91027df8643df93d6757",
+    "library_path": "/Thanh Van Ky/Development/CP338_Canon_Costume_Trim/",
+    "manifest": "docs/art/LAM_THIEN_CP338_CANON_TRIM_MANIFEST.json",
+    "handoff": "docs/art/LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md",
+    "production_art_approved": false,
+    "spine_rig_verified": false,
+    "apk_verified": false,
+    "next": "draw native layered face and clothing to original CANON V2; optionally trim only nonessential fringe with user-visible side-by-side QA"
+  },
+  "user_selected_final_visual_reference_roles_CP339": {
+    "date": "2026-10-29",
+    "source_priority": "user explicitly selected images 2 and 3 as final note references; image 1 restricted to chest bodice cut and upper torso proportion adjustment",
+    "image_2_body_wardrobe": {
+      "sha256": "3cd8977383ba2fd2563a8f3c07aa85e5a7af4572d37c0fdb80d0e52cba0a3501",
+      "pixel_size": [
+        1536,
+        1024
+      ],
+      "status": "user_selected_final_reference_for_body_costume_angles_poses_damage",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_2_MODEL_BODY_WARDROBE_BASE.png"
+    },
+    "image_3_facial_expressions": {
+      "sha256": "186ec1fef284d702229af9e10c6d27a7f3e27b664b22f204863a3f20469d6a50",
+      "pixel_size": [
+        1536,
+        1024
+      ],
+      "status": "user_selected_final_five_emotions_direction_only",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_3_FIVE_EXPRESSIONS_REFERENCE.png"
+    },
+    "image_1_limited_bodice_reference": {
+      "sha256": "5bd69fff139c4908d122786655babbf08301e345388f1fe6fa6d6b42e21e3d99",
+      "pixel_size": [
+        1400,
+        1540
+      ],
+      "usage": "REFERENCE ONLY: bodice/chest garment styling and upper-torso/bust proportion, not a replacement design",
+      "source_library_path": "/Thanh Van Ky/Approved References/CP339_User_Three_Reference_Roles/CP339_IMAGE_1_BODICE_REFERENCE_ONLY.png"
+    },
+    "revision_status": "requested_changes_under_review_preview_required_before_approving_revised_game_art",
+    "approved_model_style_reference_is_image_2": true,
+    "approved_emotion_style_reference_is_image_3": true,
+    "historical_registry_sha_are_archived_historical_canon_evidence_not_active_user_uploaded_reference_files": true,
+    "game_sprite_release_still_blocked": true,
+    "no_spine_or_apk_complete": true,
+    "handoff": "docs/art/LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md",
+    "note": "Do not change existing runtime SHA/source mappings until production revision is artist-approved and actual independent sprite/rig assets exist.",
+    "superseded_by": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29"
+  },
+  "active_final_canonic_sheet_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+  "active_five_expression_source": {
+    "id": "LT_EXPRESSIONS_V2_1_EMBEDDED_APPROVED_2026_10_29",
+    "source_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "emotions": [
+      "shy",
+      "angry",
+      "pain",
+      "embarrassed",
+      "alluring"
+    ],
+    "embedded_in_current_final_sheet": true,
+    "previous_five_expression_reference_remains_archived_for_history": true
+  },
+  "previous_approval_sources_archived": {
+    "v2_2026_10_28": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "cp339_three_file_role_review": "docs/art/LAM_THIEN_CP339_REFERENCE_PRIORITY_AND_BODICE_ADJUSTMENT.md",
+    "cp338_crop_sheet": "docs/art/LAM_THIEN_CP338_CANON_PRESERVATION_HANDOFF.md",
+    "cp337_rejected_draft_pair": "docs/art/LAM_THIEN_CP337_FRONT_THREE_QUARTER_WORK_ORDER.md",
+    "not_authoritative_for_new_art": true
+  },
+  "latest_visual_checkpoint": {
+    "checkpoint": "CANON_V2_1_USER_FINAL_2026_10_29",
+    "reference_approved": true,
+    "reference_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "editable_production_layered_art_complete": false,
+    "rig_complete": false,
+    "apk_verified": false,
+    "runtime_release": "blocked_pending_art",
+    "next_plan": "docs/art/LAM_THIEN_PLAN_AFTER_CANON_V2_1.md"
+  },
+  "latest_implementation_checkpoint": {
+    "checkpoint": "CP343",
+    "date": "2026-10-29",
+    "status": "source_pixel_exact_ten_region_editable_ora_nonproduction_underpaint_motion_fail",
+    "canon_id": "LT_CANON_V2_1_FINAL_USER_APPROVED_2026_10_29",
+    "canon_sha256": "f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a",
+    "native_front_px": [
+      215,
+      449
+    ],
+    "region_png_count": 10,
+    "openraster_visible_layers": 10,
+    "rest_pose_visible_pixels_exact": true,
+    "source_colors_changed": false,
+    "motion_holes_on_small_arm_move": 1798,
+    "motion_new_protruding_pixels": 1098,
+    "articulation_gate": "FAIL_no_hidden_underpaint",
+    "artist_native_repaint_complete": false,
+    "handdrawn_hidden_cloth_skin_ready": false,
+    "riggable_layers_ready": false,
+    "spine_verified": false,
+    "apk_verified": false,
+    "production_release": "blocked_pending_art",
+    "sprite_paths_registered": 0,
+    "local_binary_tests_passed": 12,
+    "package_sha256": "b61169d5b3fdb04dbbbd38df3ab080b2662e9332fabcc9c6ecaf660691ce9519",
+    "library_backup": "/Thanh Van Ky/Development/CP343_Canon_V2_1_Front_Region_Layers/",
+    "handoff": "docs/art/LAM_THIEN_CP343_REGION_LAYER_HANDOFF.md",
+    "next": "CP344 painter redrawn shoulder sleeve and concealed skin cloth underpaint + no-hole two-frame motion test"
+  }
+}

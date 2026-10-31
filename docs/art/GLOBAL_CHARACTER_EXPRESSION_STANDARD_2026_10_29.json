@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "policy_id": "TVK_FIVE_EMOTIONS_CHARACTER_ADAPTIVE_2026_10_29",
+  "approved_on": "2026-10-29",
+  "approval_status": "approved_global_expression_direction",
+  "applies_to": "adult_main_cast_and_characters_where_emotions_fit_personality_and_story",
+  "emotion_ids": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "visual_separation_rules": {
+    "shy_vs_embarrassed": "Different gaze aversion, blush strength and head tilt; not blush-only",
+    "angry_vs_pain": "Angry has a sharp directed gaze/brow compression; pain shows squint and inward brow tension",
+    "alluring_vs_shy": "Alluring conveys confident intentional eye contact and subtle smile; shy avoids gaze"
+  },
+  "per_character_requirements": {
+    "own_canonical_face_hair_body_costume": true,
+    "preserve_personality_specific_expression_intensity": true,
+    "no_copying_lam_thien_face_or_body": true,
+    "requires_individual_preview_approval": true,
+    "expression_independent_of_wardrobe_integrity_pose": true,
+    "no_alluring_for_minors_or_inappropriate_contexts": true,
+    "visual_approval_not_equal_to_sprite_rig_apk_approval": true
+  },
+  "examples": {
+    "lin_qian": {
+      "face_canon": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "approved_expression_profile": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+      "status": "expression_preview_approved"
+    },
+    "to_nguyet_ly": {
+      "face_canon": "own_character_specific_canon",
+      "approved_expression_profile": null,
+      "status": "character_specific_five_expression_preview_required"
+    }
+  },
+  "source_docs": [
+    "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+    "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.md"
+  ]
+}

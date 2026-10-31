@@ -1,0 +1,35 @@
+name: CP404 Lâm Thiển eyelid artistic-source QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp404_artistic_eyelid.py'
+      - 'tests/art/test_cp404_artistic_eyelid.py'
+      - '.github/workflows/cp404_eyelid_art_review.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp404_artistic_eyelid.py'
+      - 'tests/art/test_cp404_artistic_eyelid.py'
+      - '.github/workflows/cp404_eyelid_art_review.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-lock-not-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install art tools for public-only static tests
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Run all public tests (private CANON intentionally not checked in)
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp404_artistic_eyelid.py' -v
+      - name: Visual acceptance and APK release remain blocked
+        run: |
+          echo 'Expected: 5 public source/static PASS, 10 private CANON tests SKIP.'
+          echo 'Pass is NOT painter-grade approval: CP404 drafts have NOT surpassed CP402 art review.'
+          echo 'visual_qa=NOT_APPROVED; sprite_paths={}; apk_integrated=false.'

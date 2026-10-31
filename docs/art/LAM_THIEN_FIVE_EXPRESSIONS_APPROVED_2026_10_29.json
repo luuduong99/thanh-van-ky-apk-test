@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "character_id": "lin_qian",
+  "approved_on": "2026-10-29",
+  "approval_status": "explicit_user_approved_expression_preview",
+  "expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_body_priority": "body_face_hair_costume_and_proportions",
+  "expression_preview_priority": "emotion_specific_eyes_brows_mouth_blush_and_head_tilt",
+  "source": {
+    "filename": "TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+    "dimensions_px": [
+      1536,
+      1024
+    ],
+    "mode": "RGB",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Expressions_20261029/TVK_LamThien_5_Expressions_APPROVED_20261029.png",
+    "source_kind": "flat_approved_expression_reference_not_layered_asset"
+  },
+  "approved_expressions": [
+    {
+      "id": "shy",
+      "name_vi": "Ngại ngùng",
+      "gaze": "slightly_away",
+      "brows": "gentle_inner_lift",
+      "mouth": "small_part_or_soft_press",
+      "blush": "light",
+      "head": "slight_down",
+      "distinct_from": "embarrassed: softer gaze and blush"
+    },
+    {
+      "id": "angry",
+      "name_vi": "Tức giận",
+      "gaze": "direct_and_sharp",
+      "brows": "pronounced_furrow",
+      "mouth": "firm_press_or_protest",
+      "blush": "minimal",
+      "head": "upright",
+      "distinct_from": "pain: outward confrontation versus pain inward tension"
+    },
+    {
+      "id": "pain",
+      "name_vi": "Đau đớn",
+      "gaze": "squint_or_partial_close",
+      "brows": "inner_distress_curve",
+      "mouth": "parted_compressed_pain",
+      "blush": "natural",
+      "head": "slightly_dropped",
+      "distinct_from": "angry: eyes contracted, brows raised inward"
+    },
+    {
+      "id": "embarrassed",
+      "name_vi": "Xấu hổ",
+      "gaze": "strongly_away_down",
+      "brows": "soft_inner_curve",
+      "mouth": "tiny_trembling_press",
+      "blush": "clear_strong",
+      "head": "more_down_than_shy",
+      "distinct_from": "shy: stronger gaze aversion, blush and head angle"
+    },
+    {
+      "id": "alluring",
+      "name_vi": "Quyến rũ",
+      "gaze": "deliberate_direct_or_side",
+      "brows": "relaxed",
+      "eyelids": "half_lowered",
+      "mouth": "subtle_asymmetric_smile",
+      "blush": "very_light",
+      "head": "soft_tilt",
+      "distinct_from": "shy: confident intentional eye contact"
+    }
+  ],
+  "applies_to_character_ids": [
+    "lin_qian"
+  ],
+  "global_policy_path": "docs/art/GLOBAL_CHARACTER_EXPRESSION_STANDARD_2026_10_29.md",
+  "runtime_state_key": "expression",
+  "preserve_other_keys": [
+    "wardrobe",
+    "integrity",
+    "pose",
+    "action"
+  ],
+  "art_qa": {
+    "approved_visual_direction": true,
+    "facial_layer_sprites_complete": false,
+    "spine_animation_complete": false,
+    "android_apk_verified": false
+  },
+  "note": "Do not supersede LT_CANON_BODY_REF_2026-10-28_V2; approved expression preview guides facial expression ONLY."
+}

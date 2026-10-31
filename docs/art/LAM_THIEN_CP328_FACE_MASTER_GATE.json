@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP328",
+  "date": "2026-10-29",
+  "status": "canonical_face_color_reference_verified_production_face_art_pending",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_body_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "approved_expression_ids": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "native_face_size_px": [
+    230,
+    114
+  ],
+  "source_roi_original_poster_xyxy": [
+    1160,
+    0,
+    1390,
+    114
+  ],
+  "v2_iris_color_audit": {
+    "status": "heuristic_pass",
+    "native_crop_px": [
+      230,
+      114
+    ],
+    "face_source_bbox_xyxy": [
+      1160,
+      0,
+      1390,
+      114
+    ],
+    "eyes": [
+      {
+        "eye": "eye_image_left",
+        "roi_xyxy": [
+          69,
+          57,
+          105,
+          88
+        ],
+        "sample_area_px": 1116,
+        "amber_pixels": 124,
+        "blue_pixels": 0,
+        "amber_median_rgb": [
+          246,
+          188,
+          160
+        ],
+        "amber_median_hsv_cv": [
+          9,
+          90,
+          246
+        ],
+        "heuristic_pass": true
+      },
+      {
+        "eye": "eye_image_right",
+        "roi_xyxy": [
+          130,
+          30,
+          176,
+          61
+        ],
+        "sample_area_px": 1426,
+        "amber_pixels": 105,
+        "blue_pixels": 0,
+        "amber_median_rgb": [
+          249,
+          189,
+          161
+        ],
+        "amber_median_hsv_cv": [
+          9,
+          89,
+          249
+        ],
+        "heuristic_pass": true
+      }
+    ],
+    "warning": "This is an amber-vs-blue drift guard only, not a full art approval or identity match."
+  },
+  "artifacts": {
+    "face_crop_sha256": "405b18a6be6c08e777ea1b53fb7ab838031e517c7e726a950b2d447ac1e1b6ac",
+    "qa_board_sha256": "482c3b984f498dd0242994ce6a8673a9a577886b8dc242cf88241aea29037d76"
+  },
+  "validation": {
+    "local_unit_tests_passed": 9,
+    "candidate_color_guard_available": true,
+    "requires_artist_annotated_iris_rois": true,
+    "manual_review_still_required": true,
+    "biometric_or_identity_recognition": false,
+    "purpose": "Reject obvious blue/cyan iris drift from V2 in artist-supplied renders"
+  },
+  "approved_body_and_five_expression_direction_unchanged": true,
+  "new_generated_cp328_illustrations_approved": false,
+  "production_high_resolution_face_master_ready": false,
+  "clean_underpaint_artist_approved": false,
+  "five_expression_independent_face_sprites_ready": false,
+  "spine_animation_verified": false,
+  "android_apk_verified": false,
+  "next_checkpoint": "CP329 true face redraw on V2 + real alpha attachments / art review before rig",
+  "registered_android_asset_paths": 0
+}

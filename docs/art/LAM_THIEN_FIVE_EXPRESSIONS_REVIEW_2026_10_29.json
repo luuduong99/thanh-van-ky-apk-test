@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "character_id": "lin_qian",
+  "date": "2026-10-29",
+  "canonical_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "status": "archived_review_superseded_by_approved_2026_10_29",
+  "visual_preview": {
+    "filename": "LAM_THIEN_5_EXPRESSIONS_PREVIEW_PENDING_20261029.png",
+    "sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+    "size_px": [
+      1536,
+      1024
+    ],
+    "library_path": "/Thanh Van Ky/Development/Lam_Thien_Expression_5_20261029/LAM_THIEN_5_EXPRESSIONS_PREVIEW_PENDING_20261029.png",
+    "type": "flat_RGB_reference_not_sprite"
+  },
+  "expressions": [
+    {
+      "id": "shy",
+      "name_vi": "Ngại ngùng",
+      "gaze": "averted_briefly",
+      "eyelids": "soft_open",
+      "brow": "slightly_inner_raised",
+      "mouth": "small_part_or_gentle_press",
+      "blush": "light",
+      "head": "slight_down_tilt",
+      "intensity": "soft"
+    },
+    {
+      "id": "angry",
+      "name_vi": "Tức giận",
+      "gaze": "direct_sharp",
+      "eyelids": "upper_lid_compressed",
+      "brow": "firm_inner_furrow",
+      "mouth": "firm_press_or_small_protest",
+      "blush": "minimal",
+      "head": "upright",
+      "intensity": "strong"
+    },
+    {
+      "id": "pain",
+      "name_vi": "Đau đớn",
+      "gaze": "squint_or_partial_close",
+      "eyelids": "tight",
+      "brow": "raised_inner_distress",
+      "mouth": "parted_with_pain",
+      "blush": "none_or_natural",
+      "head": "slight_lower",
+      "intensity": "medium_strong"
+    },
+    {
+      "id": "embarrassed",
+      "name_vi": "Xấu hổ",
+      "gaze": "strong_aversion",
+      "eyelids": "lowered",
+      "brow": "soft_inner_curve",
+      "mouth": "small_trembling_press",
+      "blush": "strong",
+      "head": "down_more_than_shy",
+      "intensity": "stronger_than_shy"
+    },
+    {
+      "id": "alluring",
+      "name_vi": "Quyến rũ",
+      "gaze": "deliberate_direct_or_side_glance",
+      "eyelids": "half_lowered",
+      "brow": "relaxed",
+      "mouth": "subtle_asymmetric_smile",
+      "blush": "very_light",
+      "head": "soft_tilt",
+      "intensity": "confident_subtle"
+    }
+  ],
+  "preserve_independent_state_keys": [
+    "wardrobe",
+    "integrity",
+    "pose",
+    "expression",
+    "action"
+  ],
+  "sprite_art_ready": false,
+  "rig_animated": false,
+  "apk_integrated": false,
+  "approval_note": "Specification and image preview pending user approval; do not replace CANON V2 or existing registered art.",
+  "superseded_by": "docs/art/LAM_THIEN_FIVE_EXPRESSIONS_APPROVED_2026_10_29.json",
+  "approved_expression_reference_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "note": "DO NOT use prior pending status for current design. The same image was explicitly approved 2026-10-29 and moved to Approved References; see approved JSON."
+}

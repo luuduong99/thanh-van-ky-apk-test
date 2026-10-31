@@ -1,0 +1,28 @@
+name: CP322 art alpha trial validation
+
+on:
+  push:
+    branches:
+      - map-2d-prototype
+    paths:
+      - 'docs/art/LAM_THIEN_CP322_ALPHA_TRIAL_MANIFEST.json'
+      - 'tools/validate_lam_thien_cp322_proxy.py'
+      - 'tests/art/test_lam_thien_cp322_proxy.py'
+      - '.github/workflows/cp322-art-alpha-validation.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP322_ALPHA_TRIAL_MANIFEST.json'
+      - 'tools/validate_lam_thien_cp322_proxy.py'
+      - 'tests/art/test_lam_thien_cp322_proxy.py'
+
+jobs:
+  cp322-alpha-contract:
+    name: Validate unapproved-alpha safety contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run unit tests on synthetic PNG fixtures
+        run: python -m unittest discover -s tests/art -p 'test_lam_thien_cp322_proxy.py' -v

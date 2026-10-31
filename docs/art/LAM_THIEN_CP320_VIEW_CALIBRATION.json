@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "character_id": "lin_qian",
+  "checkpoint": "CP320",
+  "updated_at": "2026-10-28",
+  "status": "calibration_contract_prepared_not_art_approved",
+  "canon": {
+    "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "file_name": "TVK_LamThien_CANON_BodyCostume_V2_20261028.png",
+    "url": "https://drive.google.com/file/d/1mEsyn2wMo-MVQqhtbmdUiFfO8AaYhzUR/view?usp=drivesdk",
+    "sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+    "width": 1672,
+    "height": 941,
+    "source_type": "flat_sheet_not_layered",
+    "historical_plus_17_already_included": true
+  },
+  "approved_damage": {
+    "levels": [
+      100,
+      70,
+      50,
+      30
+    ],
+    "sha256": "03251b5ec9b020b325687b530c98e026622ba7b3334466ab5d2323a0a89c9e23",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Damage_20261028/TVK_LamThien_Damage_4Levels_Approved_20261028.png",
+    "storage": "uploaded_to_ChatGPT_Library_2026-10-28",
+    "status": "preview_approved_not_texture"
+  },
+  "coordinate_system": {
+    "unit": "normalized_0_to_1",
+    "origin": "top_left_of_individual_full_body_view_image",
+    "x_axis": "right",
+    "y_axis": "down",
+    "landmark_names": [
+      "head_top",
+      "chin",
+      "shoulder_center",
+      "waist_center",
+      "hip_center",
+      "knee_center",
+      "ankle_center"
+    ],
+    "landmark_requirements": "All seven landmarks must be independently measured on actual full-body view; no inferred measurements from small poster crops"
+  },
+  "views": [
+    {
+      "id": "front",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "side",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "front_three_quarter",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back_three_quarter",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    },
+    {
+      "id": "back_turn",
+      "kind": "view",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Full-figure source required; do not infer rig coordinates from poster thumbnail"
+    }
+  ],
+  "additional_poses": [
+    {
+      "id": "bed_side_lying",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_sit",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "chair_sit",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "wall_lean",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_recline",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    },
+    {
+      "id": "bed_kneel_forward",
+      "kind": "pose",
+      "reference_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+      "asset_path": null,
+      "layered_asset_path": null,
+      "landmarks_normalized": null,
+      "review_status": "asset_required",
+      "notes": "Preserve independent wardrobe/integrity state when changing poses"
+    }
+  ],
+  "layer_contract": {
+    "root": "character/lin_qian",
+    "required": [
+      "hair_back",
+      "body_underpaint",
+      "face_base",
+      "eye_left",
+      "eye_right",
+      "mouth",
+      "hair_front",
+      "costume_inner",
+      "costume_outer",
+      "sleeve_left",
+      "sleeve_right",
+      "skirt_front",
+      "skirt_back",
+      "ornaments",
+      "damage_overlay"
+    ],
+    "format": "PNG with alpha per layer; editable ORA/PSD package required",
+    "status": "not_created"
+  },
+  "acceptance": {
+    "requires_full_body_sources": true,
+    "requires_7_landmarks_per_view": true,
+    "requires_layered_art": true,
+    "requires_preview_review": true,
+    "requires_alpha_seam_QA": true,
+    "technical_gate_status": "pending"
+  },
+  "poster_reference_crops": {
+    "status": "extracted_and_archived_reference_only",
+    "source_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "source_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+    "extract_date": "2026-10-28",
+    "archive_name": "TVK_LamThien_CP320_CanonV2_Reference_Crops.zip",
+    "archive_sha256": "907316bdd64a8a544c18cdb937a122514d371de9963773da61d78987b22e4d93",
+    "library_archive_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CP320_CanonV2_Reference_Crops.zip",
+    "library_contact_sheet_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/CP320_CONTACT_SHEET_REFERENCE_ONLY.png",
+    "items": [
+      {
+        "kind": "view",
+        "id": "front",
+        "source_bbox_xyxy": [
+          1198,
+          519,
+          1301,
+          715
+        ],
+        "native_size_px": [
+          103,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "back",
+        "source_bbox_xyxy": [
+          1309,
+          519,
+          1416,
+          715
+        ],
+        "native_size_px": [
+          107,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "side",
+        "source_bbox_xyxy": [
+          1422,
+          519,
+          1528,
+          715
+        ],
+        "native_size_px": [
+          106,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "view",
+        "id": "front_three_quarter",
+        "source_bbox_xyxy": [
+          1534,
+          519,
+          1639,
+          715
+        ],
+        "native_size_px": [
+          105,
+          196
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_front",
+        "source_bbox_xyxy": [
+          11,
+          475,
+          141,
+          692
+        ],
+        "native_size_px": [
+          130,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_back",
+        "source_bbox_xyxy": [
+          149,
+          475,
+          271,
+          692
+        ],
+        "native_size_px": [
+          122,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "standing_side",
+        "source_bbox_xyxy": [
+          278,
+          475,
+          408,
+          692
+        ],
+        "native_size_px": [
+          130,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_recline",
+        "source_bbox_xyxy": [
+          415,
+          475,
+          575,
+          692
+        ],
+        "native_size_px": [
+          160,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_kneel_forward",
+        "source_bbox_xyxy": [
+          584,
+          475,
+          721,
+          692
+        ],
+        "native_size_px": [
+          137,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "bed_sit",
+        "source_bbox_xyxy": [
+          727,
+          475,
+          872,
+          692
+        ],
+        "native_size_px": [
+          145,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "chair_sit",
+        "source_bbox_xyxy": [
+          878,
+          475,
+          1028,
+          692
+        ],
+        "native_size_px": [
+          150,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      },
+      {
+        "kind": "pose",
+        "id": "wall_lean",
+        "source_bbox_xyxy": [
+          1034,
+          475,
+          1180,
+          692
+        ],
+        "native_size_px": [
+          146,
+          217
+        ],
+        "status": "reference_only_not_full_body_or_layered"
+      }
+    ],
+    "strict_qa": "All small 103-160px wide native poster thumbnails; cropped with original background; cannot be used for rig or 7-landmark calibration."
+  },
+  "cp321_layer_templates": {
+    "status": "template_scaffold_created_not_separated_art",
+    "source": "LT_CANON_BODY_REF_2026-10-28_V2",
+    "canvas_px": [
+      2048,
+      3072
+    ],
+    "ora_views": [
+      "front",
+      "back"
+    ],
+    "empty_art_layers_per_file": 15,
+    "reference_guide_visible": true,
+    "art_layer_pixels": 0,
+    "rig_ready": false,
+    "zip_file": "TVK_LamThien_CP321_Empty_ORA_Templates.zip",
+    "zip_sha256": "fe3726c0fae00ba7d233643a070719925fb0f6f0c6a207057e67819196894fb9",
+    "library_path": "/Thanh Van Ky/Approved References/Lam_Thien_Canon_V2_20261028/TVK_LamThien_CP321_Empty_ORA_Templates.zip",
+    "individual_oras": {
+      "front": "d72951b2bf18b5ac2cd20eb9ff00737bcde122fae0e9132fd058099bbcce7618",
+      "back": "876b04c31cb0fa298b150996f7bdb5c76190a02e077d79ddd2f01e6f4d478315"
+    },
+    "qa_result": {
+      "archive_crc": "passed",
+      "layer_count_each": "passed",
+      "art_layer_alpha": "all_empty",
+      "strict_gate": "failed_as_expected"
+    },
+    "warning": "Templates have 15 entirely transparent art layers; do not mark P0-03 or rig complete."
+  }
+}

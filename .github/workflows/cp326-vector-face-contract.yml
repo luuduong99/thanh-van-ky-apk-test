@@ -1,0 +1,26 @@
+name: CP326 independent facial layers metadata gate
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'docs/art/LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json'
+      - 'tests/art/test_cp326_vector_contract.py'
+      - '.github/workflows/cp326-vector-face-contract.yml'
+  pull_request:
+    paths:
+      - 'docs/art/LAM_THIEN_CP326_VECTOR_FACE_MANIFEST.json'
+      - 'tests/art/test_cp326_vector_contract.py'
+
+jobs:
+  reference-only-art-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reject accidental promotion of unapproved CP326 draft
+        run: python3 -m unittest discover -s tests/art -p 'test_cp326_vector_contract.py' -v
+      # Source PNG and ORAs are preserved in Library; binary QA is local
+      # and separate from this metadata test.

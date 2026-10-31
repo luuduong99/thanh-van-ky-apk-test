@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "checkpoint": "CP327",
+  "date": "2026-10-29",
+  "character_id": "lin_qian",
+  "status": "rig_atlas_preflight_complete_new_art_direction_unapproved",
+  "canonical_body_visual_id": "LT_CANON_BODY_REF_2026-10-28_V2",
+  "canonical_body_source_sha256": "41d42c4bdb36f5d34c8ec4104627be3bab32e888c9f3d98ec86c9703838a9711",
+  "approved_expression_profile_id": "LT_EXPRESSIONS_FIVE_2026_10_29_APPROVED",
+  "approved_expression_sheet_sha256": "ef1a3b9ba125d202a90d85bf04707edc50cbbcd0b5133055312ee143741cd4d7",
+  "approved_expression_ids": [
+    "shy",
+    "angry",
+    "pain",
+    "embarrassed",
+    "alluring"
+  ],
+  "source": "CP326_unapproved_existing_oras",
+  "source_native_face_resolution_px": [
+    230,
+    114
+  ],
+  "atlas_resolution_px": [
+    2048,
+    2048
+  ],
+  "atlas_components": 35,
+  "atlas_sha256": "2ef4e619e6d496598db835093e1be5f72ca8b7385ee3bfdc84f24188d7ea9739",
+  "atlas_source_ora_checksums": [
+    {
+      "expression": "shy",
+      "filename": "CP326_01_shy_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "a9192e1b6b3eb71f5bb8b2944431e340a18cffbb18aa2c0ebeb645ab528a02e6",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "angry",
+      "filename": "CP326_02_angry_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "e367adcfd0e05c7e193327f5896ca6b77828af0eeaaf18720a5fdfddf56b1018",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "pain",
+      "filename": "CP326_03_pain_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "4cf6eb0ffa8ebe2f6dca7d93455f3b6e8b76b5dd5529f6b5bf7032646dc91365",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "embarrassed",
+      "filename": "CP326_04_embarrassed_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "8723aa12dc9958f6a14462efba15d2ef137d8ac60db7cde2848009f20da40b7c",
+      "canvas": [
+        920,
+        456
+      ]
+    },
+    {
+      "expression": "alluring",
+      "filename": "CP326_05_alluring_VECTOR_FACE_LAYERS_PROTOTYPE.ora",
+      "source_sha256": "3169b50beeaa6f45bf78c48de36fd3fe53f3aa24aac94a5267b4d63fbff9593e",
+      "canvas": [
+        920,
+        456
+      ]
+    }
+  ],
+  "pixel_exact_vs_source_oras": true,
+  "nonoverlap_and_reproducible": true,
+  "local_unit_tests_passed": 5,
+  "local_unit_tests_total": 5,
+  "artist_approved_high_resolution_face": false,
+  "production_sprite_accepted": false,
+  "spine_rig_verified": false,
+  "android_apk_verified": false,
+  "eligible_for_android_asset_registration": false,
+  "technical_preview_explanation": "A PNG+JSON atlas made from EXISTING CP326 vector prototype ORAs; neither art source nor atlas is approved game art.",
+  "visual_notes": [
+    "New CP327 generated design drafts contain blue-looking irises and facial/ornament differences compared with V2 amber eyes.",
+    "Approved expression reference controls emotive cues but is not a replacement face/body canon.",
+    "Production faces must be redrawn at native high resolution with matching amber eyes, hairline, ornaments and underpaint."
+  ],
+  "validation_files": {
+    "CP327_TECH_DEMO_FACE_ATLAS_RGBA.png": "2ef4e619e6d496598db835093e1be5f72ca8b7385ee3bfdc84f24188d7ea9739",
+    "CP327_TECH_DEMO_FACE_ATLAS.json": "36e4115cadb75254c6edfce1ffe3b0a7b1e36da717dc529ebc62690ecb0045ff",
+    "CP327_ART_ALIGNMENT_QA.png": "cc4b8d701db571f66176bb50119f7b28e57ebde2824afb60da546beb477564cc",
+    "CP327_NEW_EXPRESSION_CONCEPT_NOT_APPROVED.png": "af2d6faf86698395c3557d4ffff2e51bcaa811f80dfa6c27f7be38ba98a48ebc",
+    "CP327_INITIAL_EXPRESSION_CONCEPT_NOT_APPROVED.png": "4312dad3bb2f014190116d8b03fe9cb4640996cbab4cf4945bd2450328275d03",
+    "export_cp327_atlas.py": "765b401f65c9ddf030115b55504140f66cff581a446c5d21cb6e9f10a1d34641",
+    "validate_cp327_atlas.py": "330466f529d2def636d1f5547a14e0e77a50357b7e17c05d01a6dc36c40ba9d2",
+    "test_cp327_atlas.py": "f32a1cace0381067d19bb559b59ca1cb9091bf01c0acff940bb2e5261464c442",
+    "make_cp327_qa_sheet.py": "d7661431da21373c7ca7582bfde2cb5cae8448f53bf90d4e2ab564ffecc32300"
+  },
+  "missing_art_deps": [
+    "full resolution native V2 face source or faithful manual redraw",
+    "approved facial underpaint and detailed separated eyes/eyelids/brows/mouth",
+    "Front/Back/3-4 canonical art",
+    "Spine rig and real Android build"
+  ],
+  "next_checkpoint": "CP328: draw production-resolution canonical face master and review actual detached layers"
+}

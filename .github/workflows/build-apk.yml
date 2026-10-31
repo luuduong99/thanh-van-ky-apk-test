@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "map-2d-prototype" ]
   workflow_dispatch:
 
 permissions:
@@ -14,6 +14,12 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
+
+      - name: Validate character artwork and touch regions
+        run: python3 tools/validate_pose_assets.py
+
+      - name: Validate global character appearance rules
+        run: python3 tools/validate_global_appearance.py
 
       - name: Set up Java
         uses: actions/setup-java@v4

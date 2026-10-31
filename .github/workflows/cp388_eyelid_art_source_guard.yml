@@ -1,0 +1,35 @@
+name: CP388 Lâm Thiển exact CANON editable eyelid linework guard
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp388_manual_eyelid_guides.py'
+      - 'tests/art/test_cp388_manual_eyelid_guides.py'
+      - '.github/workflows/cp388_eyelid_art_source_guard.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp388_manual_eyelid_guides.py'
+      - 'tests/art/test_cp388_manual_eyelid_guides.py'
+      - '.github/workflows/cp388_eyelid_art_source_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-static-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install public CP388 contract requirements
+        run: python -m pip install Pillow numpy
+      - name: Run source-only guard (private CANON checks skip)
+        run: python -m unittest discover -s tests/art -p 'test_cp388_manual_eyelid_guides.py' -v
+      - name: Explain blocked art release
+        run: |
+          echo 'Public only: 3 static PASS, 5 private CANON-dependent SKIP.'
+          echo 'Closed-eye skin underpaint intentionally EMPTY; visual_qa NOT_PASSED.'
+          echo 'No production sprite, rig, or Android APK approved.'

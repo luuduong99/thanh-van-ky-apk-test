@@ -1,0 +1,32 @@
+name: CP418 same-pose blink frame inspector QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - 'tests/art/test_cp418_frame_inspector.py'
+      - '.github/workflows/cp418_frame_inspector.yml'
+  pull_request:
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCP417SamePoseBlinkActivity.kt'
+      - 'tests/art/test_cp418_frame_inspector.py'
+      - '.github/workflows/cp418_frame_inspector.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  public-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run CP418 test contract
+        run: python -m unittest discover -s tests/art -p 'test_cp418_frame_inspector.py' -v
+      - name: Do not claim art/device acceptance
+        run: |
+          echo 'Expected 7 public PASS / 6 private CANON + atlas SKIP.'
+          echo 'Frame inspector is DEBUG-only, art approval remains PENDING.'
+          echo 'CI compilation does not establish physical Android device QA.'

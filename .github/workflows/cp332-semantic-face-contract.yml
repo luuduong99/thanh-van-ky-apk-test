@@ -1,0 +1,30 @@
+name: CP332 semantic facial-layer source contract
+
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/cp332/*.py'
+      - 'docs/art/LAM_THIEN_CP332_SEMANTIC_STUDY_MANIFEST.json'
+      - 'tests/art/test_cp332_semantic_source_contract.py'
+      - '.github/workflows/cp332-semantic-face-contract.yml'
+  pull_request:
+    paths:
+      - 'tools/cp332/*.py'
+      - 'docs/art/LAM_THIEN_CP332_SEMANTIC_STUDY_MANIFEST.json'
+      - 'tests/art/test_cp332_semantic_source_contract.py'
+
+jobs:
+  source-geometry-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install vector image render dependencies
+        run: python -m pip install Pillow CairoSVG
+      - name: Verify CANON reference and independent alpha SVG geometry
+        run: python -m unittest discover -s tests/art -p 'test_cp332_semantic_source_contract.py' -v
+      # True ORA ZIP/CRC and merged PNG pixel tests are local on Library binaries.
+      # This CI must NEVER be interpreted as visual art / Spine / Android approval.

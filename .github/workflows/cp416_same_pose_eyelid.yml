@@ -1,0 +1,33 @@
+name: CP416 Lâm Thiển same-pose eyelid source and art gate
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'tools/art/cp416_front_pose_eyelid_art.py'
+      - 'tests/art/test_cp416_front_pose_eyelid_art.py'
+      - '.github/workflows/cp416_same_pose_eyelid.yml'
+  pull_request:
+    paths:
+      - 'tools/art/cp416_front_pose_eyelid_art.py'
+      - 'tests/art/test_cp416_front_pose_eyelid_art.py'
+      - '.github/workflows/cp416_same_pose_eyelid.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  public-source-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image QA
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3'
+      - name: Validate CP416 (original CANON tests must skip on public checkout)
+        run: python -m unittest discover -s tests/art -p 'test_cp416_front_pose_eyelid_art.py' -v
+      - name: Do not promote unapproved sprites
+        run: |
+          echo '5 public PASS / 7 private original-art SKIP expected.'
+          echo 'CP416 is a low-res DRAFT. User visual approval and artist-painted full rig remain required.'

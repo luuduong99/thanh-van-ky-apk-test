@@ -1,0 +1,43 @@
+name: CP410 Lâm Thiển shared timeline source and safety QA
+on:
+  push:
+    branches: [map-2d-prototype]
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKPreviewClock.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedBlinkInsetView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdleMotionView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - 'tools/art/cp410_sync_preview.py'
+      - 'tests/art/test_cp410_synchronized_preview.py'
+      - '.github/workflows/cp410_shared_clock_guard.yml'
+  pull_request:
+    paths:
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKPreviewClock.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedBlinkInsetView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdleMotionView.kt'
+      - 'app/src/main/java/vn/thanhvanky/prototype/TVKCombinedIdlePreviewActivity.kt'
+      - 'tools/art/cp410_sync_preview.py'
+      - 'tests/art/test_cp410_synchronized_preview.py'
+      - '.github/workflows/cp410_shared_clock_guard.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-debug-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install offline reference dependencies
+        run: python -m pip install 'Pillow>=10,<14' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Check shared clock, source lock and non-production gates
+        run: PYTHONPATH=tools/art python -m unittest discover -s tests/art -p 'test_cp410_synchronized_preview.py' -v
+      - name: Keep artistic and device gates blocked
+        run: |
+          echo 'Expect 9 public PASS and 5 private-source SKIP.'
+          echo 'Face crop and body front are different CANON sheet poses: NEVER composite them as one rig.'
+          echo 'visual_qa=NOT_APPROVED, true_layered_rig=false, physical_phone_tested=false, production_sprite_paths={}.'
