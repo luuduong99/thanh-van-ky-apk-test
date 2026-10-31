@@ -2,6 +2,25 @@
 
 **Cách làm:** Mở **4 cuộc trò chuyện trong cùng ChatGPT Project Thanh Vân Ký**, đổi tên theo tiêu đề và dán nguyên mẫu tương ứng dưới đây. Mẫu nhắc GPT tự đọc GitHub và chỉ xử lý task khi nhận yêu cầu. *Không thể tạo thư mục con chat thật; không tự tạo chat bằng việc commit các file này.*
 
+## Cách dùng nhanh sau khi thiết lập Project một lần
+
+Bạn **không cần sao chép lại** các mẫu prompt dài bên dưới nếu đã thêm đoạn hướng dẫn chung trong [SHORT_COMMANDS.md](SHORT_COMMANDS.md) vào Project Thanh Vân Ký. Mở cuộc trò chuyện mới rồi chỉ nhập:
+
+```text
+TVK-01 tiếp tục
+```
+```text
+TVK-02 tiếp tục
+```
+```text
+TVK-03 tiếp tục
+```
+```text
+TVK-04 tiếp tục
+```
+
+Các prompt đầy đủ dưới đây vẫn giữ làm phương án dự phòng khi Project không truy xuất được GitHub hoặc chưa có hướng dẫn chung.
+
 ## [TVK-01] Nhân vật & Animation
 
 ```text
