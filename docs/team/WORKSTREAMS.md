@@ -2,6 +2,10 @@
 
 **Quy tắc:** Mỗi thread chỉnh sửa trên **nhánh riêng**, mỗi thay đổi phải được kiểm tra trước khi TVK-04 merge. Những đường dẫn dưới đây là **phân quyền khuyến nghị**, không phải khóa bảo vệ tự động của GitHub.
 
+## Policy chung có hiệu lực từ 2026-10-31
+
+Cả bốn thread phải theo [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MODE.md): tạm tắt body touch-zone; vẫn giữ scene/pose/wardrobe/dialogue controls; không warp toàn bộ ảnh; chỉ thêm micro-animation bằng layer đã duyệt. Tài liệu và code body-touch trước ngày này là lịch sử, không được tái bật trong PR trừ khi có quyết định mới của người dùng.
+
 ## TVK-01 — Nhân vật & Animation
 
 - **Nhánh:** `tvk/characters`. **Bối cảnh:** Lâm Thiển đã đến CP419 ở nhánh tích hợp trước khi tách thread; tiếp tục từ CP420/`CHAR-...`, không lặp CP396–CP419.
