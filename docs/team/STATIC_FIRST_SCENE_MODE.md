@@ -57,3 +57,19 @@ Tài liệu cũ mô tả body touch chỉ mang tính **lịch sử**, không cò
 - Kiểm ZIP CRC và DEX thấy `STATIC-FIRST`, `FIT_CENTER`; không nhúng các file riêng tư `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` hay atlas CP417.
 - Đã lưu APK + workflow artifact trong Library `/Thanh Van Ky/Development/INT002_Static_First_View_Only_20261031/`.
 - **Giới hạn chưa nghiệm thu:** chưa thử trực tiếp chạm/đổi cảnh/pose/wardrobe trên điện thoại; scene-specific art và micro-animation phân lớp chưa hoàn thiện. `production_release.status=blocked_pending_art`.
+
+## ART REVIEW — phản hồi trực tiếp của người dùng (2026-10-31): PHƯƠNG PHÁP KÉO ẢNH BỊ LOẠI
+
+Các demo thử dựng nhiều phương án và video `TVK_LamThien_NaturalMotion_PriorityChest.mp4` **KHÔNG ĐƯỢC DUYỆT**: cảm giác hình bị kéo, co dãn và dịch chuyển để giả chuyển động, khác chất lượng chuyển động thực mà người dùng mong muốn ở video tham chiếu.
+
+**Tiêu chuẩn sửa đổi (ưu tiên cao hơn mô tả chuyển động thử trước đó):**
+- Cấm **cả warp toàn ảnh lẫn warp/scale/stretch một phần thân trên, vòng ngực, vai, tay, tóc** từ một ảnh phẳng. Không được che giấu việc biến dạng bằng từ "local micro-animation" hoặc "mức rất nhẹ".
+- Chuyển động vòng ngực ưu tiên số một, nhưng phải là **nhịp thở/chuyển động vải được vẽ riêng theo thời điểm**, có underpaint, nếp áo, viền trang phục, sắc độ và trọng tâm thống nhất. Không thể tuyên bố có "chuyển động ngực thật" nếu mới dùng 1 sprite phẳng.
+- Chớp mắt: các frame mặt/mí được **vẽ lại thực sự cùng pose**, duyệt chi tiết mặt và màu da; CP417 là DRAFT không được tự nâng thành production.
+- Tay/tóc: cần asset tách lớp và underpaint chất lượng; có thể dùng khớp nối, chuyển động rất chậm, không xé mép, lặp nét hoặc tạo cảm giác bị kéo.
+- Ứng dụng màu ửng đỏ được phép nếu là overlay sắc độ đồng bộ da, **không bóp hình mặt**.
+- Chuyển động ưu tiên chậm, không rung, không biểu diễn quá mức. Cần kiểm video ở mức phóng to 100% và tốc độ bình thường, so sánh liên tục với ảnh CANON; chặn nếu có méo, ghosting, viền trắng, khớp gãy, ánh sáng/vải không đồng nhất.
+- **Nếu không có frame/layer được vẽ đúng CANON để animate, phải thành thật hiển thị ảnh tĩnh + môi trường / blink DRAFT có nhãn**, không tự chế animation cơ thể bằng deform.
+- Video demo bị chê được giữ lại chỉ để audit kỹ thuật, **không phải tham chiếu chất lượng nghệ thuật**. Không dùng làm tiêu chí chốt cho TVK-01.
+
+**Mốc nghiệm thu art cho demo mới:** (1) duyệt 2–4 keyframe nhịp thở/sắc độ/vải trên model CANON đúng pose trước; (2) kiểm ảnh đứng yên vẫn pixel-exact hoặc duy trì nhận diện; (3) chỉ nội suy bằng frame đã được họa sĩ dựng và kiểm viền, không scale patch; (4) xuất video ngắn chứng minh động tác nhìn tự nhiên; (5) người dùng duyệt mới được tích hợp game. **Hiện ở trạng thái ART_REWORK_REQUIRED**.
