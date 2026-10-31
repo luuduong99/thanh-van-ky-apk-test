@@ -49,3 +49,11 @@
 - **TVK-04**: tích hợp viewer, pose/wardrobe controls, kiểm thử/static fallback, CI/APK và đảm bảo các thread không tái bật body hotspot.
 
 Tài liệu cũ mô tả body touch chỉ mang tính **lịch sử**, không còn là hành vi mục tiêu hiện tại. Muốn bật lại phải có **quyết định mới của người dùng**, không tự động khôi phục vì JSON có `touchZones`.
+
+## Bằng chứng tích hợp INT-002 (2026-10-31)
+
+- [GitHub Actions Source Contract](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151380759): **SUCCESS — 7/7 PASS**. Chỉ kiểm source/luồng nút, chưa kiểm thao tác trên máy thật.
+- [GitHub Actions Android Build](https://github.com/luuduong99/thanh-van-ky-apk-test/actions/runs/41151376829): **SUCCESS**. Artifact `13023586247`; APK debug `TVK_Static_First_View_Only_Debug_20261031.apk` **8,824,258 bytes**, SHA256 `4842812c72ce3d8fcc35a1e600e2c0cc1f7417c42f381918494090946bf18fcd`.
+- Kiểm ZIP CRC và DEX thấy `STATIC-FIRST`, `FIT_CENTER`; không nhúng các file riêng tư `LAM_THIEN_CANON_V2_1_FINAL_20261029.png` hay atlas CP417.
+- Đã lưu APK + workflow artifact trong Library `/Thanh Van Ky/Development/INT002_Static_First_View_Only_20261031/`.
+- **Giới hạn chưa nghiệm thu:** chưa thử trực tiếp chạm/đổi cảnh/pose/wardrobe trên điện thoại; scene-specific art và micro-animation phân lớp chưa hoàn thiện. `production_release.status=blocked_pending_art`.
