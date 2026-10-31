@@ -9,6 +9,11 @@
 | TVK-03 Chiến đấu | `tvk/combat` | Có luật turn-based/UI trong PROJECT_SPEC; chưa có chứng cứ game combat production hoàn thiện | `COMBAT-001`: audit thực trạng source và viết state-machine độc lập | NOT STARTED ở thread riêng |
 | TVK-04 Tích hợp/APK | `map-2d-prototype` | CP419 GitHub source CI SUCCESS 7 PASS/3 SKIP, build APK debug SUCCESS | `INT-001`: kiểm tra PR từng thread, tránh file shared, ghép thành APK chương I | READY |
 
+## Quyết định tích hợp INT-002 — đã triển khai nguồn, đang chờ CI / thiết bị
+
+- 2026-10-31: **static-first, view-only** — body hotspots ngừng hoạt động trên màn nhân vật; nút chuyển cảnh, wardrobe, pose, expression, dialogue vẫn có. Android `CharacterInteractionActivity.kt` dùng `FIT_CENTER` thay bitmap mesh; CP419 chỉ còn debug. Chuẩn chi tiết: [STATIC_FIRST_SCENE_MODE.md](STATIC_FIRST_SCENE_MODE.md).
+- Cần CI source-contract và Android build SUCCESS để xác nhận build; chưa xác minh thao tác thực trên thiết bị. Các thread khác phải đọc quyết định này từ nhánh tích hợp `map-2d-prototype` trước khi tiếp tục trên nhánh riêng; các nhánh **không tự cập nhật**.
+
 ## Release gate vẫn khóa
 
 - Lâm Thiển đúng CANON V2.1: `LAM_THIEN_CANON_V2_1_FINAL_20261029.png`, SHA256 `f43046d13861a2b23b2e99094040be139831de4af929c9299e7e275a3eaf910a`.
